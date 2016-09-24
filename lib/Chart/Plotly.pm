@@ -97,7 +97,7 @@ Pablo Rodríguez González
 
 =head1 BUGS
 
-Please report any bugs or feature requests via github: L<https://github.com/pablrod/p5-Chart-Dygraphs/issues>
+Please report any bugs or feature requests via github: L<https://github.com/pablrod/p5-Chart-Plotly/issues>
 
 =head1 LICENSE AND COPYRIGHT
 
