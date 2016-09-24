@@ -1,0 +1,7 @@
+-l=120
+-nsfs
+-nolq
+-ce
+-lp
+-vt=1
+-i=4
