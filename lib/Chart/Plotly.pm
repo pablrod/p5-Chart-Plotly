@@ -52,7 +52,7 @@ This module does not export anything and the interface is "sub" oriented, but th
 
 =item * data:
 
-Data to be represented. The format is the perl version of the data expected by plotly.js: L<http://plot.ly/javascript/>
+Data to be represented. The format is the perl version of the data expected by plotly.js: L<http://plot.ly/javascript/reference/>
 
 =back
 
