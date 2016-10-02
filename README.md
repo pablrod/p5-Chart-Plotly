@@ -35,7 +35,7 @@ This module does not export anything and the interface is "sub" oriented, but th
 
 - data:
 
-    Data to be represented. The format is the perl version of the data expected by plotly.js: [http://plot.ly/javascript/](http://plot.ly/javascript/)
+    Data to be represented. The format is the perl version of the data expected by plotly.js: [http://plot.ly/javascript/reference/](http://plot.ly/javascript/reference/)
 
 # AUTHOR
 
@@ -43,7 +43,7 @@ Pablo Rodríguez González
 
 # BUGS
 
-Please report any bugs or feature requests via github: [https://github.com/pablrod/p5-Chart-Dygraphs/issues](https://github.com/pablrod/p5-Chart-Dygraphs/issues)
+Please report any bugs or feature requests via github: [https://github.com/pablrod/p5-Chart-Plotly/issues](https://github.com/pablrod/p5-Chart-Plotly/issues)
 
 # LICENSE AND COPYRIGHT
 
