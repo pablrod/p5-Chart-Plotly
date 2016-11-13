@@ -39,7 +39,17 @@ This module does not export anything and the interface is "sub" oriented, but th
 
 =item * data:
 
-Data to be represented. The format is the perl version of the data expected by plotly.js: L<http://plot.ly/javascript/reference/>
+Data to be represented. It could be:
+
+=over
+
+=item Perl data structure of the json expected by plotly.js: L<http://plot.ly/javascript/reference/> (this data would be serialized to JSON)
+
+=item Array ref of objects of type Chart::Plotly::Trace::*
+
+=item Anything that could be serialized to JSON with the json expected by plotly.js
+
+=back
 
 =back
 
