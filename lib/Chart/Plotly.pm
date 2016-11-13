@@ -96,6 +96,13 @@ Pablo Rodríguez González
 
 Please report any bugs or feature requests via github: L<https://github.com/pablrod/p5-Chart-Plotly/issues>
 
+=head1 DISCLAIMER
+
+This is an unofficial Plotly Perl module. Currently I'm not affiliated in any way with Plotly. 
+But I think plotly.js is a great library and I want to use it with perl.
+
+If you like plotly.js please consider supporting them purchasing a pro subscription: L<https://plot.ly/products/cloud/>
+
 =head1 LICENSE AND COPYRIGHT
 
 Copyright 2016 Pablo Rodríguez González.
