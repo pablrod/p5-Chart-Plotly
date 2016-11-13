@@ -19,6 +19,8 @@ Chart::Plotly - Generate html/javascript charts from perl data using javascript 
 =head1 SYNOPSIS
 
 # EXAMPLE: examples/basic.pl
+
+# EXAMPLE: examples/pdl.pl
      
 =head1 DESCRIPTION
 
@@ -75,7 +77,8 @@ Plotly.plot(document.getElementById('plotly_graph'),{$data});
 </html>
 DYGRAPH_TEMPLATE
 
-    my $json_formatter = JSON->new->utf8->allow_blessed([1])->convert_blessed([1]);
+    my $json_formatter = JSON->new->utf8->allow_blessed(1)->convert_blessed(1);
+	local *PDL::TO_JSON = sub {$_[0]->unpdl};
     my $data_string = $json_formatter->encode( $params{'data'} );
     my $template_variables = {
                            data => $data_string,
