@@ -30,7 +30,7 @@ Chart::Plotly - Generate html/javascript charts from perl data using javascript 
                 };
     $data->{'y'} = [map {rand 10 } @{$data->{'x'}} ];
     
-    $html_file->spew_utf8(Chart::Dygraphs::render_full_html(data => [$data]));
+    $html_file->spew_utf8(Chart::Plotly::render_full_html(data => [$data]));
     open_browser($html_file->canonpath()); 
      
 =head1 DESCRIPTION
