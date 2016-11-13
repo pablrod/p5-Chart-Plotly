@@ -18,20 +18,7 @@ Chart::Plotly - Generate html/javascript charts from perl data using javascript 
 
 =head1 SYNOPSIS
 
-    use Chart::Plotly;
-    use Browser::Open qw( open_browser );
-    use Path::Tiny;
-    
-    my $html_file = Path::Tiny::tempfile(UNLINK => 0);
-
-    my $data = {x => [1 .. 10],
-                mode => 'markers',
-                type => 'scatter'
-                };
-    $data->{'y'} = [map {rand 10 } @{$data->{'x'}} ];
-    
-    $html_file->spew_utf8(Chart::Plotly::render_full_html(data => [$data]));
-    open_browser($html_file->canonpath()); 
+# EXAMPLE: examples/basic.pl
      
 =head1 DESCRIPTION
 
