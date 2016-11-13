@@ -78,7 +78,7 @@ Plotly.plot(document.getElementById('plotly_graph'),{$data});
 </html>
 DYGRAPH_TEMPLATE
 
-    my $json_formatter = JSON->new->utf8;
+    my $json_formatter = JSON->new->utf8->allow_blessed([1])->convert_blessed([1]);
     my $data_string = $json_formatter->encode( $params{'data'} );
     my $template_variables = {
                            data => $data_string,
