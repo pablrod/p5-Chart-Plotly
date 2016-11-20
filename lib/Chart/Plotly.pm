@@ -7,6 +7,7 @@ use utf8;
 use JSON;
 use Params::Validate qw(:all);
 use Text::Template;
+use Module::Load;
 
 # VERSION
 
@@ -59,7 +60,7 @@ Data to be represented. It could be:
 
 sub render_full_html {
     my %params = validate( @_,
-                           {  data    => { type => ARRAYREF },
+                           {  data    => { type => ARRAYREF | OBJECT },
                            }
     );
 
@@ -79,7 +80,20 @@ DYGRAPH_TEMPLATE
 
     my $json_formatter = JSON->new->utf8->allow_blessed(1)->convert_blessed(1);
 	local *PDL::TO_JSON = sub {$_[0]->unpdl};
-    my $data_string = $json_formatter->encode( $params{'data'} );
+    my $data = $params{'data'};
+    my $ref = ref $data;
+    if ($ref ne 'ARRAY') {
+	my $adapter_name = 'Chart::Plotly::Adapter::' . $ref;
+	eval {
+		load $adapter_name;
+		my $adapter = $adapter_name->new(data => $data);
+		$data = $adapter->traces();
+	};
+	if ($@) {
+		warn 'Cannot load adapter: ' . $adapter_name . '. ' . $@;
+	}
+    }
+    my $data_string = $json_formatter->encode( $data );
     my $template_variables = {
                            data => $data_string,
     };
