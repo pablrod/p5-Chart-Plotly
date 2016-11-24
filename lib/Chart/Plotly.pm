@@ -4,10 +4,15 @@ use strict;
 use warnings;
 use utf8;
 
+use Exporter 'import';
+use vars qw(@EXPORT_OK);
+@EXPORT_OK = qw(show_plot);
+
 use JSON;
 use Params::Validate qw(:all);
 use Text::Template;
 use Module::Load;
+use HTML::Show;
 
 # VERSION
 
@@ -99,6 +104,11 @@ DYGRAPH_TEMPLATE
     };
 
     return Text::Template::fill_in_string( $template, HASH => $template_variables );
+}
+
+sub show_plot {
+	my $data = shift;
+	HTML::Show::show(render_full_html(data => $data));		
 }
 
 1;
