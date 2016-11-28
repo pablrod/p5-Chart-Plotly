@@ -53,7 +53,7 @@ Chart::Plotly - Generate html/javascript charts from perl data using javascript 
 Generate html/javascript charts from perl data using javascript library plotly.js. The result
 is a file that you could see in your favourite browser.
 
-This module does not export anything and the interface is "sub" oriented, but the API is subject to changes.
+The interface is "sub" oriented, but the API is subject to changes.
 
 # FUNCTIONS
 
