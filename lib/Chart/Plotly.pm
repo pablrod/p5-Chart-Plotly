@@ -71,23 +71,47 @@ sub render_full_html {
                            }
     );
 
-    my $template = <<'DYGRAPH_TEMPLATE';
+    my $chart_id = 'plotly_graph';
+    return _render_html_wrap(_render_cell(_process_data($params{'data'}), $chart_id));
+}
+
+sub _render_html_wrap {
+    my $body = shift;
+    my $html_begin = <<'HTML_BEGIN';
 <html>
 <head>
 <script src="https://cdn.plot.ly/plotly-1.17.3.min.js"></script>
 </head>
 <body>
-<div id="plotly_graph"></div>
-<script>
-Plotly.plot(document.getElementById('plotly_graph'),{$data});
-</script>
+HTML_BEGIN
+    my $html_end = <<'HTML_END';
 </body>
 </html>
-DYGRAPH_TEMPLATE
+HTML_END
+    return $html_begin . $body . $html_end;
+}
 
+sub _render_cell {
+    my $data_string = shift();
+    my $chart_id = shift();
+    my $template = <<'TEMPLATE';
+<div id="{$chart_id}"></div>
+<script>
+Plotly.plot(document.getElementById('{$chart_id}'),{$data});
+</script>
+TEMPLATE
+
+    my $template_variables = {
+                           data => $data_string,
+                           chart_id => $chart_id,
+    };
+    return Text::Template::fill_in_string( $template, HASH => $template_variables );
+}
+
+sub _process_data {
+    my $data = shift;
     my $json_formatter = JSON->new->utf8->allow_blessed(1)->convert_blessed(1);
 	local *PDL::TO_JSON = sub {$_[0]->unpdl};
-    my $data = $params{'data'};
     my $ref = ref $data;
     if ($ref ne 'ARRAY') {
 	my $adapter_name = 'Chart::Plotly::Adapter::' . $ref;
@@ -101,11 +125,7 @@ DYGRAPH_TEMPLATE
 	}
     }
     my $data_string = $json_formatter->encode( $data );
-    my $template_variables = {
-                           data => $data_string,
-    };
-
-    return Text::Template::fill_in_string( $template, HASH => $template_variables );
+    return $data_string;
 }
 
 =head2 show_plot
@@ -118,8 +138,15 @@ Data to be represented. The format is the same as the parameter data in render_f
 
 
 sub show_plot {
-	my $data = shift;
-	HTML::Show::show(render_full_html(data => $data));		
+    my @data_to_plot = @_;
+
+    my $rendered_cells = "";
+    my $numeric_id = 0;
+    for my $data (@data_to_plot) {
+        $rendered_cells .= _render_cell(_process_data($data), 'chart_' . $numeric_id++);
+    }
+    my $plot = _render_html_wrap($rendered_cells);
+	HTML::Show::show($plot);		
 }
 
 1;
