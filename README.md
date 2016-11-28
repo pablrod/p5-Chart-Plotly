@@ -68,6 +68,13 @@ The interface is "sub" oriented, but the API is subject to changes.
     - Perl data structure of the json expected by plotly.js: [http://plot.ly/javascript/reference/](http://plot.ly/javascript/reference/) (this data would be serialized to JSON)
     - Array ref of objects of type Chart::Plotly::Trace::\*
     - Anything that could be serialized to JSON with the json expected by plotly.js
+    - Object that could be adapted using Chart::Plotly::Adapter::\*
+
+## show\_plot
+
+### Parameters
+
+Data to be represented. The format is the same as the parameter data in render\_full\_html
 
 # AUTHOR
 

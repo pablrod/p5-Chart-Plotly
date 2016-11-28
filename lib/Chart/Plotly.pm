@@ -57,6 +57,8 @@ Data to be represented. It could be:
 
 =item Anything that could be serialized to JSON with the json expected by plotly.js
 
+=item Object that could be adapted using Chart::Plotly::Adapter::*
+
 =back
 
 =back
@@ -105,6 +107,15 @@ DYGRAPH_TEMPLATE
 
     return Text::Template::fill_in_string( $template, HASH => $template_variables );
 }
+
+=head2 show_plot
+
+=head3 Parameters
+
+Data to be represented. The format is the same as the parameter data in render_full_html
+
+=cut
+
 
 sub show_plot {
 	my $data = shift;

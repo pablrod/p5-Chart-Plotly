@@ -34,6 +34,14 @@ has options => (
 	isa => 'HashRef'	
 );
 
+=head2 traces
+
+Returns the object/s Chart::Plotly::Trace::* ready to plot.
+
+In this version every column is plotted as a line.
+
+=cut
+
 sub traces {
 	my $self = shift();
 	my $table = $self->data();
