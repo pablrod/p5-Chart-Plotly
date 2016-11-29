@@ -130,6 +130,8 @@ sub _process_data {
 
 =head2 show_plot
 
+Opens the plot in a browser locally
+
 =head3 Parameters
 
 Data to be represented. The format is the same as the parameter data in render_full_html
