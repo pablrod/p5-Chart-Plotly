@@ -12,6 +12,7 @@ use JSON;
 use Params::Validate qw(:all);
 use Text::Template;
 use Module::Load;
+use Ref::Util;
 use HTML::Show;
 
 # VERSION
@@ -66,17 +67,15 @@ Data to be represented. It could be:
 =cut
 
 sub render_full_html {
-    my %params = validate( @_,
-                           {  data    => { type => ARRAYREF | OBJECT },
-                           }
-    );
+    my %params = validate( @_, { data => { type => ARRAYREF | OBJECT }, } );
 
     my $chart_id = 'plotly_graph';
-    return _render_html_wrap(_render_cell(_process_data($params{'data'}), $chart_id));
+    return _render_html_wrap(
+        _render_cell( _process_data( $params{'data'} ), $chart_id ) );
 }
 
 sub _render_html_wrap {
-    my $body = shift;
+    my $body       = shift;
     my $html_begin = <<'HTML_BEGIN';
 <html>
 <head>
@@ -93,8 +92,8 @@ HTML_END
 
 sub _render_cell {
     my $data_string = shift();
-    my $chart_id = shift();
-    my $template = <<'TEMPLATE';
+    my $chart_id    = shift();
+    my $template    = <<'TEMPLATE';
 <div id="{$chart_id}"></div>
 <script>
 Plotly.plot(document.getElementById('{$chart_id}'),{$data});
@@ -102,29 +101,29 @@ Plotly.plot(document.getElementById('{$chart_id}'),{$data});
 TEMPLATE
 
     my $template_variables = {
-                           data => $data_string,
-                           chart_id => $chart_id,
+        data     => $data_string,
+        chart_id => $chart_id,
     };
-    return Text::Template::fill_in_string( $template, HASH => $template_variables );
+    return Text::Template::fill_in_string( $template,
+        HASH => $template_variables );
 }
 
 sub _process_data {
-    my $data = shift;
+    my $data           = shift;
     my $json_formatter = JSON->new->utf8->allow_blessed(1)->convert_blessed(1);
-	local *PDL::TO_JSON = sub {$_[0]->unpdl};
-    my $ref = ref $data;
-    if ($ref ne 'ARRAY') {
-	my $adapter_name = 'Chart::Plotly::Adapter::' . $ref;
-	eval {
-		load $adapter_name;
-		my $adapter = $adapter_name->new(data => $data);
-		$data = $adapter->traces();
-	};
-	if ($@) {
-		warn 'Cannot load adapter: ' . $adapter_name . '. ' . $@;
-	}
+    local *PDL::TO_JSON = sub { $_[0]->unpdl };
+    if ( Ref::Util::is_blessed_ref($data) ) {
+        my $adapter_name = 'Chart::Plotly::Adapter::' . ref $data;
+        eval {
+            load $adapter_name;
+            my $adapter = $adapter_name->new( data => $data );
+            $data = $adapter->traces();
+        };
+        if ($@) {
+            warn 'Cannot load adapter: ' . $adapter_name . '. ' . $@;
+        }
     }
-    my $data_string = $json_formatter->encode( $data );
+    my $data_string = $json_formatter->encode($data);
     return $data_string;
 }
 
@@ -138,17 +137,17 @@ Data to be represented. The format is the same as the parameter data in render_f
 
 =cut
 
-
 sub show_plot {
     my @data_to_plot = @_;
 
     my $rendered_cells = "";
-    my $numeric_id = 0;
+    my $numeric_id     = 0;
     for my $data (@data_to_plot) {
-        $rendered_cells .= _render_cell(_process_data($data), 'chart_' . $numeric_id++);
+        $rendered_cells .=
+          _render_cell( _process_data($data), 'chart_' . $numeric_id++ );
     }
     my $plot = _render_html_wrap($rendered_cells);
-	HTML::Show::show($plot);		
+    HTML::Show::show($plot);
 }
 
 1;
