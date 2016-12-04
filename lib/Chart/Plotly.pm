@@ -69,9 +69,15 @@ Data to be represented. It could be:
 sub render_full_html {
     my %params = validate( @_, { data => { type => ARRAYREF | OBJECT }, } );
 
+	my $data = $params{'data'};
     my $chart_id = 'plotly_graph';
-    return _render_html_wrap(
-        _render_cell( _process_data( $params{'data'} ), $chart_id ) );
+    my $html;
+    if ( Ref::Util::is_blessed_ref($data) && $data->isa('Chart::Plotly::Plot') ) {
+        $html = _render_html_wrap( $data->html( div_id => $chart_id ) );
+    } else {
+        $html = _render_html_wrap( _render_cell( _process_data( $data ), $chart_id ) );
+    }
+    return $html;
 }
 
 sub _render_html_wrap {
@@ -79,7 +85,6 @@ sub _render_html_wrap {
     my $html_begin = <<'HTML_BEGIN';
 <html>
 <head>
-<script src="https://cdn.plot.ly/plotly-1.17.3.min.js"></script>
 </head>
 <body>
 HTML_BEGIN
@@ -95,17 +100,16 @@ sub _render_cell {
     my $chart_id    = shift();
     my $template    = <<'TEMPLATE';
 <div id="{$chart_id}"></div>
+<script src="https://cdn.plot.ly/plotly-1.17.3.min.js"></script>
 <script>
 Plotly.plot(document.getElementById('{$chart_id}'),{$data});
 </script>
 TEMPLATE
 
-    my $template_variables = {
-        data     => $data_string,
-        chart_id => $chart_id,
+    my $template_variables = { data     => $data_string,
+                               chart_id => $chart_id,
     };
-    return Text::Template::fill_in_string( $template,
-        HASH => $template_variables );
+    return Text::Template::fill_in_string( $template, HASH => $template_variables );
 }
 
 sub _process_data {
@@ -143,8 +147,12 @@ sub show_plot {
     my $rendered_cells = "";
     my $numeric_id     = 0;
     for my $data (@data_to_plot) {
-        $rendered_cells .=
-          _render_cell( _process_data($data), 'chart_' . $numeric_id++ );
+        my $id = 'chart_' . $numeric_id++;
+        if ( Ref::Util::is_blessed_ref($data) && $data->isa('Chart::Plotly::Plot') ) {
+            $rendered_cells .= $data->html( div_id => $id );
+        } else {
+            $rendered_cells .= _render_cell( _process_data($data), $id );
+        }
     }
     my $plot = _render_html_wrap($rendered_cells);
     HTML::Show::show($plot);
