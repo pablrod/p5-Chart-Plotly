@@ -50,20 +50,8 @@ sub html {
     my $self     = shift;
     my %params   = @_;
     my $chart_id = $params{'div_id'} // 'chart';
-    my $template = <<'TEMPLATE';
-<div id="{$chart_id}"></div>
-<script src="https://cdn.plot.ly/plotly-1.17.3.min.js"></script>
-<script>
-Plotly.plot(document.getElementById('{$chart_id}'),{$traces});
-</script>
-TEMPLATE
-
-    my $template_variables = {
-        traces   => Chart::Plotly::_process_data( $self->traces() ),
-        chart_id => $chart_id,
-    };
-    return Text::Template::fill_in_string( $template,
-        HASH => $template_variables );
+    return Chart::Plotly::_render_cell(
+        Chart::Plotly::_process_data( $self->traces() ), $chart_id );
 }
 
 1;
