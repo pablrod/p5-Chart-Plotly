@@ -67,28 +67,6 @@ sub type {
 
 =cut
 
-=item * text
-
-Sets text elements associated with each (x,y) pair to appear on hover. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.
-
-=cut
-
-has text => (
-    is => 'rw',
-    documentation => "Sets text elements associated with each (x,y) pair to appear on hover. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.",
-);
-
-=item * y
-
-Sets the y coordinates.
-
-=cut
-
-has y => (
-    is => 'rw',
-    documentation => "Sets the y coordinates.",
-);
-
 =item * indices
 
 A sequential value, 0..n, supply it to avoid creating this array inside plotting. If specified, it must be a typed `Int32Array` array. Its length must be equal to or greater than the number of points. For the best performance and memory use, create one large `indices` typed array that is guaranteed to be at least as long as the largest number of points during use, and reuse it on each `Plotly.restyle()` call.
@@ -100,26 +78,35 @@ has indices => (
     documentation => "A sequential value, 0..n, supply it to avoid creating this array inside plotting. If specified, it must be a typed `Int32Array` array. Its length must be equal to or greater than the number of points. For the best performance and memory use, create one large `indices` typed array that is guaranteed to be at least as long as the largest number of points during use, and reuse it on each `Plotly.restyle()` call.",
 );
 
-=item * xy
+=item * marker
 
-Faster alternative to specifying `x` and `y` separately. If supplied, it must be a typed `Float32Array` array that represents points such that `xy[i * 2] = x[i]` and `xy[i * 2 + 1] = y[i]`
 
 =cut
 
-has xy => (
+has marker => (
     is => 'rw',
-    documentation => "Faster alternative to specifying `x` and `y` separately. If supplied, it must be a typed `Float32Array` array that represents points such that `xy[i * 2] = x[i]` and `xy[i * 2 + 1] = y[i]`",
 );
 
-=item * ybounds
+=item * text
 
-Specify `ybounds` in the shape of `[yMin, yMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `xbounds` for the performance benefits.
+Sets text elements associated with each (x,y) pair to appear on hover. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.
 
 =cut
 
-has ybounds => (
+has text => (
     is => 'rw',
-    documentation => "Specify `ybounds` in the shape of `[yMin, yMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `xbounds` for the performance benefits.",
+    documentation => "Sets text elements associated with each (x,y) pair to appear on hover. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.",
+);
+
+=item * x
+
+Sets the x coordinates.
+
+=cut
+
+has x => (
+    is => 'rw',
+    documentation => "Sets the x coordinates.",
 );
 
 =item * xbounds
@@ -133,24 +120,48 @@ has xbounds => (
     documentation => "Specify `xbounds` in the shape of `[xMin, xMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `ybounds` for the performance benefits.",
 );
 
-=item * marker
+=item * xy
 
+Faster alternative to specifying `x` and `y` separately. If supplied, it must be a typed `Float32Array` array that represents points such that `xy[i * 2] = x[i]` and `xy[i * 2 + 1] = y[i]`
 
 =cut
 
-has marker => (
+has xy => (
     is => 'rw',
+    documentation => "Faster alternative to specifying `x` and `y` separately. If supplied, it must be a typed `Float32Array` array that represents points such that `xy[i * 2] = x[i]` and `xy[i * 2 + 1] = y[i]`",
 );
 
-=item * x
+=item * y
 
-Sets the x coordinates.
+Sets the y coordinates.
 
 =cut
 
-has x => (
+has y => (
     is => 'rw',
-    documentation => "Sets the x coordinates.",
+    documentation => "Sets the y coordinates.",
+);
+
+=item * ybounds
+
+Specify `ybounds` in the shape of `[yMin, yMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `xbounds` for the performance benefits.
+
+=cut
+
+has ybounds => (
+    is => 'rw',
+    documentation => "Specify `ybounds` in the shape of `[yMin, yMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `xbounds` for the performance benefits.",
+);
+
+=item * name
+
+Sets the trace name
+
+=cut
+
+has name => (
+    is => 'rw',
+    documentation => "Sets the trace name",
 );
 
 =pod

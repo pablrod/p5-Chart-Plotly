@@ -67,28 +67,6 @@ sub type {
 
 =cut
 
-=item * zmax
-
-Sets the upper bound of color domain.
-
-=cut
-
-has zmax => (
-    is => 'rw',
-    documentation => "Sets the upper bound of color domain.",
-);
-
-=item * z
-
-Sets the color values.
-
-=cut
-
-has z => (
-    is => 'rw',
-    documentation => "Sets the color values.",
-);
-
 =item * autocolorscale
 
 Determines whether or not the colorscale is picked using the sign of the input z values.
@@ -100,48 +78,13 @@ has autocolorscale => (
     documentation => "Determines whether or not the colorscale is picked using the sign of the input z values.",
 );
 
-=item * showscale
+=item * colorbar
 
-Determines whether or not a colorbar is displayed for this trace.
-
-=cut
-
-has showscale => (
-    is => 'rw',
-    documentation => "Determines whether or not a colorbar is displayed for this trace.",
-);
-
-=item * hoverinfo
-
-Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
 
 =cut
 
-has hoverinfo => (
+has colorbar => (
     is => 'rw',
-    documentation => "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
-);
-
-=item * zauto
-
-Determines the whether or not the color domain is computed with respect to the input data.
-
-=cut
-
-has zauto => (
-    is => 'rw',
-    documentation => "Determines the whether or not the color domain is computed with respect to the input data.",
-);
-
-=item * locations
-
-Sets the coordinates via location IDs or names. See `locationmode` for more info.
-
-=cut
-
-has locations => (
-    is => 'rw',
-    documentation => "Sets the coordinates via location IDs or names. See `locationmode` for more info.",
 );
 
 =item * colorscale
@@ -155,6 +98,17 @@ has colorscale => (
     documentation => "Sets the colorscale. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)', [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in z space, use zmin and zmax",
 );
 
+=item * hoverinfo
+
+Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+
+=cut
+
+has hoverinfo => (
+    is => 'rw',
+    documentation => "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
+);
+
 =item * locationmode
 
 Determines the set of locations used to match entries in `locations` to regions on the map.
@@ -166,34 +120,23 @@ has locationmode => (
     documentation => "Determines the set of locations used to match entries in `locations` to regions on the map.",
 );
 
-=item * zmin
+=item * locations
 
-Sets the lower bound of color domain.
+Sets the coordinates via location IDs or names. See `locationmode` for more info.
 
 =cut
 
-has zmin => (
+has locations => (
     is => 'rw',
-    documentation => "Sets the lower bound of color domain.",
+    documentation => "Sets the coordinates via location IDs or names. See `locationmode` for more info.",
 );
 
-=item * text
-
-Sets the text elements associated with each location.
-
-=cut
-
-has text => (
-    is => 'rw',
-    documentation => "Sets the text elements associated with each location.",
-);
-
-=item * _nestedModules
+=item * marker
 
 
 =cut
 
-has _nestedModules => (
+has marker => (
     is => 'rw',
 );
 
@@ -208,13 +151,81 @@ has reversescale => (
     documentation => "Reverses the colorscale.",
 );
 
-=item * marker
+=item * showscale
 
+Determines whether or not a colorbar is displayed for this trace.
 
 =cut
 
-has marker => (
+has showscale => (
     is => 'rw',
+    documentation => "Determines whether or not a colorbar is displayed for this trace.",
+);
+
+=item * text
+
+Sets the text elements associated with each location.
+
+=cut
+
+has text => (
+    is => 'rw',
+    documentation => "Sets the text elements associated with each location.",
+);
+
+=item * z
+
+Sets the color values.
+
+=cut
+
+has z => (
+    is => 'rw',
+    documentation => "Sets the color values.",
+);
+
+=item * zauto
+
+Determines the whether or not the color domain is computed with respect to the input data.
+
+=cut
+
+has zauto => (
+    is => 'rw',
+    documentation => "Determines the whether or not the color domain is computed with respect to the input data.",
+);
+
+=item * zmax
+
+Sets the upper bound of color domain.
+
+=cut
+
+has zmax => (
+    is => 'rw',
+    documentation => "Sets the upper bound of color domain.",
+);
+
+=item * zmin
+
+Sets the lower bound of color domain.
+
+=cut
+
+has zmin => (
+    is => 'rw',
+    documentation => "Sets the lower bound of color domain.",
+);
+
+=item * name
+
+Sets the trace name
+
+=cut
+
+has name => (
+    is => 'rw',
+    documentation => "Sets the trace name",
 );
 
 =pod

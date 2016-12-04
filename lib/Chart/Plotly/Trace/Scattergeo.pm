@@ -78,17 +78,6 @@ has connectgaps => (
     documentation => "Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.",
 );
 
-=item * textposition
-
-Sets the positions of the `text` elements with respects to the (x,y) coordinates.
-
-=cut
-
-has textposition => (
-    is => 'rw',
-    documentation => "Sets the positions of the `text` elements with respects to the (x,y) coordinates.",
-);
-
 =item * fill
 
 Sets the area to fill with a solid color. Use with `fillcolor` if not *none*. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.
@@ -111,24 +100,15 @@ has fillcolor => (
     documentation => "Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.",
 );
 
-=item * marker
+=item * hoverinfo
 
-
-=cut
-
-has marker => (
-    is => 'rw',
-);
-
-=item * textfont
-
-Sets the text font.
+Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
 
 =cut
 
-has textfont => (
+has hoverinfo => (
     is => 'rw',
-    documentation => "Sets the text font.",
+    documentation => "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
 );
 
 =item * lat
@@ -142,15 +122,6 @@ has lat => (
     documentation => "Sets the latitude coordinates (in degrees North).",
 );
 
-=item * _nestedModules
-
-
-=cut
-
-has _nestedModules => (
-    is => 'rw',
-);
-
 =item * line
 
 
@@ -158,17 +129,6 @@ has _nestedModules => (
 
 has line => (
     is => 'rw',
-);
-
-=item * locations
-
-Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
-
-=cut
-
-has locations => (
-    is => 'rw',
-    documentation => "Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.",
 );
 
 =item * locationmode
@@ -182,15 +142,35 @@ has locationmode => (
     documentation => "Determines the set of locations used to match entries in `locations` to regions on the map.",
 );
 
-=item * text
+=item * locations
 
-Sets text elements associated with each (lon,lat) pair or item in `locations`. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) or `locations` coordinates.
+Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
 
 =cut
 
-has text => (
+has locations => (
     is => 'rw',
-    documentation => "Sets text elements associated with each (lon,lat) pair or item in `locations`. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) or `locations` coordinates.",
+    documentation => "Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.",
+);
+
+=item * lon
+
+Sets the longitude coordinates (in degrees East).
+
+=cut
+
+has lon => (
+    is => 'rw',
+    documentation => "Sets the longitude coordinates (in degrees East).",
+);
+
+=item * marker
+
+
+=cut
+
+has marker => (
+    is => 'rw',
 );
 
 =item * mode
@@ -204,26 +184,48 @@ has mode => (
     documentation => "Determines the drawing mode for this scatter trace. If the provided `mode` includes *text* then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points, then the default is *lines+markers*. Otherwise, *lines*.",
 );
 
-=item * hoverinfo
+=item * text
 
-Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+Sets text elements associated with each (lon,lat) pair or item in `locations`. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) or `locations` coordinates.
 
 =cut
 
-has hoverinfo => (
+has text => (
     is => 'rw',
-    documentation => "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
+    documentation => "Sets text elements associated with each (lon,lat) pair or item in `locations`. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) or `locations` coordinates.",
 );
 
-=item * lon
+=item * textfont
 
-Sets the longitude coordinates (in degrees East).
+Sets the text font.
 
 =cut
 
-has lon => (
+has textfont => (
     is => 'rw',
-    documentation => "Sets the longitude coordinates (in degrees East).",
+    documentation => "Sets the text font.",
+);
+
+=item * textposition
+
+Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+
+=cut
+
+has textposition => (
+    is => 'rw',
+    documentation => "Sets the positions of the `text` elements with respects to the (x,y) coordinates.",
+);
+
+=item * name
+
+Sets the trace name
+
+=cut
+
+has name => (
+    is => 'rw',
+    documentation => "Sets the trace name",
 );
 
 =pod

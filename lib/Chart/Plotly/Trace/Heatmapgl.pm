@@ -67,26 +67,26 @@ sub type {
 
 =cut
 
-=item * ids
+=item * connectgaps
 
-A list of keys for object constancy of data points during animation
+Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
 
 =cut
 
-has ids => (
+has connectgaps => (
     is => 'rw',
-    documentation => "A list of keys for object constancy of data points during animation",
+    documentation => "Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.",
 );
 
-=item * y
+=item * dx
 
-Sets the y coordinates.
+Sets the x coordinate step. See `x0` for more info.
 
 =cut
 
-has y => (
+has dx => (
     is => 'rw',
-    documentation => "Sets the y coordinates.",
+    documentation => "Sets the x coordinate step. See `x0` for more info.",
 );
 
 =item * dy
@@ -100,59 +100,22 @@ has dy => (
     documentation => "Sets the y coordinate step. See `y0` for more info.",
 );
 
-=item * text
+=item * error_x
 
-Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.
 
 =cut
 
-has text => (
+has error_x => (
     is => 'rw',
-    documentation => "Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.",
 );
 
-=item * t
+=item * error_y
 
-For polar chart only.Sets the angular coordinates.
-
-=cut
-
-has t => (
-    is => 'rw',
-    documentation => "For polar chart only.Sets the angular coordinates.",
-);
-
-=item * x
-
-Sets the x coordinates.
 
 =cut
 
-has x => (
+has error_y => (
     is => 'rw',
-    documentation => "Sets the x coordinates.",
-);
-
-=item * hoveron
-
-Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.
-
-=cut
-
-has hoveron => (
-    is => 'rw',
-    documentation => "Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.",
-);
-
-=item * fillcolor
-
-Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
-
-=cut
-
-has fillcolor => (
-    is => 'rw',
-    documentation => "Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.",
 );
 
 =item * fill
@@ -166,37 +129,55 @@ has fill => (
     documentation => "Sets the area to fill with a solid color. Use with `fillcolor` if not *none*. *tozerox* and *tozeroy* fill to x=0 and y=0 respectively. *tonextx* and *tonexty* fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like *tozerox* and *tozeroy*. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. *tonext* fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no trace before it. *tonext* should not be used if one trace does not enclose the other.",
 );
 
-=item * textposition
+=item * fillcolor
 
-Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
 
 =cut
 
-has textposition => (
+has fillcolor => (
     is => 'rw',
-    documentation => "Sets the positions of the `text` elements with respects to the (x,y) coordinates.",
+    documentation => "Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.",
 );
 
-=item * connectgaps
+=item * hoveron
 
-Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
+Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.
 
 =cut
 
-has connectgaps => (
+has hoveron => (
     is => 'rw',
-    documentation => "Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.",
+    documentation => "Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.",
 );
 
-=item * r
+=item * ids
 
-For polar chart only.Sets the radial coordinates.
+A list of keys for object constancy of data points during animation
 
 =cut
 
-has r => (
+has ids => (
     is => 'rw',
-    documentation => "For polar chart only.Sets the radial coordinates.",
+    documentation => "A list of keys for object constancy of data points during animation",
+);
+
+=item * line
+
+
+=cut
+
+has line => (
+    is => 'rw',
+);
+
+=item * marker
+
+
+=cut
+
+has marker => (
+    is => 'rw',
 );
 
 =item * mode
@@ -210,33 +191,37 @@ has mode => (
     documentation => "Determines the drawing mode for this scatter trace. If the provided `mode` includes *text* then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points, then the default is *lines+markers*. Otherwise, *lines*.",
 );
 
-=item * y0
+=item * r
 
-Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
+For polar chart only.Sets the radial coordinates.
 
 =cut
 
-has y0 => (
+has r => (
     is => 'rw',
-    documentation => "Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.",
+    documentation => "For polar chart only.Sets the radial coordinates.",
 );
 
-=item * _nestedModules
+=item * t
 
+For polar chart only.Sets the angular coordinates.
 
 =cut
 
-has _nestedModules => (
+has t => (
     is => 'rw',
+    documentation => "For polar chart only.Sets the angular coordinates.",
 );
 
-=item * line
+=item * text
 
+Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.
 
 =cut
 
-has line => (
+has text => (
     is => 'rw',
+    documentation => "Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.",
 );
 
 =item * textfont
@@ -250,6 +235,28 @@ has textfont => (
     documentation => "Sets the text font.",
 );
 
+=item * textposition
+
+Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+
+=cut
+
+has textposition => (
+    is => 'rw',
+    documentation => "Sets the positions of the `text` elements with respects to the (x,y) coordinates.",
+);
+
+=item * x
+
+Sets the x coordinates.
+
+=cut
+
+has x => (
+    is => 'rw',
+    documentation => "Sets the x coordinates.",
+);
+
 =item * x0
 
 Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
@@ -261,24 +268,37 @@ has x0 => (
     documentation => "Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.",
 );
 
-=item * marker
+=item * y
 
+Sets the y coordinates.
 
 =cut
 
-has marker => (
+has y => (
     is => 'rw',
+    documentation => "Sets the y coordinates.",
 );
 
-=item * dx
+=item * y0
 
-Sets the x coordinate step. See `x0` for more info.
+Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
 
 =cut
 
-has dx => (
+has y0 => (
     is => 'rw',
-    documentation => "Sets the x coordinate step. See `x0` for more info.",
+    documentation => "Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.",
+);
+
+=item * name
+
+Sets the trace name
+
+=cut
+
+has name => (
+    is => 'rw',
+    documentation => "Sets the trace name",
 );
 
 =pod

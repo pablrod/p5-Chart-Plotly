@@ -67,15 +67,15 @@ sub type {
 
 =cut
 
-=item * y
+=item * boxmean
 
-Sets the y sample data or coordinates. See overview for more info.
+If *true*, the mean of the box(es)' underlying distribution is drawn as a dashed line inside the box(es). If *sd* the standard deviation is also drawn.
 
 =cut
 
-has y => (
+has boxmean => (
     is => 'rw',
-    documentation => "Sets the y sample data or coordinates. See overview for more info.",
+    documentation => "If *true*, the mean of the box(es)' underlying distribution is drawn as a dashed line inside the box(es). If *sd* the standard deviation is also drawn.",
 );
 
 =item * boxpoints
@@ -89,15 +89,77 @@ has boxpoints => (
     documentation => "If *outliers*, only the sample points lying outside the whiskers are shown If *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are shown If *false*, only the box(es) are shown with no sample points",
 );
 
-=item * y0
+=item * fillcolor
 
-Sets the y coordinate of the box. See overview for more info.
+Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
 
 =cut
 
-has y0 => (
+has fillcolor => (
     is => 'rw',
-    documentation => "Sets the y coordinate of the box. See overview for more info.",
+    documentation => "Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.",
+);
+
+=item * jitter
+
+Sets the amount of jitter in the sample points drawn. If *0*, the sample points align along the distribution axis. If *1*, the sample points are drawn in a random jitter of width equal to the width of the box(es).
+
+=cut
+
+has jitter => (
+    is => 'rw',
+    documentation => "Sets the amount of jitter in the sample points drawn. If *0*, the sample points align along the distribution axis. If *1*, the sample points are drawn in a random jitter of width equal to the width of the box(es).",
+);
+
+=item * line
+
+
+=cut
+
+has line => (
+    is => 'rw',
+);
+
+=item * marker
+
+
+=cut
+
+has marker => (
+    is => 'rw',
+);
+
+=item * orientation
+
+Sets the orientation of the box(es). If *v* (*h*), the distribution is visualized along the vertical (horizontal).
+
+=cut
+
+has orientation => (
+    is => 'rw',
+    documentation => "Sets the orientation of the box(es). If *v* (*h*), the distribution is visualized along the vertical (horizontal).",
+);
+
+=item * pointpos
+
+Sets the position of the sample points in relation to the box(es). If *0*, the sample points are places over the center of the box(es). Positive (negative) values correspond to positions to the right (left) for vertical boxes and above (below) for horizontal boxes
+
+=cut
+
+has pointpos => (
+    is => 'rw',
+    documentation => "Sets the position of the sample points in relation to the box(es). If *0*, the sample points are places over the center of the box(es). Positive (negative) values correspond to positions to the right (left) for vertical boxes and above (below) for horizontal boxes",
+);
+
+=item * whiskerwidth
+
+Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).
+
+=cut
+
+has whiskerwidth => (
+    is => 'rw',
+    documentation => "Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).",
 );
 
 =item * x
@@ -122,88 +184,37 @@ has x0 => (
     documentation => "Sets the x coordinate of the box. See overview for more info.",
 );
 
-=item * line
+=item * y
 
+Sets the y sample data or coordinates. See overview for more info.
 
 =cut
 
-has line => (
+has y => (
     is => 'rw',
+    documentation => "Sets the y sample data or coordinates. See overview for more info.",
 );
 
-=item * fillcolor
+=item * y0
 
-Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
+Sets the y coordinate of the box. See overview for more info.
 
 =cut
 
-has fillcolor => (
+has y0 => (
     is => 'rw',
-    documentation => "Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.",
+    documentation => "Sets the y coordinate of the box. See overview for more info.",
 );
 
-=item * orientation
+=item * name
 
-Sets the orientation of the box(es). If *v* (*h*), the distribution is visualized along the vertical (horizontal).
-
-=cut
-
-has orientation => (
-    is => 'rw',
-    documentation => "Sets the orientation of the box(es). If *v* (*h*), the distribution is visualized along the vertical (horizontal).",
-);
-
-=item * whiskerwidth
-
-Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).
+Sets the trace name
 
 =cut
 
-has whiskerwidth => (
+has name => (
     is => 'rw',
-    documentation => "Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).",
-);
-
-=item * marker
-
-
-=cut
-
-has marker => (
-    is => 'rw',
-);
-
-=item * jitter
-
-Sets the amount of jitter in the sample points drawn. If *0*, the sample points align along the distribution axis. If *1*, the sample points are drawn in a random jitter of width equal to the width of the box(es).
-
-=cut
-
-has jitter => (
-    is => 'rw',
-    documentation => "Sets the amount of jitter in the sample points drawn. If *0*, the sample points align along the distribution axis. If *1*, the sample points are drawn in a random jitter of width equal to the width of the box(es).",
-);
-
-=item * boxmean
-
-If *true*, the mean of the box(es)' underlying distribution is drawn as a dashed line inside the box(es). If *sd* the standard deviation is also drawn.
-
-=cut
-
-has boxmean => (
-    is => 'rw',
-    documentation => "If *true*, the mean of the box(es)' underlying distribution is drawn as a dashed line inside the box(es). If *sd* the standard deviation is also drawn.",
-);
-
-=item * pointpos
-
-Sets the position of the sample points in relation to the box(es). If *0*, the sample points are places over the center of the box(es). Positive (negative) values correspond to positions to the right (left) for vertical boxes and above (below) for horizontal boxes
-
-=cut
-
-has pointpos => (
-    is => 'rw',
-    documentation => "Sets the position of the sample points in relation to the box(es). If *0*, the sample points are places over the center of the box(es). Positive (negative) values correspond to positions to the right (left) for vertical boxes and above (below) for horizontal boxes",
+    documentation => "Sets the trace name",
 );
 
 =pod

@@ -67,6 +67,17 @@ sub type {
 
 =cut
 
+=item * close
+
+Sets the close values.
+
+=cut
+
+has close => (
+    is => 'rw',
+    documentation => "Sets the close values.",
+);
+
 =item * decreasing
 
 
@@ -96,37 +107,13 @@ has increasing => (
     is => 'rw',
 );
 
-=item * close
+=item * line
 
-Sets the close values.
-
-=cut
-
-has close => (
-    is => 'rw',
-    documentation => "Sets the close values.",
-);
-
-=item * text
-
-Sets hover text elements associated with each sample point. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to this trace's sample points.
 
 =cut
 
-has text => (
+has line => (
     is => 'rw',
-    documentation => "Sets hover text elements associated with each sample point. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to this trace's sample points.",
-);
-
-=item * x
-
-Sets the x coordinates. If absent, linear coordinate will be generated.
-
-=cut
-
-has x => (
-    is => 'rw',
-    documentation => "Sets the x coordinates. If absent, linear coordinate will be generated.",
 );
 
 =item * low
@@ -151,13 +138,15 @@ has open => (
     documentation => "Sets the open values.",
 );
 
-=item * line
+=item * text
 
+Sets hover text elements associated with each sample point. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to this trace's sample points.
 
 =cut
 
-has line => (
+has text => (
     is => 'rw',
+    documentation => "Sets hover text elements associated with each sample point. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to this trace's sample points.",
 );
 
 =item * whiskerwidth
@@ -169,6 +158,28 @@ Sets the width of the whiskers relative to the box' width. For example, with 1, 
 has whiskerwidth => (
     is => 'rw',
     documentation => "Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).",
+);
+
+=item * x
+
+Sets the x coordinates. If absent, linear coordinate will be generated.
+
+=cut
+
+has x => (
+    is => 'rw',
+    documentation => "Sets the x coordinates. If absent, linear coordinate will be generated.",
+);
+
+=item * name
+
+Sets the trace name
+
+=cut
+
+has name => (
+    is => 'rw',
+    documentation => "Sets the trace name",
 );
 
 =pod

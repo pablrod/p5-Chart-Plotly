@@ -67,26 +67,6 @@ sub type {
 
 =cut
 
-=item * increasing
-
-
-=cut
-
-has increasing => (
-    is => 'rw',
-);
-
-=item * tickwidth
-
-Sets the width of the open/close tick marks relative to the *x* minimal interval.
-
-=cut
-
-has tickwidth => (
-    is => 'rw',
-    documentation => "Sets the width of the open/close tick marks relative to the *x* minimal interval.",
-);
-
 =item * close
 
 Sets the close values.
@@ -98,15 +78,13 @@ has close => (
     documentation => "Sets the close values.",
 );
 
-=item * text
+=item * decreasing
 
-Sets hover text elements associated with each sample point. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to this trace's sample points.
 
 =cut
 
-has text => (
+has decreasing => (
     is => 'rw',
-    documentation => "Sets hover text elements associated with each sample point. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to this trace's sample points.",
 );
 
 =item * high
@@ -120,24 +98,13 @@ has high => (
     documentation => "Sets the high values.",
 );
 
-=item * decreasing
+=item * increasing
 
 
 =cut
 
-has decreasing => (
+has increasing => (
     is => 'rw',
-);
-
-=item * x
-
-Sets the x coordinates. If absent, linear coordinate will be generated.
-
-=cut
-
-has x => (
-    is => 'rw',
-    documentation => "Sets the x coordinates. If absent, linear coordinate will be generated.",
 );
 
 =item * line
@@ -147,6 +114,17 @@ has x => (
 
 has line => (
     is => 'rw',
+);
+
+=item * low
+
+Sets the low values.
+
+=cut
+
+has low => (
+    is => 'rw',
+    documentation => "Sets the low values.",
 );
 
 =item * open
@@ -160,15 +138,48 @@ has open => (
     documentation => "Sets the open values.",
 );
 
-=item * low
+=item * text
 
-Sets the low values.
+Sets hover text elements associated with each sample point. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to this trace's sample points.
 
 =cut
 
-has low => (
+has text => (
     is => 'rw',
-    documentation => "Sets the low values.",
+    documentation => "Sets hover text elements associated with each sample point. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to this trace's sample points.",
+);
+
+=item * tickwidth
+
+Sets the width of the open/close tick marks relative to the *x* minimal interval.
+
+=cut
+
+has tickwidth => (
+    is => 'rw',
+    documentation => "Sets the width of the open/close tick marks relative to the *x* minimal interval.",
+);
+
+=item * x
+
+Sets the x coordinates. If absent, linear coordinate will be generated.
+
+=cut
+
+has x => (
+    is => 'rw',
+    documentation => "Sets the x coordinates. If absent, linear coordinate will be generated.",
+);
+
+=item * name
+
+Sets the trace name
+
+=cut
+
+has name => (
+    is => 'rw',
+    documentation => "Sets the trace name",
 );
 
 =pod

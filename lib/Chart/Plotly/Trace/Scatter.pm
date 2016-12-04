@@ -67,17 +67,6 @@ sub type {
 
 =cut
 
-=item * fillcolor
-
-Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
-
-=cut
-
-has fillcolor => (
-    is => 'rw',
-    documentation => "Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.",
-);
-
 =item * connectgaps
 
 Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
@@ -89,15 +78,44 @@ has connectgaps => (
     documentation => "Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.",
 );
 
-=item * textposition
+=item * dx
 
-Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+Sets the x coordinate step. See `x0` for more info.
 
 =cut
 
-has textposition => (
+has dx => (
     is => 'rw',
-    documentation => "Sets the positions of the `text` elements with respects to the (x,y) coordinates.",
+    documentation => "Sets the x coordinate step. See `x0` for more info.",
+);
+
+=item * dy
+
+Sets the y coordinate step. See `y0` for more info.
+
+=cut
+
+has dy => (
+    is => 'rw',
+    documentation => "Sets the y coordinate step. See `y0` for more info.",
+);
+
+=item * error_x
+
+
+=cut
+
+has error_x => (
+    is => 'rw',
+);
+
+=item * error_y
+
+
+=cut
+
+has error_y => (
+    is => 'rw',
 );
 
 =item * fill
@@ -111,6 +129,17 @@ has fill => (
     documentation => "Sets the area to fill with a solid color. Use with `fillcolor` if not *none*. *tozerox* and *tozeroy* fill to x=0 and y=0 respectively. *tonextx* and *tonexty* fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like *tozerox* and *tozeroy*. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. *tonext* fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no trace before it. *tonext* should not be used if one trace does not enclose the other.",
 );
 
+=item * fillcolor
+
+Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
+
+=cut
+
+has fillcolor => (
+    is => 'rw',
+    documentation => "Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.",
+);
+
 =item * hoveron
 
 Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.
@@ -122,26 +151,55 @@ has hoveron => (
     documentation => "Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.",
 );
 
-=item * x
+=item * ids
 
-Sets the x coordinates.
+A list of keys for object constancy of data points during animation
 
 =cut
 
-has x => (
+has ids => (
     is => 'rw',
-    documentation => "Sets the x coordinates.",
+    documentation => "A list of keys for object constancy of data points during animation",
 );
 
-=item * y
+=item * line
 
-Sets the y coordinates.
 
 =cut
 
-has y => (
+has line => (
     is => 'rw',
-    documentation => "Sets the y coordinates.",
+);
+
+=item * marker
+
+
+=cut
+
+has marker => (
+    is => 'rw',
+);
+
+=item * mode
+
+Determines the drawing mode for this scatter trace. If the provided `mode` includes *text* then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points, then the default is *lines+markers*. Otherwise, *lines*.
+
+=cut
+
+has mode => (
+    is => 'rw',
+    documentation => "Determines the drawing mode for this scatter trace. If the provided `mode` includes *text* then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points, then the default is *lines+markers*. Otherwise, *lines*.",
+);
+
+=item * r
+
+For polar chart only.Sets the radial coordinates.
+
+=cut
+
+has r => (
+    is => 'rw',
+    documentation => "For polar chart only.Sets the radial coordinates.",
 );
 
 =item * t
@@ -166,59 +224,6 @@ has text => (
     documentation => "Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.",
 );
 
-=item * dy
-
-Sets the y coordinate step. See `y0` for more info.
-
-=cut
-
-has dy => (
-    is => 'rw',
-    documentation => "Sets the y coordinate step. See `y0` for more info.",
-);
-
-=item * ids
-
-A list of keys for object constancy of data points during animation
-
-=cut
-
-has ids => (
-    is => 'rw',
-    documentation => "A list of keys for object constancy of data points during animation",
-);
-
-=item * marker
-
-
-=cut
-
-has marker => (
-    is => 'rw',
-);
-
-=item * dx
-
-Sets the x coordinate step. See `x0` for more info.
-
-=cut
-
-has dx => (
-    is => 'rw',
-    documentation => "Sets the x coordinate step. See `x0` for more info.",
-);
-
-=item * y0
-
-Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
-
-=cut
-
-has y0 => (
-    is => 'rw',
-    documentation => "Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.",
-);
-
 =item * textfont
 
 Sets the text font.
@@ -228,6 +233,28 @@ Sets the text font.
 has textfont => (
     is => 'rw',
     documentation => "Sets the text font.",
+);
+
+=item * textposition
+
+Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+
+=cut
+
+has textposition => (
+    is => 'rw',
+    documentation => "Sets the positions of the `text` elements with respects to the (x,y) coordinates.",
+);
+
+=item * x
+
+Sets the x coordinates.
+
+=cut
+
+has x => (
+    is => 'rw',
+    documentation => "Sets the x coordinates.",
 );
 
 =item * x0
@@ -241,44 +268,37 @@ has x0 => (
     documentation => "Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.",
 );
 
-=item * line
+=item * y
 
+Sets the y coordinates.
 
 =cut
 
-has line => (
+has y => (
     is => 'rw',
+    documentation => "Sets the y coordinates.",
 );
 
-=item * _nestedModules
+=item * y0
 
+Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
 
 =cut
 
-has _nestedModules => (
+has y0 => (
     is => 'rw',
+    documentation => "Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.",
 );
 
-=item * mode
+=item * name
 
-Determines the drawing mode for this scatter trace. If the provided `mode` includes *text* then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points, then the default is *lines+markers*. Otherwise, *lines*.
-
-=cut
-
-has mode => (
-    is => 'rw',
-    documentation => "Determines the drawing mode for this scatter trace. If the provided `mode` includes *text* then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points, then the default is *lines+markers*. Otherwise, *lines*.",
-);
-
-=item * r
-
-For polar chart only.Sets the radial coordinates.
+Sets the trace name
 
 =cut
 
-has r => (
+has name => (
     is => 'rw',
-    documentation => "For polar chart only.Sets the radial coordinates.",
+    documentation => "Sets the trace name",
 );
 
 =pod

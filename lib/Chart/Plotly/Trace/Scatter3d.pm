@@ -67,35 +67,6 @@ sub type {
 
 =cut
 
-=item * marker
-
-
-=cut
-
-has marker => (
-    is => 'rw',
-);
-
-=item * projection
-
-
-=cut
-
-has projection => (
-    is => 'rw',
-);
-
-=item * textposition
-
-Sets the positions of the `text` elements with respects to the (x,y) coordinates.
-
-=cut
-
-has textposition => (
-    is => 'rw',
-    documentation => "Sets the positions of the `text` elements with respects to the (x,y) coordinates.",
-);
-
 =item * connectgaps
 
 Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
@@ -107,23 +78,30 @@ has connectgaps => (
     documentation => "Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.",
 );
 
-=item * x
+=item * error_x
 
-Sets the x coordinates.
 
 =cut
 
-has x => (
+has error_x => (
     is => 'rw',
-    documentation => "Sets the x coordinates.",
 );
 
-=item * _nestedModules
+=item * error_y
 
 
 =cut
 
-has _nestedModules => (
+has error_y => (
+    is => 'rw',
+);
+
+=item * error_z
+
+
+=cut
+
+has error_z => (
     is => 'rw',
 );
 
@@ -136,37 +114,13 @@ has line => (
     is => 'rw',
 );
 
-=item * textfont
+=item * marker
 
-Sets the text font.
-
-=cut
-
-has textfont => (
-    is => 'rw',
-    documentation => "Sets the text font.",
-);
-
-=item * y
-
-Sets the y coordinates.
 
 =cut
 
-has y => (
+has marker => (
     is => 'rw',
-    documentation => "Sets the y coordinates.",
-);
-
-=item * surfaceaxis
-
-If *-1*, the scatter points are not fill with a surface If *0*, *1*, *2*, the scatter points are filled with a Delaunay surface about the x, y, z respectively.
-
-=cut
-
-has surfaceaxis => (
-    is => 'rw',
-    documentation => "If *-1*, the scatter points are not fill with a surface If *0*, *1*, *2*, the scatter points are filled with a Delaunay surface about the x, y, z respectively.",
 );
 
 =item * mode
@@ -180,15 +134,24 @@ has mode => (
     documentation => "Determines the drawing mode for this scatter trace. If the provided `mode` includes *text* then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points, then the default is *lines+markers*. Otherwise, *lines*.",
 );
 
-=item * text
+=item * projection
 
-Sets text elements associated with each (x,y,z) triplet. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y,z) coordinates.
 
 =cut
 
-has text => (
+has projection => (
     is => 'rw',
-    documentation => "Sets text elements associated with each (x,y,z) triplet. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y,z) coordinates.",
+);
+
+=item * surfaceaxis
+
+If *-1*, the scatter points are not fill with a surface If *0*, *1*, *2*, the scatter points are filled with a Delaunay surface about the x, y, z respectively.
+
+=cut
+
+has surfaceaxis => (
+    is => 'rw',
+    documentation => "If *-1*, the scatter points are not fill with a surface If *0*, *1*, *2*, the scatter points are filled with a Delaunay surface about the x, y, z respectively.",
 );
 
 =item * surfacecolor
@@ -202,6 +165,61 @@ has surfacecolor => (
     documentation => "Sets the surface fill color.",
 );
 
+=item * text
+
+Sets text elements associated with each (x,y,z) triplet. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y,z) coordinates.
+
+=cut
+
+has text => (
+    is => 'rw',
+    documentation => "Sets text elements associated with each (x,y,z) triplet. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y,z) coordinates.",
+);
+
+=item * textfont
+
+Sets the text font.
+
+=cut
+
+has textfont => (
+    is => 'rw',
+    documentation => "Sets the text font.",
+);
+
+=item * textposition
+
+Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+
+=cut
+
+has textposition => (
+    is => 'rw',
+    documentation => "Sets the positions of the `text` elements with respects to the (x,y) coordinates.",
+);
+
+=item * x
+
+Sets the x coordinates.
+
+=cut
+
+has x => (
+    is => 'rw',
+    documentation => "Sets the x coordinates.",
+);
+
+=item * y
+
+Sets the y coordinates.
+
+=cut
+
+has y => (
+    is => 'rw',
+    documentation => "Sets the y coordinates.",
+);
+
 =item * z
 
 Sets the z coordinates.
@@ -211,6 +229,17 @@ Sets the z coordinates.
 has z => (
     is => 'rw',
     documentation => "Sets the z coordinates.",
+);
+
+=item * name
+
+Sets the trace name
+
+=cut
+
+has name => (
+    is => 'rw',
+    documentation => "Sets the trace name",
 );
 
 =pod

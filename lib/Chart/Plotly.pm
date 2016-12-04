@@ -100,7 +100,7 @@ sub _render_cell {
     my $chart_id    = shift();
     my $template    = <<'TEMPLATE';
 <div id="{$chart_id}"></div>
-<script src="https://cdn.plot.ly/plotly-1.17.3.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-1.20.5.min.js"></script>
 <script>
 Plotly.plot(document.getElementById('{$chart_id}'),{$data});
 </script>

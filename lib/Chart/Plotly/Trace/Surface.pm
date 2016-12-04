@@ -67,15 +67,46 @@ sub type {
 
 =cut
 
-=item * x
+=item * _deprecated
 
-Sets the x coordinates.
 
 =cut
 
-has x => (
+has _deprecated => (
     is => 'rw',
-    documentation => "Sets the x coordinates.",
+);
+
+=item * autocolorscale
+
+Determines whether or not the colorscale is picked using the sign of the input z values.
+
+=cut
+
+has autocolorscale => (
+    is => 'rw',
+    documentation => "Determines whether or not the colorscale is picked using the sign of the input z values.",
+);
+
+=item * cauto
+
+Determines the whether or not the color domain is computed with respect to the input data.
+
+=cut
+
+has cauto => (
+    is => 'rw',
+    documentation => "Determines the whether or not the color domain is computed with respect to the input data.",
+);
+
+=item * cmax
+
+Sets the upper bound of color domain.
+
+=cut
+
+has cmax => (
+    is => 'rw',
+    documentation => "Sets the upper bound of color domain.",
 );
 
 =item * cmin
@@ -89,6 +120,26 @@ has cmin => (
     documentation => "Sets the lower bound of color domain.",
 );
 
+=item * colorbar
+
+
+=cut
+
+has colorbar => (
+    is => 'rw',
+);
+
+=item * colorscale
+
+Sets the colorscale. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)', [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in z space, use zmin and zmax
+
+=cut
+
+has colorscale => (
+    is => 'rw',
+    documentation => "Sets the colorscale. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)', [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in z space, use zmin and zmax",
+);
+
 =item * contours
 
 
@@ -98,15 +149,24 @@ has contours => (
     is => 'rw',
 );
 
-=item * cauto
+=item * hidesurface
 
-Determines the whether or not the color domain is computed with respect to the input data.
+Determines whether or not a surface is drawn. For example, set `hidesurface` to *false* `contours.x.show` to *true* and `contours.y.show` to *true* to draw a wire frame plot.
 
 =cut
 
-has cauto => (
+has hidesurface => (
     is => 'rw',
-    documentation => "Determines the whether or not the color domain is computed with respect to the input data.",
+    documentation => "Determines whether or not a surface is drawn. For example, set `hidesurface` to *false* `contours.x.show` to *true* and `contours.y.show` to *true* to draw a wire frame plot.",
+);
+
+=item * lighting
+
+
+=cut
+
+has lighting => (
+    is => 'rw',
 );
 
 =item * lightposition
@@ -129,26 +189,15 @@ has opacity => (
     documentation => "Sets the opacity of the surface.",
 );
 
-=item * surfacecolor
+=item * reversescale
 
-Sets the surface color values, used for setting a color scale independent of `z`.
-
-=cut
-
-has surfacecolor => (
-    is => 'rw',
-    documentation => "Sets the surface color values, used for setting a color scale independent of `z`.",
-);
-
-=item * cmax
-
-Sets the upper bound of color domain.
+Reverses the colorscale.
 
 =cut
 
-has cmax => (
+has reversescale => (
     is => 'rw',
-    documentation => "Sets the upper bound of color domain.",
+    documentation => "Reverses the colorscale.",
 );
 
 =item * showscale
@@ -162,15 +211,15 @@ has showscale => (
     documentation => "Determines whether or not a colorbar is displayed for this trace.",
 );
 
-=item * y
+=item * surfacecolor
 
-Sets the y coordinates.
+Sets the surface color values, used for setting a color scale independent of `z`.
 
 =cut
 
-has y => (
+has surfacecolor => (
     is => 'rw',
-    documentation => "Sets the y coordinates.",
+    documentation => "Sets the surface color values, used for setting a color scale independent of `z`.",
 );
 
 =item * text
@@ -184,35 +233,26 @@ has text => (
     documentation => "Sets the text elements associated with each z value.",
 );
 
-=item * colorscale
+=item * x
 
-Sets the colorscale. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)', [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in z space, use zmin and zmax
+Sets the x coordinates.
 
 =cut
 
-has colorscale => (
+has x => (
     is => 'rw',
-    documentation => "Sets the colorscale. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)', [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in z space, use zmin and zmax",
+    documentation => "Sets the x coordinates.",
 );
 
-=item * _nestedModules
+=item * y
 
-
-=cut
-
-has _nestedModules => (
-    is => 'rw',
-);
-
-=item * reversescale
-
-Reverses the colorscale.
+Sets the y coordinates.
 
 =cut
 
-has reversescale => (
+has y => (
     is => 'rw',
-    documentation => "Reverses the colorscale.",
+    documentation => "Sets the y coordinates.",
 );
 
 =item * z
@@ -226,44 +266,15 @@ has z => (
     documentation => "Sets the z coordinates.",
 );
 
-=item * lighting
+=item * name
 
-
-=cut
-
-has lighting => (
-    is => 'rw',
-);
-
-=item * autocolorscale
-
-Determines whether or not the colorscale is picked using the sign of the input z values.
+Sets the trace name
 
 =cut
 
-has autocolorscale => (
+has name => (
     is => 'rw',
-    documentation => "Determines whether or not the colorscale is picked using the sign of the input z values.",
-);
-
-=item * _deprecated
-
-
-=cut
-
-has _deprecated => (
-    is => 'rw',
-);
-
-=item * hidesurface
-
-Determines whether or not a surface is drawn. For example, set `hidesurface` to *false* `contours.x.show` to *true* and `contours.y.show` to *true* to draw a wire frame plot.
-
-=cut
-
-has hidesurface => (
-    is => 'rw',
-    documentation => "Determines whether or not a surface is drawn. For example, set `hidesurface` to *false* `contours.x.show` to *true* and `contours.y.show` to *true* to draw a wire frame plot.",
+    documentation => "Sets the trace name",
 );
 
 =pod

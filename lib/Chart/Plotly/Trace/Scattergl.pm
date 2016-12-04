@@ -67,15 +67,15 @@ sub type {
 
 =cut
 
-=item * fill
+=item * connectgaps
 
-Sets the area to fill with a solid color. Use with `fillcolor` if not *none*. *tozerox* and *tozeroy* fill to x=0 and y=0 respectively. *tonextx* and *tonexty* fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like *tozerox* and *tozeroy*. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. *tonext* fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no trace before it. *tonext* should not be used if one trace does not enclose the other.
+Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
 
 =cut
 
-has fill => (
+has connectgaps => (
     is => 'rw',
-    documentation => "Sets the area to fill with a solid color. Use with `fillcolor` if not *none*. *tozerox* and *tozeroy* fill to x=0 and y=0 respectively. *tonextx* and *tonexty* fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like *tozerox* and *tozeroy*. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. *tonext* fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no trace before it. *tonext* should not be used if one trace does not enclose the other.",
+    documentation => "Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.",
 );
 
 =item * dx
@@ -89,24 +89,44 @@ has dx => (
     documentation => "Sets the x coordinate step. See `x0` for more info.",
 );
 
-=item * connectgaps
+=item * dy
 
-Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
+Sets the y coordinate step. See `y0` for more info.
 
 =cut
 
-has connectgaps => (
+has dy => (
     is => 'rw',
-    documentation => "Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.",
+    documentation => "Sets the y coordinate step. See `y0` for more info.",
 );
 
-=item * marker
+=item * error_x
 
 
 =cut
 
-has marker => (
+has error_x => (
     is => 'rw',
+);
+
+=item * error_y
+
+
+=cut
+
+has error_y => (
+    is => 'rw',
+);
+
+=item * fill
+
+Sets the area to fill with a solid color. Use with `fillcolor` if not *none*. *tozerox* and *tozeroy* fill to x=0 and y=0 respectively. *tonextx* and *tonexty* fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like *tozerox* and *tozeroy*. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. *tonext* fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no trace before it. *tonext* should not be used if one trace does not enclose the other.
+
+=cut
+
+has fill => (
+    is => 'rw',
+    documentation => "Sets the area to fill with a solid color. Use with `fillcolor` if not *none*. *tozerox* and *tozeroy* fill to x=0 and y=0 respectively. *tonextx* and *tonexty* fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like *tozerox* and *tozeroy*. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. *tonext* fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no trace before it. *tonext* should not be used if one trace does not enclose the other.",
 );
 
 =item * fillcolor
@@ -129,68 +149,13 @@ has line => (
     is => 'rw',
 );
 
-=item * _nestedModules
+=item * marker
 
 
 =cut
 
-has _nestedModules => (
+has marker => (
     is => 'rw',
-);
-
-=item * x0
-
-Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
-
-=cut
-
-has x0 => (
-    is => 'rw',
-    documentation => "Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.",
-);
-
-=item * x
-
-Sets the x coordinates.
-
-=cut
-
-has x => (
-    is => 'rw',
-    documentation => "Sets the x coordinates.",
-);
-
-=item * y0
-
-Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
-
-=cut
-
-has y0 => (
-    is => 'rw',
-    documentation => "Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.",
-);
-
-=item * dy
-
-Sets the y coordinate step. See `y0` for more info.
-
-=cut
-
-has dy => (
-    is => 'rw',
-    documentation => "Sets the y coordinate step. See `y0` for more info.",
-);
-
-=item * text
-
-Sets text elements associated with each (x,y) pair to appear on hover. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.
-
-=cut
-
-has text => (
-    is => 'rw',
-    documentation => "Sets text elements associated with each (x,y) pair to appear on hover. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.",
 );
 
 =item * mode
@@ -204,6 +169,39 @@ has mode => (
     documentation => "Determines the drawing mode for this scatter trace.",
 );
 
+=item * text
+
+Sets text elements associated with each (x,y) pair to appear on hover. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.
+
+=cut
+
+has text => (
+    is => 'rw',
+    documentation => "Sets text elements associated with each (x,y) pair to appear on hover. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.",
+);
+
+=item * x
+
+Sets the x coordinates.
+
+=cut
+
+has x => (
+    is => 'rw',
+    documentation => "Sets the x coordinates.",
+);
+
+=item * x0
+
+Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
+
+=cut
+
+has x0 => (
+    is => 'rw',
+    documentation => "Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.",
+);
+
 =item * y
 
 Sets the y coordinates.
@@ -213,6 +211,28 @@ Sets the y coordinates.
 has y => (
     is => 'rw',
     documentation => "Sets the y coordinates.",
+);
+
+=item * y0
+
+Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
+
+=cut
+
+has y0 => (
+    is => 'rw',
+    documentation => "Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.",
+);
+
+=item * name
+
+Sets the trace name
+
+=cut
+
+has name => (
+    is => 'rw',
+    documentation => "Sets the trace name",
 );
 
 =pod

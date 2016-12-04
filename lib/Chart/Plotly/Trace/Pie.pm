@@ -67,6 +67,17 @@ sub type {
 
 =cut
 
+=item * direction
+
+Specifies the direction at which succeeding sectors follow one another.
+
+=cut
+
+has direction => (
+    is => 'rw',
+    documentation => "Specifies the direction at which succeeding sectors follow one another.",
+);
+
 =item * dlabel
 
 Sets the label step. See `label0` for more info.
@@ -78,26 +89,13 @@ has dlabel => (
     documentation => "Sets the label step. See `label0` for more info.",
 );
 
-=item * labels
+=item * domain
 
-Sets the sector labels.
-
-=cut
-
-has labels => (
-    is => 'rw',
-    documentation => "Sets the sector labels.",
-);
-
-=item * hoverinfo
-
-Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
 
 =cut
 
-has hoverinfo => (
+has domain => (
     is => 'rw',
-    documentation => "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
 );
 
 =item * hole
@@ -111,6 +109,92 @@ has hole => (
     documentation => "Sets the fraction of the radius to cut out of the pie. Use this to make a donut chart.",
 );
 
+=item * hoverinfo
+
+Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+
+=cut
+
+has hoverinfo => (
+    is => 'rw',
+    documentation => "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
+);
+
+=item * insidetextfont
+
+Sets the font used for `textinfo` lying inside the pie.
+
+=cut
+
+has insidetextfont => (
+    is => 'rw',
+    documentation => "Sets the font used for `textinfo` lying inside the pie.",
+);
+
+=item * label0
+
+Alternate to `labels`. Builds a numeric set of labels. Use with `dlabel` where `label0` is the starting label and `dlabel` the step.
+
+=cut
+
+has label0 => (
+    is => 'rw',
+    documentation => "Alternate to `labels`. Builds a numeric set of labels. Use with `dlabel` where `label0` is the starting label and `dlabel` the step.",
+);
+
+=item * labels
+
+Sets the sector labels.
+
+=cut
+
+has labels => (
+    is => 'rw',
+    documentation => "Sets the sector labels.",
+);
+
+=item * marker
+
+
+=cut
+
+has marker => (
+    is => 'rw',
+);
+
+=item * outsidetextfont
+
+Sets the font used for `textinfo` lying outside the pie.
+
+=cut
+
+has outsidetextfont => (
+    is => 'rw',
+    documentation => "Sets the font used for `textinfo` lying outside the pie.",
+);
+
+=item * pull
+
+Sets the fraction of larger radius to pull the sectors out from the center. This can be a constant to pull all slices apart from each other equally or an array to highlight one or more slices.
+
+=cut
+
+has pull => (
+    is => 'rw',
+    documentation => "Sets the fraction of larger radius to pull the sectors out from the center. This can be a constant to pull all slices apart from each other equally or an array to highlight one or more slices.",
+);
+
+=item * rotation
+
+Instead of the first slice starting at 12 o'clock, rotate to some other angle.
+
+=cut
+
+has rotation => (
+    is => 'rw',
+    documentation => "Instead of the first slice starting at 12 o'clock, rotate to some other angle.",
+);
+
 =item * scalegroup
 
 If there are multiple pies that should be sized according to their totals, link them by providing a non-empty group id here shared by every trace in the same group.
@@ -120,6 +204,28 @@ If there are multiple pies that should be sized according to their totals, link 
 has scalegroup => (
     is => 'rw',
     documentation => "If there are multiple pies that should be sized according to their totals, link them by providing a non-empty group id here shared by every trace in the same group.",
+);
+
+=item * sort
+
+Determines whether or not the sectors of reordered from largest to smallest.
+
+=cut
+
+has sort => (
+    is => 'rw',
+    documentation => "Determines whether or not the sectors of reordered from largest to smallest.",
+);
+
+=item * text
+
+Sets text elements associated with each sector.
+
+=cut
+
+has text => (
+    is => 'rw',
+    documentation => "Sets text elements associated with each sector.",
 );
 
 =item * textfont
@@ -144,6 +250,17 @@ has textinfo => (
     documentation => "Determines which trace information appear on the graph.",
 );
 
+=item * textposition
+
+Specifies the location of the `textinfo`.
+
+=cut
+
+has textposition => (
+    is => 'rw',
+    documentation => "Specifies the location of the `textinfo`.",
+);
+
 =item * values
 
 Sets the values of the sectors of this pie chart.
@@ -155,121 +272,15 @@ has values => (
     documentation => "Sets the values of the sectors of this pie chart.",
 );
 
-=item * marker
+=item * name
 
-
-=cut
-
-has marker => (
-    is => 'rw',
-);
-
-=item * label0
-
-Alternate to `labels`. Builds a numeric set of labels. Use with `dlabel` where `label0` is the starting label and `dlabel` the step.
+Sets the trace name
 
 =cut
 
-has label0 => (
+has name => (
     is => 'rw',
-    documentation => "Alternate to `labels`. Builds a numeric set of labels. Use with `dlabel` where `label0` is the starting label and `dlabel` the step.",
-);
-
-=item * rotation
-
-Instead of the first slice starting at 12 o'clock, rotate to some other angle.
-
-=cut
-
-has rotation => (
-    is => 'rw',
-    documentation => "Instead of the first slice starting at 12 o'clock, rotate to some other angle.",
-);
-
-=item * text
-
-Sets text elements associated with each sector.
-
-=cut
-
-has text => (
-    is => 'rw',
-    documentation => "Sets text elements associated with each sector.",
-);
-
-=item * insidetextfont
-
-Sets the font used for `textinfo` lying inside the pie.
-
-=cut
-
-has insidetextfont => (
-    is => 'rw',
-    documentation => "Sets the font used for `textinfo` lying inside the pie.",
-);
-
-=item * sort
-
-Determines whether or not the sectors of reordered from largest to smallest.
-
-=cut
-
-has sort => (
-    is => 'rw',
-    documentation => "Determines whether or not the sectors of reordered from largest to smallest.",
-);
-
-=item * domain
-
-
-=cut
-
-has domain => (
-    is => 'rw',
-);
-
-=item * pull
-
-Sets the fraction of larger radius to pull the sectors out from the center. This can be a constant to pull all slices apart from each other equally or an array to highlight one or more slices.
-
-=cut
-
-has pull => (
-    is => 'rw',
-    documentation => "Sets the fraction of larger radius to pull the sectors out from the center. This can be a constant to pull all slices apart from each other equally or an array to highlight one or more slices.",
-);
-
-=item * outsidetextfont
-
-Sets the font used for `textinfo` lying outside the pie.
-
-=cut
-
-has outsidetextfont => (
-    is => 'rw',
-    documentation => "Sets the font used for `textinfo` lying outside the pie.",
-);
-
-=item * direction
-
-Specifies the direction at which succeeding sectors follow one another.
-
-=cut
-
-has direction => (
-    is => 'rw',
-    documentation => "Specifies the direction at which succeeding sectors follow one another.",
-);
-
-=item * textposition
-
-Specifies the location of the `textinfo`.
-
-=cut
-
-has textposition => (
-    is => 'rw',
-    documentation => "Specifies the location of the `textinfo`.",
+    documentation => "Sets the trace name",
 );
 
 =pod

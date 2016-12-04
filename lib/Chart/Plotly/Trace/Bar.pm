@@ -67,57 +67,6 @@ sub type {
 
 =cut
 
-=item * marker
-
-
-=cut
-
-has marker => (
-    is => 'rw',
-);
-
-=item * dx
-
-Sets the x coordinate step. See `x0` for more info.
-
-=cut
-
-has dx => (
-    is => 'rw',
-    documentation => "Sets the x coordinate step. See `x0` for more info.",
-);
-
-=item * y0
-
-Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
-
-=cut
-
-has y0 => (
-    is => 'rw',
-    documentation => "Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.",
-);
-
-=item * _nestedModules
-
-
-=cut
-
-has _nestedModules => (
-    is => 'rw',
-);
-
-=item * x0
-
-Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
-
-=cut
-
-has x0 => (
-    is => 'rw',
-    documentation => "Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.",
-);
-
 =item * _deprecated
 
 
@@ -125,50 +74,6 @@ has x0 => (
 
 has _deprecated => (
     is => 'rw',
-);
-
-=item * r
-
-For polar chart only.Sets the radial coordinates.
-
-=cut
-
-has r => (
-    is => 'rw',
-    documentation => "For polar chart only.Sets the radial coordinates.",
-);
-
-=item * width
-
-Sets the bar width (in position axis units).
-
-=cut
-
-has width => (
-    is => 'rw',
-    documentation => "Sets the bar width (in position axis units).",
-);
-
-=item * orientation
-
-Sets the orientation of the bars. With *v* (*h*), the value of the each bar spans along the vertical (horizontal).
-
-=cut
-
-has orientation => (
-    is => 'rw',
-    documentation => "Sets the orientation of the bars. With *v* (*h*), the value of the each bar spans along the vertical (horizontal).",
-);
-
-=item * x
-
-Sets the x coordinates.
-
-=cut
-
-has x => (
-    is => 'rw',
-    documentation => "Sets the x coordinates.",
 );
 
 =item * base
@@ -182,15 +87,15 @@ has base => (
     documentation => "Sets where the bar base is drawn (in position axis units). In *stack* or *relative* barmode, traces that set *base* will be excluded and drawn in *overlay* mode instead.",
 );
 
-=item * y
+=item * dx
 
-Sets the y coordinates.
+Sets the x coordinate step. See `x0` for more info.
 
 =cut
 
-has y => (
+has dx => (
     is => 'rw',
-    documentation => "Sets the y coordinates.",
+    documentation => "Sets the x coordinate step. See `x0` for more info.",
 );
 
 =item * dy
@@ -204,15 +109,64 @@ has dy => (
     documentation => "Sets the y coordinate step. See `y0` for more info.",
 );
 
-=item * text
+=item * error_x
 
-Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.
 
 =cut
 
-has text => (
+has error_x => (
     is => 'rw',
-    documentation => "Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.",
+);
+
+=item * error_y
+
+
+=cut
+
+has error_y => (
+    is => 'rw',
+);
+
+=item * marker
+
+
+=cut
+
+has marker => (
+    is => 'rw',
+);
+
+=item * offset
+
+Shifts the position where the bar is drawn (in position axis units). In *group* barmode, traces that set *offset* will be excluded and drawn in *overlay* mode instead.
+
+=cut
+
+has offset => (
+    is => 'rw',
+    documentation => "Shifts the position where the bar is drawn (in position axis units). In *group* barmode, traces that set *offset* will be excluded and drawn in *overlay* mode instead.",
+);
+
+=item * orientation
+
+Sets the orientation of the bars. With *v* (*h*), the value of the each bar spans along the vertical (horizontal).
+
+=cut
+
+has orientation => (
+    is => 'rw',
+    documentation => "Sets the orientation of the bars. With *v* (*h*), the value of the each bar spans along the vertical (horizontal).",
+);
+
+=item * r
+
+For polar chart only.Sets the radial coordinates.
+
+=cut
+
+has r => (
+    is => 'rw',
+    documentation => "For polar chart only.Sets the radial coordinates.",
 );
 
 =item * t
@@ -226,15 +180,81 @@ has t => (
     documentation => "For polar chart only.Sets the angular coordinates.",
 );
 
-=item * offset
+=item * text
 
-Shifts the position where the bar is drawn (in position axis units). In *group* barmode, traces that set *offset* will be excluded and drawn in *overlay* mode instead.
+Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.
 
 =cut
 
-has offset => (
+has text => (
     is => 'rw',
-    documentation => "Shifts the position where the bar is drawn (in position axis units). In *group* barmode, traces that set *offset* will be excluded and drawn in *overlay* mode instead.",
+    documentation => "Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.",
+);
+
+=item * width
+
+Sets the bar width (in position axis units).
+
+=cut
+
+has width => (
+    is => 'rw',
+    documentation => "Sets the bar width (in position axis units).",
+);
+
+=item * x
+
+Sets the x coordinates.
+
+=cut
+
+has x => (
+    is => 'rw',
+    documentation => "Sets the x coordinates.",
+);
+
+=item * x0
+
+Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
+
+=cut
+
+has x0 => (
+    is => 'rw',
+    documentation => "Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.",
+);
+
+=item * y
+
+Sets the y coordinates.
+
+=cut
+
+has y => (
+    is => 'rw',
+    documentation => "Sets the y coordinates.",
+);
+
+=item * y0
+
+Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
+
+=cut
+
+has y0 => (
+    is => 'rw',
+    documentation => "Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.",
+);
+
+=item * name
+
+Sets the trace name
+
+=cut
+
+has name => (
+    is => 'rw',
+    documentation => "Sets the trace name",
 );
 
 =pod

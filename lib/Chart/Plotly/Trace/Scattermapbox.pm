@@ -67,26 +67,6 @@ sub type {
 
 =cut
 
-=item * fillcolor
-
-Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
-
-=cut
-
-has fillcolor => (
-    is => 'rw',
-    documentation => "Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.",
-);
-
-=item * marker
-
-
-=cut
-
-has marker => (
-    is => 'rw',
-);
-
 =item * connectgaps
 
 Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
@@ -109,55 +89,15 @@ has fill => (
     documentation => "Sets the area to fill with a solid color. Use with `fillcolor` if not *none*. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.",
 );
 
-=item * textposition
+=item * fillcolor
 
-Sets the positions of the `text` elements with respects to the (x,y) coordinates.
-
-=cut
-
-has textposition => (
-    is => 'rw',
-    documentation => "Sets the positions of the `text` elements with respects to the (x,y) coordinates.",
-);
-
-=item * textfont
-
-Sets the icon text font. Has an effect only when `type` is set to *symbol*.
+Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
 
 =cut
 
-has textfont => (
+has fillcolor => (
     is => 'rw',
-    documentation => "Sets the icon text font. Has an effect only when `type` is set to *symbol*.",
-);
-
-=item * _nestedModules
-
-
-=cut
-
-has _nestedModules => (
-    is => 'rw',
-);
-
-=item * line
-
-
-=cut
-
-has line => (
-    is => 'rw',
-);
-
-=item * lat
-
-Sets the latitude coordinates (in degrees North).
-
-=cut
-
-has lat => (
-    is => 'rw',
-    documentation => "Sets the latitude coordinates (in degrees North).",
+    documentation => "Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.",
 );
 
 =item * hoverinfo
@@ -171,15 +111,44 @@ has hoverinfo => (
     documentation => "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
 );
 
-=item * text
+=item * lat
 
-Sets text elements associated with each (lon,lat) pair If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) coordinates.
+Sets the latitude coordinates (in degrees North).
 
 =cut
 
-has text => (
+has lat => (
     is => 'rw',
-    documentation => "Sets text elements associated with each (lon,lat) pair If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) coordinates.",
+    documentation => "Sets the latitude coordinates (in degrees North).",
+);
+
+=item * line
+
+
+=cut
+
+has line => (
+    is => 'rw',
+);
+
+=item * lon
+
+Sets the longitude coordinates (in degrees East).
+
+=cut
+
+has lon => (
+    is => 'rw',
+    documentation => "Sets the longitude coordinates (in degrees East).",
+);
+
+=item * marker
+
+
+=cut
+
+has marker => (
+    is => 'rw',
 );
 
 =item * mode
@@ -193,15 +162,48 @@ has mode => (
     documentation => "Determines the drawing mode for this scatter trace. If the provided `mode` includes *text* then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover.",
 );
 
-=item * lon
+=item * text
 
-Sets the longitude coordinates (in degrees East).
+Sets text elements associated with each (lon,lat) pair If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) coordinates.
 
 =cut
 
-has lon => (
+has text => (
     is => 'rw',
-    documentation => "Sets the longitude coordinates (in degrees East).",
+    documentation => "Sets text elements associated with each (lon,lat) pair If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) coordinates.",
+);
+
+=item * textfont
+
+Sets the icon text font. Has an effect only when `type` is set to *symbol*.
+
+=cut
+
+has textfont => (
+    is => 'rw',
+    documentation => "Sets the icon text font. Has an effect only when `type` is set to *symbol*.",
+);
+
+=item * textposition
+
+Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+
+=cut
+
+has textposition => (
+    is => 'rw',
+    documentation => "Sets the positions of the `text` elements with respects to the (x,y) coordinates.",
+);
+
+=item * name
+
+Sets the trace name
+
+=cut
+
+has name => (
+    is => 'rw',
+    documentation => "Sets the trace name",
 );
 
 =pod

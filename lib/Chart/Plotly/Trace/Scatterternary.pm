@@ -67,42 +67,70 @@ sub type {
 
 =cut
 
-=item * marker
+=item * a
 
+Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
 
 =cut
 
-has marker => (
+has a => (
     is => 'rw',
+    documentation => "Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.",
 );
 
-=item * line
+=item * b
 
+Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
 
 =cut
 
-has line => (
+has b => (
     is => 'rw',
+    documentation => "Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.",
 );
 
-=item * _nestedModules
+=item * c
 
+Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
 
 =cut
 
-has _nestedModules => (
+has c => (
     is => 'rw',
+    documentation => "Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.",
 );
 
-=item * textfont
+=item * connectgaps
 
-Sets the text font.
+Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
 
 =cut
 
-has textfont => (
+has connectgaps => (
     is => 'rw',
-    documentation => "Sets the text font.",
+    documentation => "Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.",
+);
+
+=item * fill
+
+Sets the area to fill with a solid color. Use with `fillcolor` if not *none*. scatterternary has a subset of the options available to scatter. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. *tonext* fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no trace before it. *tonext* should not be used if one trace does not enclose the other.
+
+=cut
+
+has fill => (
+    is => 'rw',
+    documentation => "Sets the area to fill with a solid color. Use with `fillcolor` if not *none*. scatterternary has a subset of the options available to scatter. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. *tonext* fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no trace before it. *tonext* should not be used if one trace does not enclose the other.",
+);
+
+=item * fillcolor
+
+Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
+
+=cut
+
+has fillcolor => (
+    is => 'rw',
+    documentation => "Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.",
 );
 
 =item * hoverinfo
@@ -114,6 +142,35 @@ Determines which trace information appear on hover. If `none` or `skip` are set,
 has hoverinfo => (
     is => 'rw',
     documentation => "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
+);
+
+=item * hoveron
+
+Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.
+
+=cut
+
+has hoveron => (
+    is => 'rw',
+    documentation => "Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.",
+);
+
+=item * line
+
+
+=cut
+
+has line => (
+    is => 'rw',
+);
+
+=item * marker
+
+
+=cut
+
+has marker => (
+    is => 'rw',
 );
 
 =item * mode
@@ -138,15 +195,26 @@ has sum => (
     documentation => "The number each triplet should sum to, if only two of `a`, `b`, and `c` are provided. This overrides `ternary<i>.sum` to normalize this specific trace, but does not affect the values displayed on the axes. 0 (or missing) means to use ternary<i>.sum",
 );
 
-=item * fillcolor
+=item * text
 
-Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
+Sets text elements associated with each (a,b,c) point. If a single string, the same string appears over all the data points. If an array of strings, the items are mapped in order to the the data points in (a,b,c).
 
 =cut
 
-has fillcolor => (
+has text => (
     is => 'rw',
-    documentation => "Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.",
+    documentation => "Sets text elements associated with each (a,b,c) point. If a single string, the same string appears over all the data points. If an array of strings, the items are mapped in order to the the data points in (a,b,c).",
+);
+
+=item * textfont
+
+Sets the text font.
+
+=cut
+
+has textfont => (
+    is => 'rw',
+    documentation => "Sets the text font.",
 );
 
 =item * textposition
@@ -160,81 +228,15 @@ has textposition => (
     documentation => "Sets the positions of the `text` elements with respects to the (x,y) coordinates.",
 );
 
-=item * fill
+=item * name
 
-Sets the area to fill with a solid color. Use with `fillcolor` if not *none*. scatterternary has a subset of the options available to scatter. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. *tonext* fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no trace before it. *tonext* should not be used if one trace does not enclose the other.
-
-=cut
-
-has fill => (
-    is => 'rw',
-    documentation => "Sets the area to fill with a solid color. Use with `fillcolor` if not *none*. scatterternary has a subset of the options available to scatter. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. *tonext* fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no trace before it. *tonext* should not be used if one trace does not enclose the other.",
-);
-
-=item * connectgaps
-
-Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
+Sets the trace name
 
 =cut
 
-has connectgaps => (
+has name => (
     is => 'rw',
-    documentation => "Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.",
-);
-
-=item * hoveron
-
-Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.
-
-=cut
-
-has hoveron => (
-    is => 'rw',
-    documentation => "Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.",
-);
-
-=item * c
-
-Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
-
-=cut
-
-has c => (
-    is => 'rw',
-    documentation => "Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.",
-);
-
-=item * a
-
-Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
-
-=cut
-
-has a => (
-    is => 'rw',
-    documentation => "Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.",
-);
-
-=item * text
-
-Sets text elements associated with each (a,b,c) point. If a single string, the same string appears over all the data points. If an array of strings, the items are mapped in order to the the data points in (a,b,c).
-
-=cut
-
-has text => (
-    is => 'rw',
-    documentation => "Sets text elements associated with each (a,b,c) point. If a single string, the same string appears over all the data points. If an array of strings, the items are mapped in order to the the data points in (a,b,c).",
-);
-
-=item * b
-
-Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
-
-=cut
-
-has b => (
-    is => 'rw',
-    documentation => "Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.",
+    documentation => "Sets the trace name",
 );
 
 =pod
