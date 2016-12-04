@@ -16,7 +16,10 @@ my $plotly_js_src_path = path("../plotly.js/src");
 my $plotly_traces_path = $plotly_js_src_path->child('traces');
 my $current_dir = cwd;
 my $script_name_aux_dumper = "dump.js";
-path($script_name_aux_dumper)->copy($plotly_js_src_path);
+path('tool', $script_name_aux_dumper)->copy($plotly_js_src_path);
+
+
+const my $common_attributes => {name => {valType => 'string', description => 'Sets the trace name'}};
 
 my $template = <<'TEMPLATE';
 package {$package_name};
@@ -95,7 +98,7 @@ for my $plotly_trace ( $plotly_traces_path->children() ) {
     my $attributes_file = $plotly_trace->child('attributes.js');
     if ( $attributes_file->exists() ) {
 		chdir $plotly_js_src_path->parent();
-		my $result = `node src/dump.js $trace_name`;
+		my $result = `node src/$script_name_aux_dumper $trace_name`;
             if ($@) {
                 warn $trace_name . " can't be processed: $@\n";
 				use Data::Dumper;
@@ -108,7 +111,9 @@ for my $plotly_trace ( $plotly_traces_path->children() ) {
             my $file_contents =
               Text::Template::fill_in_string( $template, HASH => { package_name => 'Chart::Plotly::Trace::' . $class_name,
 																trace_name => $trace_name } );
-            while ( my ( $field, $value ) = each %$contents) {
+			my $render_field = sub {
+				my $field = shift();
+				my $value = shift();
 				$file_contents .= "=item * " . $field . "\n";
 				if (ref $value eq 'HASH' && defined $value->{'description'}) {
 					$file_contents .= "\n". $value->{'description'};
@@ -119,6 +124,14 @@ for my $plotly_trace ( $plotly_traces_path->children() ) {
 					$file_contents .= "\n    documentation => " . Data::Dump::quote($value->{'description'}) . ",";
 				}
 				$file_contents .= "\n);\n\n";
+			};
+			for my $field (sort keys %$contents) {
+				my $value = $contents->{$field};
+				$render_field->($field, $value);
+            }
+			for my $field (sort keys %$common_attributes) {
+				my $value = $common_attributes->{$field};
+				$render_field->($field, $value);
             }
             $file_contents .= "=pod\n\n=back\n\n=cut\n\n\n__PACKAGE__->meta->make_immutable();\n";
             $file_contents .= "1;\n";
