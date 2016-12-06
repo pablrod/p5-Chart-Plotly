@@ -98,16 +98,21 @@ HTML_END
 sub _render_cell {
     my $data_string = shift();
     my $chart_id    = shift();
+    my $layout      = shift();
+    if (defined $layout) {
+	$layout = "," . $layout; 	
+    }	
     my $template    = <<'TEMPLATE';
 <div id="{$chart_id}"></div>
 <script src="https://cdn.plot.ly/plotly-1.20.5.min.js"></script>
 <script>
-Plotly.plot(document.getElementById('{$chart_id}'),{$data});
+Plotly.plot(document.getElementById('{$chart_id}'),{$data} {$layout});
 </script>
 TEMPLATE
 
     my $template_variables = { data     => $data_string,
                                chart_id => $chart_id,
+			       defined $layout ? (layout   => $layout) : ()
     };
     return Text::Template::fill_in_string( $template, HASH => $template_variables );
 }

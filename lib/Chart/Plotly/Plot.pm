@@ -36,6 +36,11 @@ has traces => (
     }
 );
 
+has layout => (
+   is => 'rw',
+   isa => 'HashRef'
+);
+
 =head2 html
 
 Returns the html corresponding to the plot
@@ -50,8 +55,12 @@ sub html {
     my $self     = shift;
     my %params   = @_;
     my $chart_id = $params{'div_id'} // 'chart';
+    my $layout = $self->layout;
+    if (defined $layout) {
+	$layout = Chart::Plotly::_process_data( $layout );
+    }
     return Chart::Plotly::_render_cell(
-        Chart::Plotly::_process_data( $self->traces() ), $chart_id );
+        Chart::Plotly::_process_data( $self->traces() ), $chart_id, $layout );
 }
 
 1;
