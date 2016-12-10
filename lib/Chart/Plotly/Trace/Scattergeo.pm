@@ -75,6 +75,7 @@ Determines whether or not gaps (i.e. {nan} or missing values) in the provided da
 
 has connectgaps => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.",
 );
 
@@ -192,6 +193,7 @@ Sets text elements associated with each (lon,lat) pair or item in `locations`. I
 
 has text => (
     is => 'rw',
+    isa => "Str",
     documentation => "Sets text elements associated with each (lon,lat) pair or item in `locations`. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) or `locations` coordinates.",
 );
 
@@ -225,6 +227,7 @@ Sets the trace name
 
 has name => (
     is => 'rw',
+    isa => "Str",
     documentation => "Sets the trace name",
 );
 

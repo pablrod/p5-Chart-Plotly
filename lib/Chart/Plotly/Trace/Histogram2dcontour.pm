@@ -75,6 +75,7 @@ Determines whether or not the x axis bin attributes are picked by an algorithm. 
 
 has autobinx => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines whether or not the x axis bin attributes are picked by an algorithm. Note that this should be set to false if you want to manually set the number of bins using the attributes in xbins.",
 );
 
@@ -86,6 +87,7 @@ Determines whether or not the y axis bin attributes are picked by an algorithm. 
 
 has autobiny => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines whether or not the y axis bin attributes are picked by an algorithm. Note that this should be set to false if you want to manually set the number of bins using the attributes in ybins.",
 );
 
@@ -97,6 +99,7 @@ Determines whether or not the colorscale is picked using the sign of the input z
 
 has autocolorscale => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines whether or not the colorscale is picked using the sign of the input z values.",
 );
 
@@ -108,6 +111,7 @@ Determines whether or not the contour level attributes are picked by an algorith
 
 has autocontour => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines whether or not the contour level attributes are picked by an algorithm. If *true*, the number of contour levels can be set in `ncontours`. If *false*, set the contour level attributes in `contours`.",
 );
 
@@ -221,6 +225,7 @@ Reverses the colorscale.
 
 has reversescale => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Reverses the colorscale.",
 );
 
@@ -232,6 +237,7 @@ Determines whether or not a colorbar is displayed for this trace.
 
 has showscale => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines whether or not a colorbar is displayed for this trace.",
 );
 
@@ -294,6 +300,7 @@ Determines the whether or not the color domain is computed with respect to the i
 
 has zauto => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines the whether or not the color domain is computed with respect to the input data.",
 );
 
@@ -305,6 +312,7 @@ Sets the upper bound of color domain.
 
 has zmax => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the upper bound of color domain.",
 );
 
@@ -316,6 +324,7 @@ Sets the lower bound of color domain.
 
 has zmin => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the lower bound of color domain.",
 );
 
@@ -327,6 +336,7 @@ Sets the trace name
 
 has name => (
     is => 'rw',
+    isa => "Str",
     documentation => "Sets the trace name",
 );
 

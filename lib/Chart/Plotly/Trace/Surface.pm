@@ -84,6 +84,7 @@ Determines whether or not the colorscale is picked using the sign of the input z
 
 has autocolorscale => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines whether or not the colorscale is picked using the sign of the input z values.",
 );
 
@@ -95,6 +96,7 @@ Determines the whether or not the color domain is computed with respect to the i
 
 has cauto => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines the whether or not the color domain is computed with respect to the input data.",
 );
 
@@ -106,6 +108,7 @@ Sets the upper bound of color domain.
 
 has cmax => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the upper bound of color domain.",
 );
 
@@ -117,6 +120,7 @@ Sets the lower bound of color domain.
 
 has cmin => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the lower bound of color domain.",
 );
 
@@ -157,6 +161,7 @@ Determines whether or not a surface is drawn. For example, set `hidesurface` to 
 
 has hidesurface => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines whether or not a surface is drawn. For example, set `hidesurface` to *false* `contours.x.show` to *true* and `contours.y.show` to *true* to draw a wire frame plot.",
 );
 
@@ -186,6 +191,7 @@ Sets the opacity of the surface.
 
 has opacity => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the opacity of the surface.",
 );
 
@@ -197,6 +203,7 @@ Reverses the colorscale.
 
 has reversescale => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Reverses the colorscale.",
 );
 
@@ -208,6 +215,7 @@ Determines whether or not a colorbar is displayed for this trace.
 
 has showscale => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines whether or not a colorbar is displayed for this trace.",
 );
 
@@ -274,6 +282,7 @@ Sets the trace name
 
 has name => (
     is => 'rw',
+    isa => "Str",
     documentation => "Sets the trace name",
 );
 

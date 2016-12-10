@@ -146,6 +146,7 @@ Sets hover text elements associated with each sample point. If a single string, 
 
 has text => (
     is => 'rw',
+    isa => "Str",
     documentation => "Sets hover text elements associated with each sample point. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to this trace's sample points.",
 );
 
@@ -157,6 +158,7 @@ Sets the width of the whiskers relative to the box' width. For example, with 1, 
 
 has whiskerwidth => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).",
 );
 
@@ -179,6 +181,7 @@ Sets the trace name
 
 has name => (
     is => 'rw',
+    isa => "Str",
     documentation => "Sets the trace name",
 );
 

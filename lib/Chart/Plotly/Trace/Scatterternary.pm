@@ -108,6 +108,7 @@ Determines whether or not gaps (i.e. {nan} or missing values) in the provided da
 
 has connectgaps => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.",
 );
 
@@ -192,6 +193,7 @@ The number each triplet should sum to, if only two of `a`, `b`, and `c` are prov
 
 has sum => (
     is => 'rw',
+    isa => "Num",
     documentation => "The number each triplet should sum to, if only two of `a`, `b`, and `c` are provided. This overrides `ternary<i>.sum` to normalize this specific trace, but does not affect the values displayed on the axes. 0 (or missing) means to use ternary<i>.sum",
 );
 
@@ -203,6 +205,7 @@ Sets text elements associated with each (a,b,c) point. If a single string, the s
 
 has text => (
     is => 'rw',
+    isa => "Str",
     documentation => "Sets text elements associated with each (a,b,c) point. If a single string, the same string appears over all the data points. If an array of strings, the items are mapped in order to the the data points in (a,b,c).",
 );
 
@@ -236,6 +239,7 @@ Sets the trace name
 
 has name => (
     is => 'rw',
+    isa => "Str",
     documentation => "Sets the trace name",
 );
 

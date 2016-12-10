@@ -108,6 +108,7 @@ Sets the amount of jitter in the sample points drawn. If *0*, the sample points 
 
 has jitter => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the amount of jitter in the sample points drawn. If *0*, the sample points align along the distribution axis. If *1*, the sample points are drawn in a random jitter of width equal to the width of the box(es).",
 );
 
@@ -148,6 +149,7 @@ Sets the position of the sample points in relation to the box(es). If *0*, the s
 
 has pointpos => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the position of the sample points in relation to the box(es). If *0*, the sample points are places over the center of the box(es). Positive (negative) values correspond to positions to the right (left) for vertical boxes and above (below) for horizontal boxes",
 );
 
@@ -159,6 +161,7 @@ Sets the width of the whiskers relative to the box' width. For example, with 1, 
 
 has whiskerwidth => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).",
 );
 
@@ -181,6 +184,7 @@ Sets the x coordinate of the box. See overview for more info.
 
 has x0 => (
     is => 'rw',
+    isa => "Any",
     documentation => "Sets the x coordinate of the box. See overview for more info.",
 );
 
@@ -203,6 +207,7 @@ Sets the y coordinate of the box. See overview for more info.
 
 has y0 => (
     is => 'rw',
+    isa => "Any",
     documentation => "Sets the y coordinate of the box. See overview for more info.",
 );
 
@@ -214,6 +219,7 @@ Sets the trace name
 
 has name => (
     is => 'rw',
+    isa => "Str",
     documentation => "Sets the trace name",
 );
 

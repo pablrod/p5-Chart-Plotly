@@ -75,6 +75,7 @@ Determines how the mesh surface triangles are derived from the set of vertices (
 
 has alphahull => (
     is => 'rw',
+    isa => "Num",
     documentation => "Determines how the mesh surface triangles are derived from the set of vertices (points) represented by the `x`, `y` and `z` arrays, if the `i`, `j`, `k` arrays are not supplied. For general use of `mesh3d` it is preferred that `i`, `j`, `k` are supplied. If *-1*, Delaunay triangulation is used, which is mainly suitable if the mesh is a single, more or less layer surface that is perpendicular to `delaunayaxis`. In case the `delaunayaxis` intersects the mesh surface at more than one point it will result triangles that are very long in the dimension of `delaunayaxis`. If *>0*, the alpha-shape algorithm is used. In this case, the positive `alphahull` value signals the use of the alpha-shape algorithm, _and_ its value acts as the parameter for the mesh fitting. If *0*,  the convex-hull algorithm is used. It is suitable for convex bodies or if the intention is to enclose the `x`, `y` and `z` point set into a convex hull.",
 );
 
@@ -148,6 +149,7 @@ Determines whether or not normal smoothing is applied to the meshes, creating me
 
 has flatshading => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines whether or not normal smoothing is applied to the meshes, creating meshes with an angular, low-poly look via flat reflections.",
 );
 
@@ -221,6 +223,7 @@ Sets the opacity of the surface.
 
 has opacity => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the opacity of the surface.",
 );
 
@@ -232,6 +235,7 @@ Reverses the colorscale.
 
 has reversescale => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Reverses the colorscale.",
 );
 
@@ -243,6 +247,7 @@ Determines whether or not a colorbar is displayed for this trace.
 
 has showscale => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines whether or not a colorbar is displayed for this trace.",
 );
 
@@ -298,6 +303,7 @@ Sets the trace name
 
 has name => (
     is => 'rw',
+    isa => "Str",
     documentation => "Sets the trace name",
 );
 

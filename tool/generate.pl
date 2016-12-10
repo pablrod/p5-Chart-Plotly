@@ -20,7 +20,7 @@ path('tool', $script_name_aux_dumper)->copy($plotly_js_src_path);
 
 
 const my $common_attributes => {name => {valType => 'string', description => 'Sets the trace name'}};
-const my $moose_type_for{any => 'Any', number => 'Num', string => 'Str', boolean => 'Bool'};
+my $moose_type_for = {any => 'Any', number => 'Num', string => 'Str', boolean => 'Bool'};
 
 my $template = <<'TEMPLATE';
 package {$package_name};
@@ -123,7 +123,7 @@ for my $plotly_trace ( $plotly_traces_path->children() ) {
                 		$file_contents .= "has $field => (\n    is => 'rw',";
 				if (ref $value eq 'HASH' && defined $value->{'valType'}) {
 					my $plotly_val_type = $value->{'valType'};
-					my $moose_type = $moose_type_for{$plotly_val_type};
+					my $moose_type = $moose_type_for->{$plotly_val_type};
 					if (defined $moose_type) {
                 			$file_contents .= "\n    isa => ". Data::Dump::quote($moose_type) . ",";
 					}

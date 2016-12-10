@@ -67,15 +67,36 @@ sub type {
 
 =cut
 
-=item * connectgaps
+=item * autocolorscale
 
-Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
+Determines whether or not the colorscale is picked using the sign of the input z values.
 
 =cut
 
-has connectgaps => (
+has autocolorscale => (
     is => 'rw',
-    documentation => "Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.",
+    isa => "Bool",
+    documentation => "Determines whether or not the colorscale is picked using the sign of the input z values.",
+);
+
+=item * colorbar
+
+
+=cut
+
+has colorbar => (
+    is => 'rw',
+);
+
+=item * colorscale
+
+Sets the colorscale. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)', [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in z space, use zmin and zmax
+
+=cut
+
+has colorscale => (
+    is => 'rw',
+    documentation => "Sets the colorscale. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)', [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in z space, use zmin and zmax",
 );
 
 =item * dx
@@ -86,6 +107,7 @@ Sets the x coordinate step. See `x0` for more info.
 
 has dx => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the x coordinate step. See `x0` for more info.",
 );
 
@@ -97,153 +119,55 @@ Sets the y coordinate step. See `y0` for more info.
 
 has dy => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the y coordinate step. See `y0` for more info.",
 );
 
-=item * error_x
+=item * reversescale
 
+Reverses the colorscale.
 
 =cut
 
-has error_x => (
+has reversescale => (
     is => 'rw',
+    isa => "Bool",
+    documentation => "Reverses the colorscale.",
 );
 
-=item * error_y
+=item * showscale
 
-
-=cut
-
-has error_y => (
-    is => 'rw',
-);
-
-=item * fill
-
-Sets the area to fill with a solid color. Use with `fillcolor` if not *none*. *tozerox* and *tozeroy* fill to x=0 and y=0 respectively. *tonextx* and *tonexty* fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like *tozerox* and *tozeroy*. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. *tonext* fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no trace before it. *tonext* should not be used if one trace does not enclose the other.
+Determines whether or not a colorbar is displayed for this trace.
 
 =cut
 
-has fill => (
+has showscale => (
     is => 'rw',
-    documentation => "Sets the area to fill with a solid color. Use with `fillcolor` if not *none*. *tozerox* and *tozeroy* fill to x=0 and y=0 respectively. *tonextx* and *tonexty* fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like *tozerox* and *tozeroy*. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. *tonext* fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no trace before it. *tonext* should not be used if one trace does not enclose the other.",
-);
-
-=item * fillcolor
-
-Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
-
-=cut
-
-has fillcolor => (
-    is => 'rw',
-    documentation => "Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.",
-);
-
-=item * hoveron
-
-Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.
-
-=cut
-
-has hoveron => (
-    is => 'rw',
-    documentation => "Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.",
-);
-
-=item * ids
-
-A list of keys for object constancy of data points during animation
-
-=cut
-
-has ids => (
-    is => 'rw',
-    documentation => "A list of keys for object constancy of data points during animation",
-);
-
-=item * line
-
-
-=cut
-
-has line => (
-    is => 'rw',
-);
-
-=item * marker
-
-
-=cut
-
-has marker => (
-    is => 'rw',
-);
-
-=item * mode
-
-Determines the drawing mode for this scatter trace. If the provided `mode` includes *text* then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points, then the default is *lines+markers*. Otherwise, *lines*.
-
-=cut
-
-has mode => (
-    is => 'rw',
-    documentation => "Determines the drawing mode for this scatter trace. If the provided `mode` includes *text* then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points, then the default is *lines+markers*. Otherwise, *lines*.",
-);
-
-=item * r
-
-For polar chart only.Sets the radial coordinates.
-
-=cut
-
-has r => (
-    is => 'rw',
-    documentation => "For polar chart only.Sets the radial coordinates.",
-);
-
-=item * t
-
-For polar chart only.Sets the angular coordinates.
-
-=cut
-
-has t => (
-    is => 'rw',
-    documentation => "For polar chart only.Sets the angular coordinates.",
+    isa => "Bool",
+    documentation => "Determines whether or not a colorbar is displayed for this trace.",
 );
 
 =item * text
 
-Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.
+Sets the text elements associated with each z value.
 
 =cut
 
 has text => (
     is => 'rw',
-    documentation => "Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.",
+    documentation => "Sets the text elements associated with each z value.",
 );
 
-=item * textfont
+=item * transpose
 
-Sets the text font.
+Transposes the z data.
 
 =cut
 
-has textfont => (
+has transpose => (
     is => 'rw',
-    documentation => "Sets the text font.",
-);
-
-=item * textposition
-
-Sets the positions of the `text` elements with respects to the (x,y) coordinates.
-
-=cut
-
-has textposition => (
-    is => 'rw',
-    documentation => "Sets the positions of the `text` elements with respects to the (x,y) coordinates.",
+    isa => "Bool",
+    documentation => "Transposes the z data.",
 );
 
 =item * x
@@ -265,7 +189,19 @@ Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x
 
 has x0 => (
     is => 'rw',
+    isa => "Any",
     documentation => "Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.",
+);
+
+=item * xtype
+
+If *array*, the heatmap's x coordinates are given by *x* (the default behavior when `x` is provided). If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when `x` is not provided).
+
+=cut
+
+has xtype => (
+    is => 'rw',
+    documentation => "If *array*, the heatmap's x coordinates are given by *x* (the default behavior when `x` is provided). If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when `x` is not provided).",
 );
 
 =item * y
@@ -287,7 +223,66 @@ Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y
 
 has y0 => (
     is => 'rw',
+    isa => "Any",
     documentation => "Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.",
+);
+
+=item * ytype
+
+If *array*, the heatmap's y coordinates are given by *y* (the default behavior when `y` is provided) If *scaled*, the heatmap's y coordinates are given by *y0* and *dy* (the default behavior when `y` is not provided)
+
+=cut
+
+has ytype => (
+    is => 'rw',
+    documentation => "If *array*, the heatmap's y coordinates are given by *y* (the default behavior when `y` is provided) If *scaled*, the heatmap's y coordinates are given by *y0* and *dy* (the default behavior when `y` is not provided)",
+);
+
+=item * z
+
+Sets the z data.
+
+=cut
+
+has z => (
+    is => 'rw',
+    documentation => "Sets the z data.",
+);
+
+=item * zauto
+
+Determines the whether or not the color domain is computed with respect to the input data.
+
+=cut
+
+has zauto => (
+    is => 'rw',
+    isa => "Bool",
+    documentation => "Determines the whether or not the color domain is computed with respect to the input data.",
+);
+
+=item * zmax
+
+Sets the upper bound of color domain.
+
+=cut
+
+has zmax => (
+    is => 'rw',
+    isa => "Num",
+    documentation => "Sets the upper bound of color domain.",
+);
+
+=item * zmin
+
+Sets the lower bound of color domain.
+
+=cut
+
+has zmin => (
+    is => 'rw',
+    isa => "Num",
+    documentation => "Sets the lower bound of color domain.",
 );
 
 =item * name
@@ -298,6 +293,7 @@ Sets the trace name
 
 has name => (
     is => 'rw',
+    isa => "Str",
     documentation => "Sets the trace name",
 );
 

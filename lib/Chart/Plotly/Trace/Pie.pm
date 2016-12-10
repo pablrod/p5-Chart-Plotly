@@ -86,6 +86,7 @@ Sets the label step. See `label0` for more info.
 
 has dlabel => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the label step. See `label0` for more info.",
 );
 
@@ -106,6 +107,7 @@ Sets the fraction of the radius to cut out of the pie. Use this to make a donut 
 
 has hole => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the fraction of the radius to cut out of the pie. Use this to make a donut chart.",
 );
 
@@ -139,6 +141,7 @@ Alternate to `labels`. Builds a numeric set of labels. Use with `dlabel` where `
 
 has label0 => (
     is => 'rw',
+    isa => "Num",
     documentation => "Alternate to `labels`. Builds a numeric set of labels. Use with `dlabel` where `label0` is the starting label and `dlabel` the step.",
 );
 
@@ -181,6 +184,7 @@ Sets the fraction of larger radius to pull the sectors out from the center. This
 
 has pull => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the fraction of larger radius to pull the sectors out from the center. This can be a constant to pull all slices apart from each other equally or an array to highlight one or more slices.",
 );
 
@@ -192,6 +196,7 @@ Instead of the first slice starting at 12 o'clock, rotate to some other angle.
 
 has rotation => (
     is => 'rw',
+    isa => "Num",
     documentation => "Instead of the first slice starting at 12 o'clock, rotate to some other angle.",
 );
 
@@ -203,6 +208,7 @@ If there are multiple pies that should be sized according to their totals, link 
 
 has scalegroup => (
     is => 'rw',
+    isa => "Str",
     documentation => "If there are multiple pies that should be sized according to their totals, link them by providing a non-empty group id here shared by every trace in the same group.",
 );
 
@@ -214,6 +220,7 @@ Determines whether or not the sectors of reordered from largest to smallest.
 
 has sort => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines whether or not the sectors of reordered from largest to smallest.",
 );
 
@@ -280,6 +287,7 @@ Sets the trace name
 
 has name => (
     is => 'rw',
+    isa => "Str",
     documentation => "Sets the trace name",
 );
 

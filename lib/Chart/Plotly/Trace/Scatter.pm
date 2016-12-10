@@ -75,6 +75,7 @@ Determines whether or not gaps (i.e. {nan} or missing values) in the provided da
 
 has connectgaps => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.",
 );
 
@@ -86,6 +87,7 @@ Sets the x coordinate step. See `x0` for more info.
 
 has dx => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the x coordinate step. See `x0` for more info.",
 );
 
@@ -97,6 +99,7 @@ Sets the y coordinate step. See `y0` for more info.
 
 has dy => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the y coordinate step. See `y0` for more info.",
 );
 
@@ -221,6 +224,7 @@ Sets text elements associated with each (x,y) pair. If a single string, the same
 
 has text => (
     is => 'rw',
+    isa => "Str",
     documentation => "Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.",
 );
 
@@ -265,6 +269,7 @@ Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x
 
 has x0 => (
     is => 'rw',
+    isa => "Any",
     documentation => "Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.",
 );
 
@@ -287,6 +292,7 @@ Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y
 
 has y0 => (
     is => 'rw',
+    isa => "Any",
     documentation => "Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.",
 );
 
@@ -298,6 +304,7 @@ Sets the trace name
 
 has name => (
     is => 'rw',
+    isa => "Str",
     documentation => "Sets the trace name",
 );
 

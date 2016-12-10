@@ -75,6 +75,7 @@ Determines whether or not the colorscale is picked using the sign of the input z
 
 has autocolorscale => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines whether or not the colorscale is picked using the sign of the input z values.",
 );
 
@@ -86,6 +87,7 @@ Determines whether or not the contour level attributes are picked by an algorith
 
 has autocontour => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines whether or not the contour level attributes are picked by an algorithm. If *true*, the number of contour levels can be set in `ncontours`. If *false*, set the contour level attributes in `contours`.",
 );
 
@@ -117,6 +119,7 @@ Determines whether or not gaps (i.e. {nan} or missing values) in the `z` data ar
 
 has connectgaps => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines whether or not gaps (i.e. {nan} or missing values) in the `z` data are filled in.",
 );
 
@@ -137,6 +140,7 @@ Sets the x coordinate step. See `x0` for more info.
 
 has dx => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the x coordinate step. See `x0` for more info.",
 );
 
@@ -148,6 +152,7 @@ Sets the y coordinate step. See `y0` for more info.
 
 has dy => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the y coordinate step. See `y0` for more info.",
 );
 
@@ -179,6 +184,7 @@ Reverses the colorscale.
 
 has reversescale => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Reverses the colorscale.",
 );
 
@@ -190,6 +196,7 @@ Determines whether or not a colorbar is displayed for this trace.
 
 has showscale => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines whether or not a colorbar is displayed for this trace.",
 );
 
@@ -212,6 +219,7 @@ Transposes the z data.
 
 has transpose => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Transposes the z data.",
 );
 
@@ -234,6 +242,7 @@ Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x
 
 has x0 => (
     is => 'rw',
+    isa => "Any",
     documentation => "Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.",
 );
 
@@ -267,6 +276,7 @@ Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y
 
 has y0 => (
     is => 'rw',
+    isa => "Any",
     documentation => "Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.",
 );
 
@@ -300,6 +310,7 @@ Determines the whether or not the color domain is computed with respect to the i
 
 has zauto => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines the whether or not the color domain is computed with respect to the input data.",
 );
 
@@ -311,6 +322,7 @@ Sets the upper bound of color domain.
 
 has zmax => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the upper bound of color domain.",
 );
 
@@ -322,6 +334,7 @@ Sets the lower bound of color domain.
 
 has zmin => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the lower bound of color domain.",
 );
 
@@ -333,6 +346,7 @@ Sets the trace name
 
 has name => (
     is => 'rw',
+    isa => "Str",
     documentation => "Sets the trace name",
 );
 

@@ -84,6 +84,7 @@ Sets where the bar base is drawn (in position axis units). In *stack* or *relati
 
 has base => (
     is => 'rw',
+    isa => "Any",
     documentation => "Sets where the bar base is drawn (in position axis units). In *stack* or *relative* barmode, traces that set *base* will be excluded and drawn in *overlay* mode instead.",
 );
 
@@ -95,6 +96,7 @@ Sets the x coordinate step. See `x0` for more info.
 
 has dx => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the x coordinate step. See `x0` for more info.",
 );
 
@@ -106,6 +108,7 @@ Sets the y coordinate step. See `y0` for more info.
 
 has dy => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the y coordinate step. See `y0` for more info.",
 );
 
@@ -127,6 +130,17 @@ has error_y => (
     is => 'rw',
 );
 
+=item * insidetextfont
+
+Sets the font used for `text` lying inside the bar.
+
+=cut
+
+has insidetextfont => (
+    is => 'rw',
+    documentation => "Sets the font used for `text` lying inside the bar.",
+);
+
 =item * marker
 
 
@@ -144,6 +158,7 @@ Shifts the position where the bar is drawn (in position axis units). In *group* 
 
 has offset => (
     is => 'rw',
+    isa => "Num",
     documentation => "Shifts the position where the bar is drawn (in position axis units). In *group* barmode, traces that set *offset* will be excluded and drawn in *overlay* mode instead.",
 );
 
@@ -156,6 +171,17 @@ Sets the orientation of the bars. With *v* (*h*), the value of the each bar span
 has orientation => (
     is => 'rw',
     documentation => "Sets the orientation of the bars. With *v* (*h*), the value of the each bar spans along the vertical (horizontal).",
+);
+
+=item * outsidetextfont
+
+Sets the font used for `text` lying outside the bar.
+
+=cut
+
+has outsidetextfont => (
+    is => 'rw',
+    documentation => "Sets the font used for `text` lying outside the bar.",
 );
 
 =item * r
@@ -188,7 +214,30 @@ Sets text elements associated with each (x,y) pair. If a single string, the same
 
 has text => (
     is => 'rw',
+    isa => "Str",
     documentation => "Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.",
+);
+
+=item * textfont
+
+Sets the font used for `text`.
+
+=cut
+
+has textfont => (
+    is => 'rw',
+    documentation => "Sets the font used for `text`.",
+);
+
+=item * textposition
+
+Specifies the location of the `text`. *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside* positions `text` outside, next to the bar end (scaled if needed). *auto* positions `text` inside or outside so that `text` size is maximized.
+
+=cut
+
+has textposition => (
+    is => 'rw',
+    documentation => "Specifies the location of the `text`. *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside* positions `text` outside, next to the bar end (scaled if needed). *auto* positions `text` inside or outside so that `text` size is maximized.",
 );
 
 =item * width
@@ -199,6 +248,7 @@ Sets the bar width (in position axis units).
 
 has width => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the bar width (in position axis units).",
 );
 
@@ -221,6 +271,7 @@ Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x
 
 has x0 => (
     is => 'rw',
+    isa => "Any",
     documentation => "Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.",
 );
 
@@ -243,6 +294,7 @@ Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y
 
 has y0 => (
     is => 'rw',
+    isa => "Any",
     documentation => "Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.",
 );
 
@@ -254,6 +306,7 @@ Sets the trace name
 
 has name => (
     is => 'rw',
+    isa => "Str",
     documentation => "Sets the trace name",
 );
 

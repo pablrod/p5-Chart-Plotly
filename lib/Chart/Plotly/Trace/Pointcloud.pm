@@ -95,6 +95,7 @@ Sets text elements associated with each (x,y) pair to appear on hover. If a sing
 
 has text => (
     is => 'rw',
+    isa => "Str",
     documentation => "Sets text elements associated with each (x,y) pair to appear on hover. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.",
 );
 
@@ -161,6 +162,7 @@ Sets the trace name
 
 has name => (
     is => 'rw',
+    isa => "Str",
     documentation => "Sets the trace name",
 );
 

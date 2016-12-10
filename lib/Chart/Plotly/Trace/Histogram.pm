@@ -84,6 +84,7 @@ Determines whether or not the x axis bin attributes are picked by an algorithm. 
 
 has autobinx => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines whether or not the x axis bin attributes are picked by an algorithm. Note that this should be set to false if you want to manually set the number of bins using the attributes in xbins.",
 );
 
@@ -95,6 +96,7 @@ Determines whether or not the y axis bin attributes are picked by an algorithm. 
 
 has autobiny => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines whether or not the y axis bin attributes are picked by an algorithm. Note that this should be set to false if you want to manually set the number of bins using the attributes in ybins.",
 );
 
@@ -188,6 +190,7 @@ Sets text elements associated with each (x,y) pair. If a single string, the same
 
 has text => (
     is => 'rw',
+    isa => "Str",
     documentation => "Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.",
 );
 
@@ -239,6 +242,7 @@ Sets the trace name
 
 has name => (
     is => 'rw',
+    isa => "Str",
     documentation => "Sets the trace name",
 );
 

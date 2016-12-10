@@ -75,6 +75,7 @@ Determines whether or not the colorscale is picked using the sign of the input z
 
 has autocolorscale => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines whether or not the colorscale is picked using the sign of the input z values.",
 );
 
@@ -148,6 +149,7 @@ Reverses the colorscale.
 
 has reversescale => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Reverses the colorscale.",
 );
 
@@ -159,6 +161,7 @@ Determines whether or not a colorbar is displayed for this trace.
 
 has showscale => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines whether or not a colorbar is displayed for this trace.",
 );
 
@@ -192,6 +195,7 @@ Determines the whether or not the color domain is computed with respect to the i
 
 has zauto => (
     is => 'rw',
+    isa => "Bool",
     documentation => "Determines the whether or not the color domain is computed with respect to the input data.",
 );
 
@@ -203,6 +207,7 @@ Sets the upper bound of color domain.
 
 has zmax => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the upper bound of color domain.",
 );
 
@@ -214,6 +219,7 @@ Sets the lower bound of color domain.
 
 has zmin => (
     is => 'rw',
+    isa => "Num",
     documentation => "Sets the lower bound of color domain.",
 );
 
@@ -225,6 +231,7 @@ Sets the trace name
 
 has name => (
     is => 'rw',
+    isa => "Str",
     documentation => "Sets the trace name",
 );
 
