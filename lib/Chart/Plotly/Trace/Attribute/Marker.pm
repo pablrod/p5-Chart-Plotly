@@ -154,6 +154,18 @@ has line => (
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Attribute::Line"
 );
 
+=item * maxdisplayed
+
+Sets a maximum number of points to be drawn on the graph. *0* corresponds to no limit.
+
+=cut
+
+has maxdisplayed => (
+    is => 'rw',
+    isa => "Num",
+    documentation => "Sets a maximum number of points to be drawn on the graph. *0* corresponds to no limit.",
+);
+
 =item * opacity
 
 Sets the marker opacity.
@@ -239,13 +251,13 @@ has sizeref => (
 
 =item * symbol
 
-Sets the marker symbol type.
+Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or *dot-open* to a symbol name.
 
 =cut
 
 has symbol => (
     is => 'rw',
-    documentation => "Sets the marker symbol type.",
+    documentation => "Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or *dot-open* to a symbol name.",
 );
 
 =item * name

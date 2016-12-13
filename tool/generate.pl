@@ -131,6 +131,9 @@ my $render_class = sub {
 							last;
 						}
 					}
+                    if ($field eq 'x' || $field eq 'y' || $field eq 'z') {
+                        $is_a_subclass = 0;
+                    } 
 				} else {
 					$is_a_subclass = 0;
 				}
@@ -139,7 +142,9 @@ my $render_class = sub {
 				} 
 				$file_contents .= "=item * " . $field . "\n";
 				if (ref $value eq 'HASH' && defined $value->{'description'}) {
-					$file_contents .= "\n". $value->{'description'};
+                    my $description = $value->{'description'};
+                    $description =~ s/M<(.+?)>/$1/g;
+					$file_contents .= "\n". $description;
 				}
 				$file_contents .= "\n\n=cut\n\n";
                 		$file_contents .= "has $field => (\n    is => 'rw',";
@@ -156,7 +161,9 @@ my $render_class = sub {
 					}
 				}
 				if (ref $value eq 'HASH' && defined $value->{'description'}) {
-					$file_contents .= "\n    documentation => " . Data::Dump::quote($value->{'description'}) . ",";
+                    my $description = $value->{'description'};
+                    $description =~ s/M<(.+?)>/$1/g;
+					$file_contents .= "\n    documentation => " . Data::Dump::quote($description) . ",";
 				}
 				}
 				$file_contents .= "\n);\n\n";
@@ -169,10 +176,11 @@ my $render_class = sub {
 				my $value = $common_attributes->{$field};
 				$render_field->($field, $value);
             }
+        $file_contents .= "=pod\n\n=back\n\n=cut\n\n";
 	    if (!defined $subclass_type) {
 		$file_contents .= $type_template;
 	    }
-            $file_contents .= "=pod\n\n=back\n\n=cut\n\n\n__PACKAGE__->meta->make_immutable();\n";
+            $file_contents .= "\n__PACKAGE__->meta->make_immutable();\n";
             $file_contents .= "1;\n";
 	    my $used_modules = "";
 	    for my $type_constraint (@type_constraints) {

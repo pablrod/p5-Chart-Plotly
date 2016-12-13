@@ -1,9 +1,6 @@
 package Chart::Plotly::Trace::Attribute::Projection;
 use Moose;
 
-use Chart::Plotly::Trace::Attribute::X;
-use Chart::Plotly::Trace::Attribute::Y;
-use Chart::Plotly::Trace::Attribute::Z;
 
 
 # VERSION
@@ -72,7 +69,6 @@ sub TO_JSON {
 
 has x => (
     is => 'rw',
-    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Attribute::X"
 );
 
 =item * y
@@ -82,7 +78,6 @@ has x => (
 
 has y => (
     is => 'rw',
-    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Attribute::Y"
 );
 
 =item * z
@@ -92,7 +87,6 @@ has y => (
 
 has z => (
     is => 'rw',
-    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Attribute::Z"
 );
 
 =item * name

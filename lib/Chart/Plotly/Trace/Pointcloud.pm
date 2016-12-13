@@ -163,6 +163,12 @@ has name => (
     documentation => "Sets the trace name",
 );
 
+=pod
+
+=back
+
+=cut
+
 
 =head2 type
 
@@ -174,12 +180,6 @@ sub type {
 	my @components = split(/::/, __PACKAGE__);
 	return lc($components[-1]);
 }
-
-=pod
-
-=back
-
-=cut
 
 
 __PACKAGE__->meta->make_immutable();

@@ -86,18 +86,6 @@ has diffuse => (
     documentation => "Represents the extent that incident rays are reflected in a range of angles.",
 );
 
-=item * facenormalsepsilon
-
-Epsilon for face normals calculation avoids math issues arising from degenerate geometry.
-
-=cut
-
-has facenormalsepsilon => (
-    is => 'rw',
-    isa => "Num",
-    documentation => "Epsilon for face normals calculation avoids math issues arising from degenerate geometry.",
-);
-
 =item * fresnel
 
 Represents the reflectance as a dependency of the viewing angle; e.g. paper is reflective when viewing it from the edge of the paper (almost 90 degrees), causing shine.
@@ -132,18 +120,6 @@ has specular => (
     is => 'rw',
     isa => "Num",
     documentation => "Represents the level that incident rays are reflected in a single direction, causing shine.",
-);
-
-=item * vertexnormalsepsilon
-
-Epsilon for vertex normals calculation avoids math issues arising from degenerate geometry.
-
-=cut
-
-has vertexnormalsepsilon => (
-    is => 'rw',
-    isa => "Num",
-    documentation => "Epsilon for vertex normals calculation avoids math issues arising from degenerate geometry.",
 );
 
 =item * name

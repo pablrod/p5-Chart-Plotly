@@ -62,63 +62,31 @@ sub TO_JSON {
 
 =cut
 
-=item * coloring
+=item * x
 
-Determines the coloring method showing the contour values. If *fill*, coloring is done evenly between each contour level If *heatmap*, a heatmap gradient coloring is applied between each contour level. If *lines*, coloring is done on the contour lines. If *none*, no coloring is applied on this trace.
 
 =cut
 
-has coloring => (
+has x => (
     is => 'rw',
-    documentation => "Determines the coloring method showing the contour values. If *fill*, coloring is done evenly between each contour level If *heatmap*, a heatmap gradient coloring is applied between each contour level. If *lines*, coloring is done on the contour lines. If *none*, no coloring is applied on this trace.",
 );
 
-=item * end
+=item * y
 
-Sets the end contour level value.
 
 =cut
 
-has end => (
+has y => (
     is => 'rw',
-    isa => "Num",
-    documentation => "Sets the end contour level value.",
 );
 
-=item * showlines
+=item * z
 
-Determines whether or not the contour lines are drawn. Has only an effect if `contours.coloring` is set to *fill*.
-
-=cut
-
-has showlines => (
-    is => 'rw',
-    isa => "Bool",
-    documentation => "Determines whether or not the contour lines are drawn. Has only an effect if `contours.coloring` is set to *fill*.",
-);
-
-=item * size
-
-Sets the step between each contour level.
 
 =cut
 
-has size => (
+has z => (
     is => 'rw',
-    isa => "Num",
-    documentation => "Sets the step between each contour level.",
-);
-
-=item * start
-
-Sets the starting contour level value.
-
-=cut
-
-has start => (
-    is => 'rw',
-    isa => "Num",
-    documentation => "Sets the starting contour level value.",
 );
 
 =item * name

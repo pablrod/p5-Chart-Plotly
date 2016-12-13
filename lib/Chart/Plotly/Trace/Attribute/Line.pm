@@ -85,6 +85,29 @@ has dash => (
     documentation => "Sets the style of the lines. Set to a dash string type or a dash length in px.",
 );
 
+=item * shape
+
+Determines the line shape. With *spline* the lines are drawn using spline interpolation. The other available values correspond to step-wise line shapes.
+
+=cut
+
+has shape => (
+    is => 'rw',
+    documentation => "Determines the line shape. With *spline* the lines are drawn using spline interpolation. The other available values correspond to step-wise line shapes.",
+);
+
+=item * smoothing
+
+Has an effect only if `shape` is set to *spline* Sets the amount of smoothing. *0* corresponds to no smoothing (equivalent to a *linear* shape).
+
+=cut
+
+has smoothing => (
+    is => 'rw',
+    isa => "Num",
+    documentation => "Has an effect only if `shape` is set to *spline* Sets the amount of smoothing. *0* corresponds to no smoothing (equivalent to a *linear* shape).",
+);
+
 =item * width
 
 Sets the line width (in px).
