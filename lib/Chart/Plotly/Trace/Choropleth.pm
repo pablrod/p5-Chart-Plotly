@@ -1,6 +1,10 @@
 package Chart::Plotly::Trace::Choropleth;
 use Moose;
 
+use Chart::Plotly::Trace::Attribute::Colorbar;
+use Chart::Plotly::Trace::Attribute::Marker;
+
+
 # VERSION
 
 =encoding utf-8
@@ -46,20 +50,13 @@ Serialize the trace to JSON. This method should be called only by L<JSON> serial
 sub TO_JSON {
 	my $self = shift; 
 	my %hash = %$self; 
-	$hash{type} = $self->type();
+	if ($self->can('type') && (!defined $hash{'type'})) {
+		$hash{type} = $self->type();
+	}
 	return \%hash;
 }
 
-=head2 type
 
-Trace type.
-
-=cut
-
-sub type {
-	my @components = split(/::/, __PACKAGE__);
-	return lc($components[-1]);
-}
 
 =head1 ATTRIBUTES
 
@@ -86,6 +83,7 @@ has autocolorscale => (
 
 has colorbar => (
     is => 'rw',
+    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Attribute::Colorbar"
 );
 
 =item * colorscale
@@ -139,6 +137,7 @@ has locations => (
 
 has marker => (
     is => 'rw',
+    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Attribute::Marker"
 );
 
 =item * reversescale
@@ -234,6 +233,18 @@ has name => (
     isa => "Str",
     documentation => "Sets the trace name",
 );
+
+
+=head2 type
+
+Trace type.
+
+=cut
+
+sub type {
+	my @components = split(/::/, __PACKAGE__);
+	return lc($components[-1]);
+}
 
 =pod
 

@@ -1,6 +1,14 @@
 package Chart::Plotly::Trace::Scatter3d;
 use Moose;
 
+use Chart::Plotly::Trace::Attribute::Error_x;
+use Chart::Plotly::Trace::Attribute::Error_y;
+use Chart::Plotly::Trace::Attribute::Error_z;
+use Chart::Plotly::Trace::Attribute::Line;
+use Chart::Plotly::Trace::Attribute::Marker;
+use Chart::Plotly::Trace::Attribute::Projection;
+
+
 # VERSION
 
 =encoding utf-8
@@ -46,20 +54,13 @@ Serialize the trace to JSON. This method should be called only by L<JSON> serial
 sub TO_JSON {
 	my $self = shift; 
 	my %hash = %$self; 
-	$hash{type} = $self->type();
+	if ($self->can('type') && (!defined $hash{'type'})) {
+		$hash{type} = $self->type();
+	}
 	return \%hash;
 }
 
-=head2 type
 
-Trace type.
-
-=cut
-
-sub type {
-	my @components = split(/::/, __PACKAGE__);
-	return lc($components[-1]);
-}
 
 =head1 ATTRIBUTES
 
@@ -86,6 +87,7 @@ has connectgaps => (
 
 has error_x => (
     is => 'rw',
+    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Attribute::Error_x"
 );
 
 =item * error_y
@@ -95,6 +97,7 @@ has error_x => (
 
 has error_y => (
     is => 'rw',
+    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Attribute::Error_y"
 );
 
 =item * error_z
@@ -104,6 +107,7 @@ has error_y => (
 
 has error_z => (
     is => 'rw',
+    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Attribute::Error_z"
 );
 
 =item * line
@@ -113,6 +117,7 @@ has error_z => (
 
 has line => (
     is => 'rw',
+    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Attribute::Line"
 );
 
 =item * marker
@@ -122,6 +127,7 @@ has line => (
 
 has marker => (
     is => 'rw',
+    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Attribute::Marker"
 );
 
 =item * mode
@@ -142,6 +148,7 @@ has mode => (
 
 has projection => (
     is => 'rw',
+    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Attribute::Projection"
 );
 
 =item * surfaceaxis
@@ -244,6 +251,18 @@ has name => (
     isa => "Str",
     documentation => "Sets the trace name",
 );
+
+
+=head2 type
+
+Trace type.
+
+=cut
+
+sub type {
+	my @components = split(/::/, __PACKAGE__);
+	return lc($components[-1]);
+}
 
 =pod
 

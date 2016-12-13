@@ -21,10 +21,18 @@ path('tool', $script_name_aux_dumper)->copy($plotly_js_src_path);
 
 const my $common_attributes => {name => {valType => 'string', description => 'Sets the trace name'}};
 my $moose_type_for = {any => 'Any', number => 'Num', string => 'Str', boolean => 'Bool'};
+my $subclasses = {};
+
+my $generate_attribute_class_name = sub {
+	my $attribute_name = shift();
+	return 'Chart::Plotly::Trace::Attribute::' . ucfirst($attribute_name);
+};
 
 my $template = <<'TEMPLATE';
 package {$package_name};
 use Moose;
+
+{$used_modules}
 
 # VERSION
 
@@ -71,20 +79,13 @@ Serialize the trace to JSON. This method should be called only by L<JSON> serial
 sub TO_JSON \{
 	my $self = shift; 
 	my %hash = %$self; 
-	$hash\{type\} = $self->type();
+	if ($self->can('type') && (!defined $hash\{'type'\})) \{
+		$hash\{type\} = $self->type();
+	\}
 	return \%hash;
 \}
 
-=head2 type
-
-Trace type.
-
-=cut
-
-sub type \{
-	my @components = split(/::/, __PACKAGE__);
-	return lc($components[-1]);
-\}
+{$type_method}
 
 =head1 ATTRIBUTES
 
@@ -93,6 +94,96 @@ sub type \{
 =cut
 
 TEMPLATE
+
+my $type_template = <<'TYPE_TEMPLATE';
+
+=head2 type
+
+Trace type.
+
+=cut
+
+sub type {
+	my @components = split(/::/, __PACKAGE__);
+	return lc($components[-1]);
+}
+
+TYPE_TEMPLATE
+
+my $render_class = sub {
+			my $contents = shift();
+			my $trace_name = shift();
+			my $subclass_type = shift();
+			my $class_name = ucfirst $trace_name;
+            my $file_contents = "";
+	    my @type_constraints;
+			my $render_field = sub {
+				my $field = shift();
+				my $value = shift();
+				if ($field eq "_deprecated") {
+					return;
+				}
+				my $is_a_subclass = 1;
+				if (ref $value eq 'HASH') {
+					for my $subvalue (values %$value) {
+						if (ref $subvalue ne 'HASH') {
+							$is_a_subclass = 0;
+							last;
+						}
+					}
+				} else {
+					$is_a_subclass = 0;
+				}
+				if ($is_a_subclass) {
+					$subclasses->{$field} = $value;
+				} 
+				$file_contents .= "=item * " . $field . "\n";
+				if (ref $value eq 'HASH' && defined $value->{'description'}) {
+					$file_contents .= "\n". $value->{'description'};
+				}
+				$file_contents .= "\n\n=cut\n\n";
+                		$file_contents .= "has $field => (\n    is => 'rw',";
+				if ($is_a_subclass) {
+					my $class_name = $generate_attribute_class_name->($field);
+					push @type_constraints, $class_name;
+					$file_contents .= "\n    isa => " . Data::Dump::quote("Maybe[HashRef]|" . $class_name );
+				} else {
+				if (ref $value eq 'HASH' && defined $value->{'valType'}) {
+					my $plotly_val_type = $value->{'valType'};
+					my $moose_type = $moose_type_for->{$plotly_val_type};
+					if (defined $moose_type) {
+                			$file_contents .= "\n    isa => ". Data::Dump::quote($moose_type) . ",";
+					}
+				}
+				if (ref $value eq 'HASH' && defined $value->{'description'}) {
+					$file_contents .= "\n    documentation => " . Data::Dump::quote($value->{'description'}) . ",";
+				}
+				}
+				$file_contents .= "\n);\n\n";
+			};
+			for my $field (sort keys %$contents) {
+				my $value = $contents->{$field};
+				$render_field->($field, $value);
+            }
+			for my $field (sort keys %$common_attributes) {
+				my $value = $common_attributes->{$field};
+				$render_field->($field, $value);
+            }
+	    if (!defined $subclass_type) {
+		$file_contents .= $type_template;
+	    }
+            $file_contents .= "=pod\n\n=back\n\n=cut\n\n\n__PACKAGE__->meta->make_immutable();\n";
+            $file_contents .= "1;\n";
+	    my $used_modules = "";
+	    for my $type_constraint (@type_constraints) {
+		$used_modules .= "use $type_constraint;\n";
+	    }
+	    my $header =
+              Text::Template::fill_in_string( $template, HASH => { package_name => 'Chart::Plotly::Trace::' . (defined $subclass_type ? join("::", $subclass_type, $class_name) : $class_name ), trace_name => $trace_name, used_modules => $used_modules } ); 
+	    $file_contents = $header . $file_contents;
+			chdir $current_dir;
+			path('lib/Chart/Plotly/Trace/' . ( defined $subclass_type ? join("/", $subclass_type, $class_name) : $class_name ) . ".pm")->spew_utf8($file_contents); 
+};
 
 for my $plotly_trace ( $plotly_traces_path->children() ) {
 	my $trace_name = $plotly_trace->basename;
@@ -108,43 +199,12 @@ for my $plotly_trace ( $plotly_traces_path->children() ) {
                 next;
             }
 			my $contents = from_json($result);
-			my $class_name = ucfirst $trace_name;
-            my $file_contents =
-              Text::Template::fill_in_string( $template, HASH => { package_name => 'Chart::Plotly::Trace::' . $class_name,
-																trace_name => $trace_name } );
-			my $render_field = sub {
-				my $field = shift();
-				my $value = shift();
-				$file_contents .= "=item * " . $field . "\n";
-				if (ref $value eq 'HASH' && defined $value->{'description'}) {
-					$file_contents .= "\n". $value->{'description'};
-				}
-				$file_contents .= "\n\n=cut\n\n";
-                		$file_contents .= "has $field => (\n    is => 'rw',";
-				if (ref $value eq 'HASH' && defined $value->{'valType'}) {
-					my $plotly_val_type = $value->{'valType'};
-					my $moose_type = $moose_type_for->{$plotly_val_type};
-					if (defined $moose_type) {
-                			$file_contents .= "\n    isa => ". Data::Dump::quote($moose_type) . ",";
-					}
-				}
-				if (ref $value eq 'HASH' && defined $value->{'description'}) {
-					$file_contents .= "\n    documentation => " . Data::Dump::quote($value->{'description'}) . ",";
-				}
-				$file_contents .= "\n);\n\n";
-			};
-			for my $field (sort keys %$contents) {
-				my $value = $contents->{$field};
-				$render_field->($field, $value);
-            }
-			for my $field (sort keys %$common_attributes) {
-				my $value = $common_attributes->{$field};
-				$render_field->($field, $value);
-            }
-            $file_contents .= "=pod\n\n=back\n\n=cut\n\n\n__PACKAGE__->meta->make_immutable();\n";
-            $file_contents .= "1;\n";
-			chdir $current_dir;
-			path('lib/Chart/Plotly/Trace/' . $class_name . ".pm")->spew_utf8($file_contents); 
+			$render_class->($contents, $trace_name);
         }
+}
+
+for my $attribute (keys %$subclasses) {
+	my $fields = $subclasses->{$attribute};
+	$render_class->($fields, $attribute, "Attribute");
 }
 

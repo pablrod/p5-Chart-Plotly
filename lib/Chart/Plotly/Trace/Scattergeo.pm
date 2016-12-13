@@ -1,6 +1,10 @@
 package Chart::Plotly::Trace::Scattergeo;
 use Moose;
 
+use Chart::Plotly::Trace::Attribute::Line;
+use Chart::Plotly::Trace::Attribute::Marker;
+
+
 # VERSION
 
 =encoding utf-8
@@ -46,20 +50,13 @@ Serialize the trace to JSON. This method should be called only by L<JSON> serial
 sub TO_JSON {
 	my $self = shift; 
 	my %hash = %$self; 
-	$hash{type} = $self->type();
+	if ($self->can('type') && (!defined $hash{'type'})) {
+		$hash{type} = $self->type();
+	}
 	return \%hash;
 }
 
-=head2 type
 
-Trace type.
-
-=cut
-
-sub type {
-	my @components = split(/::/, __PACKAGE__);
-	return lc($components[-1]);
-}
 
 =head1 ATTRIBUTES
 
@@ -130,6 +127,7 @@ has lat => (
 
 has line => (
     is => 'rw',
+    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Attribute::Line"
 );
 
 =item * locationmode
@@ -172,6 +170,7 @@ has lon => (
 
 has marker => (
     is => 'rw',
+    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Attribute::Marker"
 );
 
 =item * mode
@@ -230,6 +229,18 @@ has name => (
     isa => "Str",
     documentation => "Sets the trace name",
 );
+
+
+=head2 type
+
+Trace type.
+
+=cut
+
+sub type {
+	my @components = split(/::/, __PACKAGE__);
+	return lc($components[-1]);
+}
 
 =pod
 

@@ -1,6 +1,12 @@
 package Chart::Plotly::Trace::Surface;
 use Moose;
 
+use Chart::Plotly::Trace::Attribute::Colorbar;
+use Chart::Plotly::Trace::Attribute::Contours;
+use Chart::Plotly::Trace::Attribute::Lighting;
+use Chart::Plotly::Trace::Attribute::Lightposition;
+
+
 # VERSION
 
 =encoding utf-8
@@ -46,35 +52,19 @@ Serialize the trace to JSON. This method should be called only by L<JSON> serial
 sub TO_JSON {
 	my $self = shift; 
 	my %hash = %$self; 
-	$hash{type} = $self->type();
+	if ($self->can('type') && (!defined $hash{'type'})) {
+		$hash{type} = $self->type();
+	}
 	return \%hash;
 }
 
-=head2 type
 
-Trace type.
-
-=cut
-
-sub type {
-	my @components = split(/::/, __PACKAGE__);
-	return lc($components[-1]);
-}
 
 =head1 ATTRIBUTES
 
 =over
 
 =cut
-
-=item * _deprecated
-
-
-=cut
-
-has _deprecated => (
-    is => 'rw',
-);
 
 =item * autocolorscale
 
@@ -131,6 +121,7 @@ has cmin => (
 
 has colorbar => (
     is => 'rw',
+    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Attribute::Colorbar"
 );
 
 =item * colorscale
@@ -151,6 +142,7 @@ has colorscale => (
 
 has contours => (
     is => 'rw',
+    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Attribute::Contours"
 );
 
 =item * hidesurface
@@ -172,6 +164,7 @@ has hidesurface => (
 
 has lighting => (
     is => 'rw',
+    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Attribute::Lighting"
 );
 
 =item * lightposition
@@ -181,6 +174,7 @@ has lighting => (
 
 has lightposition => (
     is => 'rw',
+    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Attribute::Lightposition"
 );
 
 =item * opacity
@@ -285,6 +279,18 @@ has name => (
     isa => "Str",
     documentation => "Sets the trace name",
 );
+
+
+=head2 type
+
+Trace type.
+
+=cut
+
+sub type {
+	my @components = split(/::/, __PACKAGE__);
+	return lc($components[-1]);
+}
 
 =pod
 
