@@ -20,6 +20,10 @@ path('tool', $script_name_aux_dumper)->copy($plotly_js_src_path);
 
 
 const my $common_attributes => {name => {valType => 'string', description => 'Sets the trace name'}};
+const my $subplot_attributes => {scatter => {
+		xaxis => {valType => 'string', description => 'Sets a reference between this trace\'s x coordinates and a 2D cartesian x axis. If "x" (the default value), the x coordinates refer to `layout.xaxis`. If "x2", the x coordinates refer to `layout.xaxis2`, and so on. '},
+		yaxis => {valType => 'string', description => 'Sets a reference between this trace\'s y coordinates and a 2D cartesian y axis. If "y" (the default value), the y coordinates refer to `layout.yaxis`. If "y2", the y coordinates refer to `layout.yaxis2`, and so on. '},
+		}};
 my $moose_type_for = {any => 'Any', number => 'Num', string => 'Str', boolean => 'Bool'};
 my $subclasses = {};
 
@@ -176,6 +180,14 @@ my $render_class = sub {
 				my $value = $common_attributes->{$field};
 				$render_field->($field, $value);
             }
+
+			if (exists $subplot_attributes->{$trace_name}) {
+				my $trace_subplot_attributes = $subplot_attributes->{$trace_name};
+				for my $field (sort keys %$trace_subplot_attributes) {
+					my $value = $trace_subplot_attributes->{$field};
+					$render_field->($field, $value);
+            	}
+			}
         $file_contents .= "=pod\n\n=back\n\n=cut\n\n";
 	    if (!defined $subclass_type) {
 		$file_contents .= $type_template;

@@ -311,6 +311,30 @@ has name => (
     documentation => "Sets the trace name",
 );
 
+=item * xaxis
+
+Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If "x" (the default value), the x coordinates refer to `layout.xaxis`. If "x2", the x coordinates refer to `layout.xaxis2`, and so on. 
+
+=cut
+
+has xaxis => (
+    is => 'rw',
+    isa => "Str",
+    documentation => "Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If \"x\" (the default value), the x coordinates refer to `layout.xaxis`. If \"x2\", the x coordinates refer to `layout.xaxis2`, and so on. ",
+);
+
+=item * yaxis
+
+Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If "y" (the default value), the y coordinates refer to `layout.yaxis`. If "y2", the y coordinates refer to `layout.yaxis2`, and so on. 
+
+=cut
+
+has yaxis => (
+    is => 'rw',
+    isa => "Str",
+    documentation => "Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If \"y\" (the default value), the y coordinates refer to `layout.yaxis`. If \"y2\", the y coordinates refer to `layout.yaxis2`, and so on. ",
+);
+
 =pod
 
 =back
