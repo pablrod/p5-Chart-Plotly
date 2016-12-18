@@ -34,7 +34,23 @@ Chart::Plotly - Generate html/javascript charts from perl data using javascript 
 Generate html/javascript charts from perl data using javascript library plotly.js. The result
 is a file that you could see in your favourite browser.
 
-The interface is "sub" oriented, but the API is subject to changes.
+Example screenshot of plot generated with examples/anscombe.pl:
+
+=begin HTML
+
+<p>
+<img src="https://raw.githubusercontent.com/pablrod/p5-Chart-Plotly/master/examples/anscombe.png" alt="Anscombe's quartet plotted with plotly">
+</p>
+
+=end HTML
+
+=begin markdown
+
+![Anscombe's quartet plotted with plotly](https://raw.githubusercontent.com/pablrod/p5-Chart-Plotly/master/examples/anscombe.png)
+
+=end markdown
+
+The API is subject to changes.
 
 =head1 FUNCTIONS
 
