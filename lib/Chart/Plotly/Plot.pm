@@ -3,6 +3,8 @@ package Chart::Plotly::Plot;
 use Moose;
 use utf8;
 
+# VERSION
+
 use Chart::Plotly;
 
 =encoding utf-8
