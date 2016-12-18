@@ -120,7 +120,7 @@ sub _render_cell {
     }	
     my $template    = <<'TEMPLATE';
 <div id="{$chart_id}"></div>
-<script src="https://cdn.plot.ly/plotly-1.20.5.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-1.21.2.min.js"></script>
 <script>
 Plotly.plot(document.getElementById('{$chart_id}'),{$data} {$layout});
 </script>
