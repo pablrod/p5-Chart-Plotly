@@ -49,7 +49,8 @@ sub traces {
 	my @traces;
 	for my $column (@header) {
 		push @traces, Chart::Plotly::Trace::Scatter->new(
-			 y => [$table->col($column)]
+			 y => [$table->col($column)],
+			 name => $column
 			);
 	}
 	return \@traces;
