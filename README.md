@@ -4,56 +4,62 @@ Chart::Plotly - Generate html/javascript charts from perl data using javascript 
 
 # SYNOPSIS
 
-    use Chart::Plotly 'show_plot';
-    
-    my $data = { x    => [ 1 .. 10 ],
-                 mode => 'markers',
-                 type => 'scatter'
-    };
-    $data->{'y'} = [ map { rand 10 } @{ $data->{'x'} } ];
-    
-    show_plot([$data]);
-    
-    use HTML::Show;
-    use aliased 'Chart::Plotly::Trace::Scattergl';
-    
-    my $big_array = [ 1 .. 10000 ];
-    my $scattergl = Scattergl->new( x => $big_array, y => [ map { rand 100 } @$big_array ] );
-    
-    HTML::Show::show( Chart::Plotly::render_full_html( data => [$scattergl] ) );
+```perl
+use Chart::Plotly 'show_plot';
 
-    use HTML::Show;
-    use Chart::Plotly;
-    use PDL;
-    
-    use aliased 'Chart::Plotly::Trace::Surface';
-    
-    my $size = 25;
-    my $x    = ( xvals zeroes $size+ 1, $size + 1 ) / $size;
-    my $y    = ( yvals zeroes $size+ 1, $size + 1 ) / $size;
-    my $z    = 0.5 + 0.5 * ( sin( $x * 6.3 ) * sin( $y * 6.3 ) )**3;    # Bumps
-    
-    my $surface = Surface->new( x => $x, y => $y, z => $z );
-    
-    HTML::Show::show( Chart::Plotly::render_full_html( data => [$surface] ) );
-    
-    use PDL::Math;
-    
-    my $bessel_size = 50;
-    my $bessel      = Surface->new(
-        x => xvals($bessel_size),
-        y => xvals($bessel_size),
-        z => bessj0( rvals( zeroes( $bessel_size, $bessel_size ) ) / 2 )
-    );
-    
-    HTML::Show::show( Chart::Plotly::render_full_html( data => [$bessel] ) );
+my $data = { x    => [ 1 .. 10 ],
+             mode => 'markers',
+             type => 'scatter'
+};
+$data->{'y'} = [ map { rand 10 } @{ $data->{'x'} } ];
+
+show_plot([$data]);
+
+use HTML::Show;
+use aliased 'Chart::Plotly::Trace::Scattergl';
+
+my $big_array = [ 1 .. 10000 ];
+my $scattergl = Scattergl->new( x => $big_array, y => [ map { rand 100 } @$big_array ] );
+
+HTML::Show::show( Chart::Plotly::render_full_html( data => [$scattergl] ) );
+
+use HTML::Show;
+use Chart::Plotly;
+use PDL;
+
+use aliased 'Chart::Plotly::Trace::Surface';
+
+my $size = 25;
+my $x    = ( xvals zeroes $size+ 1, $size + 1 ) / $size;
+my $y    = ( yvals zeroes $size+ 1, $size + 1 ) / $size;
+my $z    = 0.5 + 0.5 * ( sin( $x * 6.3 ) * sin( $y * 6.3 ) )**3;    # Bumps
+
+my $surface = Surface->new( x => $x, y => $y, z => $z );
+
+HTML::Show::show( Chart::Plotly::render_full_html( data => [$surface] ) );
+
+use PDL::Math;
+
+my $bessel_size = 50;
+my $bessel      = Surface->new(
+    x => xvals($bessel_size),
+    y => xvals($bessel_size),
+    z => bessj0( rvals( zeroes( $bessel_size, $bessel_size ) ) / 2 )
+);
+
+HTML::Show::show( Chart::Plotly::render_full_html( data => [$bessel] ) );
+```
 
 # DESCRIPTION
 
 Generate html/javascript charts from perl data using javascript library plotly.js. The result
 is a file that you could see in your favourite browser.
 
-The interface is "sub" oriented, but the API is subject to changes.
+Example screenshot of plot generated with examples/anscombe.pl:
+
+![Anscombe's quartet plotted with plotly](https://raw.githubusercontent.com/pablrod/p5-Chart-Plotly/master/examples/anscombe.png)
+
+The API is subject to changes.
 
 # FUNCTIONS
 
