@@ -2,6 +2,10 @@
 
 Chart::Plotly - Generate html/javascript charts from perl data using javascript library plotly.js
 
+# VERSION
+
+version 0.007
+
 # SYNOPSIS
 
 ```perl
@@ -84,14 +88,6 @@ Opens the plot in a browser locally
 
 Data to be represented. The format is the same as the parameter data in render\_full\_html
 
-# AUTHOR
-
-Pablo Rodríguez González
-
-# BUGS
-
-Please report any bugs or feature requests via github: [https://github.com/pablrod/p5-Chart-Plotly/issues](https://github.com/pablrod/p5-Chart-Plotly/issues)
-
 # DISCLAIMER
 
 This is an unofficial Plotly Perl module. Currently I'm not affiliated in any way with Plotly. 
@@ -99,14 +95,16 @@ But I think plotly.js is a great library and I want to use it with perl.
 
 If you like plotly.js please consider supporting them purchasing a pro subscription: [https://plot.ly/products/cloud/](https://plot.ly/products/cloud/)
 
-# LICENSE AND COPYRIGHT
+# AUTHOR
 
-Copyright 2016 Pablo Rodríguez González.
+Pablo Rodríguez González <pablo.rodriguez.gonzalez@gmail.com>
 
-The MIT License (MIT)
+# COPYRIGHT AND LICENSE
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+This software is Copyright (c) 2016 by Pablo Rodríguez González.
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+This is free software, licensed under:
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+```
+The MIT (X11) License
+```
