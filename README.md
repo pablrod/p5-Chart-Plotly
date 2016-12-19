@@ -4,7 +4,7 @@ Chart::Plotly - Generate html/javascript charts from perl data using javascript 
 
 # VERSION
 
-version 0.007
+version 0.008
 
 # SYNOPSIS
 
@@ -87,6 +87,10 @@ Opens the plot in a browser locally
 ### Parameters
 
 Data to be represented. The format is the same as the parameter data in render\_full\_html
+
+# BUGS
+
+Please report any bugs or feature requests via github: [https://github.com/pablrod/p5-Chart-Plotly/issues](https://github.com/pablrod/p5-Chart-Plotly/issues)
 
 # DISCLAIMER
 
