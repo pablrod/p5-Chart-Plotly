@@ -3,6 +3,8 @@ package Chart::Plotly::Plot;
 use Moose;
 use utf8;
 
+use UUID::Tiny ':std';
+
 # VERSION
 
 use Chart::Plotly;
@@ -56,7 +58,7 @@ Returns the html corresponding to the plot
 sub html {
     my $self     = shift;
     my %params   = @_;
-    my $chart_id = $params{'div_id'} // 'chart';
+    my $chart_id = $params{'div_id'} // create_uuid_as_string(UUID_TIME);
     my $layout = $self->layout;
     if (defined $layout) {
 	$layout = Chart::Plotly::_process_data( $layout );
