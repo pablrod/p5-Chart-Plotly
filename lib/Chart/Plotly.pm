@@ -14,6 +14,7 @@ use Text::Template;
 use Module::Load;
 use Ref::Util;
 use HTML::Show;
+use UUID::Tiny ':std';
 
 # VERSION
 
@@ -84,7 +85,7 @@ sub render_full_html {
     my %params = validate( @_, { data => { type => ARRAYREF | OBJECT }, } );
 
 	my $data = $params{'data'};
-    my $chart_id = 'plotly_graph';
+    my $chart_id = create_uuid_as_string(UUID_TIME); 
     my $html;
     if ( Ref::Util::is_blessed_ref($data) && $data->isa('Chart::Plotly::Plot') ) {
         $html = _render_html_wrap( $data->html( div_id => $chart_id ) );
@@ -112,7 +113,7 @@ HTML_END
 
 sub _render_cell {
     my $data_string = shift();
-    my $chart_id    = shift();
+    my $chart_id    = shift() // create_uuid_as_string(UUID_TIME);
     my $layout      = shift();
     if (defined $layout) {
 	$layout = "," . $layout; 	
@@ -165,9 +166,8 @@ sub show_plot {
     my @data_to_plot = @_;
 
     my $rendered_cells = "";
-    my $numeric_id     = 0;
     for my $data (@data_to_plot) {
-        my $id = 'chart_' . $numeric_id++;
+        my $id = create_uuid_as_string(UUID_TIME); 
         if ( Ref::Util::is_blessed_ref($data) && $data->isa('Chart::Plotly::Plot') ) {
             $rendered_cells .= $data->html( div_id => $id );
         } else {
