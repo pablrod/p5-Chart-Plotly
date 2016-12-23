@@ -97,8 +97,9 @@ sub render_full_html {
 sub _render_html_wrap {
     my $body       = shift;
     my $html_begin = <<'HTML_BEGIN';
-<html>
+<!DOCTYPE html>
 <head>
+<meta charset="utf-8" />
 </head>
 <body>
 HTML_BEGIN
