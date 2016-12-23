@@ -1,70 +1,55 @@
-package Chart::Plotly::Plot;
+package Chart::Plotly::Adapter::Data::Frame;
 
-use Moose;
+use strict;
+use warnings;
 use utf8;
 
-use UUID::Tiny ':std';
+use Moose;
+use Chart::Plotly::Trace::Scatter;
+
+extends 'Chart::Plotly::Adapter';
 
 # VERSION
-
-use Chart::Plotly;
 
 =encoding utf-8
 
 =head1 NAME
 
-Chart::Plotly::Plot - Set of traces with their options and data
+Chart::Plotly::Adapter::Data::Frame - Adapts Data::Frame to plot with Chart::Plotly
 
 =head1 SYNOPSIS
 
-# EXAMPLE: examples/plot_object.pl
+# EXAMPLE: examples/data_frame.pl
      
 =head1 DESCRIPTION
 
-Represent a full plot composed of one or more traces (Chart::Plotly::Trace::*)
+Adapts Data::Frame objects to be plotted with Chart::Plotly
 
 =head1 METHODS
 
 =cut
 
-has traces => (
-    traits  => ['Array'],
-    is      => 'rw',
-    isa     => 'ArrayRef',
-    default => sub { [] },
-    handles => {
-        add_trace    => 'push',
-        get_trace    => 'get',
-        insert_trace => 'insert',
-        delete_trace => 'delete'
-    }
-);
+=head2 traces
 
-has layout => (
-   is => 'rw',
-   isa => 'HashRef'
-);
+Returns the object/s Chart::Plotly::Trace::* ready to plot.
 
-=head2 html
-
-Returns the html corresponding to the plot
-
-=head3 Parameters
-
-
+In this version every column is plotted as a line.
 
 =cut
 
-sub html {
-    my $self     = shift;
-    my %params   = @_;
-    my $chart_id = $params{'div_id'} // create_uuid_as_string(UUID_TIME);
-    my $layout = $self->layout;
-    if (defined $layout) {
-	$layout = Chart::Plotly::_process_data( $layout );
-    }
-    return Chart::Plotly::_render_cell(
-        Chart::Plotly::_process_data( $self->traces() ), $chart_id, $layout );
+sub traces {
+	my $self = shift();
+	my $data_frame = $self->data;
+	my $header = $data_frame->column_names();
+	my @traces;
+	my $column_number = 0;
+	for my $column (@$header) {
+		push @traces, Chart::Plotly::Trace::Scatter->new(
+			 y => $data_frame->nth_column($column_number++)->unpdl,
+			 name => $column
+			);
+	}
+	return \@traces;
 }
 
 1;
@@ -78,13 +63,6 @@ Pablo Rodríguez González
 =head1 BUGS
 
 Please report any bugs or feature requests via github: L<https://github.com/pablrod/p5-Chart-Plotly/issues>
-
-=head1 DISCLAIMER
-
-This is an unofficial Plotly Perl module. Currently I'm not affiliated in any way with Plotly. 
-But I think plotly.js is a great library and I want to use it with perl.
-
-If you like plotly.js please consider supporting them purchasing a pro subscription: L<https://plot.ly/products/cloud/>
 
 =head1 LICENSE AND COPYRIGHT
 
