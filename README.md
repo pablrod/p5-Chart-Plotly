@@ -105,7 +105,7 @@ Pablo Rodríguez González <pablo.rodriguez.gonzalez@gmail.com>
 
 # COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2016 by Pablo Rodríguez González.
+Copyright (c) 2016 by Pablo Rodríguez González.
 
 This is free software, licensed under:
 
