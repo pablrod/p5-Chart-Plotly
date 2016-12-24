@@ -80,13 +80,21 @@ The API is subject to changes.
     - Anything that could be serialized to JSON with the json expected by plotly.js
     - Object that could be adapted using Chart::Plotly::Adapter::\*
 
-## show\_plot
+## html\_plot
 
-Opens the plot in a browser locally
+Return the html for the plot or plots
 
 ### Parameters
 
-Data to be represented. The format is the same as the parameter data in render\_full\_html
+Data to be represented. The format is the same as the parameter data in render\_full\_html. Accepts multiple traces/plots/objects.
+
+## show\_plot
+
+Opens the plot or plots in a browser locally
+
+### Parameters
+
+Data to be represented. The format is the same as the parameter data in render\_full\_html. Accepts multiple traces/plots/objects.
 
 # BUGS
 

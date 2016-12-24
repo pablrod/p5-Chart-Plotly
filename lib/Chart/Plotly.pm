@@ -152,17 +152,17 @@ sub _process_data {
     return $data_string;
 }
 
-=head2 show_plot
+=head2 html_plot
 
-Opens the plot in a browser locally
+Return the html for the plot or plots
 
 =head3 Parameters
 
-Data to be represented. The format is the same as the parameter data in render_full_html
+Data to be represented. The format is the same as the parameter data in render_full_html. Accepts multiple traces/plots/objects.
 
 =cut
 
-sub show_plot {
+sub html_plot {
     my @data_to_plot = @_;
 
     my $rendered_cells = "";
@@ -174,8 +174,21 @@ sub show_plot {
             $rendered_cells .= _render_cell( _process_data($data), $id );
         }
     }
-    my $plot = _render_html_wrap($rendered_cells);
-    HTML::Show::show($plot);
+    return _render_html_wrap($rendered_cells);
+}
+
+=head2 show_plot
+
+Opens the plot or plots in a browser locally
+
+=head3 Parameters
+
+Data to be represented. The format is the same as the parameter data in render_full_html. Accepts multiple traces/plots/objects.
+
+=cut
+
+sub show_plot {
+    HTML::Show::show(html_plot(@_));
 }
 
 1;
