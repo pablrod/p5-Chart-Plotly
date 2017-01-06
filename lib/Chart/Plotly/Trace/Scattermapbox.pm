@@ -15,12 +15,55 @@ Chart::Plotly::Trace::Scattermapbox
 
 =head1 SYNOPSIS
 
-	use HTML::Show;
-	use Chart::Plotly;
-	use Chart::Plotly::Trace::Scattermapbox;
-	my $scattermapbox = Chart::Plotly::Trace::Scattermapbox->new(x => [1 .. 5], y => [1 .. 5]);
-	
-	HTML::Show::show(Chart::Plotly::render_full_html(data => [$scattermapbox]));
+    use Chart::Plotly;
+    use Chart::Plotly::Plot;
+    use Chart::Plotly::Trace::Scattermapbox;
+    use Chart::Plotly::Trace::Attribute::Marker;
+    my $mapbox_access_token =
+    'pk.eyJ1IjoiY2hlbHNlYXBsb3RseSIsImEiOiJjaXFqeXVzdDkwMHFrZnRtOGtlMGtwcGs4In0.SLidkdBMEap9POJGIe1eGw';
+    my $scattermapbox = Chart::Plotly::Trace::Scattermapbox->new(
+        mode => 'markers',
+        text => [
+            "The coffee bar","Bistro Bohem","Black Cat",
+                 "Snap","Columbia Heights Coffee","Azi's Cafe",
+                 "Blind Dog Cafe","Le Caprice","Filter",
+                 "Peregrine","Tryst","The Coupe",
+                 "Big Bear Cafe"
+        ],
+        lon => [
+            '-77.02827','-77.02013','-77.03155',
+                 '-77.04227','-77.02854','-77.02419',
+                 '-77.02518','-77.03304','-77.04509',
+                 '-76.99656','-77.042438','-77.02821',
+                 '-77.01239'
+        ],
+        lat => [
+            '38.91427','38.91538','38.91458',
+                 '38.92239','38.93222','38.90842',
+                 '38.91931','38.93260','38.91368',
+                 '38.88516','38.921894','38.93206',
+                 '38.91275'
+        ],
+        marker => Chart::Plotly::Trace::Attribute::Marker->new( size => 9 ),
+    );
+    my $plot = Chart::Plotly::Plot->new(
+        traces => [$scattermapbox],
+        layout => {
+            autosize  => 'True',
+            hovermode => 'closest',
+            mapbox    => {
+                accesstoken => $mapbox_access_token,
+                bearing     => 0,
+                center      => {
+                    lat => 38.92,
+                    lon => -77.07
+                },
+                pitch => 0,
+                zoom  => 10
+            }
+        }
+    );
+    Chart::Plotly::show_plot($plot);
 
 
 =head1 DESCRIPTION
@@ -170,7 +213,7 @@ Sets text elements associated with each (lon,lat) pair If a single string, the s
 
 has text => (
     is => 'rw',
-    isa => "Str",
+    isa => "Maybe[ArrayRef]|Str",
     documentation => "Sets text elements associated with each (lon,lat) pair If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) coordinates.",
 );
 

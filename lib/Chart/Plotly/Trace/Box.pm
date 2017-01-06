@@ -15,12 +15,16 @@ Chart::Plotly::Trace::Box
 
 =head1 SYNOPSIS
 
-	use HTML::Show;
-	use Chart::Plotly;
-	use Chart::Plotly::Trace::Box;
-	my $box = Chart::Plotly::Trace::Box->new(x => [1 .. 5], y => [1 .. 5]);
-	
-	HTML::Show::show(Chart::Plotly::render_full_html(data => [$box]));
+    use Chart::Plotly;
+    use Chart::Plotly::Trace::Box;
+    use Chart::Plotly::Plot;
+
+    my $x = [1,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3];
+    my $box1 = Chart::Plotly::Trace::Box->new(x => $x, y => [map{rand()}(1..(scalar(@$x)))], name => "box1");
+    my $box2 = Chart::Plotly::Trace::Box->new(x => $x, y => [map{rand()}(1..(scalar(@$x)))], name => "box2");
+    my $plot = Chart::Plotly::Plot->new(traces => [$box1, $box2], layout => {boxmode => 'group'});
+
+    Chart::Plotly::show_plot($plot);
 
 
 =head1 DESCRIPTION
