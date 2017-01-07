@@ -19,13 +19,13 @@ Chart::Plotly::Adapter - Adapts diferent objects to plot with Chart::Plotly
 =head1 SYNOPSIS
 
 # EXAMPLE: examples/plot.pl
-     
+
 =head1 DESCRIPTION
 
 Adapts diferent objects to be plotted with Chart::Plotly.
 
-This class simply dispatch to the appropiate object using the type of the object.
-For example, in order to plot a Data::Table, this delegate to Chart::Plotly::Adapter::Data::Table
+This class simply dispatchs to the appropiate object using the type of the object.
+For example, in order to plot a Data::Table, this delegates to Chart::Plotly::Adapter::Data::Table
 
 =head1 METHODS
 
@@ -56,12 +56,12 @@ Data to be represented. It could be:
 =cut
 
 sub stringify {
-	my $self = shift();
-	return Chart::Plotly::render_full_html(data => $self->data);
+    my $self = shift();
+    return Chart::Plotly::render_full_html(data => $self->data);
 }
 
 has data => (
-	is => 'ro'
+    is => 'ro'
 );
 
 1;

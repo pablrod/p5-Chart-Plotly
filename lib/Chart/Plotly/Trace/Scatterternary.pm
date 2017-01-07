@@ -204,7 +204,7 @@ Sets text elements associated with each (a,b,c) point. If a single string, the s
 
 has text => (
     is => 'rw',
-    isa => "Str",
+    isa => "Maybe[ArrayRef]|Str",
     documentation => "Sets text elements associated with each (a,b,c) point. If a single string, the same string appears over all the data points. If an array of strings, the items are mapped in order to the the data points in (a,b,c).",
 );
 
