@@ -10,6 +10,7 @@ matrix:
       env: COVERAGE=1   
 sudo: false             
 before_install:
+  - dzil listdeps --develop --missing | cpanm
   - export PERL5OPT="${PERL5OPT}${PERL5OPT:+ }"'-Iblib/lib' # work around for Travis Perl helper (auto.bash $blib)
   - if [ "$COVERAGE" == "1" ]; then
       export HARNESS_PERL_SWITCHES="${HARNESS_PERL_SWITCHES}${HARNESS_PERL_SWITCHES:+ }"'-MDevel::Cover=-ignore,^x?t/,-ignore,ConfigData,-blib,0';
