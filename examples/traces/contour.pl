@@ -1,6 +1,7 @@
-use HTML::Show;
-use Chart::Plotly;
+use Chart::Plotly qw(show_plot);
 use Chart::Plotly::Trace::Contour;
+use English qw(-no_match_vars);
+
 my $contour = Chart::Plotly::Trace::Contour->new(
     x => [ 0 .. 10 ],
     y => [ 0 .. 10 ],
@@ -12,5 +13,5 @@ my $contour = Chart::Plotly::Trace::Contour->new(
     ]
 );
 
-HTML::Show::show( Chart::Plotly::render_full_html( data => [$contour] ) );
+show_plot( [$contour] );
 

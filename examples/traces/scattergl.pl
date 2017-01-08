@@ -1,6 +1,7 @@
-use HTML::Show;
-use Chart::Plotly;
+use Chart::Plotly qw(show_plot);
 use Chart::Plotly::Trace::Scattergl;
+use English qw(-no_match_vars);
+
 my $scattergl = Chart::Plotly::Trace::Scattergl->new(
     x => [
         map {
@@ -15,5 +16,5 @@ my $scattergl = Chart::Plotly::Trace::Scattergl->new(
     ]
 );
 
-HTML::Show::show( Chart::Plotly::render_full_html( data => [$scattergl] ) );
+show_plot( [$scattergl] );
 

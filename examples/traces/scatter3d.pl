@@ -1,6 +1,8 @@
-use HTML::Show;
-use Chart::Plotly;
+use Chart::Plotly qw(show_plot);
 use Chart::Plotly::Trace::Scatter3d;
+use English qw(-no_match_vars);
+use Const::Fast;
+
 const my $PI => 4 * atan2( 1, 1 );
 const my $DELTA => 0.1;
 my ( @x, @y, @z );
@@ -13,5 +15,5 @@ for ( my $u = 0; $u <= 2 * $PI; $u += $DELTA ) {
 }
 my $scatter3d = Chart::Plotly::Trace::Scatter3d->new( x => \@x, y => \@y, z => \@z, mode => 'lines' );
 
-HTML::Show::show( Chart::Plotly::render_full_html( data => [$scatter3d] ) );
+show_plot( [$scatter3d] );
 
