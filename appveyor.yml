@@ -9,16 +9,39 @@ platform:
   - x64
 
 install:
-  - "cpan App::cpanminus"
-  - "ppm install Compiler::Lexer"
-  - "perl -MCompiler::Lexer -E 'print $Compiler::Lexer::VERSION'"
-  - "cpanm Dist::Zilla"
-  - "dzil authordeps --missing | cpanm"
-  - "dzil listdeps --author --missing | cpanm"
-  - "dzil listdeps --missing | cpanm"
+  - cmd: >-
+      choco install curl
 
-build_script:
-  - "dzil build"
+      curl -O http://strawberryperl.com/download/5.24.0.1/strawberry-perl-5.24.0.1-64bit-PDL.zip
 
-test_script:
-  - "dzil test --release"
+      choco install unzip
+
+      mkdir C:\strawberry
+
+      unzip strawberry-perl-5.24.0.1-64bit-PDL.zip -d C:\strawberry
+      
+      set PATH=C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin;C:\windows\system32;C:\windows
+   
+      gcc -v
+
+      g++ -v
+
+      perl -V
+        
+      perl -e"require CPAN;CPAN::Shell->notest('install','App::cpanminus');"
+      
+      cpanm -v Compiler::Lexer
+
+      perl -MCompiler::Lexer -E 'print $Compiler::Lexer::VERSION'
+        
+      cpanm Dist::Zilla
+
+      dzil authordeps --missing | cpanm
+
+      dzil listdeps --author --missing | cpanm
+
+      dzil listdeps --missing | cpanm
+
+build: off
+
+test: off
