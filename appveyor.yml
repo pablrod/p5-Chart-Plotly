@@ -20,7 +20,7 @@ install:
 
       unzip -qq strawberry-perl-5.24.0.1-64bit-PDL.zip -d C:\strawberry
       
-      set PATH=C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin;C:\windows\system32;C:\windows
+      set PATH=C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin;%PATH%
    
       gcc -v
 
