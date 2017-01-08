@@ -60,6 +60,7 @@ Generate html/javascript charts from perl data using javascript library plotly.j
 is a file that you could see in your favourite browser.
 
 [![Build Status](https://travis-ci.org/pablrod/p5-Chart-Plotly.png?branch=master)](https://travis-ci.org/pablrod/p5-Chart-Plotly)
+[![Build status](https://ci.appveyor.com/api/projects/status/wbur95v3sjk4mv6d/branch/master?svg=true)](https://ci.appveyor.com/project/pablrod/p5-chart-plotly/branch/master)
 
 Example screenshot of plot generated with examples/anscombe.pl:
 
@@ -115,7 +116,7 @@ Pablo Rodríguez González <pablo.rodriguez.gonzalez@gmail.com>
 
 # COPYRIGHT AND LICENSE
 
-Copyright (c) 2016 by Pablo Rodríguez González.
+This software is Copyright (c) 2016 by Pablo Rodríguez González.
 
 This is free software, licensed under:
 
