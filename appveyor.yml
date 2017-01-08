@@ -32,7 +32,7 @@ install:
       
       cpanm Compiler::Lexer
 
-      cpanm Pod::Weaver::Section::Contributors Data::Table Data::Frame List::Flatten # Pod and examples syntax check
+      cpanm Pod::Weaver::Section::Contributors Data::Table Data::Frame List::Flatten 
 
       cpanm Dist::Zilla
 
