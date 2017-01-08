@@ -34,6 +34,8 @@ install:
 
       cpanm Dist::Zilla
 
+      choco install git
+
       dzil authordeps --missing | cpanm
 
       dzil listdeps --author --missing | cpanm
