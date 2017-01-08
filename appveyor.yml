@@ -44,9 +44,9 @@ install:
 
       dzil listdeps --missing | cpanm
 
-build:
+build_script:
   - "dzil build" 
 
-test:
+test_script:
   - "dzil test"
 
