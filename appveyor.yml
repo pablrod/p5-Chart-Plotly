@@ -13,12 +13,11 @@ install:
   - "cpanm Dist::Zilla"
   - "dzil authordeps | cpanm"
   - "dzil listdeps --author | cpanm"
-
-before_build:
-  - "dzil build"
+  - "dzil listdeps | cpanm"
 
 build_script:
-  - "dzil listdeps | cpanm"
+  - "perl -MCompiler::Lexer -E 'print $Compiler::Lexer::VERSION'"
+  - "dzil build"
 
 test_script:
   - "dzil test --release"
