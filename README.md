@@ -120,3 +120,7 @@ This is free software, licensed under:
 ```
 The MIT (X11) License
 ```
+
+# CONTRIBUTOR
+
+weatherwax <s.g.lobo@hotmail.com>
