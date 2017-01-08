@@ -10,7 +10,7 @@ platform:
 
 install:
   - "cpan App::cpanminus"
-  - "cpanm -v Compiler::Lexer"
+  - "ppm install Compiler::Lexer"
   - "perl -MCompiler::Lexer -E 'print $Compiler::Lexer::VERSION'"
   - "cpanm Dist::Zilla"
   - "dzil authordeps --missing | cpanm"
