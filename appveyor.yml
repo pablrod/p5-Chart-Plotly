@@ -32,6 +32,8 @@ install:
       
       cpanm Compiler::Lexer
 
+      cpanm Pod::Weaver::Section::Contributors
+
       cpanm Dist::Zilla
 
       choco install git
