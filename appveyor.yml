@@ -30,10 +30,8 @@ install:
         
       perl -e"require CPAN;CPAN::Shell->notest('install','App::cpanminus');"
       
-      cpanm -v Compiler::Lexer
+      cpanm Compiler::Lexer
 
-      perl -MCompiler::Lexer -E 'print $Compiler::Lexer::VERSION'
-        
       cpanm Dist::Zilla
 
       dzil authordeps --missing | cpanm
