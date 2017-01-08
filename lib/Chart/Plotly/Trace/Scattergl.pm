@@ -17,23 +17,7 @@ Chart::Plotly::Trace::Scattergl
 
 =head1 SYNOPSIS
 
-    use HTML::Show;
-    use Chart::Plotly;
-    use Chart::Plotly::Trace::Scattergl;
-    my $scattergl = Chart::Plotly::Trace::Scattergl->new(
-        x => [
-            map {
-                2 * cos( $ARG * 2 * 3.14 / 100 ) +
-                  cos( 2 * $ARG * 2 * 3.14 / 100 )
-            } ( 1 .. 101 )
-        ],
-        y => [ map {
-                2 * sin( $ARG * 2 * 3.14 / 100 ) +
-                  sin( 2 * $ARG * 2 * 3.14 / 100 )
-            } ( 1 .. 101 ) ]
-    );
-    
-    HTML::Show::show( Chart::Plotly::render_full_html( data => [$scattergl] ) );
+# EXAMPLE: examples/traces/scattergl.pl
 
 =head1 DESCRIPTION
 
@@ -193,7 +177,7 @@ Sets text elements associated with each (x,y) pair to appear on hover. If a sing
 
 has text => (
     is => 'rw',
-    isa => "Str",
+    isa => "Maybe[ArrayRef]|Str",
     documentation => "Sets text elements associated with each (x,y) pair to appear on hover. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.",
 );
 

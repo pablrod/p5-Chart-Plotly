@@ -48,13 +48,7 @@ use Moose;
 
 =head1 SYNOPSIS
 
-	use HTML::Show;
-	use Chart::Plotly;
-	use {$package_name};
-	my ${$trace_name} = {$package_name}->new(x => [1 .. 5], y => [1 .. 5]);
-	
-	HTML::Show::show(Chart::Plotly::render_full_html(data => [${$trace_name}]));
-
+# EXAMPLE: examples/traces/{$trace_name}.pl
 
 =head1 DESCRIPTION
 
@@ -161,6 +155,9 @@ my $render_class = sub {
 					my $plotly_val_type = $value->{'valType'};
 					my $moose_type = $moose_type_for->{$plotly_val_type};
 					if (defined $moose_type) {
+                            if ($field eq 'text') {
+                                $moose_type = 'Maybe[ArrayRef]|' . $moose_type;
+                            }
                 			$file_contents .= "\n    isa => ". Data::Dump::quote($moose_type) . ",";
 					}
 				}

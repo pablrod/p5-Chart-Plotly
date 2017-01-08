@@ -16,13 +16,7 @@ Chart::Plotly::Trace::Ohlc
 
 =head1 SYNOPSIS
 
-	use HTML::Show;
-	use Chart::Plotly;
-	use Chart::Plotly::Trace::Ohlc;
-	my $ohlc = Chart::Plotly::Trace::Ohlc->new(x => [1 .. 5], y => [1 .. 5]);
-	
-	HTML::Show::show(Chart::Plotly::render_full_html(data => [$ohlc]));
-
+# EXAMPLE: examples/traces/ohlc.pl
 
 =head1 DESCRIPTION
 
@@ -147,7 +141,7 @@ Sets hover text elements associated with each sample point. If a single string, 
 
 has text => (
     is => 'rw',
-    isa => "Str",
+    isa => "Maybe[ArrayRef]|Str",
     documentation => "Sets hover text elements associated with each sample point. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to this trace's sample points.",
 );
 

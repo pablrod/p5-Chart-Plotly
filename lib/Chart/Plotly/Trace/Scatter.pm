@@ -17,13 +17,7 @@ Chart::Plotly::Trace::Scatter
 
 =head1 SYNOPSIS
 
-	use HTML::Show;
-	use Chart::Plotly;
-	use Chart::Plotly::Trace::Scatter;
-	my $scatter = Chart::Plotly::Trace::Scatter->new(x => [1 .. 5], y => [1 .. 5]);
-	
-	HTML::Show::show(Chart::Plotly::render_full_html(data => [$scatter]));
-
+# EXAMPLE: examples/traces/scatter.pl
 
 =head1 DESCRIPTION
 
@@ -227,7 +221,7 @@ Sets text elements associated with each (x,y) pair. If a single string, the same
 
 has text => (
     is => 'rw',
-    isa => "Str",
+    isa => "Maybe[ArrayRef]|Str",
     documentation => "Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.",
 );
 
