@@ -10,13 +10,14 @@ platform:
 
 install:
   - "cpan App::cpanminus"
+  - "cpanm -v Compiler::Lexer"
+  - "perl -MCompiler::Lexer -E 'print $Compiler::Lexer::VERSION'"
   - "cpanm Dist::Zilla"
-  - "dzil authordeps | cpanm"
-  - "dzil listdeps --author | cpanm"
-  - "dzil listdeps | cpanm"
+  - "dzil authordeps --missing | cpanm"
+  - "dzil listdeps --author --missing | cpanm"
+  - "dzil listdeps --missing | cpanm"
 
 build_script:
-  - "perl -MCompiler::Lexer -E 'print $Compiler::Lexer::VERSION'"
   - "dzil build"
 
 test_script:
