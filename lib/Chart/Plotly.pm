@@ -33,6 +33,12 @@ use UUID::Tiny ':std';
 Generate html/javascript charts from perl data using javascript library plotly.js. The result
 is a file that you could see in your favourite browser.
 
+=begin markdown
+
+[![Build Status](https://travis-ci.org/pablrod/p5-Chart-Plotly.png?branch=master)](https://travis-ci.org/pablrod/p5-Chart-Plotly)
+
+=end markdown
+
 Example screenshot of plot generated with examples/anscombe.pl:
 
 =begin HTML

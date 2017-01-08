@@ -4,7 +4,7 @@ Chart::Plotly - Generate html/javascript charts from perl data using javascript 
 
 # VERSION
 
-version 0.009
+version 0.010
 
 # SYNOPSIS
 
@@ -58,6 +58,8 @@ HTML::Show::show( Chart::Plotly::render_full_html( data => [$bessel] ) );
 
 Generate html/javascript charts from perl data using javascript library plotly.js. The result
 is a file that you could see in your favourite browser.
+
+[![Build Status](https://travis-ci.org/pablrod/p5-Chart-Plotly.png?branch=master)](https://travis-ci.org/pablrod/p5-Chart-Plotly)
 
 Example screenshot of plot generated with examples/anscombe.pl:
 
