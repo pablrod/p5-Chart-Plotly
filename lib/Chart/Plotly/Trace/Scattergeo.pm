@@ -164,7 +164,7 @@ has lon => (
 
 has marker => (
     is => 'rw',
-    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Attribute::Marker"
+    isa => "Maybe[HashRef]|Maybe[ArrayRef]|Chart::Plotly::Trace::Attribute::Marker"
 );
 
 =item * mode
