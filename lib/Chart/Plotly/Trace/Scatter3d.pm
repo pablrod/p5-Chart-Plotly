@@ -1,5 +1,6 @@
 package Chart::Plotly::Trace::Scatter3d;
 use Moose;
+use MooseX::ExtraArgs;
 
 use Chart::Plotly::Trace::Attribute::Error_x;
 use Chart::Plotly::Trace::Attribute::Error_y;
@@ -46,8 +47,10 @@ Serialize the trace to JSON. This method should be called only by L<JSON> serial
 =cut
 
 sub TO_JSON {
-	my $self = shift; 
-	my %hash = %$self; 
+	my $self = shift;
+    my $extra_args = $self->extra_args // {};
+	my %hash = (%$self, %$extra_args); 
+    delete $hash{'extra_args'};
 	if ($self->can('type') && (!defined $hash{'type'})) {
 		$hash{type} = $self->type();
 	}
