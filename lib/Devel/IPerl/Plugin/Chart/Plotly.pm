@@ -1,20 +1,15 @@
 package Devel::IPerl::Plugin::Chart::Plotly;
 
-use 5.022001;
-
 use strict;
 use warnings;
 use utf8;
 
-use English qw(-no_match_vars);
 use Module::Find;
 use namespace::autoclean;
-
 
 # VERSION
 
 # ABSTRACT: Inline display of plotly charts in Jupyter notebooks using L<Devel::IPerl> kernel
-
 
 =encoding utf8
 
@@ -115,10 +110,6 @@ sub iperl_data_representations {
 }
 
 }
-
-=head1 CLASS METHODS
-
-=cut
 
 1; 
 
