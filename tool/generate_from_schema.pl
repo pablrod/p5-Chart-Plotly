@@ -11,136 +11,235 @@ use Text::Template;
 use JSON;
 use Cwd;
 use Data::Dump;
-use Data::Dumper;
+use Scalar::Util;
 
-const my $common_attributes => {name => {valType => 'string', description => 'Sets the trace name'}};
-my $generate_attribute_class_name = sub {
-	my $parent_name = shift();
-	my $attribute_name = shift();
-	return 'Chart::Plotly::Trace::' . ucfirst($parent_name) . '::Attribute::' . ucfirst($attribute_name);
+# TODO Use enums without numbers
+# TODO Use enums with JSON::false and JSON::true and number
+# TODO Types: color, subplotid, flaglist, angle, colorscale
+# TODO Add defaults?
+
+my $moose_type_for = {
+    any        => 'Any',
+    number     => 'Num',
+    string     => 'Str',
+    boolean    => 'Bool',
+    integer    => 'Int',
+    info_array => 'ArrayRef',
+    data_array => 'ArrayRef',
+    enumerated => => 'enum'
 };
-my $moose_type_for = {any => 'Any', number => 'Num', string => 'Str', boolean => 'Bool'};
-my $subclasses = {};
 my $template = path("template/trace.tmpl")->slurp_utf8();
-my $type_template = path("template/type.tmpl")->slurp_utf8();
+my $attribute_template = path("template/attribute.tmpl")->slurp_utf8();
 my $plotly_js_dist_path = path("../plotly.js/dist");
 my $current_dir = cwd;
+my $types_without_moose_equivalent = {};
 
 my $plotly_schema = from_json($plotly_js_dist_path->child('plot-schema.json')->slurp_utf8());
-#print join ("\n", sort keys %{$plotly_schema->{'traces'}{'scatter'}{'attributes'}});
-
 my $traces_schema = $plotly_schema->{'traces'};
 
 for my $trace_name (sort keys %$traces_schema) {
     my $trace_schema = $traces_schema->{$trace_name};
-    GeneratePerlClass($trace_schema, $trace_name);
+    my $ast = GenerateTraceAST($trace_schema, $trace_name);
+    RenderTypeAST($trace_name, $ast, $template, $trace_name);
 }
-for my $trace_name (sort keys %$subclasses) {
-    my $trace_attributes = $subclasses->{$trace_name};
-    for my $trace_attribute_name (sort keys %$trace_attributes) {
-        my $attribute_schema = $trace_attributes->{$trace_attribute_name};
-        GeneratePerlClass($attribute_schema, $trace_attribute_name, $trace_name );
+
+print "Types without Moose equivalent: \n" . join("\n", sort keys %$types_without_moose_equivalent) . "\n";
+
+sub FieldsAST {
+    my $fields_schema = shift();
+    my $parent_class = shift();
+    my $AST = shift();
+    for my $field_name (sort keys %$fields_schema) {
+        if ($field_name eq "_deprecated") {
+            next;
+        }
+        if ($field_name eq "role") {
+            next;
+        }
+        if ($field_name eq "editType") {
+            next;
+        }
+        if ($field_name eq "arrayOk") {
+            next;
+        }
+        if ($field_name eq "dflt") {
+            next;
+        }
+        if ($field_name eq "type") {
+            next;
+        }
+        my $field_contents = $fields_schema->{$field_name};
+        if (ref $field_contents eq 'HASH') {
+            if (exists $field_contents->{'role'} && $field_contents->{'role'} eq "object") {
+                $AST->{subtypes}{$field_name} = SubtypeAST($field_contents, $field_name, $parent_class);
+                my $field = {
+                    is  => 'rw',
+                    isa => "Maybe[HashRef]|" . GenerateClassName($parent_class, $field_name)
+                };
+                if (defined $field_contents->{arrayOk} && $field_contents->{arrayOk}) {
+                    print $field_name . " is an array of objects\n";
+                }
+                $AST->{fields}{$field_name} = $field;
+            }
+            else {
+                my $field = {
+                    is => 'rw'
+                };
+                if (defined $field_contents->{'description'}) {
+                    $field->{documentation} = $field_contents->{'description'};
+                }
+                if (defined $field_contents->{'valType'}) {
+                    my $moose_type = $moose_type_for->{$field_contents->{'valType'}};
+                    if (defined $moose_type) {
+                        if ($moose_type eq 'enum') {
+                            if (defined $field_contents->{values}) {
+                                my $only_strings = 1;
+                                for my $value (@{$field_contents->{values}}) {
+                                    if (Scalar::Util::looks_like_number($value)) {
+                                        $only_strings = 0;
+                                    }
+                                }
+
+                                if ($only_strings) {
+                                    #$field->{isa} = 'enum([' . join(",", @{$field_contents->{values}}) . '])';
+                                }
+                            }
+                        }
+                        else {
+                            $field->{isa} = $moose_type;
+                        }
+                    }
+                    else {
+
+                        $types_without_moose_equivalent->{$field_contents->{'valType'}} = 1;
+                    }
+                }
+                if (defined $field_contents->{arrayOk} && $field_contents->{arrayOk}) {
+                    #print $field_name . " is an array\n";
+                    if (defined $field->{isa}) {
+                        #print "And the possible types are: " . $field->{isa} . "\n";
+                        $field->{isa} = $field->{isa} . "|ArrayRef[" . $field->{isa} . "]";
+                    } else {
+                        $field->{isa} = "Maybe[ArrayRef]";
+                    }
+                }
+
+                $AST->{fields}{$field_name} = $field;
+            }
+
+        }
+        else {
+            $AST->{fields}{$field_name} = {
+                default => $field_contents,
+                is      => 'ro'
+            };
+        }
     }
 }
 
-#print Dumper( $subclasses );
+sub GenerateClassName {
+    my $parent_class = shift();
+    my $type_name = shift();
+    return $parent_class . '::' . ucfirst($type_name);
+}
 
-sub GeneratePerlClass {
-			my $contents = shift();
-			my $trace_name = shift();
-			my $subclass_type = shift();
-			my $class_name = ucfirst $trace_name;
-            my $file_contents = "";
-	        my @type_constraints;
-			my $render_field = sub {
-				my $field = shift();
-				my $value = shift();
-				my $trace_name = shift();
-				if ($field eq "_deprecated") {
-					return;
-				}
-				my $is_a_subclass = 1;
-				if (ref $value eq 'HASH') {
-                    if (exists $value->{'role'} && $value->{'role'} eq "object" ) {
-                        $is_a_subclass = 1;
-                    } else {
-                        $is_a_subclass = 0;
-                    }
-				} else {
-					$is_a_subclass = 0;
-				}
-				if ($is_a_subclass) {
-					$subclasses->{$trace_name}{$field} = $value;
-				} 
-				$file_contents .= "=item * " . $field . "\n";
-				if (ref $value eq 'HASH' && defined $value->{'description'}) {
-                    my $description = $value->{'description'};
-                    $description =~ s/M<(.+?)>/$1/g;
-					$file_contents .= "\n". $description;
-				}
-				$file_contents .= "\n\n=cut\n\n";
-                		$file_contents .= "has $field => (\n    is => 'rw',";
-				if ($is_a_subclass) {
-					my $class_name = $generate_attribute_class_name->($trace_name, $field);
-					push @type_constraints, $class_name;
-					$file_contents .= "\n    isa => " . Data::Dump::quote("Maybe[HashRef]|" . $class_name );
-				} else {
-				if (ref $value eq 'HASH' && defined $value->{'valType'}) {
-					my $plotly_val_type = $value->{'valType'};
-					my $moose_type = $moose_type_for->{$plotly_val_type};
-					if (defined $moose_type) {
-                            if ($field eq 'text') {
-                                $moose_type = 'Maybe[ArrayRef]|' . $moose_type;
-                            }
-                			$file_contents .= "\n    isa => ". Data::Dump::quote($moose_type) . ",";
-					}
-				}
-				if (ref $value eq 'HASH' && defined $value->{'description'}) {
-                    my $description = $value->{'description'};
-                    $description =~ s/M<(.+?)>/$1/g;
-					$file_contents .= "\n    documentation => " . Data::Dump::quote($description) . ",";
-				}
-				}
-				$file_contents .= "\n);\n\n";
-			};
-            my $attributes_contents = $contents->{'attributes'};
-            if (defined $subclass_type) {
-                $attributes_contents = $contents;
-            }
-			for my $field (sort keys %$attributes_contents) {
-				my $value = $attributes_contents->{$field};
-				$render_field->($field, $value, $trace_name);
-            }
-			for my $field (sort keys %$common_attributes) {
-				my $value = $common_attributes->{$field};
-				$render_field->($field, $value, $trace_name);
-            }
+sub InitialAST {
+    my $class_name = shift();
+    return {
+        class_name => $class_name,
+        fields     => {},
+        subtypes   => {}
+    };
+}
 
-        $file_contents .= "=pod\n\n=back\n\n=cut\n\n";
-	    if (!defined $subclass_type) {
-		$file_contents .= $type_template;
-	    }
-            $file_contents .= "\n__PACKAGE__->meta->make_immutable();\n";
-            $file_contents .= "1;\n";
-	    my $used_modules = "";
-	    for my $type_constraint (@type_constraints) {
-		$used_modules .= "use $type_constraint;\n";
-	    }
-	    my $header =
-              Text::Template::fill_in_string( $template, HASH => { package_name => 'Chart::Plotly::Trace::' . (defined $subclass_type ? join("::", ucfirst($subclass_type), 'Attribute', $class_name) : $class_name ), trace_name => $trace_name, used_modules => $used_modules,
-(
-    defined $contents->{'meta'}{'description'} ? 
-        (description => $contents->{'meta'}{'description'})
-    :
-    ()
+sub SubtypeAST {
+    my $type_schema = shift();
+    my $type_name = shift();
+    my $parent_class = shift();
 
-) } ); 
-	    $file_contents = $header . $file_contents;
-			chdir $current_dir;
-            my $file_path = path('lib/Chart/Plotly/Trace');
-            if (defined $subclass_type) {
-                $file_path = $file_path->child(ucfirst($subclass_type))->child('Attribute');
-                $file_path->mkpath();
-            }
-			$file_path->child($class_name . ".pm")->spew_utf8($file_contents); 
+    my $class_name = GenerateClassName($parent_class, $type_name);
+    my $AST = InitialAST($class_name);
+    FieldsAST($type_schema, $class_name, $AST);
+    return $AST;
+}
+
+sub GenerateTraceAST {
+    my $trace_schema = shift();
+    my $trace_name = shift();
+
+    my $class_name = GenerateClassName('Chart::Plotly::Trace', $trace_name);
+    my $AST = InitialAST($class_name);
+
+    if (defined $trace_schema->{'meta'}{'description'}) {
+        $AST->{documentation} = $trace_schema->{'meta'}{'description'};
+    }
+
+    my $fields_schema = $trace_schema->{attributes};
+    FieldsAST($fields_schema, $class_name, $AST);
+    return $AST;
+}
+
+
+sub RenderField {
+    my $field_name = shift();
+    my $ast = shift();
+
+    my $file_contents = "=item * " . $field_name . "\n";
+    my $documentation;
+    if (defined $ast->{'documentation'}) {
+        $documentation = $ast->{'documentation'};
+        $documentation =~ s/M<(.+?)>/$1/g;
+        $file_contents .= "\n" . $documentation;
+    }
+    $file_contents .= "\n\n=cut\n\n";
+    $file_contents .= "has $field_name => (\n    is => " . Data::Dump::quote($ast->{is}) . ",";
+    if (defined $ast->{isa}) {
+        $file_contents .= "\n    isa => " . Data::Dump::quote($ast->{isa}) . ",";
+    }
+    if (defined $ast->{default}) {
+        $file_contents .= "\n    default => " . Data::Dump::quote($ast->{default}) . ",";
+    }
+    if (defined $documentation) {
+        $file_contents .= "\n    documentation => " . Data::Dump::quote($documentation) . ",";
+    }
+    return $file_contents .= "\n);\n\n";
+}
+
+sub RenderTypeAST {
+    my $trace_name = shift();
+    my $ast = shift();
+    my $template = shift();
+    my $root_trace_name = shift();
+
+    my $file_contents = "";
+
+    for my $field (sort keys %{$ast->{fields}}) {
+        my $value = $ast->{fields}{$field};
+        $file_contents .= RenderField($field, $value);
+    }
+    $file_contents .= "=pod\n\n=back\n\n=cut\n\n";
+    $file_contents .= "\n__PACKAGE__->meta->make_immutable();\n";
+    $file_contents .= "1;\n";
+
+    my $used_modules = "";
+    for my $subtype (sort keys %{$ast->{subtypes}}) {
+        RenderTypeAST($subtype, $ast->{subtypes}{$subtype}, $attribute_template, $root_trace_name);
+        my $type_constraint = $ast->{subtypes}{$subtype}{class_name};
+        $used_modules .= "use $type_constraint;\n";
+    }
+
+    my $description = $ast->{documentation};
+    my $header =
+        Text::Template::fill_in_string($template, HASH => {
+            package_name => $ast->{class_name},
+            trace_name   => $root_trace_name,
+            used_modules => $used_modules,
+            description  => $description
+        });
+
+    $file_contents = $header . $file_contents;
+    chdir $current_dir;
+    my $file = path('lib/' . join("/", split(/::/, $ast->{class_name})) . ".pm");
+    $file->parent->mkpath();
+    $file->spew_utf8($file_contents);
 }
