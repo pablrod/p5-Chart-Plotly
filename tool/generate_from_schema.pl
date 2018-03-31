@@ -17,6 +17,7 @@ use Scalar::Util;
 # TODO Use enums with JSON::false and JSON::true and number
 # TODO Types: color, subplotid, flaglist, angle, colorscale
 # TODO Add defaults?
+# TODO Add support for items
 
 my $moose_type_for = {
     any        => 'Any',
@@ -71,15 +72,29 @@ sub FieldsAST {
         my $field_contents = $fields_schema->{$field_name};
         if (ref $field_contents eq 'HASH') {
             if (exists $field_contents->{'role'} && $field_contents->{'role'} eq "object") {
-                $AST->{subtypes}{$field_name} = SubtypeAST($field_contents, $field_name, $parent_class);
-                my $field = {
-                    is  => 'rw',
-                    isa => Data::Dump::quote("Maybe[HashRef]|" . GenerateClassName($parent_class, $field_name))
-                };
-                if (defined $field_contents->{arrayOk} && $field_contents->{arrayOk}) {
-                    warn("Until now this combination is not present (array of elements with role object)");
+                if (exists $field_contents->{items}) {
+                    if (ref $field_contents->{items} eq 'HASH' && scalar keys %{$field_contents->{items}} == 1) {
+                        my ($item_name) = keys %{$field_contents->{items}};
+                        $AST->{subtypes}{$item_name} = SubtypeAST($field_contents->{items}{$item_name}, $item_name, $parent_class);
+                        my $field = {
+                            is  => 'rw',
+                            isa => Data::Dump::quote("ArrayRef|ArrayRef[" . GenerateClassName($parent_class, $item_name) . "]")
+                        };
+                        $AST->{fields}{$field_name} = $field;
+                    } else {
+                        warn("Role object with items with more than 1 type of item. Ignored");
+                    }
+                } else {
+                    $AST->{subtypes}{$field_name} = SubtypeAST($field_contents, $field_name, $parent_class);
+                    my $field = {
+                        is  => 'rw',
+                        isa => Data::Dump::quote("Maybe[HashRef]|" . GenerateClassName($parent_class, $field_name))
+                    };
+                    if (defined $field_contents->{arrayOk} && $field_contents->{arrayOk}) {
+                        warn("Until now this combination is not present (array of elements with role object). Ignored");
+                    }
+                    $AST->{fields}{$field_name} = $field;
                 }
-                $AST->{fields}{$field_name} = $field;
             }
             else {
                 my $field = {
