@@ -89,7 +89,9 @@ Data to be represented. It could be:
 =cut
 
 sub render_full_html {
+    ## no critic
     my %params = validate( @_, { data => { type => ARRAYREF | OBJECT }, } );
+    ## use critic
 
 	my $data = $params{'data'};
     my $chart_id = create_uuid_as_string(UUID_TIME); 
