@@ -13,7 +13,7 @@ use Cwd;
 use Data::Dump;
 use Scalar::Util;
 
-# TODO Use enums without numbers
+# TODO Use enum names
 # TODO Use enums with JSON::false and JSON::true and number
 # TODO Types: color, subplotid, flaglist, angle, colorscale
 # TODO Add defaults?
@@ -74,10 +74,10 @@ sub FieldsAST {
                 $AST->{subtypes}{$field_name} = SubtypeAST($field_contents, $field_name, $parent_class);
                 my $field = {
                     is  => 'rw',
-                    isa => "Maybe[HashRef]|" . GenerateClassName($parent_class, $field_name)
+                    isa => Data::Dump::quote("Maybe[HashRef]|" . GenerateClassName($parent_class, $field_name))
                 };
                 if (defined $field_contents->{arrayOk} && $field_contents->{arrayOk}) {
-                    print $field_name . " is an array of objects\n";
+                    warn("Until now this combination is not present (array of elements with role object)");
                 }
                 $AST->{fields}{$field_name} = $field;
             }
@@ -101,27 +101,29 @@ sub FieldsAST {
                                 }
 
                                 if ($only_strings) {
-                                    #$field->{isa} = 'enum([' . join(",", @{$field_contents->{values}}) . '])';
+                                    my $enum_type = 'enum([' . join(",", map {Data::Dump::quote($_)} @{$field_contents->{values}}) . '])';
+                                    if (defined $field_contents->{arrayOk} && $field_contents->{arrayOk}) {
+                                        $field->{isa} = "union([" . $enum_type . ", " .  Data::Dump::quote("ArrayRef") . "])";
+                                    } else {
+                                        $field->{isa} = $enum_type;
+                                    }
                                 }
                             }
                         }
                         else {
-                            $field->{isa} = $moose_type;
+                            if (defined $field_contents->{arrayOk} && $field_contents->{arrayOk}) {
+                                $field->{isa} = Data::Dump::quote($moose_type . "|ArrayRef[" . $moose_type . "]");
+                            } else {
+                                $field->{isa} = Data::Dump::quote($moose_type);
+                            }
                         }
                     }
                     else {
-
                         $types_without_moose_equivalent->{$field_contents->{'valType'}} = 1;
                     }
                 }
-                if (defined $field_contents->{arrayOk} && $field_contents->{arrayOk}) {
-                    #print $field_name . " is an array\n";
-                    if (defined $field->{isa}) {
-                        #print "And the possible types are: " . $field->{isa} . "\n";
-                        $field->{isa} = $field->{isa} . "|ArrayRef[" . $field->{isa} . "]";
-                    } else {
-                        $field->{isa} = "Maybe[ArrayRef]";
-                    }
+                if (defined $field_contents->{arrayOk} && $field_contents->{arrayOk} && !defined $field->{isa}) {
+                    $field->{isa} = Data::Dump::quote("Maybe[ArrayRef]");
                 }
 
                 $AST->{fields}{$field_name} = $field;
@@ -194,7 +196,7 @@ sub RenderField {
     $file_contents .= "\n\n=cut\n\n";
     $file_contents .= "has $field_name => (\n    is => " . Data::Dump::quote($ast->{is}) . ",";
     if (defined $ast->{isa}) {
-        $file_contents .= "\n    isa => " . Data::Dump::quote($ast->{isa}) . ",";
+        $file_contents .= "\n    isa => " . $ast->{isa} . ",";
     }
     if (defined $ast->{default}) {
         $file_contents .= "\n    default => " . Data::Dump::quote($ast->{default}) . ",";
