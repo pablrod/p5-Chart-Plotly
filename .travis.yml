@@ -7,8 +7,6 @@ matrix:
     - perl: 5.24
 sudo: false             
 before_install:
+  - cpanm --notest Pod::Weaver::Section::Contributors Data::Table PDL Data::Frame List::Flatten
   - git clone git://github.com/travis-perl/helpers ~/travis-perl-helpers
   - source ~/travis-perl-helpers/init --auto
-install:
-  - cpan-install --deps
-  - cpan-install Pod::Weaver::Section::Contributors Data::Table PDL Data::Frame List::Flatten
