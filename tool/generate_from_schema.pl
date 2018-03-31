@@ -25,8 +25,8 @@ my $moose_type_for = {
     string     => 'Str',
     boolean    => 'Bool',
     integer    => 'Int',
-    info_array => 'ArrayRef',
-    data_array => 'ArrayRef',
+    info_array => 'ArrayRef|PDL',
+    data_array => 'ArrayRef|PDL',
     enumerated => => 'enum'
 };
 my $template = path("template/trace.tmpl")->slurp_utf8();
