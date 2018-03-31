@@ -2,6 +2,9 @@ package Chart::Plotly::Trace::Bar::Marker::Colorbar;
 use Moose;
 use MooseX::ExtraArgs;
 use Moose::Util::TypeConstraints qw(enum union);
+if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
+    Moose::Util::TypeConstraints::type('PDL');
+}
 
 use Chart::Plotly::Trace::Bar::Marker::Colorbar::Tickfont;
 use Chart::Plotly::Trace::Bar::Marker::Colorbar::Tickformatstop;
@@ -410,7 +413,7 @@ Sets the text displayed at the ticks position via `tickvals`. Only has an effect
 
 has ticktext => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.",
 );
 
@@ -434,7 +437,7 @@ Sets the values at which ticks on this axis appear. Only has an effect if `tickm
 
 has tickvals => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.",
 );
 

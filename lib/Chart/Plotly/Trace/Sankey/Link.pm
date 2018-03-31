@@ -2,6 +2,9 @@ package Chart::Plotly::Trace::Sankey::Link;
 use Moose;
 use MooseX::ExtraArgs;
 use Moose::Util::TypeConstraints qw(enum union);
+if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
+    Moose::Util::TypeConstraints::type('PDL');
+}
 
 use Chart::Plotly::Trace::Sankey::Link::Line;
 
@@ -115,7 +118,7 @@ The shown name of the link.
 
 has label => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "The shown name of the link.",
 );
 
@@ -149,7 +152,7 @@ An integer number `[0..nodes.length - 1]` that represents the source node.
 
 has source => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "An integer number `[0..nodes.length - 1]` that represents the source node.",
 );
 
@@ -173,7 +176,7 @@ An integer number `[0..nodes.length - 1]` that represents the target node.
 
 has target => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "An integer number `[0..nodes.length - 1]` that represents the target node.",
 );
 
@@ -197,7 +200,7 @@ A numeric value representing the flow volume value.
 
 has value => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "A numeric value representing the flow volume value.",
 );
 

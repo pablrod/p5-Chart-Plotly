@@ -2,6 +2,9 @@ package Chart::Plotly::Trace::Scattergl::Marker::Colorbar::Tickformatstop;
 use Moose;
 use MooseX::ExtraArgs;
 use Moose::Util::TypeConstraints qw(enum union);
+if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
+    Moose::Util::TypeConstraints::type('PDL');
+}
 
 
 
@@ -80,7 +83,7 @@ range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom
 
 has dtickrange => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*",
 );
 

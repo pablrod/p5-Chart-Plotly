@@ -2,6 +2,9 @@ package Chart::Plotly::Trace::Scattergeo;
 use Moose;
 use MooseX::ExtraArgs;
 use Moose::Util::TypeConstraints qw(enum union);
+if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
+    Moose::Util::TypeConstraints::type('PDL');
+}
 
 use Chart::Plotly::Trace::Scattergeo::Hoverlabel;
 use Chart::Plotly::Trace::Scattergeo::Line;
@@ -110,7 +113,7 @@ Assigns extra data each datum. This may be useful when listening to hover, click
 
 has customdata => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements",
 );
 
@@ -226,7 +229,7 @@ Assigns id labels to each datum. These ids for object constancy of data points d
 
 has ids => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.",
 );
 
@@ -250,7 +253,7 @@ Sets the latitude coordinates (in degrees North).
 
 has lat => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the latitude coordinates (in degrees North).",
 );
 
@@ -308,7 +311,7 @@ Sets the coordinates via location IDs or names. Coordinates correspond to the ce
 
 has locations => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.",
 );
 
@@ -332,7 +335,7 @@ Sets the longitude coordinates (in degrees East).
 
 has lon => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the longitude coordinates (in degrees East).",
 );
 

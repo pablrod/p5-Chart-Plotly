@@ -2,6 +2,9 @@ package Chart::Plotly::Trace::Candlestick;
 use Moose;
 use MooseX::ExtraArgs;
 use Moose::Util::TypeConstraints qw(enum union);
+if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
+    Moose::Util::TypeConstraints::type('PDL');
+}
 
 use Chart::Plotly::Trace::Candlestick::Decreasing;
 use Chart::Plotly::Trace::Candlestick::Hoverlabel;
@@ -96,7 +99,7 @@ Sets the close values.
 
 has close => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the close values.",
 );
 
@@ -120,7 +123,7 @@ Assigns extra data each datum. This may be useful when listening to hover, click
 
 has customdata => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements",
 );
 
@@ -154,7 +157,7 @@ Sets the high values.
 
 has high => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the high values.",
 );
 
@@ -212,7 +215,7 @@ Assigns id labels to each datum. These ids for object constancy of data points d
 
 has ids => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.",
 );
 
@@ -268,7 +271,7 @@ Sets the low values.
 
 has low => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the low values.",
 );
 
@@ -316,7 +319,7 @@ Sets the open values.
 
 has open => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the open values.",
 );
 
@@ -431,7 +434,7 @@ Sets the x coordinates. If absent, linear coordinate will be generated.
 
 has x => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the x coordinates. If absent, linear coordinate will be generated.",
 );
 

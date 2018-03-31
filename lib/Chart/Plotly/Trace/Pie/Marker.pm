@@ -2,6 +2,9 @@ package Chart::Plotly::Trace::Pie::Marker;
 use Moose;
 use MooseX::ExtraArgs;
 use Moose::Util::TypeConstraints qw(enum union);
+if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
+    Moose::Util::TypeConstraints::type('PDL');
+}
 
 use Chart::Plotly::Trace::Pie::Marker::Line;
 
@@ -81,7 +84,7 @@ Sets the color of each sector of this pie chart. If not specified, the default t
 
 has colors => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the color of each sector of this pie chart. If not specified, the default trace color set is used to pick the sector colors.",
 );
 

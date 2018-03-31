@@ -2,6 +2,9 @@ package Chart::Plotly::Trace::Table::Domain;
 use Moose;
 use MooseX::ExtraArgs;
 use Moose::Util::TypeConstraints qw(enum union);
+if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
+    Moose::Util::TypeConstraints::type('PDL');
+}
 
 
 
@@ -104,7 +107,7 @@ Sets the horizontal domain of this table trace (in plot fraction).
 
 has x => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the horizontal domain of this table trace (in plot fraction).",
 );
 
@@ -116,7 +119,7 @@ Sets the vertical domain of this table trace (in plot fraction).
 
 has y => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the vertical domain of this table trace (in plot fraction).",
 );
 

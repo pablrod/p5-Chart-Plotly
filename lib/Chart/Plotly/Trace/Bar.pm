@@ -2,6 +2,9 @@ package Chart::Plotly::Trace::Bar;
 use Moose;
 use MooseX::ExtraArgs;
 use Moose::Util::TypeConstraints qw(enum union);
+if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
+    Moose::Util::TypeConstraints::type('PDL');
+}
 
 use Chart::Plotly::Trace::Bar::Error_x;
 use Chart::Plotly::Trace::Bar::Error_y;
@@ -149,7 +152,7 @@ Assigns extra data each datum. This may be useful when listening to hover, click
 
 has customdata => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements",
 );
 
@@ -275,7 +278,7 @@ Assigns id labels to each datum. These ids for object constancy of data points d
 
 has ids => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.",
 );
 
@@ -401,7 +404,7 @@ For legacy polar chart only.Please switch to *scatterpolar* trace type.Sets the 
 
 has r => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "For legacy polar chart only.Please switch to *scatterpolar* trace type.Sets the radial coordinates.",
 );
 
@@ -469,7 +472,7 @@ For legacy polar chart only.Please switch to *scatterpolar* trace type.Sets the 
 
 has t => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "For legacy polar chart only.Please switch to *scatterpolar* trace type.Sets the angular coordinates.",
 );
 
@@ -606,7 +609,7 @@ Sets the x coordinates.
 
 has x => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the x coordinates.",
 );
 
@@ -665,7 +668,7 @@ Sets the y coordinates.
 
 has y => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the y coordinates.",
 );
 

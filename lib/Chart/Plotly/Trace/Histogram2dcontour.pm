@@ -2,6 +2,9 @@ package Chart::Plotly::Trace::Histogram2dcontour;
 use Moose;
 use MooseX::ExtraArgs;
 use Moose::Util::TypeConstraints qw(enum union);
+if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
+    Moose::Util::TypeConstraints::type('PDL');
+}
 
 use Chart::Plotly::Trace::Histogram2dcontour::Colorbar;
 use Chart::Plotly::Trace::Histogram2dcontour::Contours;
@@ -178,7 +181,7 @@ Assigns extra data each datum. This may be useful when listening to hover, click
 
 has customdata => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements",
 );
 
@@ -260,7 +263,7 @@ Assigns id labels to each datum. These ids for object constancy of data points d
 
 has ids => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.",
 );
 
@@ -455,7 +458,7 @@ Sets the sample data to be binned on the x axis.
 
 has x => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the sample data to be binned on the x axis.",
 );
 
@@ -512,7 +515,7 @@ Sets the sample data to be binned on the y axis.
 
 has y => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the sample data to be binned on the y axis.",
 );
 
@@ -569,7 +572,7 @@ Sets the aggregation data.
 
 has z => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the aggregation data.",
 );
 

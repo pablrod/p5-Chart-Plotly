@@ -2,6 +2,9 @@ package Chart::Plotly::Trace::Pie;
 use Moose;
 use MooseX::ExtraArgs;
 use Moose::Util::TypeConstraints qw(enum union);
+if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
+    Moose::Util::TypeConstraints::type('PDL');
+}
 
 use Chart::Plotly::Trace::Pie::Domain;
 use Chart::Plotly::Trace::Pie::Hoverlabel;
@@ -98,7 +101,7 @@ Assigns extra data each datum. This may be useful when listening to hover, click
 
 has customdata => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements",
 );
 
@@ -226,7 +229,7 @@ Assigns id labels to each datum. These ids for object constancy of data points d
 
 has ids => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.",
 );
 
@@ -272,7 +275,7 @@ Sets the sector labels. If `labels` entries are duplicated, we sum associated `v
 
 has labels => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.",
 );
 
@@ -446,7 +449,7 @@ Sets text elements associated with each sector. If trace `textinfo` contains a *
 
 has text => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.",
 );
 
@@ -525,7 +528,7 @@ Sets the values of the sectors of this pie chart. If omitted, we count occurrenc
 
 has values => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the values of the sectors of this pie chart. If omitted, we count occurrences of each label.",
 );
 

@@ -2,6 +2,9 @@ package Chart::Plotly::Trace::Scatterpolargl::Unselected;
 use Moose;
 use MooseX::ExtraArgs;
 use Moose::Util::TypeConstraints qw(enum union);
+if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
+    Moose::Util::TypeConstraints::type('PDL');
+}
 
 use Chart::Plotly::Trace::Scatterpolargl::Unselected::Marker;
 use Chart::Plotly::Trace::Scatterpolargl::Unselected::Textfont;

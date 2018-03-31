@@ -2,6 +2,9 @@ package Chart::Plotly::Trace::Carpet::Aaxis;
 use Moose;
 use MooseX::ExtraArgs;
 use Moose::Util::TypeConstraints qw(enum union);
+if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
+    Moose::Util::TypeConstraints::type('PDL');
+}
 
 use Chart::Plotly::Trace::Carpet::Aaxis::Tickfont;
 use Chart::Plotly::Trace::Carpet::Aaxis::Tickformatstop;
@@ -118,7 +121,7 @@ Sets the order in which categories on this axis appear. Only has an effect if `c
 
 has categoryarray => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.",
 );
 
@@ -375,7 +378,7 @@ Sets the range of this axis. If the axis `type` is *log*, then you must take the
 
 has range => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.",
 );
 
@@ -617,7 +620,7 @@ Sets the text displayed at the ticks position via `tickvals`. Only has an effect
 
 has ticktext => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.",
 );
 
@@ -641,7 +644,7 @@ Sets the values at which ticks on this axis appear. Only has an effect if `tickm
 
 has tickvals => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.",
 );
 

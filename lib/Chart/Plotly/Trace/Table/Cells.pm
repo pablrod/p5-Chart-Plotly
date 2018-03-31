@@ -2,6 +2,9 @@ package Chart::Plotly::Trace::Table::Cells;
 use Moose;
 use MooseX::ExtraArgs;
 use Moose::Util::TypeConstraints qw(enum union);
+if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
+    Moose::Util::TypeConstraints::type('PDL');
+}
 
 use Chart::Plotly::Trace::Table::Cells::Fill;
 use Chart::Plotly::Trace::Table::Cells::Font;
@@ -127,7 +130,7 @@ Sets the cell value formatting rule using d3 formatting mini-language which is s
 
 has format => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-format/blob/master/README.md#locale_format",
 );
 
@@ -221,7 +224,7 @@ Cell values. `values[m][n]` represents the value of the `n`th point in column `m
 
 has values => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.",
 );
 

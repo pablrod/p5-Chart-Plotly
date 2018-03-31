@@ -2,6 +2,9 @@ package Chart::Plotly::Trace::Histogram2d::Marker;
 use Moose;
 use MooseX::ExtraArgs;
 use Moose::Util::TypeConstraints qw(enum union);
+if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
+    Moose::Util::TypeConstraints::type('PDL');
+}
 
 
 
@@ -80,7 +83,7 @@ Sets the aggregation data.
 
 has color => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the aggregation data.",
 );
 

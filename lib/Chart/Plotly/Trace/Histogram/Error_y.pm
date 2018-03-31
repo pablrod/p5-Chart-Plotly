@@ -2,6 +2,9 @@ package Chart::Plotly::Trace::Histogram::Error_y;
 use Moose;
 use MooseX::ExtraArgs;
 use Moose::Util::TypeConstraints qw(enum union);
+if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
+    Moose::Util::TypeConstraints::type('PDL');
+}
 
 
 
@@ -80,7 +83,7 @@ Sets the data corresponding the length of each error bar. Values are plotted rel
 
 has array => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.",
 );
 
@@ -92,7 +95,7 @@ Sets the data corresponding the length of each error bar in the bottom (left) di
 
 has arrayminus => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.",
 );
 

@@ -2,6 +2,9 @@ package Chart::Plotly::Trace::Parcoords::Dimension;
 use Moose;
 use MooseX::ExtraArgs;
 use Moose::Util::TypeConstraints qw(enum union);
+if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
+    Moose::Util::TypeConstraints::type('PDL');
+}
 
 
 
@@ -80,7 +83,7 @@ The domain range to which the filter on the dimension is constrained. Must be an
 
 has constraintrange => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "The domain range to which the filter on the dimension is constrained. Must be an array of `[fromValue, toValue]` with finite numbers as elements.",
 );
 
@@ -114,7 +117,7 @@ The domain range that represents the full, shown axis extent. Defaults to the `v
 
 has range => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "The domain range that represents the full, shown axis extent. Defaults to the `values` extent. Must be an array of `[fromValue, toValue]` with finite numbers as elements.",
 );
 
@@ -138,7 +141,7 @@ Sets the text displayed at the ticks position via `tickvals`. Only has an effect
 
 has ticktext => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.",
 );
 
@@ -162,7 +165,7 @@ Sets the values at which ticks on this axis appear. Only has an effect if `tickm
 
 has tickvals => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.",
 );
 
@@ -186,7 +189,7 @@ Dimension values. `values[n]` represents the value of the `n`th point in the dat
 
 has values => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "Dimension values. `values[n]` represents the value of the `n`th point in the dataset, therefore the `values` vector for all dimensions must be the same (longer vectors will be truncated). Each value must be a finite number.",
 );
 

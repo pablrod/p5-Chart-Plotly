@@ -2,6 +2,9 @@ package Chart::Plotly::Trace::Sankey::Node;
 use Moose;
 use MooseX::ExtraArgs;
 use Moose::Util::TypeConstraints qw(enum union);
+if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
+    Moose::Util::TypeConstraints::type('PDL');
+}
 
 use Chart::Plotly::Trace::Sankey::Node::Line;
 
@@ -115,7 +118,7 @@ The shown name of the node.
 
 has label => (
     is => "rw",
-    isa => "ArrayRef",
+    isa => "ArrayRef|PDL",
     documentation => "The shown name of the node.",
 );
 
