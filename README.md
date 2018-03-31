@@ -4,7 +4,7 @@ Chart::Plotly - Generate html/javascript charts from perl data using javascript 
 
 # VERSION
 
-version 0.013
+version 0.014
 
 # SYNOPSIS
 
@@ -116,7 +116,7 @@ Pablo Rodríguez González <pablo.rodriguez.gonzalez@gmail.com>
 
 # COPYRIGHT AND LICENSE
 
-Copyright (c) 2017 by Pablo Rodríguez González.
+This software is Copyright (c) 2017 by Pablo Rodríguez González.
 
 This is free software, licensed under:
 
