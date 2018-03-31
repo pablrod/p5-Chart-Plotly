@@ -5,12 +5,7 @@ perl:
 matrix:
   include:
     - perl: 5.24
-      env: COVERAGE=1   
 sudo: false             
 before_install:
-  - cpanm --notest Pod::Weaver::Section::Contributors Data::Table PDL Data::Frame List::Flatten # Pod and examples syntax check
-  - export PERL5OPT="${PERL5OPT}${PERL5OPT:+ }"'-Iblib/lib' # work around for Travis Perl helper (auto.bash $blib)
-  - if [ "$COVERAGE" == "1" ]; then
-      export HARNESS_PERL_SWITCHES="${HARNESS_PERL_SWITCHES}${HARNESS_PERL_SWITCHES:+ }"'-MDevel::Cover=-ignore,^x?t/,-ignore,ConfigData,-blib,0';
-    fi
-  - eval $(curl https://travis-perl.github.io/init) --auto
+  - git clone git://github.com/travis-perl/helpers ~/travis-perl-helpers
+  - source ~/travis-perl-helpers/init
