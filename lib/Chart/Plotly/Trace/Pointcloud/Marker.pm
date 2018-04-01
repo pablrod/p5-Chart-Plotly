@@ -11,11 +11,9 @@ use Chart::Plotly::Trace::Pointcloud::Marker::Border;
 
 # VERSION
 
+# ABSTRACT: This attribute is one of the possible options for the trace pointcloud.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Pointcloud::Marker
 
 =head1 SYNOPSIS
 

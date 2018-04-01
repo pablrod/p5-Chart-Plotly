@@ -11,11 +11,9 @@ use Chart::Plotly::Trace::Table::Hoverlabel::Font;
 
 # VERSION
 
+# ABSTRACT: This attribute is one of the possible options for the trace table.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Table::Hoverlabel
 
 =head1 SYNOPSIS
 

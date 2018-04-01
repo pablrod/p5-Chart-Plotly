@@ -13,11 +13,9 @@ use Chart::Plotly::Trace::Parcoords::Line::Colorbar::Titlefont;
 
 # VERSION
 
+# ABSTRACT: This attribute is one of the possible options for the trace parcoords.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Parcoords::Line::Colorbar
 
 =head1 SYNOPSIS
 

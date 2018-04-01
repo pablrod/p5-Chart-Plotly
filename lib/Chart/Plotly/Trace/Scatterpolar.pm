@@ -17,11 +17,9 @@ use Chart::Plotly::Trace::Scatterpolar::Unselected;
 
 # VERSION
 
+# ABSTRACT: The scatterpolar trace type encompasses line charts, scatter charts, text charts, and bubble charts in polar coordinates. The data visualized as scatter point or lines is set in `r` (radial) and `theta` (angular) coordinates Text (appearing either on the chart or on hover only) is via `text`. Bubble charts are achieved by setting `marker.size` and/or `marker.color` to numerical arrays.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Scatterpolar
 
 =head1 SYNOPSIS
 

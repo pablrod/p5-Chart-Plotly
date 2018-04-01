@@ -17,11 +17,9 @@ use Chart::Plotly::Trace::Scatterternary::Unselected;
 
 # VERSION
 
+# ABSTRACT: Provides similar functionality to the *scatter* type but on a ternary phase diagram. The data is provided by at least two arrays out of `a`, `b`, `c` triplets.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Scatterternary
 
 =head1 SYNOPSIS
 

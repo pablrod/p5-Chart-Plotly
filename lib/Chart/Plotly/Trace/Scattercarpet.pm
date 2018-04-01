@@ -17,11 +17,9 @@ use Chart::Plotly::Trace::Scattercarpet::Unselected;
 
 # VERSION
 
+# ABSTRACT: Plots a scatter trace on either the first carpet axis or the carpet axis with a matching `carpet` attribute.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Scattercarpet
 
 =head1 SYNOPSIS
 

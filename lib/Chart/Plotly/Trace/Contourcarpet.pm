@@ -15,11 +15,9 @@ use Chart::Plotly::Trace::Contourcarpet::Stream;
 
 # VERSION
 
+# ABSTRACT: Plots contours on either the first carpet axis or the carpet axis with a matching `carpet` attribute. Data `z` is interpreted as matching that of the corresponding carpet axis.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Contourcarpet
 
 =head1 SYNOPSIS
 

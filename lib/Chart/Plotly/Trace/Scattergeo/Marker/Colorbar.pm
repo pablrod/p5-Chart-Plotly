@@ -13,11 +13,9 @@ use Chart::Plotly::Trace::Scattergeo::Marker::Colorbar::Titlefont;
 
 # VERSION
 
+# ABSTRACT: This attribute is one of the possible options for the trace scattergeo.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Scattergeo::Marker::Colorbar
 
 =head1 SYNOPSIS
 

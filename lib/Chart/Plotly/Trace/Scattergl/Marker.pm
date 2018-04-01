@@ -12,11 +12,9 @@ use Chart::Plotly::Trace::Scattergl::Marker::Line;
 
 # VERSION
 
+# ABSTRACT: This attribute is one of the possible options for the trace scattergl.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Scattergl::Marker
 
 =head1 SYNOPSIS
 

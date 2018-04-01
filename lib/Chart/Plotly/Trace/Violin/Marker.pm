@@ -11,11 +11,9 @@ use Chart::Plotly::Trace::Violin::Marker::Line;
 
 # VERSION
 
+# ABSTRACT: This attribute is one of the possible options for the trace violin.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Violin::Marker
 
 =head1 SYNOPSIS
 

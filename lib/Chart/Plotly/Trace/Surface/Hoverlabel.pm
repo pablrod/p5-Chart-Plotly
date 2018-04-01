@@ -11,11 +11,9 @@ use Chart::Plotly::Trace::Surface::Hoverlabel::Font;
 
 # VERSION
 
+# ABSTRACT: This attribute is one of the possible options for the trace surface.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Surface::Hoverlabel
 
 =head1 SYNOPSIS
 

@@ -11,11 +11,9 @@ use Chart::Plotly::Trace::Sankey::Link::Line;
 
 # VERSION
 
+# ABSTRACT: This attribute is one of the possible options for the trace sankey.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Sankey::Link
 
 =head1 SYNOPSIS
 

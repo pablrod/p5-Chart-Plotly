@@ -16,11 +16,9 @@ use Chart::Plotly::Trace::Mesh3d::Stream;
 
 # VERSION
 
+# ABSTRACT: Draws sets of triangles with coordinates given by three 1-dimensional arrays in `x`, `y`, `z` and (1) a sets of `i`, `j`, `k` indices (2) Delaunay triangulation or (3) the Alpha-shape algorithm or (4) the Convex-hull algorithm
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Mesh3d
 
 =head1 SYNOPSIS
 

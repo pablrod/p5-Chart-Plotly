@@ -11,11 +11,9 @@ use Chart::Plotly::Trace::Candlestick::Increasing::Line;
 
 # VERSION
 
+# ABSTRACT: This attribute is one of the possible options for the trace candlestick.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Candlestick::Increasing
 
 =head1 SYNOPSIS
 

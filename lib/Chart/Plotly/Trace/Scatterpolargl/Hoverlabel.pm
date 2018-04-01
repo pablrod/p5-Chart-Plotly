@@ -11,11 +11,9 @@ use Chart::Plotly::Trace::Scatterpolargl::Hoverlabel::Font;
 
 # VERSION
 
+# ABSTRACT: This attribute is one of the possible options for the trace scatterpolargl.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Scatterpolargl::Hoverlabel
 
 =head1 SYNOPSIS
 

@@ -15,11 +15,9 @@ use Chart::Plotly::Trace::Contour::Stream;
 
 # VERSION
 
+# ABSTRACT: The data from which contour lines are computed is set in `z`. Data in `z` must be a {2D array} of numbers. Say that `z` has N rows and M columns, then by default, these N rows correspond to N y coordinates (set in `y` or auto-generated) and the M columns correspond to M x coordinates (set in `x` or auto-generated). By setting `transpose` to *true*, the above behavior is flipped.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Contour
 
 =head1 SYNOPSIS
 

@@ -13,11 +13,9 @@ use Chart::Plotly::Trace::Area::Stream;
 
 # VERSION
 
+# ABSTRACT: 
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Area
 
 =head1 SYNOPSIS
 

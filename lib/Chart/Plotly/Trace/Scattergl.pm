@@ -18,11 +18,9 @@ use Chart::Plotly::Trace::Scattergl::Unselected;
 
 # VERSION
 
+# ABSTRACT: The data visualized as scatter point or lines is set in `x` and `y` using the WebGL plotting engine. Bubble charts are achieved by setting `marker.size` and/or `marker.color` to a numerical arrays.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Scattergl
 
 =head1 SYNOPSIS
 

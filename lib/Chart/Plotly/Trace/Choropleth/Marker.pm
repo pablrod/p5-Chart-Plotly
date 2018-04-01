@@ -11,11 +11,9 @@ use Chart::Plotly::Trace::Choropleth::Marker::Line;
 
 # VERSION
 
+# ABSTRACT: This attribute is one of the possible options for the trace choropleth.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Choropleth::Marker
 
 =head1 SYNOPSIS
 

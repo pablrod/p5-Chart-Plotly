@@ -18,11 +18,9 @@ use Chart::Plotly::Trace::Parcoords::Tickfont;
 
 # VERSION
 
+# ABSTRACT: Parallel coordinates for multidimensional exploratory data analysis. The samples are specified in `dimensions`. The colors are set in `line.color`.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Parcoords
 
 =head1 SYNOPSIS
 

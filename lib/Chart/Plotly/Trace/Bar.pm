@@ -20,11 +20,9 @@ use Chart::Plotly::Trace::Bar::Unselected;
 
 # VERSION
 
+# ABSTRACT: The data visualized by the span of the bars is set in `y` if `orientation` is set th *v* (the default) and the labels are set in `x`. By setting `orientation` to *h*, the roles are interchanged.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Bar
 
 =head1 SYNOPSIS
 

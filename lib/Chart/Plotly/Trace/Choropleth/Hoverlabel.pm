@@ -11,11 +11,9 @@ use Chart::Plotly::Trace::Choropleth::Hoverlabel::Font;
 
 # VERSION
 
+# ABSTRACT: This attribute is one of the possible options for the trace choropleth.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Choropleth::Hoverlabel
 
 =head1 SYNOPSIS
 

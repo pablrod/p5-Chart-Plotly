@@ -13,11 +13,9 @@ use Chart::Plotly::Trace::Scatter::Marker::Colorbar::Titlefont;
 
 # VERSION
 
+# ABSTRACT: This attribute is one of the possible options for the trace scatter.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Scatter::Marker::Colorbar
 
 =head1 SYNOPSIS
 

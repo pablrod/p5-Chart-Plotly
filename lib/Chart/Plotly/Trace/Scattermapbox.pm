@@ -17,11 +17,9 @@ use Chart::Plotly::Trace::Scattermapbox::Unselected;
 
 # VERSION
 
+# ABSTRACT: The data visualized as scatter point, lines or marker symbols on a Mapbox GL geographic map is provided by longitude/latitude pairs in `lon` and `lat`.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Scattermapbox
 
 =head1 SYNOPSIS
 

@@ -11,11 +11,9 @@ use Chart::Plotly::Trace::Box::Selected::Marker;
 
 # VERSION
 
+# ABSTRACT: This attribute is one of the possible options for the trace box.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Box::Selected
 
 =head1 SYNOPSIS
 

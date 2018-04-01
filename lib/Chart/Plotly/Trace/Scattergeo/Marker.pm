@@ -13,11 +13,9 @@ use Chart::Plotly::Trace::Scattergeo::Marker::Line;
 
 # VERSION
 
+# ABSTRACT: This attribute is one of the possible options for the trace scattergeo.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Scattergeo::Marker
 
 =head1 SYNOPSIS
 

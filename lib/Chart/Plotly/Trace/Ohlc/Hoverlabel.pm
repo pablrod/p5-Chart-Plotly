@@ -11,11 +11,9 @@ use Chart::Plotly::Trace::Ohlc::Hoverlabel::Font;
 
 # VERSION
 
+# ABSTRACT: This attribute is one of the possible options for the trace ohlc.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Ohlc::Hoverlabel
 
 =head1 SYNOPSIS
 

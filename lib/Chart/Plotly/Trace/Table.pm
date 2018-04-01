@@ -15,11 +15,9 @@ use Chart::Plotly::Trace::Table::Stream;
 
 # VERSION
 
+# ABSTRACT: Table view for detailed data viewing. The data are arranged in a grid of rows and columns. Most styling can be specified for columns, rows or individual cells. Table is using a column-major order, ie. the grid is represented as a vector of column vectors.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Table
 
 =head1 SYNOPSIS
 

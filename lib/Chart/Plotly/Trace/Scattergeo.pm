@@ -17,11 +17,9 @@ use Chart::Plotly::Trace::Scattergeo::Unselected;
 
 # VERSION
 
+# ABSTRACT: The data visualized as scatter point or lines on a geographic map is provided either by longitude/latitude pairs in `lon` and `lat` respectively or by geographic location IDs or names in `locations`.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Scattergeo
 
 =head1 SYNOPSIS
 

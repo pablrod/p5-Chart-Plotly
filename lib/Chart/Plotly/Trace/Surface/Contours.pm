@@ -13,11 +13,9 @@ use Chart::Plotly::Trace::Surface::Contours::Z;
 
 # VERSION
 
+# ABSTRACT: This attribute is one of the possible options for the trace surface.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Surface::Contours
 
 =head1 SYNOPSIS
 

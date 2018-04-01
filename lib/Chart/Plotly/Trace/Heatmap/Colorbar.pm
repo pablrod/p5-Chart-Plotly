@@ -13,11 +13,9 @@ use Chart::Plotly::Trace::Heatmap::Colorbar::Titlefont;
 
 # VERSION
 
+# ABSTRACT: This attribute is one of the possible options for the trace heatmap.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Heatmap::Colorbar
 
 =head1 SYNOPSIS
 

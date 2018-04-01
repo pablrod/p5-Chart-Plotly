@@ -10,11 +10,9 @@ if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
 
 # VERSION
 
+# ABSTRACT: This attribute is one of the possible options for the trace scattergl.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Scattergl::Error_x
 
 =head1 SYNOPSIS
 

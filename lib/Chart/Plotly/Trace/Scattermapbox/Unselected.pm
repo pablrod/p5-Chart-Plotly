@@ -11,11 +11,9 @@ use Chart::Plotly::Trace::Scattermapbox::Unselected::Marker;
 
 # VERSION
 
+# ABSTRACT: This attribute is one of the possible options for the trace scattermapbox.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Scattermapbox::Unselected
 
 =head1 SYNOPSIS
 

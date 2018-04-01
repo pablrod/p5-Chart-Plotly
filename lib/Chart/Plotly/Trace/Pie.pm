@@ -17,11 +17,9 @@ use Chart::Plotly::Trace::Pie::Textfont;
 
 # VERSION
 
+# ABSTRACT: A data visualized by the sectors of the pie is set in `values`. The sector labels are set in `labels`. The sector colors are set in `marker.colors`
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Pie
 
 =head1 SYNOPSIS
 

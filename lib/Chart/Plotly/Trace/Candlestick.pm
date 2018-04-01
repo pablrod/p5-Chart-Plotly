@@ -15,11 +15,9 @@ use Chart::Plotly::Trace::Candlestick::Stream;
 
 # VERSION
 
+# ABSTRACT: The candlestick is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The boxes represent the spread between the `open` and `close` values and the lines represent the spread between the `low` and `high` values Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing candles are drawn in green whereas decreasing are drawn in red.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Candlestick
 
 =head1 SYNOPSIS
 

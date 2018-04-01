@@ -19,11 +19,9 @@ use Chart::Plotly::Trace::Scatter3d::Textfont;
 
 # VERSION
 
+# ABSTRACT: The data visualized as scatter point or lines in 3D dimension is set in `x`, `y`, `z`. Text (appearing either on the chart or on hover only) is via `text`. Bubble charts are achieved by setting `marker.size` and/or `marker.color` Projections are achieved via `projection`. Surface fills are achieved via `surfaceaxis`.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Scatter3d
 
 =head1 SYNOPSIS
 

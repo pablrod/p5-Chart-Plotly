@@ -13,11 +13,9 @@ use Chart::Plotly::Trace::Pointcloud::Stream;
 
 # VERSION
 
+# ABSTRACT: The data visualized as a point cloud set in `x` and `y` using the WebGl plotting engine.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Pointcloud
 
 =head1 SYNOPSIS
 

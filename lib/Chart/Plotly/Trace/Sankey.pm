@@ -16,11 +16,9 @@ use Chart::Plotly::Trace::Sankey::Textfont;
 
 # VERSION
 
+# ABSTRACT: Sankey plots for network flow data analysis. The nodes are specified in `nodes` and the links between sources and targets in `links`. The colors are set in `nodes[i].color` and `links[i].color`; otherwise defaults are used.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Sankey
 
 =head1 SYNOPSIS
 

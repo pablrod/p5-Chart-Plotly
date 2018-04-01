@@ -13,11 +13,9 @@ use Chart::Plotly::Trace::Heatmapgl::Stream;
 
 # VERSION
 
+# ABSTRACT: WebGL version of the heatmap trace type.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Heatmapgl
 
 =head1 SYNOPSIS
 

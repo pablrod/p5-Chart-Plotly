@@ -11,11 +11,9 @@ use Chart::Plotly::Trace::Mesh3d::Hoverlabel::Font;
 
 # VERSION
 
+# ABSTRACT: This attribute is one of the possible options for the trace mesh3d.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Mesh3d::Hoverlabel
 
 =head1 SYNOPSIS
 

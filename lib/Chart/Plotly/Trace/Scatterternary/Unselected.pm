@@ -12,11 +12,9 @@ use Chart::Plotly::Trace::Scatterternary::Unselected::Textfont;
 
 # VERSION
 
+# ABSTRACT: This attribute is one of the possible options for the trace scatterternary.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Scatterternary::Unselected
 
 =head1 SYNOPSIS
 

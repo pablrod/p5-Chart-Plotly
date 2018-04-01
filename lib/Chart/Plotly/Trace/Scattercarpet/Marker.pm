@@ -13,11 +13,9 @@ use Chart::Plotly::Trace::Scattercarpet::Marker::Line;
 
 # VERSION
 
+# ABSTRACT: This attribute is one of the possible options for the trace scattercarpet.
+
 =encoding utf-8
-
-=head1 NAME 
-
-Chart::Plotly::Trace::Scattercarpet::Marker
 
 =head1 SYNOPSIS
 
