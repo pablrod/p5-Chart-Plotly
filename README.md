@@ -4,7 +4,7 @@ Chart::Plotly - Generate html/javascript charts from perl data using javascript 
 
 # VERSION
 
-version 0.015
+version 0.016
 
 # SYNOPSIS
 
@@ -100,6 +100,10 @@ Opens the plot or plots in a browser locally
 ### Parameters
 
 Data to be represented. The format is the same as the parameter data in render\_full\_html. Accepts multiple traces/plots/objects.
+
+## plotlyjs\_version
+
+Returns the version of plotly.js using in this version of the perl module as a string
 
 # BUGS
 
