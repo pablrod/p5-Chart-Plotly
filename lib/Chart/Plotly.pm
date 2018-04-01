@@ -145,7 +145,7 @@ $layout = "," . $layout;
 }	
 my $template    = <<'TEMPLATE';
 <div id="{$chart_id}"></div>
-<script src="https://cdn.plot.ly/plotly-1.35.2.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-{$version}.min.js"></script>
 <script>
 Plotly.plot(document.getElementById('{$chart_id}'),{$data} {$layout});
 </script>
@@ -153,6 +153,7 @@ TEMPLATE
 
 my $template_variables = { data     => $data_string,
                            chart_id => $chart_id,
+                           version  => plotlyjs_version(),
                defined $layout ? (layout   => $layout) : ()
 };
 return Text::Template::fill_in_string( $template, HASH => $template_variables );
@@ -214,6 +215,16 @@ Data to be represented. The format is the same as the parameter data in render_f
 
 sub show_plot {
 HTML::Show::show(html_plot(@_));
+}
+
+=head2 plotlyjs_version
+
+Returns the version of plotly.js using in this version of the perl module as a string
+
+=cut
+
+sub plotlyjs_version {
+    return '1.35.2';
 }
 
 1;
