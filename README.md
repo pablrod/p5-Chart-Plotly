@@ -64,6 +64,10 @@ Example screenshot of plot generated with examples/anscombe.pl:
 
 ![Anscombe's quartet plotted with plotly](https://raw.githubusercontent.com/pablrod/p5-Chart-Plotly/master/examples/anscombe.png)
 
+Example screenshot of plots generated with examples/traces/\*.pl:
+
+![Montage of all examples](https://raw.githubusercontent.com/pablrod/p5-Chart-Plotly/master/examples/montage_all_traces.png)
+
 The API is subject to changes.
 
 # FUNCTIONS

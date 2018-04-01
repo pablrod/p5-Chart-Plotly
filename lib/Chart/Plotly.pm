@@ -56,6 +56,22 @@ Example screenshot of plot generated with examples/anscombe.pl:
 
 =end markdown
 
+Example screenshot of plots generated with examples/traces/*.pl:
+
+=begin HTML
+
+<p>
+<img src="https://raw.githubusercontent.com/pablrod/p5-Chart-Plotly/master/examples/montage_all_traces.png" alt="Montage of all examples">
+</p>
+
+=end HTML
+
+=begin markdown
+
+![Montage of all examples](https://raw.githubusercontent.com/pablrod/p5-Chart-Plotly/master/examples/montage_all_traces.png)
+
+=end markdown
+
 The API is subject to changes.
 
 =head1 FUNCTIONS
@@ -89,45 +105,45 @@ Data to be represented. It could be:
 =cut
 
 sub render_full_html {
-    ## no critic
-    my %params = validate( @_, { data => { type => ARRAYREF | OBJECT }, } );
-    ## use critic
+## no critic
+my %params = validate( @_, { data => { type => ARRAYREF | OBJECT }, } );
+## use critic
 
-	my $data = $params{'data'};
-    my $chart_id = create_uuid_as_string(UUID_TIME); 
-    my $html;
-    if ( Ref::Util::is_blessed_ref($data) && $data->isa('Chart::Plotly::Plot') ) {
-        $html = _render_html_wrap( $data->html( div_id => $chart_id ) );
-    } else {
-        $html = _render_html_wrap( _render_cell( _process_data( $data ), $chart_id ) );
-    }
-    return $html;
+my $data = $params{'data'};
+my $chart_id = create_uuid_as_string(UUID_TIME); 
+my $html;
+if ( Ref::Util::is_blessed_ref($data) && $data->isa('Chart::Plotly::Plot') ) {
+    $html = _render_html_wrap( $data->html( div_id => $chart_id ) );
+} else {
+    $html = _render_html_wrap( _render_cell( _process_data( $data ), $chart_id ) );
+}
+return $html;
 }
 
 sub _render_html_wrap {
-    my $body       = shift;
-    my $html_begin = <<'HTML_BEGIN';
+my $body       = shift;
+my $html_begin = <<'HTML_BEGIN';
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8" />
 </head>
 <body>
 HTML_BEGIN
-    my $html_end = <<'HTML_END';
+my $html_end = <<'HTML_END';
 </body>
 </html>
 HTML_END
-    return $html_begin . $body . $html_end;
+return $html_begin . $body . $html_end;
 }
 
 sub _render_cell {
-    my $data_string = shift();
-    my $chart_id    = shift() // create_uuid_as_string(UUID_TIME);
-    my $layout      = shift();
-    if (defined $layout) {
-	$layout = "," . $layout; 	
-    }	
-    my $template    = <<'TEMPLATE';
+my $data_string = shift();
+my $chart_id    = shift() // create_uuid_as_string(UUID_TIME);
+my $layout      = shift();
+if (defined $layout) {
+$layout = "," . $layout; 	
+}	
+my $template    = <<'TEMPLATE';
 <div id="{$chart_id}"></div>
 <script src="https://cdn.plot.ly/plotly-1.35.2.min.js"></script>
 <script>
@@ -135,30 +151,30 @@ Plotly.plot(document.getElementById('{$chart_id}'),{$data} {$layout});
 </script>
 TEMPLATE
 
-    my $template_variables = { data     => $data_string,
-                               chart_id => $chart_id,
-			       defined $layout ? (layout   => $layout) : ()
-    };
-    return Text::Template::fill_in_string( $template, HASH => $template_variables );
+my $template_variables = { data     => $data_string,
+                           chart_id => $chart_id,
+               defined $layout ? (layout   => $layout) : ()
+};
+return Text::Template::fill_in_string( $template, HASH => $template_variables );
 }
 
 sub _process_data {
-    my $data           = shift;
-    my $json_formatter = JSON->new->allow_blessed(1)->convert_blessed(1);
-    local *PDL::TO_JSON = sub { $_[0]->unpdl };
-    if ( Ref::Util::is_blessed_ref($data) ) {
-        my $adapter_name = 'Chart::Plotly::Adapter::' . ref $data;
-        eval {
-            load $adapter_name;
-            my $adapter = $adapter_name->new( data => $data );
-            $data = $adapter->traces();
-        };
-        if ($@) {
-            warn 'Cannot load adapter: ' . $adapter_name . '. ' . $@;
-        }
+my $data           = shift;
+my $json_formatter = JSON->new->allow_blessed(1)->convert_blessed(1);
+local *PDL::TO_JSON = sub { $_[0]->unpdl };
+if ( Ref::Util::is_blessed_ref($data) ) {
+    my $adapter_name = 'Chart::Plotly::Adapter::' . ref $data;
+    eval {
+        load $adapter_name;
+        my $adapter = $adapter_name->new( data => $data );
+        $data = $adapter->traces();
+    };
+    if ($@) {
+        warn 'Cannot load adapter: ' . $adapter_name . '. ' . $@;
     }
-    my $data_string = $json_formatter->encode($data);
-    return $data_string;
+}
+my $data_string = $json_formatter->encode($data);
+return $data_string;
 }
 
 =head2 html_plot
@@ -172,18 +188,18 @@ Data to be represented. The format is the same as the parameter data in render_f
 =cut
 
 sub html_plot {
-    my @data_to_plot = @_;
+my @data_to_plot = @_;
 
-    my $rendered_cells = "";
-    for my $data (@data_to_plot) {
-        my $id = create_uuid_as_string(UUID_TIME); 
-        if ( Ref::Util::is_blessed_ref($data) && $data->isa('Chart::Plotly::Plot') ) {
-            $rendered_cells .= $data->html( div_id => $id );
-        } else {
-            $rendered_cells .= _render_cell( _process_data($data), $id );
-        }
+my $rendered_cells = "";
+for my $data (@data_to_plot) {
+    my $id = create_uuid_as_string(UUID_TIME); 
+    if ( Ref::Util::is_blessed_ref($data) && $data->isa('Chart::Plotly::Plot') ) {
+        $rendered_cells .= $data->html( div_id => $id );
+    } else {
+        $rendered_cells .= _render_cell( _process_data($data), $id );
     }
-    return _render_html_wrap($rendered_cells);
+}
+return _render_html_wrap($rendered_cells);
 }
 
 =head2 show_plot
@@ -197,7 +213,7 @@ Data to be represented. The format is the same as the parameter data in render_f
 =cut
 
 sub show_plot {
-    HTML::Show::show(html_plot(@_));
+HTML::Show::show(html_plot(@_));
 }
 
 1;
