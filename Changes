@@ -1,3 +1,5 @@
+0.015 2018-04-01 09:27:00+0000
+  - Remove _Deparsed_XSubs.pm from distribution added by mistake
 0.014 2018-03-31 20:22:00+0000
   -INCOMPATIBLE CHANGE: Chart::Plotly::Trace::Attribute::* classes were moved to the corresponding trace,
     for example: Chart::Plotly::Trace::Attribute::Marker now is a clase per trace: Chart::Plotly::Trace::Scatter::Marker
