@@ -39,24 +39,27 @@ Plugin to display automatically L<Chart::Plotly> plot objects in Jupyter noteboo
 
 =cut
 
-my $require_plotly = '
+my $require_plotly = <<'EOJS';
 <script>
-            if(!window.Plotly) {
+//@ sourceURL=iperl-devel-plugin-chart-plotly.js
+            $('#Plotly').each(function(i, e) { $(e).attr('id', 'plotly') });
+
+            if (!window.Plotly) {
                 requirejs.config({
-                    paths: { 
-                    \'plotly\': [\'https://cdn.plot.ly/plotly-latest.min\']},
+                  paths: {
+                    plotly: ['https://cdn.plot.ly/plotly-latest.min']},
                 });
                 window.Plotly = {
-                    "plot" : function(div, data, layout) {
-                    require([\'plotly\'],
-                    function(plotly) {window.Plotly=plotly;
-                        Plotly.plot(div, data, layout);
-                        });
-                    }
+                  plot : function(div, data, layout) {
+                    require(['plotly'], function(plotly) {
+                      window.Plotly=plotly;
+                      Plotly.plot(div, data, layout);
+                    });
+                  }
                 }
             }
 </script>
-';
+EOJS
 
 
 =head2 register
@@ -105,11 +108,10 @@ use Devel::IPerl::Display::HTML;
 sub iperl_data_representations {
     require Chart::Plotly::Plot;
 	my ($trace) = @_;
-    my $plot = Chart::Plotly::Plot->new(traces => [$trace]); 
+    my $plot = Chart::Plotly::Plot->new(traces => [$trace]);
     Devel::IPerl::Display::HTML->new($require_plotly . $plot->html)->iperl_data_representations;
 }
 
 }
 
-1; 
-
+1;
