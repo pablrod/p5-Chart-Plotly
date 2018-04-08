@@ -35,6 +35,8 @@ use namespace::autoclean;
 
 Plugin to display automatically L<Chart::Plotly> plot objects in Jupyter notebooks using kernel L<Devel::IPerl>
 
+The example above can be viewed in L<nbviewer|http://nbviewer.jupyter.org/github/pablrod/p5-Devel-IPerl-Plugin-Chart-Plotly/blob/master/examples/PlotlyPlugin.ipynb>
+
 =head1 INSTANCE METHODS
 
 =cut
