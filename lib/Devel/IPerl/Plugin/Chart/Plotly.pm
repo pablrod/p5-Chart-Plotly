@@ -41,7 +41,7 @@ Plugin to display automatically L<Chart::Plotly> plot objects in Jupyter noteboo
 
 my $require_plotly = <<'EOJS';
 <script>
-//@ sourceURL=iperl-devel-plugin-chart-plotly.js
+//# sourceURL=iperl-devel-plugin-chart-plotly.js
             $('#Plotly').each(function(i, e) { $(e).attr('id', 'plotly') });
 
             if (!window.Plotly) {
