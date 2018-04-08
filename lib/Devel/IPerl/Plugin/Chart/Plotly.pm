@@ -92,7 +92,7 @@ use Devel::IPerl::Display::HTML;
 
 sub iperl_data_representations {
 	my ($plot) = @_;
-    Devel::IPerl::Display::HTML->new($require_plotly . $plot->html)->iperl_data_representations;
+    Devel::IPerl::Display::HTML->new($require_plotly . $plot->html(load_plotly_using_script_tag => 0))->iperl_data_representations;
 }
 
 }
@@ -109,7 +109,7 @@ sub iperl_data_representations {
     require Chart::Plotly::Plot;
 	my ($trace) = @_;
     my $plot = Chart::Plotly::Plot->new(traces => [$trace]);
-    Devel::IPerl::Display::HTML->new($require_plotly . $plot->html)->iperl_data_representations;
+    Devel::IPerl::Display::HTML->new($require_plotly . $plot->html(load_plotly_using_script_tag => 0))->iperl_data_representations;
 }
 
 }
