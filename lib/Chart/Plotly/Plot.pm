@@ -59,12 +59,13 @@ sub html {
     my $self     = shift;
     my %params   = @_;
     my $chart_id = $params{'div_id'} // create_uuid_as_string(UUID_TIME);
+    my $load_plotly_using_script_tag = $params{'load_plotly_using_script_tag'} // 1;
     my $layout = $self->layout;
     if (defined $layout) {
 	$layout = Chart::Plotly::_process_data( $layout );
     }
     return Chart::Plotly::_render_cell(
-        Chart::Plotly::_process_data( $self->traces() ), $chart_id, $layout );
+        Chart::Plotly::_process_data( $self->traces() ), $chart_id, $layout, {load_plotly_using_script_tag => $load_plotly_using_script_tag});
 }
 
 1;

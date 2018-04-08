@@ -61,7 +61,7 @@ Example screenshot of plots generated with examples/traces/*.pl:
 =begin HTML
 
 <p>
-<img src="https://raw.githubusercontent.com/pablrod/p5-Chart-Plotly/master/examples/montage_all_traces.png" alt="Montage of all examples">
+<img src="https://raw.githubusercontent.com/pablrod/p5-Chart-Bokeh/master/examples/montage_all_traces.png" alt="Montage of all examples">
 </p>
 
 =end HTML
@@ -140,20 +140,25 @@ sub _render_cell {
 my $data_string = shift();
 my $chart_id    = shift() // create_uuid_as_string(UUID_TIME);
 my $layout      = shift();
+my $extra       = shift() // {load_plotly_using_script_tag => 1};
 if (defined $layout) {
 $layout = "," . $layout; 	
-}	
+}
+my $load_plotly = '';
+if (${$extra}{'load_plotly_using_script_tag'}) {
+    $load_plotly = '<script src="https://cdn.plot.ly/plotly-'. plotlyjs_version() . '.min.js"></script>';
+}
 my $template    = <<'TEMPLATE';
 <div id="{$chart_id}"></div>
-<script src="https://cdn.plot.ly/plotly-{$version}.min.js"></script>
+{$load_plotly}
 <script>
 Plotly.plot(document.getElementById('{$chart_id}'),{$data} {$layout});
 </script>
 TEMPLATE
 
-my $template_variables = { data     => $data_string,
-                           chart_id => $chart_id,
-                           version  => plotlyjs_version(),
+my $template_variables = { data        => $data_string,
+                           chart_id    => $chart_id,
+                           load_plotly => $load_plotly, 
                defined $layout ? (layout   => $layout) : ()
 };
 return Text::Template::fill_in_string( $template, HASH => $template_variables );
