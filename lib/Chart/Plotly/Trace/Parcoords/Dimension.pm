@@ -75,14 +75,14 @@ sub TO_JSON {
 
 =item * constraintrange
 
-The domain range to which the filter on the dimension is constrained. Must be an array of `[fromValue, toValue]` with finite numbers as elements.
+The domain range to which the filter on the dimension is constrained. Must be an array of `[fromValue, toValue]` with `fromValue <= toValue`, or if `multiselect` is not disabled, you may give an array of arrays, where each inner array is `[fromValue, toValue]`.
 
 =cut
 
 has constraintrange => (
     is => "rw",
     isa => "ArrayRef|PDL",
-    documentation => "The domain range to which the filter on the dimension is constrained. Must be an array of `[fromValue, toValue]` with finite numbers as elements.",
+    documentation => "The domain range to which the filter on the dimension is constrained. Must be an array of `[fromValue, toValue]` with `fromValue <= toValue`, or if `multiselect` is not disabled, you may give an array of arrays, where each inner array is `[fromValue, toValue]`.",
 );
 
 =item * description
@@ -105,6 +105,18 @@ has label => (
     is => "rw",
     isa => "Str",
     documentation => "The shown name of the dimension.",
+);
+
+=item * multiselect
+
+Do we allow multiple selection ranges or just a single range?
+
+=cut
+
+has multiselect => (
+    is => "rw",
+    isa => "Bool",
+    documentation => "Do we allow multiple selection ranges or just a single range?",
 );
 
 =item * range

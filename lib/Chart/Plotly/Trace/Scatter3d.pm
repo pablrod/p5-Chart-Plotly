@@ -15,6 +15,7 @@ use Chart::Plotly::Trace::Scatter3d::Marker;
 use Chart::Plotly::Trace::Scatter3d::Projection;
 use Chart::Plotly::Trace::Scatter3d::Stream;
 use Chart::Plotly::Trace::Scatter3d::Textfont;
+use Chart::Plotly::Trace::Scatter3d::Transform;
 
 
 # VERSION
@@ -465,6 +466,16 @@ has textsrc => (
     is => "rw",
     isa => "Str",
     documentation => "Sets the source reference on plot.ly for  text .",
+);
+
+=item * transforms
+
+
+=cut
+
+has transforms => (
+    is => "rw",
+    isa => "ArrayRef|ArrayRef[Chart::Plotly::Trace::Scatter3d::Transform]",
 );
 
 =item * uid

@@ -84,30 +84,6 @@ has line => (
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Ohlc::Decreasing::Line",
 );
 
-=item * name
-
-Sets the segment name. The segment name appear as the legend item and on hover.
-
-=cut
-
-has name => (
-    is => "rw",
-    isa => "Str",
-    documentation => "Sets the segment name. The segment name appear as the legend item and on hover.",
-);
-
-=item * showlegend
-
-Determines whether or not an item corresponding to this segment is shown in the legend.
-
-=cut
-
-has showlegend => (
-    is => "rw",
-    isa => "Bool",
-    documentation => "Determines whether or not an item corresponding to this segment is shown in the legend.",
-);
-
 =pod
 
 =back

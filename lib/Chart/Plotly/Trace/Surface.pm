@@ -12,6 +12,7 @@ use Chart::Plotly::Trace::Surface::Hoverlabel;
 use Chart::Plotly::Trace::Surface::Lighting;
 use Chart::Plotly::Trace::Surface::Lightposition;
 use Chart::Plotly::Trace::Surface::Stream;
+use Chart::Plotly::Trace::Surface::Transform;
 
 
 # VERSION
@@ -458,6 +459,16 @@ has textsrc => (
     is => "rw",
     isa => "Str",
     documentation => "Sets the source reference on plot.ly for  text .",
+);
+
+=item * transforms
+
+
+=cut
+
+has transforms => (
+    is => "rw",
+    isa => "ArrayRef|ArrayRef[Chart::Plotly::Trace::Surface::Transform]",
 );
 
 =item * uid

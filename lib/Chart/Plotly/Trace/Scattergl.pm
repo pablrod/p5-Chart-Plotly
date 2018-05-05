@@ -13,6 +13,7 @@ use Chart::Plotly::Trace::Scattergl::Line;
 use Chart::Plotly::Trace::Scattergl::Marker;
 use Chart::Plotly::Trace::Scattergl::Selected;
 use Chart::Plotly::Trace::Scattergl::Stream;
+use Chart::Plotly::Trace::Scattergl::Transform;
 use Chart::Plotly::Trace::Scattergl::Unselected;
 
 
@@ -423,6 +424,16 @@ has textsrc => (
     documentation => "Sets the source reference on plot.ly for  text .",
 );
 
+=item * transforms
+
+
+=cut
+
+has transforms => (
+    is => "rw",
+    isa => "ArrayRef|ArrayRef[Chart::Plotly::Trace::Scattergl::Transform]",
+);
+
 =item * uid
 
 
@@ -539,13 +550,13 @@ has y0 => (
 
 =item * yaxis
 
-Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.xaxis2`, and so on.
+Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
 
 =cut
 
 has yaxis => (
     is => "rw",
-    documentation => "Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.xaxis2`, and so on.",
+    documentation => "Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.",
 );
 
 =item * ycalendar

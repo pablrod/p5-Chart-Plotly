@@ -11,11 +11,12 @@ use Chart::Plotly::Trace::Ohlc::Hoverlabel;
 use Chart::Plotly::Trace::Ohlc::Increasing;
 use Chart::Plotly::Trace::Ohlc::Line;
 use Chart::Plotly::Trace::Ohlc::Stream;
+use Chart::Plotly::Trace::Ohlc::Transform;
 
 
 # VERSION
 
-# ABSTRACT: The ohlc (short for Open-High-Low-Close) is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The tip of the lines represent the `low` and `high` values and the horizontal segments represent the `open` and `close` values. Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing candles are drawn in green whereas decreasing are drawn in red.
+# ABSTRACT: The ohlc (short for Open-High-Low-Close) is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The tip of the lines represent the `low` and `high` values and the horizontal segments represent the `open` and `close` values. Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing items are drawn in green whereas decreasing are drawn in red.
 
 =encoding utf-8
 
@@ -25,7 +26,7 @@ use Chart::Plotly::Trace::Ohlc::Stream;
 
 =head1 DESCRIPTION
 
-The ohlc (short for Open-High-Low-Close) is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The tip of the lines represent the `low` and `high` values and the horizontal segments represent the `open` and `close` values. Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing candles are drawn in green whereas decreasing are drawn in red.
+The ohlc (short for Open-High-Low-Close) is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The tip of the lines represent the `low` and `high` values and the horizontal segments represent the `open` and `close` values. Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing items are drawn in green whereas decreasing are drawn in red.
 
 Screenshot of the above example:
 
@@ -427,6 +428,16 @@ has tickwidth => (
     documentation => "Sets the width of the open/close tick marks relative to the *x* minimal interval.",
 );
 
+=item * transforms
+
+
+=cut
+
+has transforms => (
+    is => "rw",
+    isa => "ArrayRef|ArrayRef[Chart::Plotly::Trace::Ohlc::Transform]",
+);
+
 =item * uid
 
 
@@ -497,13 +508,13 @@ has xsrc => (
 
 =item * yaxis
 
-Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.xaxis2`, and so on.
+Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
 
 =cut
 
 has yaxis => (
     is => "rw",
-    documentation => "Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.xaxis2`, and so on.",
+    documentation => "Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.",
 );
 
 =pod

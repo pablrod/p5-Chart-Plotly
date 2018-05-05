@@ -11,6 +11,7 @@ use Chart::Plotly::Trace::Table::Domain;
 use Chart::Plotly::Trace::Table::Header;
 use Chart::Plotly::Trace::Table::Hoverlabel;
 use Chart::Plotly::Trace::Table::Stream;
+use Chart::Plotly::Trace::Table::Transform;
 
 
 # VERSION
@@ -341,6 +342,16 @@ has showlegend => (
 has stream => (
     is => "rw",
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Table::Stream",
+);
+
+=item * transforms
+
+
+=cut
+
+has transforms => (
+    is => "rw",
+    isa => "ArrayRef|ArrayRef[Chart::Plotly::Trace::Table::Transform]",
 );
 
 =item * uid

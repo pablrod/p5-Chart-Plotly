@@ -9,6 +9,7 @@ if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
 use Chart::Plotly::Trace::Area::Hoverlabel;
 use Chart::Plotly::Trace::Area::Marker;
 use Chart::Plotly::Trace::Area::Stream;
+use Chart::Plotly::Trace::Area::Transform;
 
 
 # VERSION
@@ -307,6 +308,16 @@ has t => (
     is => "rw",
     isa => "ArrayRef|PDL",
     documentation => "For legacy polar chart only.Please switch to *scatterpolar* trace type.Sets the angular coordinates.",
+);
+
+=item * transforms
+
+
+=cut
+
+has transforms => (
+    is => "rw",
+    isa => "ArrayRef|ArrayRef[Chart::Plotly::Trace::Area::Transform]",
 );
 
 =item * tsrc

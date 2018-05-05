@@ -14,6 +14,7 @@ use Chart::Plotly::Trace::Parcoords::Line;
 use Chart::Plotly::Trace::Parcoords::Rangefont;
 use Chart::Plotly::Trace::Parcoords::Stream;
 use Chart::Plotly::Trace::Parcoords::Tickfont;
+use Chart::Plotly::Trace::Parcoords::Transform;
 
 
 # VERSION
@@ -326,6 +327,16 @@ has stream => (
 has tickfont => (
     is => "rw",
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Parcoords::Tickfont",
+);
+
+=item * transforms
+
+
+=cut
+
+has transforms => (
+    is => "rw",
+    isa => "ArrayRef|ArrayRef[Chart::Plotly::Trace::Parcoords::Transform]",
 );
 
 =item * uid
