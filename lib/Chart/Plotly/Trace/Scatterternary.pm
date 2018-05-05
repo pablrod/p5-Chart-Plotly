@@ -12,6 +12,7 @@ use Chart::Plotly::Trace::Scatterternary::Marker;
 use Chart::Plotly::Trace::Scatterternary::Selected;
 use Chart::Plotly::Trace::Scatterternary::Stream;
 use Chart::Plotly::Trace::Scatterternary::Textfont;
+use Chart::Plotly::Trace::Scatterternary::Transform;
 use Chart::Plotly::Trace::Scatterternary::Unselected;
 
 
@@ -541,6 +542,16 @@ has textsrc => (
     is => "rw",
     isa => "Str",
     documentation => "Sets the source reference on plot.ly for  text .",
+);
+
+=item * transforms
+
+
+=cut
+
+has transforms => (
+    is => "rw",
+    isa => "ArrayRef|ArrayRef[Chart::Plotly::Trace::Scatterternary::Transform]",
 );
 
 =item * uid

@@ -13,6 +13,7 @@ use Chart::Plotly::Trace::Pie::Marker;
 use Chart::Plotly::Trace::Pie::Outsidetextfont;
 use Chart::Plotly::Trace::Pie::Stream;
 use Chart::Plotly::Trace::Pie::Textfont;
+use Chart::Plotly::Trace::Pie::Transform;
 
 
 # VERSION
@@ -530,6 +531,16 @@ has textsrc => (
     is => "rw",
     isa => "Str",
     documentation => "Sets the source reference on plot.ly for  text .",
+);
+
+=item * transforms
+
+
+=cut
+
+has transforms => (
+    is => "rw",
+    isa => "ArrayRef|ArrayRef[Chart::Plotly::Trace::Pie::Transform]",
 );
 
 =item * uid

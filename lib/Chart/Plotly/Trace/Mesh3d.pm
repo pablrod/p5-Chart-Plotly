@@ -12,6 +12,7 @@ use Chart::Plotly::Trace::Mesh3d::Hoverlabel;
 use Chart::Plotly::Trace::Mesh3d::Lighting;
 use Chart::Plotly::Trace::Mesh3d::Lightposition;
 use Chart::Plotly::Trace::Mesh3d::Stream;
+use Chart::Plotly::Trace::Mesh3d::Transform;
 
 
 # VERSION
@@ -589,6 +590,16 @@ has textsrc => (
     is => "rw",
     isa => "Str",
     documentation => "Sets the source reference on plot.ly for  text .",
+);
+
+=item * transforms
+
+
+=cut
+
+has transforms => (
+    is => "rw",
+    isa => "ArrayRef|ArrayRef[Chart::Plotly::Trace::Mesh3d::Transform]",
 );
 
 =item * uid

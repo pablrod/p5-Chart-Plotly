@@ -11,6 +11,7 @@ use Chart::Plotly::Trace::Scatterpolargl::Line;
 use Chart::Plotly::Trace::Scatterpolargl::Marker;
 use Chart::Plotly::Trace::Scatterpolargl::Selected;
 use Chart::Plotly::Trace::Scatterpolargl::Stream;
+use Chart::Plotly::Trace::Scatterpolargl::Transform;
 use Chart::Plotly::Trace::Scatterpolargl::Unselected;
 
 
@@ -446,6 +447,16 @@ has thetaunit => (
     is => "rw",
     isa => enum(["radians","degrees","gradians"]),
     documentation => "Sets the unit of input *theta* values. Has an effect only when on *linear* angular axes.",
+);
+
+=item * transforms
+
+
+=cut
+
+has transforms => (
+    is => "rw",
+    isa => "ArrayRef|ArrayRef[Chart::Plotly::Trace::Scatterpolargl::Transform]",
 );
 
 =item * uid

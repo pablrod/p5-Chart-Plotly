@@ -12,6 +12,7 @@ use Chart::Plotly::Trace::Sankey::Link;
 use Chart::Plotly::Trace::Sankey::Node;
 use Chart::Plotly::Trace::Sankey::Stream;
 use Chart::Plotly::Trace::Sankey::Textfont;
+use Chart::Plotly::Trace::Sankey::Transform;
 
 
 # VERSION
@@ -328,6 +329,16 @@ has stream => (
 has textfont => (
     is => "rw",
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Sankey::Textfont",
+);
+
+=item * transforms
+
+
+=cut
+
+has transforms => (
+    is => "rw",
+    isa => "ArrayRef|ArrayRef[Chart::Plotly::Trace::Sankey::Transform]",
 );
 
 =item * uid

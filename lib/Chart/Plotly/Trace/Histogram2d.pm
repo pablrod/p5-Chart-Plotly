@@ -10,6 +10,7 @@ use Chart::Plotly::Trace::Histogram2d::Colorbar;
 use Chart::Plotly::Trace::Histogram2d::Hoverlabel;
 use Chart::Plotly::Trace::Histogram2d::Marker;
 use Chart::Plotly::Trace::Histogram2d::Stream;
+use Chart::Plotly::Trace::Histogram2d::Transform;
 use Chart::Plotly::Trace::Histogram2d::Xbins;
 use Chart::Plotly::Trace::Histogram2d::Ybins;
 
@@ -405,6 +406,16 @@ has stream => (
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Histogram2d::Stream",
 );
 
+=item * transforms
+
+
+=cut
+
+has transforms => (
+    is => "rw",
+    isa => "ArrayRef|ArrayRef[Chart::Plotly::Trace::Histogram2d::Transform]",
+);
+
 =item * uid
 
 
@@ -509,13 +520,13 @@ has y => (
 
 =item * yaxis
 
-Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.xaxis2`, and so on.
+Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
 
 =cut
 
 has yaxis => (
     is => "rw",
-    documentation => "Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.xaxis2`, and so on.",
+    documentation => "Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.",
 );
 
 =item * ybins

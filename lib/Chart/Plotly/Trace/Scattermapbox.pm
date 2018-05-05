@@ -12,6 +12,7 @@ use Chart::Plotly::Trace::Scattermapbox::Marker;
 use Chart::Plotly::Trace::Scattermapbox::Selected;
 use Chart::Plotly::Trace::Scattermapbox::Stream;
 use Chart::Plotly::Trace::Scattermapbox::Textfont;
+use Chart::Plotly::Trace::Scattermapbox::Transform;
 use Chart::Plotly::Trace::Scattermapbox::Unselected;
 
 
@@ -470,6 +471,16 @@ has textsrc => (
     is => "rw",
     isa => "Str",
     documentation => "Sets the source reference on plot.ly for  text .",
+);
+
+=item * transforms
+
+
+=cut
+
+has transforms => (
+    is => "rw",
+    isa => "ArrayRef|ArrayRef[Chart::Plotly::Trace::Scattermapbox::Transform]",
 );
 
 =item * uid

@@ -12,6 +12,7 @@ use Chart::Plotly::Trace::Scattergeo::Marker;
 use Chart::Plotly::Trace::Scattergeo::Selected;
 use Chart::Plotly::Trace::Scattergeo::Stream;
 use Chart::Plotly::Trace::Scattergeo::Textfont;
+use Chart::Plotly::Trace::Scattergeo::Transform;
 use Chart::Plotly::Trace::Scattergeo::Unselected;
 
 
@@ -518,6 +519,16 @@ has textsrc => (
     is => "rw",
     isa => "Str",
     documentation => "Sets the source reference on plot.ly for  text .",
+);
+
+=item * transforms
+
+
+=cut
+
+has transforms => (
+    is => "rw",
+    isa => "ArrayRef|ArrayRef[Chart::Plotly::Trace::Scattergeo::Transform]",
 );
 
 =item * uid
