@@ -61,7 +61,7 @@ Example screenshot of plots generated with examples/traces/*.pl:
 =begin HTML
 
 <p>
-<img src="https://raw.githubusercontent.com/pablrod/p5-Chart-Bokeh/master/examples/montage_all_traces.png" alt="Montage of all examples">
+<img src="https://raw.githubusercontent.com/pablrod/p5-Chart-Plotly/master/examples/montage_all_traces.png" alt="Montage of all examples">
 </p>
 
 =end HTML
