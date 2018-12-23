@@ -1,89 +1,65 @@
-package Chart::Plotly::Plot;
+package Chart::Plotly::Image::Orca;
 
 use Moose;
+use File::Which;
 use utf8;
-
-use UUID::Tiny ':std';
 
 # VERSION
 
-use Chart::Plotly;
+my $ORCA_COMMAND = 'orca';
 
 =encoding utf-8
 
 =head1 NAME
 
-Chart::Plotly::Plot - Set of traces with their options and data
+Chart::Plotly::Image::Orca - Export static images of Plotly charts using orca
 
 =head1 SYNOPSIS
 
-# EXAMPLE: examples/plot_object.pl
+# EXAMPLE: examples/orca.pl
      
 =head1 DESCRIPTION
 
-Represent a full plot composed of one or more traces (Chart::Plotly::Trace::*)
+This module generate static images of Plotly charts without a browser using
+L<Orca|https://github.com/plotly/orca>
+
+Orca is an L<Electron|https://electronjs.org/> app that must be installed before
+using this module. See L<https://github.com/plotly/orca#installation>
 
 =head1 METHODS
 
 =cut
 
-has traces => (
-    traits  => ['Array'],
-    is      => 'rw',
-    isa     => 'ArrayRef',
-    default => sub { [] },
-    handles => {
-        add_trace    => 'push',
-        get_trace    => 'get',
-        insert_trace => 'insert',
-        delete_trace => 'delete'
-    }
-);
+=head2 orca
 
-has layout => (
-   is => 'rw',
-   isa => 'HashRef'
-);
+Export L<Chart::Plotly::Plot> as a static image file
 
-=head2 html
+=over 4
 
-Returns the html corresponding to the plot
+=item plot
 
-=head3 Parameters
+Object to export
 
+=item file
 
+Filename (with or without path) to export
+
+=back
 
 =cut
 
-sub html {
-    my $self     = shift;
-    my %params   = @_;
-    my $chart_id = $params{'div_id'} // create_uuid_as_string(UUID_TIME);
-    my $load_plotly_using_script_tag = $params{'load_plotly_using_script_tag'} // 1;
-    my $layout = $self->layout;
-    if (defined $layout) {
-	$layout = Chart::Plotly::_process_data( $layout );
+sub orca {
+    my %params = @_;
+
+    # TODO we should check for plotly command (orca is also a screen reader: https://help.gnome.org/users/orca/stable/)
+    if (which($ORCA_COMMAND)) {
+        my $plot = $params{plot};
+        my @orca_line = ($ORCA_COMMAND, 'graph', "'" . $plot->TO_JSON . "'", '-o', $params{file});
+        my $orca_line = join(" ", @orca_line);
+        system ($orca_line);
+    } else {
+        warn "Orca tool must be installed and in PATH in order to export images";
     }
-    return Chart::Plotly::_render_cell(
-        Chart::Plotly::_process_data( $self->traces() ), $chart_id, $layout, {load_plotly_using_script_tag => $load_plotly_using_script_tag});
-}
-
-=head2 TO_JSON
-
-Returns the json corresponding to the plot
-
-=cut
-
-sub TO_JSON {
-    my $self     = shift;
-    my $layout = $self->layout;
-    my $json = '{ "data": ' . 
-            Chart::Plotly::_process_data( $self->traces() );
-    if (defined $layout) {
-	    $layout = Chart::Plotly::_process_data( $layout );
-        $json .= ', "layout": ' .  $layout;
-    }
-    return $json . " }";
 }
 
 1;
@@ -107,7 +83,7 @@ If you like plotly.js please consider supporting them purchasing a pro subscript
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2016 Pablo Rodríguez González.
+Copyright 2018 Pablo Rodríguez González.
 
 The MIT License (MIT)
 
