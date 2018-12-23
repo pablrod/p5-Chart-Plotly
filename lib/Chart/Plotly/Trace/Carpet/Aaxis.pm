@@ -8,7 +8,7 @@ if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
 
 use Chart::Plotly::Trace::Carpet::Aaxis::Tickfont;
 use Chart::Plotly::Trace::Carpet::Aaxis::Tickformatstop;
-use Chart::Plotly::Trace::Carpet::Aaxis::Titlefont;
+use Chart::Plotly::Trace::Carpet::Aaxis::Title;
 
 
 # VERSION
@@ -660,36 +660,12 @@ has tickvalssrc => (
 
 =item * title
 
-Sets the title of this axis.
 
 =cut
 
 has title => (
     is => "rw",
-    isa => "Str",
-    documentation => "Sets the title of this axis.",
-);
-
-=item * titlefont
-
-
-=cut
-
-has titlefont => (
-    is => "rw",
-    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Carpet::Aaxis::Titlefont",
-);
-
-=item * titleoffset
-
-An additional amount by which to offset the title from the tick labels, given in pixels
-
-=cut
-
-has titleoffset => (
-    is => "rw",
-    isa => "Num",
-    documentation => "An additional amount by which to offset the title from the tick labels, given in pixels",
+    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Carpet::Aaxis::Title",
 );
 
 =pod

@@ -96,6 +96,18 @@ has dash => (
     documentation => "Sets the style of the lines.",
 );
 
+=item * shape
+
+Determines the line shape. The values correspond to step-wise line shapes.
+
+=cut
+
+has shape => (
+    is => "rw",
+    isa => enum(["linear","hv","vh","hvh","vhv"]),
+    documentation => "Determines the line shape. The values correspond to step-wise line shapes.",
+);
+
 =item * width
 
 Sets the line width (in px).

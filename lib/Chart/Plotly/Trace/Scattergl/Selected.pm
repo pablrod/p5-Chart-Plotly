@@ -7,6 +7,7 @@ if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
 }
 
 use Chart::Plotly::Trace::Scattergl::Selected::Marker;
+use Chart::Plotly::Trace::Scattergl::Selected::Textfont;
 
 
 # VERSION
@@ -82,6 +83,16 @@ sub TO_JSON {
 has marker => (
     is => "rw",
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Scattergl::Selected::Marker",
+);
+
+=item * textfont
+
+
+=cut
+
+has textfont => (
+    is => "rw",
+    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Scattergl::Selected::Textfont",
 );
 
 =pod

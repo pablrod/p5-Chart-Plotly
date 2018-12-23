@@ -75,14 +75,14 @@ sub TO_JSON {
 
 =item * color
 
-Sets the marker color. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `cmin` and `cmax` if set.
+Area traces are deprecated! Please switch to the *barpolar* trace type. Sets themarkercolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
 
 =cut
 
 has color => (
     is => "rw",
     isa => "Maybe[ArrayRef]",
-    documentation => "Sets the marker color. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `cmin` and `cmax` if set.",
+    documentation => "Area traces are deprecated! Please switch to the *barpolar* trace type. Sets themarkercolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.",
 );
 
 =item * colorsrc
@@ -99,14 +99,14 @@ has colorsrc => (
 
 =item * opacity
 
-Sets the marker opacity.
+Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the marker opacity.
 
 =cut
 
 has opacity => (
     is => "rw",
     isa => "Num|ArrayRef[Num]",
-    documentation => "Sets the marker opacity.",
+    documentation => "Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the marker opacity.",
 );
 
 =item * opacitysrc
@@ -123,14 +123,14 @@ has opacitysrc => (
 
 =item * size
 
-Sets the marker size (in px).
+Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the marker size (in px).
 
 =cut
 
 has size => (
     is => "rw",
     isa => "Num|ArrayRef[Num]",
-    documentation => "Sets the marker size (in px).",
+    documentation => "Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the marker size (in px).",
 );
 
 =item * sizesrc
@@ -147,14 +147,14 @@ has sizesrc => (
 
 =item * symbol
 
-Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or *dot-open* to a symbol name.
+Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or *dot-open* to a symbol name.
 
 =cut
 
 has symbol => (
     is => "rw",
     isa => "Maybe[ArrayRef]",
-    documentation => "Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or *dot-open* to a symbol name.",
+    documentation => "Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or *dot-open* to a symbol name.",
 );
 
 =item * symbolsrc

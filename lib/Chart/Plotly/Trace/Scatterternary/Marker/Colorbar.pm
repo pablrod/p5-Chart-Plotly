@@ -8,7 +8,7 @@ if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
 
 use Chart::Plotly::Trace::Scatterternary::Marker::Colorbar::Tickfont;
 use Chart::Plotly::Trace::Scatterternary::Marker::Colorbar::Tickformatstop;
-use Chart::Plotly::Trace::Scatterternary::Marker::Colorbar::Titlefont;
+use Chart::Plotly::Trace::Scatterternary::Marker::Colorbar::Title;
 
 
 # VERSION
@@ -465,36 +465,12 @@ has tickwidth => (
 
 =item * title
 
-Sets the title of the color bar.
 
 =cut
 
 has title => (
     is => "rw",
-    isa => "Str",
-    documentation => "Sets the title of the color bar.",
-);
-
-=item * titlefont
-
-
-=cut
-
-has titlefont => (
-    is => "rw",
-    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Scatterternary::Marker::Colorbar::Titlefont",
-);
-
-=item * titleside
-
-Determines the location of the colorbar title with respect to the color bar.
-
-=cut
-
-has titleside => (
-    is => "rw",
-    isa => enum(["right","top","bottom"]),
-    documentation => "Determines the location of the colorbar title with respect to the color bar.",
+    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Scatterternary::Marker::Colorbar::Title",
 );
 
 =item * x
