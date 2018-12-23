@@ -156,6 +156,18 @@ has namelengthsrc => (
     documentation => "Sets the source reference on plot.ly for  namelength .",
 );
 
+=item * split
+
+Show hover information (open, close, high, low) in separate labels.
+
+=cut
+
+has split => (
+    is => "rw",
+    isa => "Bool",
+    documentation => "Show hover information (open, close, high, low) in separate labels.",
+);
+
 =pod
 
 =back

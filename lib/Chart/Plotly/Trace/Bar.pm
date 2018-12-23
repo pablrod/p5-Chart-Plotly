@@ -269,6 +269,30 @@ has hoverlabel => (
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Bar::Hoverlabel",
 );
 
+=item * hovertemplate
+
+Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". See https://github.com/d3/d3-format/blob/master/README.md#locale_format for details on the formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>".
+
+=cut
+
+has hovertemplate => (
+    is => "rw",
+    isa => "Str|ArrayRef[Str]",
+    documentation => "Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:\$.2f}\". See https://github.com/d3/d3-format/blob/master/README.md#locale_format for details on the formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\".",
+);
+
+=item * hovertemplatesrc
+
+Sets the source reference on plot.ly for  hovertemplate .
+
+=cut
+
+has hovertemplatesrc => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the source reference on plot.ly for  hovertemplate .",
+);
+
 =item * hovertext
 
 Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo` must contain a *text* flag.
@@ -421,14 +445,14 @@ has outsidetextfont => (
 
 =item * r
 
-For legacy polar chart only.Please switch to *scatterpolar* trace type.Sets the radial coordinates.
+r coordinates in scatter traces are deprecated!Please switch to the *scatterpolar* trace type.Sets the radial coordinatesfor legacy polar chart only.
 
 =cut
 
 has r => (
     is => "rw",
     isa => "ArrayRef|PDL",
-    documentation => "For legacy polar chart only.Please switch to *scatterpolar* trace type.Sets the radial coordinates.",
+    documentation => "r coordinates in scatter traces are deprecated!Please switch to the *scatterpolar* trace type.Sets the radial coordinatesfor legacy polar chart only.",
 );
 
 =item * rsrc
@@ -489,14 +513,14 @@ has stream => (
 
 =item * t
 
-For legacy polar chart only.Please switch to *scatterpolar* trace type.Sets the angular coordinates.
+t coordinates in scatter traces are deprecated!Please switch to the *scatterpolar* trace type.Sets the angular coordinatesfor legacy polar chart only.
 
 =cut
 
 has t => (
     is => "rw",
     isa => "ArrayRef|PDL",
-    documentation => "For legacy polar chart only.Please switch to *scatterpolar* trace type.Sets the angular coordinates.",
+    documentation => "t coordinates in scatter traces are deprecated!Please switch to the *scatterpolar* trace type.Sets the angular coordinatesfor legacy polar chart only.",
 );
 
 =item * text
@@ -523,14 +547,14 @@ has textfont => (
 
 =item * textposition
 
-Specifies the location of the `text`. *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside* positions `text` outside, next to the bar end (scaled if needed). *auto* positions `text` inside or outside so that `text` size is maximized.
+Specifies the location of the `text`. *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside* positions `text` outside, next to the bar end (scaled if needed), unless there is another bar stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside the bar, but if the bar is too small and no bar is stacked on this one the text is moved outside.
 
 =cut
 
 has textposition => (
     is => "rw",
     isa => union([enum(["inside","outside","auto","none"]), "ArrayRef"]),
-    documentation => "Specifies the location of the `text`. *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside* positions `text` outside, next to the bar end (scaled if needed). *auto* positions `text` inside or outside so that `text` size is maximized.",
+    documentation => "Specifies the location of the `text`. *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside* positions `text` outside, next to the bar end (scaled if needed), unless there is another bar stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside the bar, but if the bar is too small and no bar is stacked on this one the text is moved outside.",
 );
 
 =item * textpositionsrc
@@ -587,6 +611,18 @@ has tsrc => (
 has uid => (
     is => "rw",
     isa => "Str",
+);
+
+=item * uirevision
+
+Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+
+=cut
+
+has uirevision => (
+    is => "rw",
+    isa => "Any",
+    documentation => "Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.",
 );
 
 =item * unselected
