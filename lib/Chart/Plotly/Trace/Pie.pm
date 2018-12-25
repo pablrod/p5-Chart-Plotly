@@ -195,7 +195,7 @@ Determines which trace information appear on hover. If `none` or `skip` are set,
 
 has hoverinfo => (
     is => "rw",
-    isa => "Maybe[ArrayRef]",
+    isa => "Str|ArrayRef[Str]",
     documentation => "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
 );
 
@@ -519,6 +519,7 @@ Determines which trace information appear on the graph.
 
 has textinfo => (
     is => "rw",
+    isa => "Str",
     documentation => "Determines which trace information appear on the graph.",
 );
 
