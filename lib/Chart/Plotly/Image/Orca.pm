@@ -2,6 +2,7 @@ package Chart::Plotly::Image::Orca;
 
 use Moose;
 use File::Which;
+use Path::Tiny;
 use utf8;
 
 # VERSION
@@ -51,15 +52,41 @@ Filename (with or without path) to export
 sub orca {
     my %params = @_;
 
-    # TODO we should check for plotly command (orca is also a screen reader: https://help.gnome.org/users/orca/stable/)
-    if (which($ORCA_COMMAND)) {
+    if (orca_available()) {
         my $plot = $params{plot};
-        my @orca_line = ($ORCA_COMMAND, 'graph', "'" . $plot->TO_JSON . "'", '-o', $params{file});
+        my $file = path($params{file});
+
+        my $tmp_json = Path::Tiny->tempfile(SUFFIX => '.json');
+        $tmp_json->spew_raw($plot->TO_JSON);
+
+        # For now have to explicitly specify -d as otherwise orca would
+        #  not be able to store output to a different path other than cwd.
+        # See https://github.com/plotly/orca/issues/101
+        my @orca_line = ($ORCA_COMMAND, 'graph', $tmp_json,
+                         '-d', $file->parent,
+                         '-o', $file->basename);
         my $orca_line = join(" ", @orca_line);
+
         system ($orca_line);
-    } else {
-        warn "Orca tool must be installed and in PATH in order to export images";
     }
+}
+
+sub correct_orca {
+    my $orca_help = `$ORCA_COMMAND -h`;
+    return ($orca_help =~ /plotly/i);
+}
+
+sub orca_available {
+    if (not which($ORCA_COMMAND) or not correct_orca()) {
+        die "Orca tool must be installed and in PATH in order to export images";
+    }
+    return 1;
+}
+
+sub orca_version {
+    my $version = `$ORCA_COMMAND --version`;
+    chomp($version);
+    return $version;
 }
 
 1;
