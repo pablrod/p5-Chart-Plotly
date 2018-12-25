@@ -71,10 +71,22 @@ sub orca {
     }
 }
 
+=head2 correct_orca
+
+Checks that orca command available is the plotly image exporter
+
+=cut
+
 sub correct_orca {
     my $orca_help = `$ORCA_COMMAND -h`;
     return ($orca_help =~ /plotly/i);
 }
+
+=head2 orca_available
+
+Checks that orca command is available and the plotly image exporter
+
+=cut
 
 sub orca_available {
     if (not which($ORCA_COMMAND) or not correct_orca()) {
@@ -82,6 +94,12 @@ sub orca_available {
     }
     return 1;
 }
+
+=head2 orca_version
+
+Returns the orca version
+
+=cut
 
 sub orca_version {
     my $version = `$ORCA_COMMAND --version`;
