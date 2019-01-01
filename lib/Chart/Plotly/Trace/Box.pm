@@ -180,7 +180,7 @@ Determines which trace information appear on hover. If `none` or `skip` are set,
 
 has hoverinfo => (
     is => "rw",
-    isa => "Maybe[ArrayRef]",
+    isa => "Str|ArrayRef[Str]",
     documentation => "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
 );
 
@@ -214,6 +214,7 @@ Do the hover effects highlight individual boxes  or sample points or both?
 
 has hoveron => (
     is => "rw",
+    isa => "Str",
     documentation => "Do the hover effects highlight individual boxes  or sample points or both?",
 );
 
