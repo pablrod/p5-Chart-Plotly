@@ -130,6 +130,7 @@ This is free software, licensed under:
 The MIT (X11) License
 ```
 
-# CONTRIBUTOR
+# CONTRIBUTORS
 
-weatherwax <s.g.lobo@hotmail.com>
+- stphnlyd <stephanloyd9@gmail.com>
+- weatherwax <s.g.lobo@hotmail.com>

@@ -68,6 +68,24 @@ sub html {
         Chart::Plotly::_process_data( $self->traces() ), $chart_id, $layout, {load_plotly_using_script_tag => $load_plotly_using_script_tag});
 }
 
+=head2 TO_JSON
+
+Returns the json corresponding to the plot
+
+=cut
+
+sub TO_JSON {
+    my $self     = shift;
+    my $layout = $self->layout;
+    my $json = '{ "data": ' . 
+            Chart::Plotly::_process_data( $self->traces() );
+    if (defined $layout) {
+	    $layout = Chart::Plotly::_process_data( $layout );
+        $json .= ', "layout": ' .  $layout;
+    }
+    return $json . " }";
+}
+
 1;
 
 __END__
