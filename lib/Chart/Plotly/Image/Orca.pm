@@ -11,9 +11,7 @@ my $ORCA_COMMAND = 'orca';
 
 =encoding utf-8
 
-=head1 NAME
-
-Chart::Plotly::Image::Orca - Export static images of Plotly charts using orca
+# ABSTRACT: Export static images of Plotly charts using orca
 
 =head1 SYNOPSIS
 
@@ -27,7 +25,7 @@ L<Orca|https://github.com/plotly/orca>
 Orca is an L<Electron|https://electronjs.org/> app that must be installed before
 using this module. See L<https://github.com/plotly/orca#installation>
 
-=head1 METHODS
+=head1 FUNCTIONS
 
 =cut
 
