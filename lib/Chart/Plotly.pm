@@ -15,6 +15,8 @@ use Module::Load;
 use Ref::Util;
 use HTML::Show;
 use UUID::Tiny ':std';
+use File::ShareDir;
+use Path::Tiny;
 
 # VERSION
 
@@ -144,10 +146,7 @@ my $extra       = shift() // {load_plotly_using_script_tag => 1};
 if (defined $layout) {
 $layout = "," . $layout; 	
 }
-my $load_plotly = '';
-if (${$extra}{'load_plotly_using_script_tag'}) {
-    $load_plotly = '<script src="https://cdn.plot.ly/plotly-'. plotlyjs_version() . '.min.js"></script>';
-}
+my $load_plotly = _load_plotly(${$extra}{'load_plotly_using_script_tag'});
 my $template    = <<'TEMPLATE';
 <div id="{$chart_id}"></div>
 {$load_plotly}
@@ -181,6 +180,23 @@ if ( Ref::Util::is_blessed_ref($data) ) {
 }
 my $data_string = $json_formatter->encode($data);
 return $data_string;
+}
+
+sub _load_plotly {
+    my $how_to_load = shift;
+    if ($how_to_load) {
+        if ($how_to_load eq "1" || $how_to_load eq 'cdn') {
+            return '<script src="https://cdn.plot.ly/plotly-'. plotlyjs_version() . '.min.js"></script>';
+        } elsif ($how_to_load eq 'embed') {
+            my $minified_plotly = File::ShareDir::dist_file('Chart-Plotly', 'plotly.js/plotly.min.js');
+            return '<script>' . Path::Tiny::path($minified_plotly)->slurp . '</script>';
+        } elsif ($how_to_load eq 'module_dist') {
+            my $minified_plotly = File::ShareDir::dist_file('Chart-Plotly', 'plotly.js/plotly.min.js');
+            return '<script src="file://' . $minified_plotly . '"></script>'; 
+        }
+    } else {
+        return '';
+    }
 }
 
 =head2 html_plot
