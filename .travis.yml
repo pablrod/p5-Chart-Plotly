@@ -6,5 +6,5 @@ perl:
   - "5.28"
 sudo: false             
 before_install:
-  - cpanm --notest Pod::Weaver::Section::Contributors Data::Table PDL Data::Frame List::Flatten
+  - cpanm --notest Pod::Weaver::Section::Contributors Data::Table PDL Data::Frame List::Flatten Data::Dataset::Classic
   - eval $(curl https://travis-perl.github.io/init) --auto
