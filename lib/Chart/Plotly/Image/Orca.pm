@@ -35,8 +35,11 @@ using this module. See L<https://github.com/plotly/orca#installation>
 
 Export L<Chart::Plotly::Plot> as a static image file.
 
-Most of the named parameters are mapped to orca's command line options.
+This function is a wrapper over the plotly orca command.
+Most of its named parameters are mapped to orca's command line options.
 See also the output of C<orca graph --help>.
+
+Returns a true value if the orca command is successful.
 
 =over 4
 
@@ -120,8 +123,10 @@ sub orca {
         }
 
         #my $orca_line = join(" ", @orca_line);
-        system (@orca_line);
+        my $rc = system (@orca_line);
+        return 1 unless ($rc >> 8);
     }
+    return;
 }
 
 =head2 correct_orca
