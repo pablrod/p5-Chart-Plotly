@@ -31,7 +31,12 @@ using this module. See L<https://github.com/plotly/orca#installation>
 
 =head2 orca
 
-Export L<Chart::Plotly::Plot> as a static image file
+    orca(plot => $plot, file => $file, %rest)
+
+Export L<Chart::Plotly::Plot> as a static image file.
+
+Most of the named parameters are mapped to orca's command line options.
+See also the output of C<orca graph --help>.
 
 =over 4
 
@@ -43,6 +48,40 @@ Object to export
 
 Filename (with or without path) to export
 
+=item format
+
+Sets the output format (png, jpeg, webp, svg, pdf, eps).
+By default it's inferred from the specified file name extension.
+
+=item scale
+
+Sets the image scale.
+
+=item width
+
+Sets the image width.
+
+=item height
+
+Sets the image height.
+
+=item mathjax
+
+Sets path to MathJax files. Required to export LaTeX characters.
+
+=item safe
+
+Turns on safe mode: where figures likely to make browser window hang
+during image generating are skipped.
+
+=item verbose
+
+Turn on verbose logging on stdout.
+
+=item debug
+
+Starts app in debug mode and turn on verbose logs on stdout.
+
 =back
 
 =cut
@@ -53,6 +92,10 @@ sub orca {
     if (orca_available()) {
         my $plot = $params{plot};
         my $file = path($params{file});
+        my $format = $params{format};
+        unless (defined $format) {
+            ($format) = $file =~ /\.([^\.]+)$/;
+        }
 
         my $tmp_json = Path::Tiny->tempfile(SUFFIX => '.json');
         $tmp_json->spew_raw($plot->TO_JSON);
@@ -62,9 +105,21 @@ sub orca {
         # See https://github.com/plotly/orca/issues/101
         my @orca_line = ($ORCA_COMMAND, 'graph', $tmp_json,
                          '-d', $file->parent,
-                         '-o', $file->basename);
-        my $orca_line = join(" ", @orca_line);
+                         '-o', $file->basename,
+                         ($format ? ('--format', $format) : ())
+                        );
+        for my $arg (qw(mathjax scale width height)) {
+            if (my $val = $params{$arg}) {
+                push @orca_line, ("--${arg}", $val);
+            }
+        }
+        for my $arg (qw(safe verbose debug)) {
+            if ($params{$arg}) {
+                push @orca_line, "--${arg}";
+            }
+        }
 
+        my $orca_line = join(" ", @orca_line);
         system ($orca_line);
     }
 }
