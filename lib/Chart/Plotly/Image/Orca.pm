@@ -2,7 +2,9 @@ package Chart::Plotly::Image::Orca;
 
 # ABSTRACT: Export static images of Plotly charts using orca
 
-use Moose;
+use strict;
+use warnings;
+
 use File::Which;
 use Path::Tiny;
 use utf8;
