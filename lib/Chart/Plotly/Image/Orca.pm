@@ -119,8 +119,8 @@ sub orca {
             }
         }
 
-        my $orca_line = join(" ", @orca_line);
-        system ($orca_line);
+        #my $orca_line = join(" ", @orca_line);
+        system (@orca_line);
     }
 }
 
