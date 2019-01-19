@@ -126,7 +126,9 @@ sub orca {
 
 =head2 correct_orca
 
-Checks that orca command available is the plotly image exporter
+Checks that orca command available is the plotly image exporter,
+as there may be some other different command also named "orca", like
+L<https://help.gnome.org/users/orca/stable/>
 
 =cut
 
@@ -143,7 +145,8 @@ Checks that orca command is available and the plotly image exporter
 
 sub orca_available {
     if (not which($ORCA_COMMAND) or not correct_orca()) {
-        die "Orca tool must be installed and in PATH in order to export images";
+        die "Orca tool must be installed and in PATH in order to export images. "
+            . "See also https://github.com/plotly/orca#installation";
     }
     return 1;
 }
@@ -155,9 +158,12 @@ Returns the orca version
 =cut
 
 sub orca_version {
-    my $version = `$ORCA_COMMAND --version`;
-    chomp($version);
-    return $version;
+    if (orca_available()) {
+        my $version = `$ORCA_COMMAND --version`;
+        chomp($version);
+        return $version;
+    }
+    return;
 }
 
 1;
