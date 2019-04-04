@@ -9,11 +9,18 @@ use warnings;
 use Config;
 use File::Which;
 use Path::Tiny;
+use File::ShareDir qw(dist_file);
 use utf8;
 
 # VERSION
 
 my $ORCA_COMMAND = 'orca';
+
+# have this in a sub to avoid breaking auto-generated tests like pod-coverage.
+sub _plotlyjs {
+    state $plotlyjs = dist_file('Chart-Plotly', 'plotly.js/plotly.min.js' );
+    return $plotlyjs;
+}
 
 sub _check_alien {
     my ($force_check) = @_;
@@ -140,6 +147,7 @@ sub orca {
         unless (defined $format) {
             ($format) = $file =~ /\.([^\.]+)$/;
         }
+        my $plotlyjs = $params{plotly} // _plotlyjs;
 
         my $tmp_json = Path::Tiny->tempfile(SUFFIX => '.json');
         $tmp_json->spew_raw($plot->TO_JSON);
@@ -148,6 +156,7 @@ sub orca {
         #  not be able to store output to a different path other than cwd.
         # See https://github.com/plotly/orca/issues/101
         my @orca_line = ($ORCA_COMMAND, 'graph', $tmp_json,
+                         '--plotlyjs', $plotlyjs,
                          '-d', $file->parent,
                          '-o', $file->basename,
                          ($format ? ('--format', $format) : ())
@@ -163,7 +172,6 @@ sub orca {
             }
         }
 
-        my $orca_line = join(" ", @orca_line);
         my $rc = system (@orca_line);
         return 1 unless ($rc >> 8);
     }

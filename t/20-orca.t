@@ -6,6 +6,7 @@ use utf8;
 
 use Path::Tiny;
 use Test::More;
+use Test::File::ShareDir -share => { -dist => { 'Chart-Plotly' => 'share' } };
 
 use Chart::Plotly::Plot;
 use Chart::Plotly::Trace::Scatter;
