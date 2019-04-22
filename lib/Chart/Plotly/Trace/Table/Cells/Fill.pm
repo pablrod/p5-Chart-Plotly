@@ -75,14 +75,14 @@ sub TO_JSON {
 
 =item * color
 
-Sets the cell fill color. It accepts either a specific color or an array of colors.
+Sets the cell fill color. It accepts either a specific color or an array of colors or a 2D array of colors.
 
 =cut
 
 has color => (
     is => "rw",
     isa => "Maybe[ArrayRef]",
-    documentation => "Sets the cell fill color. It accepts either a specific color or an array of colors.",
+    documentation => "Sets the cell fill color. It accepts either a specific color or an array of colors or a 2D array of colors.",
 );
 
 =item * colorsrc

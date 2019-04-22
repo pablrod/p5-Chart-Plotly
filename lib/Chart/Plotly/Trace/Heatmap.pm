@@ -9,6 +9,7 @@ if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
 use Chart::Plotly::Trace::Heatmap::Colorbar;
 use Chart::Plotly::Trace::Heatmap::Hoverlabel;
 use Chart::Plotly::Trace::Heatmap::Stream;
+use Chart::Plotly::Trace::Heatmap::Transform;
 
 
 # VERSION
@@ -238,6 +239,54 @@ has hoverlabel => (
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Heatmap::Hoverlabel",
 );
 
+=item * hovertemplate
+
+Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". See https://github.com/d3/d3-format/blob/master/README.md#locale_format for details on the formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+
+=cut
+
+has hovertemplate => (
+    is => "rw",
+    isa => "Str|ArrayRef[Str]",
+    documentation => "Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:\$.2f}\". See https://github.com/d3/d3-format/blob/master/README.md#locale_format for details on the formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.",
+);
+
+=item * hovertemplatesrc
+
+Sets the source reference on plot.ly for  hovertemplate .
+
+=cut
+
+has hovertemplatesrc => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the source reference on plot.ly for  hovertemplate .",
+);
+
+=item * hovertext
+
+Same as `text`.
+
+=cut
+
+has hovertext => (
+    is => "rw",
+    isa => "ArrayRef|PDL",
+    documentation => "Same as `text`.",
+);
+
+=item * hovertextsrc
+
+Sets the source reference on plot.ly for  hovertext .
+
+=cut
+
+has hovertextsrc => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the source reference on plot.ly for  hovertext .",
+);
+
 =item * ids
 
 Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -260,18 +309,6 @@ has idssrc => (
     is => "rw",
     isa => "Str",
     documentation => "Sets the source reference on plot.ly for  ids .",
-);
-
-=item * legendgroup
-
-Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
-
-=cut
-
-has legendgroup => (
-    is => "rw",
-    isa => "Str",
-    documentation => "Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.",
 );
 
 =item * name
@@ -308,30 +345,6 @@ has reversescale => (
     is => "rw",
     isa => "Bool",
     documentation => "Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.",
-);
-
-=item * selectedpoints
-
-Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
-
-=cut
-
-has selectedpoints => (
-    is => "rw",
-    isa => "Any",
-    documentation => "Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.",
-);
-
-=item * showlegend
-
-Determines whether or not an item corresponding to this trace is shown in the legend.
-
-=cut
-
-has showlegend => (
-    is => "rw",
-    isa => "Bool",
-    documentation => "Determines whether or not an item corresponding to this trace is shown in the legend.",
 );
 
 =item * showscale
@@ -380,6 +393,16 @@ has textsrc => (
     documentation => "Sets the source reference on plot.ly for  text .",
 );
 
+=item * transforms
+
+
+=cut
+
+has transforms => (
+    is => "rw",
+    isa => "ArrayRef|ArrayRef[Chart::Plotly::Trace::Heatmap::Transform]",
+);
+
 =item * transpose
 
 Transposes the z data.
@@ -394,12 +417,14 @@ has transpose => (
 
 =item * uid
 
+Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
 
 =cut
 
 has uid => (
     is => "rw",
     isa => "Str",
+    documentation => "Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.",
 );
 
 =item * uirevision
@@ -637,6 +662,18 @@ has zmax => (
     is => "rw",
     isa => "Num",
     documentation => "Sets the upper bound of the color domain. Value should have the same units as in `z` and if set, `zmin` must be set as well.",
+);
+
+=item * zmid
+
+Sets the mid-point of the color domain by scaling `zmin` and/or `zmax` to be equidistant to this point. Value should have the same units as in `z`. Has no effect when `zauto` is `false`.
+
+=cut
+
+has zmid => (
+    is => "rw",
+    isa => "Num",
+    documentation => "Sets the mid-point of the color domain by scaling `zmin` and/or `zmax` to be equidistant to this point. Value should have the same units as in `z`. Has no effect when `zauto` is `false`.",
 );
 
 =item * zmin

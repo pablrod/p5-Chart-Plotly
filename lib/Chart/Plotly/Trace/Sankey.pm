@@ -206,18 +206,6 @@ has idssrc => (
     documentation => "Sets the source reference on plot.ly for  ids .",
 );
 
-=item * legendgroup
-
-Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
-
-=cut
-
-has legendgroup => (
-    is => "rw",
-    isa => "Str",
-    documentation => "Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.",
-);
-
 =item * link
 
 
@@ -250,18 +238,6 @@ has node => (
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Sankey::Node",
 );
 
-=item * opacity
-
-Sets the opacity of the trace.
-
-=cut
-
-has opacity => (
-    is => "rw",
-    isa => "Num",
-    documentation => "Sets the opacity of the trace.",
-);
-
 =item * orientation
 
 Sets the orientation of the Sankey diagram.
@@ -286,18 +262,6 @@ has selectedpoints => (
     documentation => "Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.",
 );
 
-=item * showlegend
-
-Determines whether or not an item corresponding to this trace is shown in the legend.
-
-=cut
-
-has showlegend => (
-    is => "rw",
-    isa => "Bool",
-    documentation => "Determines whether or not an item corresponding to this trace is shown in the legend.",
-);
-
 =item * stream
 
 
@@ -320,12 +284,14 @@ has textfont => (
 
 =item * uid
 
+Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
 
 =cut
 
 has uid => (
     is => "rw",
     isa => "Str",
+    documentation => "Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.",
 );
 
 =item * uirevision

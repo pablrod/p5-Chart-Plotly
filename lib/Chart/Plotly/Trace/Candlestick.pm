@@ -230,6 +230,30 @@ has hoverlabel => (
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Candlestick::Hoverlabel",
 );
 
+=item * hovertext
+
+Same as `text`.
+
+=cut
+
+has hovertext => (
+    is => "rw",
+    isa => "Str|ArrayRef[Str]",
+    documentation => "Same as `text`.",
+);
+
+=item * hovertextsrc
+
+Sets the source reference on plot.ly for  hovertext .
+
+=cut
+
+has hovertextsrc => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the source reference on plot.ly for  hovertext .",
+);
+
 =item * ids
 
 Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -428,12 +452,14 @@ has transforms => (
 
 =item * uid
 
+Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
 
 =cut
 
 has uid => (
     is => "rw",
     isa => "Str",
+    documentation => "Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.",
 );
 
 =item * uirevision

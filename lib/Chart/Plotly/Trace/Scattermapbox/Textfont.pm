@@ -89,7 +89,7 @@ has color => (
 
 has description => (
     is => "ro",
-    default => "Sets the icon text font. Has an effect only when `type` is set to *symbol*.",
+    default => "Sets the icon text font (color=mapbox.layer.paint.text-color, size=mapbox.layer.layout.text-size). Has an effect only when `type` is set to *symbol*.",
 );
 
 =item * family
