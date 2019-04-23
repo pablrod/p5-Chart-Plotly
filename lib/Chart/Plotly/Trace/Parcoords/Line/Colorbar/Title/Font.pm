@@ -80,6 +80,7 @@ sub TO_JSON {
 
 has color => (
     is => "rw",
+    isa => "Str",
 );
 
 =item * description

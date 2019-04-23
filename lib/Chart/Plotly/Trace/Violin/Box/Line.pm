@@ -81,6 +81,7 @@ Sets the inner box plot bounding line color.
 
 has color => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the inner box plot bounding line color.",
 );
 

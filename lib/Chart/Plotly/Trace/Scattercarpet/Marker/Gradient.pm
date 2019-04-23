@@ -81,7 +81,7 @@ Sets the final color of the gradient fill: the center color for radial, the righ
 
 has color => (
     is => "rw",
-    isa => "Maybe[ArrayRef]",
+    isa => "Str|ArrayRef[Str]",
     documentation => "Sets the final color of the gradient fill: the center color for radial, the right for horizontal, or the bottom for vertical.",
 );
 

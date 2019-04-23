@@ -106,7 +106,7 @@ Sets the background color of the hover labels for this trace
 
 has bgcolor => (
     is => "rw",
-    isa => "Maybe[ArrayRef]",
+    isa => "Str|ArrayRef[Str]",
     documentation => "Sets the background color of the hover labels for this trace",
 );
 
@@ -130,7 +130,7 @@ Sets the border color of the hover labels for this trace.
 
 has bordercolor => (
     is => "rw",
-    isa => "Maybe[ArrayRef]",
+    isa => "Str|ArrayRef[Str]",
     documentation => "Sets the border color of the hover labels for this trace.",
 );
 

@@ -81,6 +81,7 @@ Sets the line color of all increasing values.
 
 has color => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the line color of all increasing values.",
 );
 

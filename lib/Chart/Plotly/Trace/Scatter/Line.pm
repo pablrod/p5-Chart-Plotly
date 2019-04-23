@@ -81,6 +81,7 @@ Sets the line color.
 
 has color => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the line color.",
 );
 

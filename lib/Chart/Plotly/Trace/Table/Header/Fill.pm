@@ -81,7 +81,7 @@ Sets the cell fill color. It accepts either a specific color or an array of colo
 
 has color => (
     is => "rw",
-    isa => "Maybe[ArrayRef]",
+    isa => "Str|ArrayRef[Str]",
     documentation => "Sets the cell fill color. It accepts either a specific color or an array of colors or a 2D array of colors.",
 );
 

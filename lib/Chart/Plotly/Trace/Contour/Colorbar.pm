@@ -84,6 +84,7 @@ Sets the color of padded area.
 
 has bgcolor => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the color of padded area.",
 );
 
@@ -95,6 +96,7 @@ Sets the axis line color.
 
 has bordercolor => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the axis line color.",
 );
 
@@ -178,6 +180,7 @@ Sets the axis line color.
 
 has outlinecolor => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the axis line color.",
 );
 
@@ -308,6 +311,7 @@ Sets the tick color.
 
 has tickcolor => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the tick color.",
 );
 

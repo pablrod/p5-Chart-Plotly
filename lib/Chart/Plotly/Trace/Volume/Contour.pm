@@ -81,6 +81,7 @@ Sets the color of the contour lines.
 
 has color => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the color of the contour lines.",
 );
 
