@@ -81,6 +81,7 @@ Sets themarker.linecolor. It accepts either a specific color or an array of numb
 
 has color => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets themarker.linecolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.line.cmin` and `marker.line.cmax` if set.",
 );
 
@@ -92,6 +93,7 @@ Sets the border line color of the outlier sample points. Defaults to marker.colo
 
 has outliercolor => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the border line color of the outlier sample points. Defaults to marker.color",
 );
 

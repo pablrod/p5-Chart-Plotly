@@ -81,6 +81,7 @@ Sets the marker color of selected points.
 
 has color => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the marker color of selected points.",
 );
 

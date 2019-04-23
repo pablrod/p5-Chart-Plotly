@@ -81,6 +81,7 @@ Sets the line color of all intermediate sums and total values.
 
 has color => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the line color of all intermediate sums and total values.",
 );
 

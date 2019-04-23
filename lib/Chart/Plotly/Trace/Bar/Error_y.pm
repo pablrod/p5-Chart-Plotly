@@ -129,6 +129,7 @@ Sets the stoke color of the error bars.
 
 has color => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the stoke color of the error bars.",
 );
 

@@ -194,6 +194,7 @@ Sets the color of the whole mesh
 
 has color => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the color of the whole mesh",
 );
 

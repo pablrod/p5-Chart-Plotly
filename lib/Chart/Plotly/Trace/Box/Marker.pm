@@ -82,6 +82,7 @@ Sets themarkercolor. It accepts either a specific color or an array of numbers t
 
 has color => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets themarkercolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.",
 );
 
@@ -115,6 +116,7 @@ Sets the color of the outlier sample points.
 
 has outliercolor => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the color of the outlier sample points.",
 );
 

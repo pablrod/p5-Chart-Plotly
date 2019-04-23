@@ -237,6 +237,7 @@ Sets default for all colors associated with this axis all at once: line, font, t
 
 has color => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.",
 );
 

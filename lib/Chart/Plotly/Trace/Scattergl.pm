@@ -218,6 +218,7 @@ Sets the fill color. Defaults to a half-transparent variant of the line color, m
 
 has fillcolor => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.",
 );
 

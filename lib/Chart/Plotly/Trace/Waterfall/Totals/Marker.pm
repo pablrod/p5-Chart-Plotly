@@ -82,6 +82,7 @@ Sets the marker color of all intermediate sums and total values.
 
 has color => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the marker color of all intermediate sums and total values.",
 );
 

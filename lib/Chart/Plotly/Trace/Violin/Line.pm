@@ -81,6 +81,7 @@ Sets the color of line bounding the violin(s).
 
 has color => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the color of line bounding the violin(s).",
 );
 

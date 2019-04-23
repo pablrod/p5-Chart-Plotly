@@ -81,6 +81,7 @@ Sets the text font color of unselected points, applied only when a selection exi
 
 has color => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the text font color of unselected points, applied only when a selection exists.",
 );
 

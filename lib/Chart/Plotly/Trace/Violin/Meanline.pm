@@ -81,6 +81,7 @@ Sets the mean line color.
 
 has color => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the mean line color.",
 );
 
