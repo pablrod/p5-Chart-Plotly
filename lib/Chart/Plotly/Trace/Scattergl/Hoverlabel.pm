@@ -74,6 +74,30 @@ sub TO_JSON {
 
 =cut
 
+=item * align
+
+Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
+
+=cut
+
+has align => (
+    is => "rw",
+    isa => union([enum(["left","right","auto"]), "ArrayRef"]),
+    documentation => "Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines",
+);
+
+=item * alignsrc
+
+Sets the source reference on plot.ly for  align .
+
+=cut
+
+has alignsrc => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the source reference on plot.ly for  align .",
+);
+
 =item * bgcolor
 
 Sets the background color of the hover labels for this trace
@@ -134,14 +158,14 @@ has font => (
 
 =item * namelength
 
-Sets the length (in number of characters) of the trace name in the hover labels for this trace. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.
+Sets the default length (in number of characters) of the trace name in the hover labels for all traces. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.
 
 =cut
 
 has namelength => (
     is => "rw",
     isa => "Int|ArrayRef[Int]",
-    documentation => "Sets the length (in number of characters) of the trace name in the hover labels for this trace. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.",
+    documentation => "Sets the default length (in number of characters) of the trace name in the hover labels for all traces. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.",
 );
 
 =item * namelengthsrc

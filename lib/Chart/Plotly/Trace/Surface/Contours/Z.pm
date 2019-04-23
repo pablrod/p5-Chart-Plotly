@@ -85,6 +85,18 @@ has color => (
     documentation => "Sets the color of the contour lines.",
 );
 
+=item * end
+
+Sets the end contour level value. Must be more than `contours.start`
+
+=cut
+
+has end => (
+    is => "rw",
+    isa => "Num",
+    documentation => "Sets the end contour level value. Must be more than `contours.start`",
+);
+
 =item * highlight
 
 Determines whether or not contour lines about the z dimension are highlighted on hover.
@@ -140,6 +152,30 @@ has show => (
     is => "rw",
     isa => "Bool",
     documentation => "Determines whether or not contour lines about the z dimension are drawn.",
+);
+
+=item * size
+
+Sets the step between each contour level. Must be positive.
+
+=cut
+
+has size => (
+    is => "rw",
+    isa => "Num",
+    documentation => "Sets the step between each contour level. Must be positive.",
+);
+
+=item * start
+
+Sets the starting contour level value. Must be less than `contours.end`
+
+=cut
+
+has start => (
+    is => "rw",
+    isa => "Num",
+    documentation => "Sets the starting contour level value. Must be less than `contours.end`",
 );
 
 =item * usecolormap

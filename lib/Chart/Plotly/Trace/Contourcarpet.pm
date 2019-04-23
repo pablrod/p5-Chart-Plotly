@@ -369,6 +369,30 @@ has hoverlabel => (
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Contourcarpet::Hoverlabel",
 );
 
+=item * hovertext
+
+Same as `text`.
+
+=cut
+
+has hovertext => (
+    is => "rw",
+    isa => "ArrayRef|PDL",
+    documentation => "Same as `text`.",
+);
+
+=item * hovertextsrc
+
+Sets the source reference on plot.ly for  hovertext .
+
+=cut
+
+has hovertextsrc => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the source reference on plot.ly for  hovertext .",
+);
+
 =item * ids
 
 Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -463,18 +487,6 @@ has reversescale => (
     documentation => "Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.",
 );
 
-=item * selectedpoints
-
-Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
-
-=cut
-
-has selectedpoints => (
-    is => "rw",
-    isa => "Any",
-    documentation => "Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.",
-);
-
 =item * showlegend
 
 Determines whether or not an item corresponding to this trace is shown in the legend.
@@ -547,12 +559,14 @@ has transpose => (
 
 =item * uid
 
+Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
 
 =cut
 
 has uid => (
     is => "rw",
     isa => "Str",
+    documentation => "Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.",
 );
 
 =item * uirevision
@@ -634,6 +648,18 @@ has zmax => (
     is => "rw",
     isa => "Num",
     documentation => "Sets the upper bound of the color domain. Value should have the same units as in `z` and if set, `zmin` must be set as well.",
+);
+
+=item * zmid
+
+Sets the mid-point of the color domain by scaling `zmin` and/or `zmax` to be equidistant to this point. Value should have the same units as in `z`. Has no effect when `zauto` is `false`.
+
+=cut
+
+has zmid => (
+    is => "rw",
+    isa => "Num",
+    documentation => "Sets the mid-point of the color domain by scaling `zmin` and/or `zmax` to be equidistant to this point. Value should have the same units as in `z`. Has no effect when `zauto` is `false`.",
 );
 
 =item * zmin

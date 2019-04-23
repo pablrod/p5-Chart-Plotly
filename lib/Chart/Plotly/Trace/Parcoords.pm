@@ -160,30 +160,6 @@ has domain => (
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Parcoords::Domain",
 );
 
-=item * hoverinfo
-
-Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-
-=cut
-
-has hoverinfo => (
-    is => "rw",
-    isa => "Str|ArrayRef[Str]",
-    documentation => "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
-);
-
-=item * hoverinfosrc
-
-Sets the source reference on plot.ly for  hoverinfo .
-
-=cut
-
-has hoverinfosrc => (
-    is => "rw",
-    isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  hoverinfo .",
-);
-
 =item * ids
 
 Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -218,18 +194,6 @@ has labelfont => (
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Parcoords::Labelfont",
 );
 
-=item * legendgroup
-
-Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
-
-=cut
-
-has legendgroup => (
-    is => "rw",
-    isa => "Str",
-    documentation => "Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.",
-);
-
 =item * line
 
 
@@ -252,18 +216,6 @@ has name => (
     documentation => "Sets the trace name. The trace name appear as the legend item and on hover.",
 );
 
-=item * opacity
-
-Sets the opacity of the trace.
-
-=cut
-
-has opacity => (
-    is => "rw",
-    isa => "Num",
-    documentation => "Sets the opacity of the trace.",
-);
-
 =item * rangefont
 
 
@@ -272,30 +224,6 @@ has opacity => (
 has rangefont => (
     is => "rw",
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Parcoords::Rangefont",
-);
-
-=item * selectedpoints
-
-Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
-
-=cut
-
-has selectedpoints => (
-    is => "rw",
-    isa => "Any",
-    documentation => "Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.",
-);
-
-=item * showlegend
-
-Determines whether or not an item corresponding to this trace is shown in the legend.
-
-=cut
-
-has showlegend => (
-    is => "rw",
-    isa => "Bool",
-    documentation => "Determines whether or not an item corresponding to this trace is shown in the legend.",
 );
 
 =item * stream
@@ -330,12 +258,14 @@ has transforms => (
 
 =item * uid
 
+Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
 
 =cut
 
 has uid => (
     is => "rw",
     isa => "Str",
+    documentation => "Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.",
 );
 
 =item * uirevision
