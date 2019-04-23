@@ -82,6 +82,7 @@ Sets the inner box plot fill color.
 
 has fillcolor => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the inner box plot fill color.",
 );
 

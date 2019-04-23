@@ -420,6 +420,7 @@ Sets the surface fill color.
 
 has surfacecolor => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the surface fill color.",
 );
 

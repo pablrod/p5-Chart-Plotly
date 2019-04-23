@@ -81,7 +81,7 @@ Sets the color of the `line` around each `link`.
 
 has color => (
     is => "rw",
-    isa => "Maybe[ArrayRef]",
+    isa => "Str|ArrayRef[Str]",
     documentation => "Sets the color of the `line` around each `link`.",
 );
 

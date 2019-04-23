@@ -165,6 +165,7 @@ Sets default for all colors associated with this axis all at once: line, font, t
 
 has color => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.",
 );
 
@@ -200,6 +201,7 @@ Sets the line color of the end line.
 
 has endlinecolor => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the line color of the end line.",
 );
 
@@ -247,6 +249,7 @@ Sets the axis line color.
 
 has gridcolor => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the axis line color.",
 );
 
@@ -306,6 +309,7 @@ Sets the axis line color.
 
 has linecolor => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the axis line color.",
 );
 
@@ -329,6 +333,7 @@ Sets the color of the grid lines.
 
 has minorgridcolor => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the color of the grid lines.",
 );
 
@@ -506,6 +511,7 @@ Sets the line color of the start line.
 
 has startlinecolor => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the line color of the start line.",
 );
 

@@ -81,6 +81,7 @@ Sets the marker color of unselected points, applied only when a selection exists
 
 has color => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the marker color of unselected points, applied only when a selection exists.",
 );
 

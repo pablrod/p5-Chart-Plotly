@@ -104,6 +104,7 @@ Sets the marker fill color. It accepts a specific color.If the color is not full
 
 has color => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the marker fill color. It accepts a specific color.If the color is not fully opaque and there are hundreds of thousandsof points, it may cause slower zooming and panning.",
 );
 

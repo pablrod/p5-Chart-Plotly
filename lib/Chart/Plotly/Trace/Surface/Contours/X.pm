@@ -82,6 +82,7 @@ Sets the color of the contour lines.
 
 has color => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the color of the contour lines.",
 );
 
@@ -117,6 +118,7 @@ Sets the color of the highlighted contour lines.
 
 has highlightcolor => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the color of the highlighted contour lines.",
 );
 

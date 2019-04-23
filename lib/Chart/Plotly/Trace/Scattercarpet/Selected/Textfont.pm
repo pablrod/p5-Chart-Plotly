@@ -81,6 +81,7 @@ Sets the text font color of selected points.
 
 has color => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the text font color of selected points.",
 );
 

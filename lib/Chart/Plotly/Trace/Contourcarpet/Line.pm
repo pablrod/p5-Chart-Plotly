@@ -81,6 +81,7 @@ Sets the color of the contour level. Has no if `contours.coloring` is set to *li
 
 has color => (
     is => "rw",
+    isa => "Str",
     documentation => "Sets the color of the contour level. Has no if `contours.coloring` is set to *lines*.",
 );
 
