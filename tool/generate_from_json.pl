@@ -11,8 +11,9 @@ use Data::Dumper;
 
 my $trace_name = shift;
 
+my $plotly_base_path = '../plotly.js';
 my $example_template = path("template/example_template.tmpl")->slurp_utf8();
-my $plotly_js_path = path("../plotly.js");
+my $plotly_js_path = path($plotly_base_path);
 my $plotly_mocks = $plotly_js_path->child("test/image/mocks");
 
 for my $mock_json ($plotly_mocks->children(qr/.*\Q$trace_name\E\.json$/)) {
@@ -20,8 +21,8 @@ for my $mock_json ($plotly_mocks->children(qr/.*\Q$trace_name\E\.json$/)) {
     my $chart_struct = from_json($mock_json->slurp_utf8);
     
     my $path_for_git = $mock_json->stringify;
-    $path_for_git =~ s/\.\.\/plotly\.js\///;
-    my $commit = `git -C ../plotly.js log -1 --pretty=format:"%H" $path_for_git`;
+    $path_for_git =~ s|\Q$plotly_base_path\E/||;
+    my $commit = `git -C $plotly_base_path log -1 --pretty=format:"%H" $path_for_git`;
 # Example from https://github.com/plotly/plotly.js/blob/235fe5b214a576d5749ab4c2aaf625dbf7138d63/test/image/mocks/polar_wind-rose.json
     my $comment = '# Example from https://github.com/plotly/plotly.js/blob/' . $commit . '/' . $path_for_git;
 
@@ -41,14 +42,15 @@ for my $mock_json ($plotly_mocks->children(qr/.*\Q$trace_name\E\.json$/)) {
         if (not defined $type) {
             $type = 'scatter';
         }
-        $traces_packages{$type} = 'use Chart::Plotly::Trace::' . ucfirst($type) . ";";
+        my $trace_package = 'Chart::Plotly::Trace::' . ucfirst($type);
+        $traces_packages{$type} = "use $trace_package;";
         my $trace_content = Dumper($trace);
         if ($trace_content =~ /{(.+)}/ms) {
             $trace_content = $1;
         }
         my $trace_name = '$trace' . $trace_counter;
         push @traces_declarations, 'my ' . $trace_name . ' = ' .
-            'Chart::Plotly::Trace::' . ucfirst($type) . '->new('
+            $trace_package . '->new('
             . $trace_content
         . ");\n";
         $list_of_traces .= $trace_name . ", ";
