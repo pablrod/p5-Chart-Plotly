@@ -18,6 +18,13 @@ my $plotly_mocks = $plotly_js_path->child("test/image/mocks");
 for my $mock_json ($plotly_mocks->children(qr/.*\Q$trace_name\E\.json$/)) {
     print "Processing: $mock_json ...";
     my $chart_struct = from_json($mock_json->slurp_utf8);
+    
+    my $path_for_git = $mock_json->stringify;
+    $path_for_git =~ s/\.\.\/plotly\.js\///;
+    my $commit = `git -C ../plotly.js log -1 --pretty=format:"%H" $path_for_git`;
+# Example from https://github.com/plotly/plotly.js/blob/235fe5b214a576d5749ab4c2aaf625dbf7138d63/test/image/mocks/polar_wind-rose.json
+    my $comment = '# Example from https://github.com/plotly/plotly.js/blob/' . $commit . '/' . $path_for_git;
+
 
     my $file = path($mock_json->basename('.json') . ".pl");
 
@@ -55,6 +62,7 @@ for my $mock_json ($plotly_mocks->children(qr/.*\Q$trace_name\E\.json$/)) {
     
     my $contents = 
         Text::Template::fill_in_string($example_template, HASH => {
+            comment => $comment,
             traces_packages => join("\n", values %traces_packages),
             traces_declaration => join("\n", @traces_declarations),
             list_of_traces => $list_of_traces,
