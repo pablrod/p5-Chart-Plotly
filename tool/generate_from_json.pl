@@ -16,7 +16,7 @@ my $example_template = path("template/example_template.tmpl")->slurp_utf8();
 my $plotly_js_path = path($plotly_base_path);
 my $plotly_mocks = $plotly_js_path->child("test/image/mocks");
 
-for my $mock_json ($plotly_mocks->children(qr/.*\Q$trace_name\E\.json$/)) {
+for my $mock_json ($plotly_mocks->children(qr/.*\Q$trace_name\E.*\.json$/)) {
     print "Processing: $mock_json ...";
     my $chart_struct = from_json($mock_json->slurp_utf8);
     
