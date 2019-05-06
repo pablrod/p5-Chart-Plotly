@@ -7,7 +7,7 @@ use utf8;
 use JSON;
 use Path::Tiny;
 use Text::Template;
-use Data::Dumper;
+use Scalar::Util;
 
 my $trace_name = shift;
 
@@ -23,15 +23,12 @@ for my $mock_json ($plotly_mocks->children(qr/.*\Q$trace_name\E.*\.json$/)) {
     my $path_for_git = $mock_json->stringify;
     $path_for_git =~ s|\Q$plotly_base_path\E/||;
     my $commit = `git -C $plotly_base_path log -1 --pretty=format:"%H" $path_for_git`;
-# Example from https://github.com/plotly/plotly.js/blob/235fe5b214a576d5749ab4c2aaf625dbf7138d63/test/image/mocks/polar_wind-rose.json
     my $comment = '# Example from https://github.com/plotly/plotly.js/blob/' . $commit . '/' . $path_for_git;
 
 
     my $file = path($mock_json->basename('.json') . ".pl");
 
     my $data = $chart_struct->{data};
-
-    local $Data::Dumper::Terse = 1;
 
     my %traces_packages;
     my @traces_declarations;
@@ -65,7 +62,7 @@ for my $mock_json ($plotly_mocks->children(qr/.*\Q$trace_name\E.*\.json$/)) {
             traces_packages => join("\n", values %traces_packages),
             traces_declaration => join("\n", @traces_declarations),
             list_of_traces => $list_of_traces,
-            layout  => Dumper($layout)
+            layout  => DumpTrace($layout)
         });
     $file->spew_utf8($contents);
     print " Done!\n";
@@ -73,9 +70,53 @@ for my $mock_json ($plotly_mocks->children(qr/.*\Q$trace_name\E.*\.json$/)) {
 
 sub DumpTrace {
     my $trace = shift;
-    my $trace_content = Dumper($trace);
-    if ($trace_content =~ /{(.+)}/ms) {
-       $trace_content = $1;
+    my $trace_content = '';
+
+    my $type = ref $trace;
+    if (defined $type ) {
+        if ($type eq '') {
+            # SCALAR
+            if (Scalar::Util::looks_like_number($trace)) {
+                $trace_content .= $trace;
+            } else {
+                $trace_content .= "'$trace'";
+            }
+        } elsif ($type eq 'HASH') {
+            $trace_content .= "{";
+            for my $key (keys %$trace) {
+                my $value = $trace->{$key};
+                if (defined $value) {
+                    $trace_content .= DumpTrace($key) . " => " . DumpTrace($value) . ", ";
+                }
+            }
+            $trace_content .= "}";
+
+        } elsif ($type eq 'ARRAY') {
+            $trace_content .= "[";
+            for my $element (@$trace) {
+                $trace_content .= DumpTrace($element) . ", ";
+            }
+            $trace_content .= "]";
+
+        } else {
+            # JSON Objects
+            if ($type =~ /JSON/) {
+                if (JSON::is_bool($trace)) {
+                    if ($trace) {
+                        $trace_content .= 'JSON::true';
+                    } else {
+                        $trace_content .= 'JSON::false';
+                    }
+                }
+            }
+        }
+    } else {
+        # Undefined 
+        die ("Trace content can't be undefined");
     }
+
     return $trace_content;
 }
+
+
+
