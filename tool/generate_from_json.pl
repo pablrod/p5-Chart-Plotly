@@ -44,10 +44,7 @@ for my $mock_json ($plotly_mocks->children(qr/.*\Q$trace_name\E.*\.json$/)) {
         }
         my $trace_package = 'Chart::Plotly::Trace::' . ucfirst($type);
         $traces_packages{$type} = "use $trace_package;";
-        my $trace_content = Dumper($trace);
-        if ($trace_content =~ /{(.+)}/ms) {
-            $trace_content = $1;
-        }
+        my $trace_content = DumpTrace($trace);
         my $trace_name = '$trace' . $trace_counter;
         push @traces_declarations, 'my ' . $trace_name . ' = ' .
             $trace_package . '->new('
@@ -74,3 +71,11 @@ for my $mock_json ($plotly_mocks->children(qr/.*\Q$trace_name\E.*\.json$/)) {
     print " Done!\n";
 }
 
+sub DumpTrace {
+    my $trace = shift;
+    my $trace_content = Dumper($trace);
+    if ($trace_content =~ /{(.+)}/ms) {
+       $trace_content = $1;
+    }
+    return $trace_content;
+}
