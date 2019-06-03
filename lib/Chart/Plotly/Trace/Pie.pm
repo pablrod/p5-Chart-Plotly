@@ -92,6 +92,10 @@ sub TO_JSON {
             }
         }
     }
+    my $plotly_meta = delete $hash{'pmeta'};
+    if (defined $plotly_meta) {
+        $hash{'meta'} = $plotly_meta;
+    }
     %hash = (%hash, %$extra_args);
     delete $hash{'extra_args'};
     if ($self->can('type') && (!defined $hash{'type'})) {
@@ -361,6 +365,30 @@ has marker => (
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Pie::Marker",
 );
 
+=item * pmeta
+
+Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
+
+=cut
+
+has pmeta => (
+    is => "rw",
+    isa => "Any|ArrayRef[Any]",
+    documentation => "Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.",
+);
+
+=item * metasrc
+
+Sets the source reference on plot.ly for  meta .
+
+=cut
+
+has metasrc => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the source reference on plot.ly for  meta .",
+);
+
 =item * name
 
 Sets the trace name. The trace name appear as the legend item and on hover.
@@ -433,14 +461,14 @@ has rotation => (
 
 =item * scalegroup
 
-If there are multiple pies that should be sized according to their totals, link them by providing a non-empty group id here shared by every trace in the same group.
+If there are multiple pie charts that should be sized according to their totals, link them by providing a non-empty group id here shared by every trace in the same group.
 
 =cut
 
 has scalegroup => (
     is => "rw",
     isa => "Str",
-    documentation => "If there are multiple pies that should be sized according to their totals, link them by providing a non-empty group id here shared by every trace in the same group.",
+    documentation => "If there are multiple pie charts that should be sized according to their totals, link them by providing a non-empty group id here shared by every trace in the same group.",
 );
 
 =item * showlegend
@@ -593,14 +621,14 @@ has uirevision => (
 
 =item * values
 
-Sets the values of the sectors of this pie chart. If omitted, we count occurrences of each label.
+Sets the values of the sectors. If omitted, we count occurrences of each label.
 
 =cut
 
 has values => (
     is => "rw",
     isa => "ArrayRef|PDL",
-    documentation => "Sets the values of the sectors of this pie chart. If omitted, we count occurrences of each label.",
+    documentation => "Sets the values of the sectors. If omitted, we count occurrences of each label.",
 );
 
 =item * valuessrc

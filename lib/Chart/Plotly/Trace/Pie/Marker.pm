@@ -76,14 +76,14 @@ sub TO_JSON {
 
 =item * colors
 
-Sets the color of each sector of this pie chart. If not specified, the default trace color set is used to pick the sector colors.
+Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
 
 =cut
 
 has colors => (
     is => "rw",
     isa => "ArrayRef|PDL",
-    documentation => "Sets the color of each sector of this pie chart. If not specified, the default trace color set is used to pick the sector colors.",
+    documentation => "Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.",
 );
 
 =item * colorssrc

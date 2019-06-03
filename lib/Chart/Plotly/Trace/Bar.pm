@@ -94,6 +94,10 @@ sub TO_JSON {
             }
         }
     }
+    my $plotly_meta = delete $hash{'pmeta'};
+    if (defined $plotly_meta) {
+        $hash{'meta'} = $plotly_meta;
+    }
     %hash = (%hash, %$extra_args);
     delete $hash{'extra_args'};
     if ($self->can('type') && (!defined $hash{'type'})) {
@@ -353,6 +357,18 @@ has idssrc => (
     documentation => "Sets the source reference on plot.ly for  ids .",
 );
 
+=item * insidetextanchor
+
+Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
+
+=cut
+
+has insidetextanchor => (
+    is => "rw",
+    isa => enum(["end","middle","start"]),
+    documentation => "Determines if texts are kept at center or start/end points in `textposition` *inside* mode.",
+);
+
 =item * insidetextfont
 
 
@@ -383,6 +399,30 @@ has legendgroup => (
 has marker => (
     is => "rw",
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Bar::Marker",
+);
+
+=item * pmeta
+
+Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
+
+=cut
+
+has pmeta => (
+    is => "rw",
+    isa => "Any|ArrayRef[Any]",
+    documentation => "Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.",
+);
+
+=item * metasrc
+
+Sets the source reference on plot.ly for  meta .
+
+=cut
+
+has metasrc => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the source reference on plot.ly for  meta .",
 );
 
 =item * name
@@ -557,6 +597,17 @@ has text => (
     is => "rw",
     isa => "Str|ArrayRef[Str]",
     documentation => "Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.",
+);
+
+=item * textangle
+
+Sets the angle of the tick labels with respect to the bar. For example, a `tickangle` of -90 draws the tick labels vertically. With *auto* the texts may automatically be rotated to fit with the maximum size in bars.
+
+=cut
+
+has textangle => (
+    is => "rw",
+    documentation => "Sets the angle of the tick labels with respect to the bar. For example, a `tickangle` of -90 draws the tick labels vertically. With *auto* the texts may automatically be rotated to fit with the maximum size in bars.",
 );
 
 =item * textfont
