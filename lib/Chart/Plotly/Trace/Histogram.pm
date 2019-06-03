@@ -94,6 +94,10 @@ sub TO_JSON {
             }
         }
     }
+    my $plotly_meta = delete $hash{'pmeta'};
+    if (defined $plotly_meta) {
+        $hash{'meta'} = $plotly_meta;
+    }
     %hash = (%hash, %$extra_args);
     delete $hash{'extra_args'};
     if ($self->can('type') && (!defined $hash{'type'})) {
@@ -153,6 +157,18 @@ has autobiny => (
     is => "rw",
     isa => "Bool",
     documentation => "Obsolete: since v1.42 each bin attribute is auto-determined separately and `autobiny` is not needed. However, we accept `autobiny: true` or `false` and will update `ybins` accordingly before deleting `autobiny` from the trace.",
+);
+
+=item * bingroup
+
+Set a group of histogram traces which will have compatible bin settings. Note that traces on the same subplot and with the same *orientation* under `barmode` *stack*, *relative* and *group* are forced into the same bingroup, Using `bingroup`, traces under `barmode` *overlay* and on different axes (of the same axis type) can have compatible bin settings. Note that histogram and histogram2d* trace can share the same `bingroup`
+
+=cut
+
+has bingroup => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Set a group of histogram traces which will have compatible bin settings. Note that traces on the same subplot and with the same *orientation* under `barmode` *stack*, *relative* and *group* are forced into the same bingroup, Using `bingroup`, traces under `barmode` *overlay* and on different axes (of the same axis type) can have compatible bin settings. Note that histogram and histogram2d* trace can share the same `bingroup`",
 );
 
 =item * cumulative
@@ -359,6 +375,30 @@ has legendgroup => (
 has marker => (
     is => "rw",
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Histogram::Marker",
+);
+
+=item * pmeta
+
+Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
+
+=cut
+
+has pmeta => (
+    is => "rw",
+    isa => "Any|ArrayRef[Any]",
+    documentation => "Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.",
+);
+
+=item * metasrc
+
+Sets the source reference on plot.ly for  meta .
+
+=cut
+
+has metasrc => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the source reference on plot.ly for  meta .",
 );
 
 =item * name

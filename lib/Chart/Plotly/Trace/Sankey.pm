@@ -16,7 +16,7 @@ use Chart::Plotly::Trace::Sankey::Textfont;
 
 # VERSION
 
-# ABSTRACT: Sankey plots for network flow data analysis. The nodes are specified in `nodes` and the links between sources and targets in `links`. The colors are set in `nodes[i].color` and `links[i].color`; otherwise defaults are used.
+# ABSTRACT: Sankey plots for network flow data analysis. The nodes are specified in `nodes` and the links between sources and targets in `links`. The colors are set in `nodes[i].color` and `links[i].color`, otherwise defaults are used.
 
 =encoding utf-8
 
@@ -26,7 +26,7 @@ use Chart::Plotly::Trace::Sankey::Textfont;
 
 =head1 DESCRIPTION
 
-Sankey plots for network flow data analysis. The nodes are specified in `nodes` and the links between sources and targets in `links`. The colors are set in `nodes[i].color` and `links[i].color`; otherwise defaults are used.
+Sankey plots for network flow data analysis. The nodes are specified in `nodes` and the links between sources and targets in `links`. The colors are set in `nodes[i].color` and `links[i].color`, otherwise defaults are used.
 
 Screenshot of the above example:
 
@@ -88,6 +88,10 @@ sub TO_JSON {
                 $hash{$name} = $value ? \1 : \ 0;
             }
         }
+    }
+    my $plotly_meta = delete $hash{'pmeta'};
+    if (defined $plotly_meta) {
+        $hash{'meta'} = $plotly_meta;
     }
     %hash = (%hash, %$extra_args);
     delete $hash{'extra_args'};
@@ -214,6 +218,30 @@ has idssrc => (
 has link => (
     is => "rw",
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Sankey::Link",
+);
+
+=item * pmeta
+
+Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
+
+=cut
+
+has pmeta => (
+    is => "rw",
+    isa => "Any|ArrayRef[Any]",
+    documentation => "Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.",
+);
+
+=item * metasrc
+
+Sets the source reference on plot.ly for  meta .
+
+=cut
+
+has metasrc => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the source reference on plot.ly for  meta .",
 );
 
 =item * name

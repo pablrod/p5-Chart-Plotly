@@ -102,7 +102,7 @@ has colorsrc => (
 
 has description => (
     is => "ro",
-    default => "Sets the font used for `textinfo` lying inside the pie.",
+    default => "Sets the font used for `textinfo` lying inside the sector.",
 );
 
 =item * family
