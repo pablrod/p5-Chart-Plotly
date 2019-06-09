@@ -142,23 +142,28 @@ sub _render_cell {
 my $data_string = shift();
 my $chart_id    = shift() // create_uuid_as_string(UUID_TIME);
 my $layout      = shift();
+my $config      = shift();
 my $extra       = shift() // {load_plotly_using_script_tag => 1};
 if (defined $layout) {
 $layout = "," . $layout; 	
+}
+if (defined $config) {
+$config = "," . $config; 	
 }
 my $load_plotly = _load_plotly(${$extra}{'load_plotly_using_script_tag'});
 my $template    = <<'TEMPLATE';
 <div id="{$chart_id}"></div>
 {$load_plotly}
 <script>
-Plotly.plot(document.getElementById('{$chart_id}'),{$data} {$layout});
+Plotly.plot(document.getElementById('{$chart_id}'),{$data} {$layout} {$config});
 </script>
 TEMPLATE
 
 my $template_variables = { data        => $data_string,
                            chart_id    => $chart_id,
                            load_plotly => $load_plotly, 
-               defined $layout ? (layout   => $layout) : ()
+               defined $layout ? (layout   => $layout) : (),
+               defined $config ? (config   => $config) : (),
 };
 return Text::Template::fill_in_string( $template, HASH => $template_variables );
 }

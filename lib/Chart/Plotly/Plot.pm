@@ -1,6 +1,7 @@
 package Chart::Plotly::Plot;
 
 use Moose;
+use JSON;
 use utf8;
 
 use UUID::Tiny ':std';
@@ -45,6 +46,18 @@ has layout => (
    isa => 'HashRef'
 );
 
+=head2 config
+
+Configuration options for the plot. See L<https://plot.ly/javascript/configuration-options/>
+
+=cut
+
+has config => (
+    default => sub { { responsive => JSON::true } },
+    is => 'rw',
+    isa => 'HashRef'
+);
+
 =head2 html
 
 Returns the html corresponding to the plot
@@ -61,11 +74,18 @@ sub html {
     my $chart_id = $params{'div_id'} // create_uuid_as_string(UUID_TIME);
     my $load_plotly_using_script_tag = $params{'load_plotly_using_script_tag'} // 1;
     my $layout = $self->layout;
+    my $config = $self->config;
+    if (defined $config) {
+	    $config = Chart::Plotly::_process_data( $config );
+        if (!defined $layout) {
+            $layout = {};
+        }
+    }
     if (defined $layout) {
-	$layout = Chart::Plotly::_process_data( $layout );
+	    $layout = Chart::Plotly::_process_data( $layout );
     }
     return Chart::Plotly::_render_cell(
-        Chart::Plotly::_process_data( $self->traces() ), $chart_id, $layout, {load_plotly_using_script_tag => $load_plotly_using_script_tag});
+        Chart::Plotly::_process_data( $self->traces() ), $chart_id, $layout, $config, {load_plotly_using_script_tag => $load_plotly_using_script_tag});
 }
 
 =head2 TO_JSON
@@ -77,11 +97,16 @@ Returns the json corresponding to the plot
 sub TO_JSON {
     my $self     = shift;
     my $layout = $self->layout;
+    my $config = $self->config;
     my $json = '{ "data": ' . 
             Chart::Plotly::_process_data( $self->traces() );
     if (defined $layout) {
 	    $layout = Chart::Plotly::_process_data( $layout );
         $json .= ', "layout": ' .  $layout;
+    }
+    if (defined $config) {
+	    $config = Chart::Plotly::_process_data( $config );
+        $json .= ', "config": ' .  $config;
     }
     return $json . " }";
 }
