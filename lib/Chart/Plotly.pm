@@ -155,7 +155,7 @@ my $template    = <<'TEMPLATE';
 <div id="{$chart_id}"></div>
 {$load_plotly}
 <script>
-Plotly.plot(document.getElementById('{$chart_id}'),{$data} {$layout} {$config});
+Plotly.react(document.getElementById('{$chart_id}'),{$data} {$layout} {$config});
 </script>
 TEMPLATE
 
