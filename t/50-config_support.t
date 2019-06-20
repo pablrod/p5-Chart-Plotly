@@ -25,6 +25,6 @@ like($html_from_plot, qr/staticPlot/, 'Options from config are in the html gener
 
 # Is config is passed, layout has to be rendered
 
-like($html_from_plot, qr/Plotly\.plot\((?<div>[^,]+),(?<traces>[^,]+),(?<layout>[^,]+),(?<config>[^,]+)\)/,
+like($html_from_plot, qr/Plotly\.react\((?<div>[^,]+),(?<traces>[^,]+),(?<layout>[^,]+),(?<config>[^,]+)\)/,
     'Config options are rendered after layout, 4th argument');
 
