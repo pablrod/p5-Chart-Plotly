@@ -1,7 +1,7 @@
 package Chart::Plotly::Plot;
 
 use Moose;
-use JSON;
+use JSON qw();
 use utf8;
 
 use UUID::Tiny ':std';
@@ -53,7 +53,6 @@ Configuration options for the plot. See L<https://plot.ly/javascript/configurati
 =cut
 
 has config => (
-    default => sub { { responsive => JSON::true } },
     is => 'rw',
     isa => 'HashRef'
 );
@@ -109,6 +108,23 @@ sub TO_JSON {
         $json .= ', "config": ' .  $config;
     }
     return $json . " }";
+}
+
+=head2 from_json
+
+
+
+=cut
+
+sub from_json {
+    my $class = shift;
+    my $json = shift;
+    my $data = JSON::from_json($json);
+    return $class->new(
+        (defined $data->{"data"} ? (traces => $data->{"data"}) : ()),
+        (defined $data->{"layout"} ? (layout => $data->{"layout"}) : ()),
+        (defined $data->{"config"} ? (config => $data->{"config"}) : ())
+    );
 }
 
 1;
