@@ -169,14 +169,14 @@ has tickformat => (
 
 =item * ticktext
 
-Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+Sets the text displayed at the ticks position via `tickvals`.
 
 =cut
 
 has ticktext => (
     is => "rw",
     isa => "ArrayRef|PDL",
-    documentation => "Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.",
+    documentation => "Sets the text displayed at the ticks position via `tickvals`.",
 );
 
 =item * ticktextsrc
@@ -193,14 +193,14 @@ has ticktextsrc => (
 
 =item * tickvals
 
-Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+Sets the values at which ticks on this axis appear.
 
 =cut
 
 has tickvals => (
     is => "rw",
     isa => "ArrayRef|PDL",
-    documentation => "Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.",
+    documentation => "Sets the values at which ticks on this axis appear.",
 );
 
 =item * tickvalssrc
