@@ -119,11 +119,11 @@ sub TO_JSON {
 sub from_json {
     my $class = shift;
     my $json = shift;
-    my $data = JSON::from_json($json);
+    my %data = %{JSON::from_json($json)};
     return $class->new(
-        (defined $data->{"data"} ? (traces => $data->{"data"}) : ()),
-        (defined $data->{"layout"} ? (layout => $data->{"layout"}) : ()),
-        (defined $data->{"config"} ? (config => $data->{"config"}) : ())
+        (defined $data{"data"} ? (traces => $data{"data"}) : ()),
+        (defined $data{"layout"} ? (layout => $data{"layout"}) : ()),
+        (defined $data{"config"} ? (config => $data{"config"}) : ())
     );
 }
 
