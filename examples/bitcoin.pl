@@ -38,7 +38,7 @@ my $plot_with_grid = Chart::Plotly::Plot->new(
         yaxis => {
             gridcolor => '#000',
             gridwidth => 1,
-            dtick => 1
+            dtick => 20
         }
     }
 );
