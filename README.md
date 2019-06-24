@@ -2,10 +2,6 @@
 
 Chart::Plotly - Generate html/javascript charts from perl data using javascript library plotly.js
 
-# VERSION
-
-version 0.027
-
 # SYNOPSIS
 
 ```perl
