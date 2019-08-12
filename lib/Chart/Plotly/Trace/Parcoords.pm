@@ -188,6 +188,17 @@ has idssrc => (
     documentation => "Sets the source reference on plot.ly for  ids .",
 );
 
+=item * labelangle
+
+Sets the angle of the labels with respect to the horizontal. For example, a `tickangle` of -90 draws the labels vertically. Tilted labels with *labelangle* may be positioned better inside margins when `labelposition` is set to *bottom*.
+
+=cut
+
+has labelangle => (
+    is => "rw",
+    documentation => "Sets the angle of the labels with respect to the horizontal. For example, a `tickangle` of -90 draws the labels vertically. Tilted labels with *labelangle* may be positioned better inside margins when `labelposition` is set to *bottom*.",
+);
+
 =item * labelfont
 
 
@@ -196,6 +207,18 @@ has idssrc => (
 has labelfont => (
     is => "rw",
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Parcoords::Labelfont",
+);
+
+=item * labelside
+
+Specifies the location of the `label`. *top* positions labels above, next to the title *bottom* positions labels below the graph Tilted labels with *labelangle* may be positioned better inside margins when `labelposition` is set to *bottom*.
+
+=cut
+
+has labelside => (
+    is => "rw",
+    isa => enum(["top","bottom"]),
+    documentation => "Specifies the location of the `label`. *top* positions labels above, next to the title *bottom* positions labels below the graph Tilted labels with *labelangle* may be positioned better inside margins when `labelposition` is set to *bottom*.",
 );
 
 =item * line
