@@ -1,4 +1,4 @@
-  - Update to plotly.js 1.49.1
+  - Update to plotly.js 1.49.4
   - Add new trace type: indicator, choroplethmapbox, densitymapbox
 0.027 2019-06-22 20:30:00+0000
   - Update to plotly.js 1.48.3

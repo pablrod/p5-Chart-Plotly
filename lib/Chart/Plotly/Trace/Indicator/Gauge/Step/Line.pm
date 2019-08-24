@@ -1,4 +1,4 @@
-package Chart::Plotly::Trace::Indicator::Gauge;
+package Chart::Plotly::Trace::Indicator::Gauge::Step::Line;
 use Moose;
 use MooseX::ExtraArgs;
 use Moose::Util::TypeConstraints qw(enum union);
@@ -6,10 +6,6 @@ if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
     Moose::Util::TypeConstraints::type('PDL');
 }
 
-use Chart::Plotly::Trace::Indicator::Gauge::Axis;
-use Chart::Plotly::Trace::Indicator::Gauge::Bar;
-use Chart::Plotly::Trace::Indicator::Gauge::Step;
-use Chart::Plotly::Trace::Indicator::Gauge::Threshold;
 
 
 # VERSION
@@ -77,102 +73,28 @@ sub TO_JSON {
 
 =cut
 
-=item * axis
+=item * color
 
-
-=cut
-
-has axis => (
-    is => "rw",
-    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Indicator::Gauge::Axis",
-);
-
-=item * bar
-
+Sets the color of the line enclosing each sector.
 
 =cut
 
-has bar => (
-    is => "rw",
-    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Indicator::Gauge::Bar",
-);
-
-=item * bgcolor
-
-Sets the gauge background color.
-
-=cut
-
-has bgcolor => (
+has color => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the gauge background color.",
+    documentation => "Sets the color of the line enclosing each sector.",
 );
 
-=item * bordercolor
+=item * width
 
-Sets the color of the border enclosing the gauge.
+Sets the width (in px) of the line enclosing each sector.
 
 =cut
 
-has bordercolor => (
-    is => "rw",
-    isa => "Str",
-    documentation => "Sets the color of the border enclosing the gauge.",
-);
-
-=item * borderwidth
-
-Sets the width (in px) of the border enclosing the gauge.
-
-=cut
-
-has borderwidth => (
+has width => (
     is => "rw",
     isa => "Num",
-    documentation => "Sets the width (in px) of the border enclosing the gauge.",
-);
-
-=item * description
-
-
-=cut
-
-has description => (
-    is => "ro",
-    default => "The gauge of the Indicator plot.",
-);
-
-=item * shape
-
-Set the shape of the gauge
-
-=cut
-
-has shape => (
-    is => "rw",
-    isa => enum(["angular","bullet"]),
-    documentation => "Set the shape of the gauge",
-);
-
-=item * steps
-
-
-=cut
-
-has steps => (
-    is => "rw",
-    isa => "ArrayRef|ArrayRef[Chart::Plotly::Trace::Indicator::Gauge::Step]",
-);
-
-=item * threshold
-
-
-=cut
-
-has threshold => (
-    is => "rw",
-    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Indicator::Gauge::Threshold",
+    documentation => "Sets the width (in px) of the line enclosing each sector.",
 );
 
 =pod
