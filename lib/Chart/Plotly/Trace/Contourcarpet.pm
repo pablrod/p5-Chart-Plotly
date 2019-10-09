@@ -8,7 +8,6 @@ if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
 
 use Chart::Plotly::Trace::Contourcarpet::Colorbar;
 use Chart::Plotly::Trace::Contourcarpet::Contours;
-use Chart::Plotly::Trace::Contourcarpet::Hoverlabel;
 use Chart::Plotly::Trace::Contourcarpet::Line;
 use Chart::Plotly::Trace::Contourcarpet::Stream;
 
@@ -349,40 +348,6 @@ has fillcolor => (
     is => "rw",
     isa => "Str",
     documentation => "Sets the fill color if `contours.type` is *constraint*. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.",
-);
-
-=item * hoverinfo
-
-Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-
-=cut
-
-has hoverinfo => (
-    is => "rw",
-    isa => "Str|ArrayRef[Str]",
-    documentation => "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
-);
-
-=item * hoverinfosrc
-
-Sets the source reference on plot.ly for  hoverinfo .
-
-=cut
-
-has hoverinfosrc => (
-    is => "rw",
-    isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  hoverinfo .",
-);
-
-=item * hoverlabel
-
-
-=cut
-
-has hoverlabel => (
-    is => "rw",
-    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Contourcarpet::Hoverlabel",
 );
 
 =item * hovertext
