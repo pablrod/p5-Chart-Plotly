@@ -9,7 +9,6 @@ if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
 use Chart::Plotly::Trace::Carpet::Aaxis;
 use Chart::Plotly::Trace::Carpet::Baxis;
 use Chart::Plotly::Trace::Carpet::Font;
-use Chart::Plotly::Trace::Carpet::Hoverlabel;
 use Chart::Plotly::Trace::Carpet::Stream;
 
 
@@ -211,14 +210,14 @@ has bsrc => (
 
 =item * carpet
 
-An identifier for this carpet, so that `scattercarpet` and `scattercontour` traces can specify a carpet plot on which they lie
+An identifier for this carpet, so that `scattercarpet` and `contourcarpet` traces can specify a carpet plot on which they lie
 
 =cut
 
 has carpet => (
     is => "rw",
     isa => "Str",
-    documentation => "An identifier for this carpet, so that `scattercarpet` and `scattercontour` traces can specify a carpet plot on which they lie",
+    documentation => "An identifier for this carpet, so that `scattercarpet` and `contourcarpet` traces can specify a carpet plot on which they lie",
 );
 
 =item * cheaterslope
@@ -301,40 +300,6 @@ has db => (
 has font => (
     is => "rw",
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Carpet::Font",
-);
-
-=item * hoverinfo
-
-Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-
-=cut
-
-has hoverinfo => (
-    is => "rw",
-    isa => "Str|ArrayRef[Str]",
-    documentation => "Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.",
-);
-
-=item * hoverinfosrc
-
-Sets the source reference on plot.ly for  hoverinfo .
-
-=cut
-
-has hoverinfosrc => (
-    is => "rw",
-    isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  hoverinfo .",
-);
-
-=item * hoverlabel
-
-
-=cut
-
-has hoverlabel => (
-    is => "rw",
-    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Carpet::Hoverlabel",
 );
 
 =item * ids

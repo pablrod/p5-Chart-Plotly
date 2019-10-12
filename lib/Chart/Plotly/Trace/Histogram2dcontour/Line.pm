@@ -111,14 +111,14 @@ has smoothing => (
 
 =item * width
 
-Sets the line width (in px).
+Sets the contour line width in (in px)
 
 =cut
 
 has width => (
     is => "rw",
     isa => "Num",
-    documentation => "Sets the line width (in px).",
+    documentation => "Sets the contour line width in (in px)",
 );
 
 =pod

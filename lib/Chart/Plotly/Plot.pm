@@ -63,7 +63,17 @@ Returns the html corresponding to the plot
 
 =head3 Parameters
 
+=over 4
 
+=item div_id
+
+=item load_plotly_using_script_tag
+
+Add the script tag neccesary for loading plotly.js. Default 1.
+
+If plotly.js is going to be loaded in another place or some other way (e.g.: via RequireJS) is better to set to 0
+
+=back
 
 =cut
 

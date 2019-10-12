@@ -111,14 +111,14 @@ has smoothing => (
 
 =item * width
 
-Sets the line width (in px).
+Sets the contour line width in (in px) Defaults to *0.5* when `contours.type` is *levels*. Defaults to *2* when `contour.type` is *constraint*.
 
 =cut
 
 has width => (
     is => "rw",
     isa => "Num",
-    documentation => "Sets the line width (in px).",
+    documentation => "Sets the contour line width in (in px) Defaults to *0.5* when `contours.type` is *levels*. Defaults to *2* when `contour.type` is *constraint*.",
 );
 
 =pod

@@ -121,14 +121,14 @@ has labelfont => (
 
 =item * labelformat
 
-Sets the contour label formatting rule using d3 formatting mini-language which is very similar to Python, see: https://github.com/d3/d3-format/blob/master/README.md#locale_format.
+Sets the contour label formatting rule using d3 formatting mini-language which is very similar to Python, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
 
 =cut
 
 has labelformat => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the contour label formatting rule using d3 formatting mini-language which is very similar to Python, see: https://github.com/d3/d3-format/blob/master/README.md#locale_format.",
+    documentation => "Sets the contour label formatting rule using d3 formatting mini-language which is very similar to Python, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format",
 );
 
 =item * operation
