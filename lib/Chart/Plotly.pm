@@ -28,12 +28,16 @@ use Path::Tiny;
 
 # EXAMPLE: examples/basic.pl
 
+# EXAMPLE: examples/basic_scattergl.pl
+
 # EXAMPLE: examples/pdl.pl
+
+# EXAMPLE: examples/bessel.pl
      
 =head1 DESCRIPTION
 
 Generate html/javascript charts from perl data using javascript library plotly.js. The result
-is a file that you could see in your favourite browser.
+is html/javascript code that you could see in your favourite browser.
 
 =begin markdown
 
@@ -47,7 +51,7 @@ Example screenshot of plot generated with examples/anscombe.pl:
 =begin HTML
 
 <p>
-<img src="https://raw.githubusercontent.com/pablrod/p5-Chart-Plotly/master/examples/anscombe.png" alt="Anscombe's quartet plotted with plotly">
+<img src="https://raw.githubusercontent.com/pablrod/p5-Chart-Plotly/master/examples/anscombe.png" alt="Anscombe's quartet plotted with Chart::Plotly">
 </p>
 
 =end HTML
@@ -55,6 +59,22 @@ Example screenshot of plot generated with examples/anscombe.pl:
 =begin markdown
 
 ![Anscombe's quartet plotted with plotly](https://raw.githubusercontent.com/pablrod/p5-Chart-Plotly/master/examples/anscombe.png)
+
+=end markdown
+
+Example screenshot of plot generated with examples/traces/splom.pl:
+
+=begin HTML
+
+<p>
+<img src="https://raw.githubusercontent.com/pablrod/p5-Chart-Plotly/master/examples/traces/splom.png" alt="Iris classic dataset plotted with Chart::Plotly">
+</p>
+
+=end HTML
+
+=begin markdown
+
+![Iris classic dataset plotted with Chart::Plotly](https://raw.githubusercontent.com/pablrod/p5-Chart-Plotly/master/examples/traces/splom.png)
 
 =end markdown
 
@@ -74,11 +94,41 @@ Example screenshot of plots generated with examples/traces/*.pl:
 
 =end markdown
 
+This module is intended to be used in two ways (or a mix of them):
+
+=over 4
+
+=item *
+
+Following the declarative model of Plotly.js (json) but with Perl structures
+
+=item *
+
+Using the classes that represent the Plotly.js model. With this way you can see what can be done (or not) because there is a method (or not) to set the attribute
+
+=back
+
+If you're searching other approximations to plotting/charting but still want the interactivity offered by Plotly, you should check L<Chart::GGPlot>. 
+
 The API is subject to changes.
 
 =head1 FUNCTIONS
 
 =cut
+
+=head2 show_plot
+
+Opens the plot or plots in a browser locally
+
+=head3 Parameters
+
+Data to be represented. The format is the same as the parameter data in render_full_html. Accepts multiple traces/plots/objects.
+
+=cut
+
+sub show_plot {
+HTML::Show::show(html_plot(@_));
+}
 
 =head2 render_full_html
 
@@ -92,6 +142,8 @@ Data to be represented. It could be:
 
 =over
 
+=item Chart::Plotly::Plot object
+
 =item Perl data structure of the json expected by plotly.js: L<http://plot.ly/javascript/reference/> (this data would be serialized to JSON)
 
 =item Array ref of objects of type Chart::Plotly::Trace::*
@@ -103,6 +155,10 @@ Data to be represented. It could be:
 =back
 
 =back
+
+=head3 Returns
+
+Full html document ready to open in a browser
 
 =cut
 
@@ -229,20 +285,6 @@ for my $data (@data_to_plot) {
 return _render_html_wrap($rendered_cells);
 }
 
-=head2 show_plot
-
-Opens the plot or plots in a browser locally
-
-=head3 Parameters
-
-Data to be represented. The format is the same as the parameter data in render_full_html. Accepts multiple traces/plots/objects.
-
-=cut
-
-sub show_plot {
-HTML::Show::show(html_plot(@_));
-}
-
 =head2 plotlyjs_version
 
 Returns the version of plotly.js using in this version of the perl module as a string
@@ -256,6 +298,16 @@ sub plotlyjs_version {
 1;
 
 __END__
+
+=head1 SEE ALSO
+
+=over 4
+
+=item *
+
+ggplot2 in Perl L<Chart::GGPlot>
+
+=back
 
 =head1 BUGS
 
