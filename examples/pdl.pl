@@ -12,14 +12,3 @@ my $surface = Surface->new( x => $x, y => $y, z => $z );
 
 show_plot([$surface]);
 
-use PDL::Math;
-
-my $bessel_size = 50;
-my $bessel      = Surface->new(
-    x => xvals($bessel_size),
-    y => xvals($bessel_size),
-    z => bessj0( rvals( zeroes( $bessel_size, $bessel_size ) ) / 2 )
-);
-
-show_plot([$bessel]);
-
