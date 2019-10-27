@@ -20,7 +20,7 @@ use Path::Tiny;
 
 # VERSION
 
-# ABSTRACT: Generate html/javascript charts from perl data using javascript library plotly.js
+# ABSTRACT: Generate interactive html/javascript charts from perl data using javascript library plotly.js
 
 =encoding utf-8
 
@@ -28,11 +28,67 @@ use Path::Tiny;
 
 # EXAMPLE: examples/basic.pl
 
+=begin HTML
+
+<p>
+<img src="https://raw.githubusercontent.com/pablrod/p5-Chart-Plotly/master/examples/basic.png" alt="Basic chart with Chart::Plotly">
+</p>
+
+=end HTML
+
+=begin markdown
+
+![Basic chart with Chart::Plotly](https://raw.githubusercontent.com/pablrod/p5-Chart-Plotly/master/examples/basic.png)
+
+=end markdown
+
 # EXAMPLE: examples/basic_scattergl.pl
+
+=begin HTML
+
+<p>
+<img src="https://raw.githubusercontent.com/pablrod/p5-Chart-Plotly/master/examples/basic_scattergl.png" alt="Basic scattergl chart with Chart::Plotly">
+</p>
+
+=end HTML
+
+=begin markdown
+
+![Basic scattergl chart with Chart::Plotly](https://raw.githubusercontent.com/pablrod/p5-Chart-Plotly/master/examples/basic_scattergl.png)
+
+=end markdown
 
 # EXAMPLE: examples/pdl.pl
 
+=begin HTML
+
+<p>
+<img src="https://raw.githubusercontent.com/pablrod/p5-Chart-Plotly/master/examples/pdl.png" alt="Perl data language (PDL) charting with Chart::Plotly">
+</p>
+
+=end HTML
+
+=begin markdown
+
+![Perl data language (PDL) charting with Chart::Plotly](https://raw.githubusercontent.com/pablrod/p5-Chart-Plotly/master/examples/pdl.png)
+
+=end markdown
+
 # EXAMPLE: examples/bessel.pl
+
+=begin HTML
+
+<p>
+<img src="https://raw.githubusercontent.com/pablrod/p5-Chart-Plotly/master/examples/bessel.png" alt="Perl data language (PDL) plotting bessel functions with Chart::Plotly">
+</p>
+
+=end HTML
+
+=begin markdown
+
+![Perl data language (PDL) plotting bessel functions with Chart::Plotly](https://raw.githubusercontent.com/pablrod/p5-Chart-Plotly/master/examples/bessel.png)
+
+=end markdown
      
 =head1 DESCRIPTION
 
@@ -306,6 +362,14 @@ __END__
 =item *
 
 ggplot2 in Perl L<Chart::GGPlot>
+
+=item *
+
+Automatic display of Chart::Plotly charts in Devel::IPerl L<Devel::IPerl::Plugin::Chart::Plotly>
+
+=item *
+
+L<Devel::IPerl> Jupyter Perl kernel
 
 =back
 
