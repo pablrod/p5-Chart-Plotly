@@ -176,14 +176,14 @@ has colorscale => (
 
 =item * connectgaps
 
-Determines whether or not gaps (i.e. {nan} or missing values) in the `z` data are filled in.
+Determines whether or not gaps (i.e. {nan} or missing values) in the `z` data are filled in. It is defaulted to true if `z` is a one dimensional array otherwise it is defaulted to false.
 
 =cut
 
 has connectgaps => (
     is => "rw",
     isa => "Bool",
-    documentation => "Determines whether or not gaps (i.e. {nan} or missing values) in the `z` data are filled in.",
+    documentation => "Determines whether or not gaps (i.e. {nan} or missing values) in the `z` data are filled in. It is defaulted to true if `z` is a one dimensional array otherwise it is defaulted to false.",
 );
 
 =item * contours
@@ -288,6 +288,18 @@ has hoverinfosrc => (
 has hoverlabel => (
     is => "rw",
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Contour::Hoverlabel",
+);
+
+=item * hoverongaps
+
+Determines whether or not gaps (i.e. {nan} or missing values) in the `z` data have hover labels associated with them.
+
+=cut
+
+has hoverongaps => (
+    is => "rw",
+    isa => "Bool",
+    documentation => "Determines whether or not gaps (i.e. {nan} or missing values) in the `z` data have hover labels associated with them.",
 );
 
 =item * hovertemplate
