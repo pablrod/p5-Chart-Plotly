@@ -121,6 +121,18 @@ sub type {
 
 =cut
 
+=item * automargin
+
+Determines whether outside text labels can push the margins.
+
+=cut
+
+has automargin => (
+    is => "rw",
+    isa => "Bool",
+    documentation => "Determines whether outside text labels can push the margins.",
+);
+
 =item * customdata
 
 Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
