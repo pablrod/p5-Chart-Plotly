@@ -155,13 +155,14 @@ my $template    = <<'TEMPLATE';
 <div id="{$chart_id}"></div>
 {$load_plotly}
 <script>
-Plotly.react(document.getElementById('{$chart_id}'),{$data} {$layout} {$config});
+Plotly.{$plotlyjs_plot_function}(document.getElementById('{$chart_id}'),{$data} {$layout} {$config});
 </script>
 TEMPLATE
 
 my $template_variables = { data        => $data_string,
                            chart_id    => $chart_id,
-                           load_plotly => $load_plotly, 
+                           load_plotly => $load_plotly,
+                           plotlyjs_plot_function => plotlyjs_plot_function(),
                defined $layout ? (layout   => $layout) : (),
                defined $config ? (config   => $config) : (),
 };
@@ -251,6 +252,26 @@ Returns the version of plotly.js using in this version of the perl module as a s
 
 sub plotlyjs_version {
     return '1.51.1';
+}
+
+=head2 plotlyjs_plot_function
+
+Returns the name of function of plotly.js used in this version of the perl module to draw plots
+
+=cut
+
+sub plotlyjs_plot_function {
+    return 'react';
+}
+
+=head2 plotlyjs_plot_function_parameters
+
+Returns the function parameters of the function of plotly.js used in this version of the perl module to draw plots as a list of strings
+
+=cut
+
+sub plotlyjs_plot_function_parameters {
+    return qw(div data layout config);
 }
 
 1;
