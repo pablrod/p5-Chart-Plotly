@@ -5,6 +5,7 @@ use warnings;
 use utf8;
 
 use Module::Find;
+use Chart::Plotly;
 use namespace::autoclean;
 
 # VERSION
@@ -41,7 +42,8 @@ The example above can be viewed in L<nbviewer|http://nbviewer.jupyter.org/github
 
 =cut
 
-my $require_plotly = <<'EOJS';
+my $parameter_list = "(" . join(", ", Chart::Plotly::plotlyjs_plot_function_parameters()) . ")";
+my $require_plotly = <<'EOJSFP';
 <script>
 //# sourceURL=iperl-devel-plugin-chart-plotly.js
             $('#Plotly').each(function(i, e) { $(e).attr('id', 'plotly') });
@@ -52,17 +54,21 @@ my $require_plotly = <<'EOJS';
                     plotly: ['https://cdn.plot.ly/plotly-latest.min']},
                 });
                 window.Plotly = {
-                  plot : function(div, data, layout) {
+EOJSFP
+
+$require_plotly .= Chart::Plotly::plotlyjs_plot_function() . " : function " . $parameter_list . "{\n";
+$require_plotly .= <<'EOJSSP';
                     require(['plotly'], function(plotly) {
                       window.Plotly=plotly;
-                      Plotly.plot(div, data, layout);
+EOJSSP
+$require_plotly .= "Plotly." . Chart::Plotly::plotlyjs_plot_function() . $parameter_list . ";";
+$require_plotly .= <<'EOJSTP';
                     });
                   }
                 }
             }
 </script>
-EOJS
-
+EOJSTP
 
 =head2 register
 
