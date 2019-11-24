@@ -4,7 +4,7 @@ Chart::Plotly - Generate html/javascript charts from perl data using javascript 
 
 # VERSION
 
-version 0.030
+version 0.031
 
 # SYNOPSIS
 
@@ -104,6 +104,14 @@ Data to be represented. The format is the same as the parameter data in render\_
 ## plotlyjs\_version
 
 Returns the version of plotly.js using in this version of the perl module as a string
+
+## plotlyjs\_plot\_function
+
+Returns the name of function of plotly.js used in this version of the perl module to draw plots
+
+## plotlyjs\_plot\_function\_parameters
+
+Returns the function parameters of the function of plotly.js used in this version of the perl module to draw plots as a list of strings
 
 # BUGS
 
