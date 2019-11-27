@@ -187,7 +187,7 @@ L<https://help.gnome.org/users/orca/stable/>
 =cut
 
 sub correct_orca {
-    my $orca_help = `$ORCA_COMMAND -h`;
+    my $orca_help = `$ORCA_COMMAND --help`;
     return ($orca_help =~ /plotly/i);
 }
 
