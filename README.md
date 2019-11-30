@@ -140,5 +140,6 @@ The MIT (X11) License
 
 # CONTRIBUTORS
 
+- Roy Storey <kiwiroy@users.noreply.github.com>
 - stphnlyd <stephanloyd9@gmail.com>
 - weatherwax <s.g.lobo@hotmail.com>
