@@ -4,6 +4,9 @@ use warnings;
 
 use Test::More tests => 2;
 
+eval 'use Devel::IPerl';
+plan skip_all => 'Devel::IPerl not installed' if $@;
+
 use Devel::IPerl::Plugin::Chart::Plotly;
 
 Devel::IPerl::Plugin::Chart::Plotly->register();
