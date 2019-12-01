@@ -14,6 +14,8 @@ use namespace::autoclean;
 
 =encoding utf8
 
+=for Pod::Coverage EVERYTHING
+
 =head1 SYNOPSIS
 
     # In notebook
