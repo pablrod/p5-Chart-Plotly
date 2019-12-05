@@ -4,7 +4,7 @@ Chart::Plotly - Generate html/javascript charts from perl data using javascript 
 
 # VERSION
 
-version 0.033
+version 0.034
 
 # SYNOPSIS
 
