@@ -251,7 +251,7 @@ Returns the version of plotly.js using in this version of the perl module as a s
 =cut
 
 sub plotlyjs_version {
-    return '1.51.2';
+    return '1.51.3';
 }
 
 =head2 plotlyjs_plot_function
