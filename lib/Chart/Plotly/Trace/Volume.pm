@@ -400,6 +400,18 @@ has isomin => (
     documentation => "Sets the minimum boundary for iso-surface plot.",
 );
 
+=item * legendgroup
+
+Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
+
+=cut
+
+has legendgroup => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.",
+);
+
 =item * lighting
 
 
@@ -501,6 +513,18 @@ Sets a reference between this trace's 3D coordinate system and a 3D scene. If *s
 has scene => (
     is => "rw",
     documentation => "Sets a reference between this trace's 3D coordinate system and a 3D scene. If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*, the (x,y,z) coordinates refer to `layout.scene2`, and so on.",
+);
+
+=item * showlegend
+
+Determines whether or not an item corresponding to this trace is shown in the legend.
+
+=cut
+
+has showlegend => (
+    is => "rw",
+    isa => "Bool",
+    documentation => "Determines whether or not an item corresponding to this trace is shown in the legend.",
 );
 
 =item * showscale

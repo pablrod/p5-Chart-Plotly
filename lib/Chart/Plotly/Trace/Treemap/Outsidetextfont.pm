@@ -102,7 +102,7 @@ has colorsrc => (
 
 has description => (
     is => "ro",
-    default => "Sets the font used for `textinfo` lying outside the sector.",
+    default => "Sets the font used for `textinfo` lying outside the sector. This option refers to the root of the hierarchy presented on top left corner of a treemap graph. Please note that if a hierarchy has multiple root nodes, this option won't have any effect and `insidetextfont` would be used.",
 );
 
 =item * family

@@ -326,6 +326,18 @@ has latsrc => (
     documentation => "Sets the source reference on plot.ly for  lat .",
 );
 
+=item * legendgroup
+
+Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
+
+=cut
+
+has legendgroup => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.",
+);
+
 =item * lon
 
 Sets the longitude coordinates (in degrees East).
@@ -432,6 +444,18 @@ has reversescale => (
     is => "rw",
     isa => "Bool",
     documentation => "Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.",
+);
+
+=item * showlegend
+
+Determines whether or not an item corresponding to this trace is shown in the legend.
+
+=cut
+
+has showlegend => (
+    is => "rw",
+    isa => "Bool",
+    documentation => "Determines whether or not an item corresponding to this trace is shown in the legend.",
 );
 
 =item * showscale

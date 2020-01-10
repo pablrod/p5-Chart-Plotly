@@ -319,6 +319,18 @@ has insidetextfont => (
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Pie::Insidetextfont",
 );
 
+=item * insidetextorientation
+
+Determines the orientation of text inside slices. With *auto* the texts may automatically be rotated to fit with the maximum size inside the slice. Using *horizontal* option forces text to be horizontal. Using *radial* option forces text to be radial. Using *tangential* option forces text to be tangential.
+
+=cut
+
+has insidetextorientation => (
+    is => "rw",
+    isa => enum(["horizontal","radial","tangential","auto"]),
+    documentation => "Determines the orientation of text inside slices. With *auto* the texts may automatically be rotated to fit with the maximum size inside the slice. Using *horizontal* option forces text to be horizontal. Using *radial* option forces text to be radial. Using *tangential* option forces text to be tangential.",
+);
+
 =item * label0
 
 Alternate to `labels`. Builds a numeric set of labels. Use with `dlabel` where `label0` is the starting label and `dlabel` the step.

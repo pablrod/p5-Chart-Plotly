@@ -187,6 +187,18 @@ has customdatasrc => (
     documentation => "Sets the source reference on plot.ly for  customdata .",
 );
 
+=item * featureidkey
+
+Sets the key in GeoJSON features which is used as id to match the items included in the `locations` array. Only has an effect when `geojson` is set. Support nested property, for example *properties.name*.
+
+=cut
+
+has featureidkey => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the key in GeoJSON features which is used as id to match the items included in the `locations` array. Only has an effect when `geojson` is set. Support nested property, for example *properties.name*.",
+);
+
 =item * geo
 
 Sets a reference between this trace's geospatial coordinates and a geographic map. If *geo* (the default value), the geospatial coordinates refer to `layout.geo`. If *geo2*, the geospatial coordinates refer to `layout.geo2`, and so on.
@@ -196,6 +208,18 @@ Sets a reference between this trace's geospatial coordinates and a geographic ma
 has geo => (
     is => "rw",
     documentation => "Sets a reference between this trace's geospatial coordinates and a geographic map. If *geo* (the default value), the geospatial coordinates refer to `layout.geo`. If *geo2*, the geospatial coordinates refer to `layout.geo2`, and so on.",
+);
+
+=item * geojson
+
+Sets optional GeoJSON data associated with this trace. If not given, the features on the base map are used. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type *FeatureCollection* or *Feature* with geometries of type *Polygon* or *MultiPolygon*.
+
+=cut
+
+has geojson => (
+    is => "rw",
+    isa => "Any",
+    documentation => "Sets optional GeoJSON data associated with this trace. If not given, the features on the base map are used. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type *FeatureCollection* or *Feature* with geometries of type *Polygon* or *MultiPolygon*.",
 );
 
 =item * hoverinfo
@@ -304,16 +328,28 @@ has idssrc => (
     documentation => "Sets the source reference on plot.ly for  ids .",
 );
 
+=item * legendgroup
+
+Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
+
+=cut
+
+has legendgroup => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.",
+);
+
 =item * locationmode
 
-Determines the set of locations used to match entries in `locations` to regions on the map.
+Determines the set of locations used to match entries in `locations` to regions on the map. Values *ISO-3*, *USA-states*, *country names* correspond to features on the base map and value *geojson-id* corresponds to features from a custom GeoJSON linked to the `geojson` attribute.
 
 =cut
 
 has locationmode => (
     is => "rw",
-    isa => enum(["ISO-3","USA-states","country names"]),
-    documentation => "Determines the set of locations used to match entries in `locations` to regions on the map.",
+    isa => enum(["ISO-3","USA-states","country names","geojson-id"]),
+    documentation => "Determines the set of locations used to match entries in `locations` to regions on the map. Values *ISO-3*, *USA-states*, *country names* correspond to features on the base map and value *geojson-id* corresponds to features from a custom GeoJSON linked to the `geojson` attribute.",
 );
 
 =item * locations
@@ -418,6 +454,18 @@ has selectedpoints => (
     is => "rw",
     isa => "Any",
     documentation => "Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.",
+);
+
+=item * showlegend
+
+Determines whether or not an item corresponding to this trace is shown in the legend.
+
+=cut
+
+has showlegend => (
+    is => "rw",
+    isa => "Bool",
+    documentation => "Determines whether or not an item corresponding to this trace is shown in the legend.",
 );
 
 =item * showscale

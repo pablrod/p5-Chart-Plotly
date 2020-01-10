@@ -338,6 +338,18 @@ has idssrc => (
     documentation => "Sets the source reference on plot.ly for  ids .",
 );
 
+=item * legendgroup
+
+Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
+
+=cut
+
+has legendgroup => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.",
+);
+
 =item * pmeta
 
 Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
@@ -396,6 +408,18 @@ has reversescale => (
     is => "rw",
     isa => "Bool",
     documentation => "Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.",
+);
+
+=item * showlegend
+
+Determines whether or not an item corresponding to this trace is shown in the legend.
+
+=cut
+
+has showlegend => (
+    is => "rw",
+    isa => "Bool",
+    documentation => "Determines whether or not an item corresponding to this trace is shown in the legend.",
 );
 
 =item * showscale
