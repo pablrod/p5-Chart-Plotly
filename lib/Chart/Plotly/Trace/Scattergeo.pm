@@ -156,6 +156,18 @@ has customdatasrc => (
     documentation => "Sets the source reference on plot.ly for  customdata .",
 );
 
+=item * featureidkey
+
+Sets the key in GeoJSON features which is used as id to match the items included in the `locations` array. Only has an effect when `geojson` is set. Support nested property, for example *properties.name*.
+
+=cut
+
+has featureidkey => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the key in GeoJSON features which is used as id to match the items included in the `locations` array. Only has an effect when `geojson` is set. Support nested property, for example *properties.name*.",
+);
+
 =item * fill
 
 Sets the area to fill with a solid color. Use with `fillcolor` if not *none*. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.
@@ -189,6 +201,18 @@ Sets a reference between this trace's geospatial coordinates and a geographic ma
 has geo => (
     is => "rw",
     documentation => "Sets a reference between this trace's geospatial coordinates and a geographic map. If *geo* (the default value), the geospatial coordinates refer to `layout.geo`. If *geo2*, the geospatial coordinates refer to `layout.geo2`, and so on.",
+);
+
+=item * geojson
+
+Sets optional GeoJSON data associated with this trace. If not given, the features on the base map are used when `locations` is set. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type *FeatureCollection* or *Feature* with geometries of type *Polygon* or *MultiPolygon*.
+
+=cut
+
+has geojson => (
+    is => "rw",
+    isa => "Any",
+    documentation => "Sets optional GeoJSON data associated with this trace. If not given, the features on the base map are used when `locations` is set. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type *FeatureCollection* or *Feature* with geometries of type *Polygon* or *MultiPolygon*.",
 );
 
 =item * hoverinfo
@@ -345,14 +369,14 @@ has line => (
 
 =item * locationmode
 
-Determines the set of locations used to match entries in `locations` to regions on the map.
+Determines the set of locations used to match entries in `locations` to regions on the map. Values *ISO-3*, *USA-states*, *country names* correspond to features on the base map and value *geojson-id* corresponds to features from a custom GeoJSON linked to the `geojson` attribute.
 
 =cut
 
 has locationmode => (
     is => "rw",
-    isa => enum(["ISO-3","USA-states","country names"]),
-    documentation => "Determines the set of locations used to match entries in `locations` to regions on the map.",
+    isa => enum(["ISO-3","USA-states","country names","geojson-id"]),
+    documentation => "Determines the set of locations used to match entries in `locations` to regions on the map. Values *ISO-3*, *USA-states*, *country names* correspond to features on the base map and value *geojson-id* corresponds to features from a custom GeoJSON linked to the `geojson` attribute.",
 );
 
 =item * locations

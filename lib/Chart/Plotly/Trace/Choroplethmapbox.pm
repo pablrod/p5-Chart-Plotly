@@ -199,16 +199,28 @@ has customdatasrc => (
     documentation => "Sets the source reference on plot.ly for  customdata .",
 );
 
+=item * featureidkey
+
+Sets the key in GeoJSON features which is used as id to match the items included in the `locations` array. Support nested property, for example *properties.name*.
+
+=cut
+
+has featureidkey => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the key in GeoJSON features which is used as id to match the items included in the `locations` array. Support nested property, for example *properties.name*.",
+);
+
 =item * geojson
 
-Sets the GeoJSON data associated with this trace. Can be set as a valid GeoJSON object or as URL string Note that we only accept GeoJSON of type *FeatureCollection* and *Feature* with geometries of type *Polygon* and *MultiPolygon*.
+Sets the GeoJSON data associated with this trace. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type *FeatureCollection* or *Feature* with geometries of type *Polygon* or *MultiPolygon*.
 
 =cut
 
 has geojson => (
     is => "rw",
     isa => "Any",
-    documentation => "Sets the GeoJSON data associated with this trace. Can be set as a valid GeoJSON object or as URL string Note that we only accept GeoJSON of type *FeatureCollection* and *Feature* with geometries of type *Polygon* and *MultiPolygon*.",
+    documentation => "Sets the GeoJSON data associated with this trace. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type *FeatureCollection* or *Feature* with geometries of type *Polygon* or *MultiPolygon*.",
 );
 
 =item * hoverinfo
@@ -317,6 +329,18 @@ has idssrc => (
     documentation => "Sets the source reference on plot.ly for  ids .",
 );
 
+=item * legendgroup
+
+Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
+
+=cut
+
+has legendgroup => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.",
+);
+
 =item * locations
 
 Sets which features found in *geojson* to plot using their feature `id` field.
@@ -419,6 +443,18 @@ has selectedpoints => (
     is => "rw",
     isa => "Any",
     documentation => "Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.",
+);
+
+=item * showlegend
+
+Determines whether or not an item corresponding to this trace is shown in the legend.
+
+=cut
+
+has showlegend => (
+    is => "rw",
+    isa => "Bool",
+    documentation => "Determines whether or not an item corresponding to this trace is shown in the legend.",
 );
 
 =item * showscale

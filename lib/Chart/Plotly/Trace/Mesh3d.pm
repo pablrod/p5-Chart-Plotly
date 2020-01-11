@@ -436,14 +436,26 @@ has idssrc => (
 
 =item * intensity
 
-Sets the vertex intensity values, used for plotting fields on meshes
+Sets the intensity values for vertices or cells as defined by `intensitymode`. It can be used for plotting fields on meshes.
 
 =cut
 
 has intensity => (
     is => "rw",
     isa => "ArrayRef|PDL",
-    documentation => "Sets the vertex intensity values, used for plotting fields on meshes",
+    documentation => "Sets the intensity values for vertices or cells as defined by `intensitymode`. It can be used for plotting fields on meshes.",
+);
+
+=item * intensitymode
+
+Determines the source of `intensity` values.
+
+=cut
+
+has intensitymode => (
+    is => "rw",
+    isa => enum(["vertex","cell"]),
+    documentation => "Determines the source of `intensity` values.",
 );
 
 =item * intensitysrc
@@ -516,6 +528,18 @@ has ksrc => (
     is => "rw",
     isa => "Str",
     documentation => "Sets the source reference on plot.ly for  k .",
+);
+
+=item * legendgroup
+
+Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
+
+=cut
+
+has legendgroup => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.",
 );
 
 =item * lighting
@@ -607,6 +631,18 @@ Sets a reference between this trace's 3D coordinate system and a 3D scene. If *s
 has scene => (
     is => "rw",
     documentation => "Sets a reference between this trace's 3D coordinate system and a 3D scene. If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*, the (x,y,z) coordinates refer to `layout.scene2`, and so on.",
+);
+
+=item * showlegend
+
+Determines whether or not an item corresponding to this trace is shown in the legend.
+
+=cut
+
+has showlegend => (
+    is => "rw",
+    isa => "Bool",
+    documentation => "Determines whether or not an item corresponding to this trace is shown in the legend.",
 );
 
 =item * showscale

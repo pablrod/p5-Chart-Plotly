@@ -295,6 +295,18 @@ has insidetextfont => (
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Sunburst::Insidetextfont",
 );
 
+=item * insidetextorientation
+
+Determines the orientation of text inside slices. With *auto* the texts may automatically be rotated to fit with the maximum size inside the slice. Using *horizontal* option forces text to be horizontal. Using *radial* option forces text to be radial. Using *tangential* option forces text to be tangential.
+
+=cut
+
+has insidetextorientation => (
+    is => "rw",
+    isa => enum(["horizontal","radial","tangential","auto"]),
+    documentation => "Determines the orientation of text inside slices. With *auto* the texts may automatically be rotated to fit with the maximum size inside the slice. Using *horizontal* option forces text to be horizontal. Using *radial* option forces text to be radial. Using *tangential* option forces text to be tangential.",
+);
+
 =item * labels
 
 Sets the labels of each of the sectors.

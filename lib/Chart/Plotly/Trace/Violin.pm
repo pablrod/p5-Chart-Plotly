@@ -449,13 +449,13 @@ has pointpos => (
 
 =item * points
 
-If *outliers*, only the sample points lying outside the whiskers are shown If *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are shown If *false*, only the violins are shown with no sample points
+If *outliers*, only the sample points lying outside the whiskers are shown If *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are shown If *false*, only the violins are shown with no sample points. Defaults to *suspectedoutliers* when `marker.outliercolor` or `marker.line.outliercolor` is set, otherwise defaults to *outliers*.
 
 =cut
 
 has points => (
     is => "rw",
-    documentation => "If *outliers*, only the sample points lying outside the whiskers are shown If *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are shown If *false*, only the violins are shown with no sample points",
+    documentation => "If *outliers*, only the sample points lying outside the whiskers are shown If *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are shown If *false*, only the violins are shown with no sample points. Defaults to *suspectedoutliers* when `marker.outliercolor` or `marker.line.outliercolor` is set, otherwise defaults to *outliers*.",
 );
 
 =item * scalegroup
@@ -667,14 +667,14 @@ has x => (
 
 =item * x0
 
-Sets the x coordinate of the box. See overview for more info.
+Sets the x coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.
 
 =cut
 
 has x0 => (
     is => "rw",
     isa => "Any",
-    documentation => "Sets the x coordinate of the box. See overview for more info.",
+    documentation => "Sets the x coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.",
 );
 
 =item * xaxis
@@ -714,14 +714,14 @@ has y => (
 
 =item * y0
 
-Sets the y coordinate of the box. See overview for more info.
+Sets the y coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.
 
 =cut
 
 has y0 => (
     is => "rw",
     isa => "Any",
-    documentation => "Sets the y coordinate of the box. See overview for more info.",
+    documentation => "Sets the y coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.",
 );
 
 =item * yaxis
