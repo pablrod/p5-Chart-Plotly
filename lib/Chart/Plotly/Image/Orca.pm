@@ -150,7 +150,7 @@ sub orca {
         my $plotlyjs = $params{plotly} // _plotlyjs;
 
         my $tmp_json = Path::Tiny->tempfile(SUFFIX => '.json');
-        $tmp_json->spew_raw($plot->TO_JSON);
+        $tmp_json->spew_raw($plot->to_json_text);
 
         # For now have to explicitly specify -d as otherwise orca would
         #  not be able to store output to a different path other than cwd.
