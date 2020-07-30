@@ -52,6 +52,19 @@ my $bessel      = Surface->new(
 show_plot([$bessel]);
 ```
 
+```perl
+use Chart::Plotly 'html_plot';
+
+my $data = { x    => [ 1 .. 10 ],
+             type => 'bar'
+};
+$data->{'y'} = [ 1 .. 10 ];
+
+open my $fh, '>', 'bar.html';
+print $fh html_plot([$data]);
+close $fh
+```
+
 # DESCRIPTION
 
 Generate html/javascript charts from perl data using javascript library plotly.js. The result

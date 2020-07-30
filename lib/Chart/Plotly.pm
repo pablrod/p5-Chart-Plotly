@@ -6,7 +6,7 @@ use utf8;
 
 use Exporter 'import';
 use vars qw(@EXPORT_OK);
-@EXPORT_OK = qw(show_plot);
+@EXPORT_OK = qw(show_plot html_plot);
 
 use JSON;
 use Params::Validate qw(:all);
