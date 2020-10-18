@@ -4,7 +4,7 @@ Chart::Plotly - Generate html/javascript charts from perl data using javascript 
 
 # VERSION
 
-version 0.039
+version 0.040
 
 # SYNOPSIS
 
@@ -141,5 +141,5 @@ The MIT (X11) License
 # CONTRIBUTORS
 
 - Roy Storey <kiwiroy@users.noreply.github.com>
-- stphnlyd <stephanloyd9@gmail.com>
+- Stephan Loyd <stephanloyd9@gmail.com>
 - weatherwax <s.g.lobo@hotmail.com>
