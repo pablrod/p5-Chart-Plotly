@@ -116,6 +116,14 @@ Sets the image width.
 
 Sets the image height.
 
+=item plotlyjs
+
+Sets plotlyjs file path. Default is the bundled plotly.min.js file.
+
+=item plotly
+
+This is same as the C<plotlyjs> parameter mentioned above.
+
 =item mathjax
 
 Sets path to MathJax files. Required to export LaTeX characters.
@@ -147,7 +155,7 @@ sub orca {
         unless (defined $format) {
             ($format) = $file =~ /\.([^\.]+)$/;
         }
-        my $plotlyjs = $params{plotly} // _plotlyjs;
+        my $plotlyjs = $params{plotlyjs} // $params{plotly} // _plotlyjs;
 
         my $tmp_json = Path::Tiny->tempfile(SUFFIX => '.json');
         $tmp_json->spew_raw($plot->to_json_text);
@@ -232,7 +240,7 @@ sub orca_version {
         return Alien::Plotly::Orca->version;
     }
     if ( orca_available($force_check) ) {
-        my $version = `$ORCA_COMMAND --version`;
+        $version = `$ORCA_COMMAND --version`;
         chomp($version);
         return $version;
     }
