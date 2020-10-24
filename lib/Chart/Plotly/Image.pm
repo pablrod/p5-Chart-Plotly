@@ -136,7 +136,9 @@ sub _has_kaleido {
 }
 
 sub _has_orca {
-    return Chart::Plotly::Image::Orca::orca_available;
+    my $has_orca;
+    eval { $has_orca = Chart::Plotly::Image::Orca::orca_available };
+    return $has_orca;
 }
 
 sub _save_image_kaleido {
