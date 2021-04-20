@@ -147,7 +147,9 @@ sub _save_image_kaleido {
     _has_kaleido();
 
     # Chart::Kaleido::Plotly's interface uses plotlyjs not plotly
-    $params{plotlyjs} ||= delete $params{plotly};
+    if (my $plotlyjs_via_plotly_param = delete $params{plotly}) {
+        $params{plotlyjs} ||= $plotlyjs_via_plotly_param;
+    }
     my %kaleido_params =
       map { exists $params{$_} ? ( $_ => delete $params{$_} ) : () } @{ Chart::Kaleido::Plotly->scope_flags };
     my $kaleido = Chart::Kaleido::Plotly->new(%kaleido_params);
