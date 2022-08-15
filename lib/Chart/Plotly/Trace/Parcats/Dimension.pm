@@ -87,14 +87,14 @@ has categoryarray => (
 
 =item * categoryarraysrc
 
-Sets the source reference on plot.ly for  categoryarray .
+Sets the source reference on Chart Studio Cloud for `categoryarray`.
 
 =cut
 
 has categoryarraysrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  categoryarray .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `categoryarray`.",
 );
 
 =item * categoryorder
@@ -157,14 +157,14 @@ has ticktext => (
 
 =item * ticktextsrc
 
-Sets the source reference on plot.ly for  ticktext .
+Sets the source reference on Chart Studio Cloud for `ticktext`.
 
 =cut
 
 has ticktextsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  ticktext .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `ticktext`.",
 );
 
 =item * values
@@ -181,14 +181,14 @@ has values => (
 
 =item * valuessrc
 
-Sets the source reference on plot.ly for  values .
+Sets the source reference on Chart Studio Cloud for `values`.
 
 =cut
 
 has valuessrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  values .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `values`.",
 );
 
 =item * visible

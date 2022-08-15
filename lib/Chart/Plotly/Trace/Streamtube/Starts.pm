@@ -87,14 +87,14 @@ has x => (
 
 =item * xsrc
 
-Sets the source reference on plot.ly for  x .
+Sets the source reference on Chart Studio Cloud for `x`.
 
 =cut
 
 has xsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  x .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `x`.",
 );
 
 =item * y
@@ -111,14 +111,14 @@ has y => (
 
 =item * ysrc
 
-Sets the source reference on plot.ly for  y .
+Sets the source reference on Chart Studio Cloud for `y`.
 
 =cut
 
 has ysrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  y .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `y`.",
 );
 
 =item * z
@@ -135,14 +135,14 @@ has z => (
 
 =item * zsrc
 
-Sets the source reference on plot.ly for  z .
+Sets the source reference on Chart Studio Cloud for `z`.
 
 =cut
 
 has zsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  z .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `z`.",
 );
 
 =pod

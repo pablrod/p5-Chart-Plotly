@@ -8,6 +8,7 @@ if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
 
 use Chart::Plotly::Trace::Violin::Box;
 use Chart::Plotly::Trace::Violin::Hoverlabel;
+use Chart::Plotly::Trace::Violin::Legendgrouptitle;
 use Chart::Plotly::Trace::Violin::Line;
 use Chart::Plotly::Trace::Violin::Marker;
 use Chart::Plotly::Trace::Violin::Meanline;
@@ -169,14 +170,14 @@ has customdata => (
 
 =item * customdatasrc
 
-Sets the source reference on plot.ly for  customdata .
+Sets the source reference on Chart Studio Cloud for `customdata`.
 
 =cut
 
 has customdatasrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  customdata .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `customdata`.",
 );
 
 =item * fillcolor
@@ -205,14 +206,14 @@ has hoverinfo => (
 
 =item * hoverinfosrc
 
-Sets the source reference on plot.ly for  hoverinfo .
+Sets the source reference on Chart Studio Cloud for `hoverinfo`.
 
 =cut
 
 has hoverinfosrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  hoverinfo .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `hoverinfo`.",
 );
 
 =item * hoverlabel
@@ -239,26 +240,26 @@ has hoveron => (
 
 =item * hovertemplate
 
-Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
 
 =cut
 
 has hovertemplate => (
     is => "rw",
     isa => "Str|ArrayRef[Str]",
-    documentation => "Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:\$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.",
+    documentation => "Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:\$.2f}\". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.",
 );
 
 =item * hovertemplatesrc
 
-Sets the source reference on plot.ly for  hovertemplate .
+Sets the source reference on Chart Studio Cloud for `hovertemplate`.
 
 =cut
 
 has hovertemplatesrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  hovertemplate .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `hovertemplate`.",
 );
 
 =item * hovertext
@@ -275,14 +276,14 @@ has hovertext => (
 
 =item * hovertextsrc
 
-Sets the source reference on plot.ly for  hovertext .
+Sets the source reference on Chart Studio Cloud for `hovertext`.
 
 =cut
 
 has hovertextsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  hovertext .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `hovertext`.",
 );
 
 =item * ids
@@ -299,14 +300,14 @@ has ids => (
 
 =item * idssrc
 
-Sets the source reference on plot.ly for  ids .
+Sets the source reference on Chart Studio Cloud for `ids`.
 
 =cut
 
 has idssrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  ids .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `ids`.",
 );
 
 =item * jitter
@@ -331,6 +332,28 @@ has legendgroup => (
     is => "rw",
     isa => "Str",
     documentation => "Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.",
+);
+
+=item * legendgrouptitle
+
+
+=cut
+
+has legendgrouptitle => (
+    is => "rw",
+    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Violin::Legendgrouptitle",
+);
+
+=item * legendrank
+
+Sets the legend rank for this trace. Items and groups with smaller ranks are presented on top/left side while with `*reversed* `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.
+
+=cut
+
+has legendrank => (
+    is => "rw",
+    isa => "Num",
+    documentation => "Sets the legend rank for this trace. Items and groups with smaller ranks are presented on top/left side while with `*reversed* `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.",
 );
 
 =item * line
@@ -377,14 +400,14 @@ has pmeta => (
 
 =item * metasrc
 
-Sets the source reference on plot.ly for  meta .
+Sets the source reference on Chart Studio Cloud for `meta`.
 
 =cut
 
 has metasrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  meta .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `meta`.",
 );
 
 =item * name
@@ -458,6 +481,18 @@ has points => (
     documentation => "If *outliers*, only the sample points lying outside the whiskers are shown If *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are shown If *false*, only the violins are shown with no sample points. Defaults to *suspectedoutliers* when `marker.outliercolor` or `marker.line.outliercolor` is set, otherwise defaults to *outliers*.",
 );
 
+=item * quartilemethod
+
+Sets the method used to compute the sample's Q1 and Q3 quartiles. The *linear* method uses the 25th percentile for Q1 and 75th percentile for Q3 as computed using method #10 (listed on http://jse.amstat.org/v14n3/langford.html). The *exclusive* method uses the median to divide the ordered dataset into two halves if the sample is odd, it does not include the median in either half - Q1 is then the median of the lower half and Q3 the median of the upper half. The *inclusive* method also uses the median to divide the ordered dataset into two halves but if the sample is odd, it includes the median in both halves - Q1 is then the median of the lower half and Q3 the median of the upper half.
+
+=cut
+
+has quartilemethod => (
+    is => "rw",
+    isa => enum(["linear","exclusive","inclusive"]),
+    documentation => "Sets the method used to compute the sample's Q1 and Q3 quartiles. The *linear* method uses the 25th percentile for Q1 and 75th percentile for Q3 as computed using method #10 (listed on http://jse.amstat.org/v14n3/langford.html). The *exclusive* method uses the median to divide the ordered dataset into two halves if the sample is odd, it does not include the median in either half - Q1 is then the median of the lower half and Q3 the median of the upper half. The *inclusive* method also uses the median to divide the ordered dataset into two halves but if the sample is odd, it includes the median in both halves - Q1 is then the median of the lower half and Q3 the median of the upper half.",
+);
+
 =item * scalegroup
 
 If there are multiple violins that should be sized according to to some metric (see `scalemode`), link them by providing a non-empty group id here shared by every trace in the same group. If a violin's `width` is undefined, `scalegroup` will default to the trace's name. In this case, violins with the same names will be linked together
@@ -472,14 +507,14 @@ has scalegroup => (
 
 =item * scalemode
 
-Sets the metric by which the width of each violin is determined.*width* means each violin has the same (max) width*count* means the violins are scaled by the number of sample points makingup each violin.
+Sets the metric by which the width of each violin is determined. *width* means each violin has the same (max) width *count* means the violins are scaled by the number of sample points making up each violin.
 
 =cut
 
 has scalemode => (
     is => "rw",
     isa => enum(["width","count"]),
-    documentation => "Sets the metric by which the width of each violin is determined.*width* means each violin has the same (max) width*count* means the violins are scaled by the number of sample points makingup each violin.",
+    documentation => "Sets the metric by which the width of each violin is determined. *width* means each violin has the same (max) width *count* means the violins are scaled by the number of sample points making up each violin.",
 );
 
 =item * selected
@@ -576,14 +611,14 @@ has text => (
 
 =item * textsrc
 
-Sets the source reference on plot.ly for  text .
+Sets the source reference on Chart Studio Cloud for `text`.
 
 =cut
 
 has textsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  text .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `text`.",
 );
 
 =item * transforms
@@ -688,16 +723,28 @@ has xaxis => (
     documentation => "Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.",
 );
 
+=item * xhoverformat
+
+Sets the hover text formatting rulefor `x`  using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: *%h* for half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*By default the values are formatted using `xaxis.hoverformat`.
+
+=cut
+
+has xhoverformat => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the hover text formatting rulefor `x`  using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: *%h* for half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*By default the values are formatted using `xaxis.hoverformat`.",
+);
+
 =item * xsrc
 
-Sets the source reference on plot.ly for  x .
+Sets the source reference on Chart Studio Cloud for `x`.
 
 =cut
 
 has xsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  x .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `x`.",
 );
 
 =item * y
@@ -735,16 +782,28 @@ has yaxis => (
     documentation => "Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.",
 );
 
+=item * yhoverformat
+
+Sets the hover text formatting rulefor `y`  using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: *%h* for half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*By default the values are formatted using `yaxis.hoverformat`.
+
+=cut
+
+has yhoverformat => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the hover text formatting rulefor `y`  using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: *%h* for half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*By default the values are formatted using `yaxis.hoverformat`.",
+);
+
 =item * ysrc
 
-Sets the source reference on plot.ly for  y .
+Sets the source reference on Chart Studio Cloud for `y`.
 
 =cut
 
 has ysrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  y .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `y`.",
 );
 
 =pod

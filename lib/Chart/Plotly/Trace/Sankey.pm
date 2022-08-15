@@ -8,6 +8,7 @@ if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
 
 use Chart::Plotly::Trace::Sankey::Domain;
 use Chart::Plotly::Trace::Sankey::Hoverlabel;
+use Chart::Plotly::Trace::Sankey::Legendgrouptitle;
 use Chart::Plotly::Trace::Sankey::Link;
 use Chart::Plotly::Trace::Sankey::Node;
 use Chart::Plotly::Trace::Sankey::Stream;
@@ -144,14 +145,14 @@ has customdata => (
 
 =item * customdatasrc
 
-Sets the source reference on plot.ly for  customdata .
+Sets the source reference on Chart Studio Cloud for `customdata`.
 
 =cut
 
 has customdatasrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  customdata .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `customdata`.",
 );
 
 =item * domain
@@ -200,14 +201,36 @@ has ids => (
 
 =item * idssrc
 
-Sets the source reference on plot.ly for  ids .
+Sets the source reference on Chart Studio Cloud for `ids`.
 
 =cut
 
 has idssrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  ids .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `ids`.",
+);
+
+=item * legendgrouptitle
+
+
+=cut
+
+has legendgrouptitle => (
+    is => "rw",
+    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Sankey::Legendgrouptitle",
+);
+
+=item * legendrank
+
+Sets the legend rank for this trace. Items and groups with smaller ranks are presented on top/left side while with `*reversed* `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.
+
+=cut
+
+has legendrank => (
+    is => "rw",
+    isa => "Num",
+    documentation => "Sets the legend rank for this trace. Items and groups with smaller ranks are presented on top/left side while with `*reversed* `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.",
 );
 
 =item * link
@@ -234,14 +257,14 @@ has pmeta => (
 
 =item * metasrc
 
-Sets the source reference on plot.ly for  meta .
+Sets the source reference on Chart Studio Cloud for `meta`.
 
 =cut
 
 has metasrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  meta .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `meta`.",
 );
 
 =item * name
@@ -336,14 +359,14 @@ has uirevision => (
 
 =item * valueformat
 
-Sets the value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+Sets the value formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format.
 
 =cut
 
 has valueformat => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format",
+    documentation => "Sets the value formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format.",
 );
 
 =item * valuesuffix

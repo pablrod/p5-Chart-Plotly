@@ -98,14 +98,14 @@ has opacity => (
 
 =item * opacitysrc
 
-Sets the source reference on plot.ly for  opacity .
+Sets the source reference on Chart Studio Cloud for `opacity`.
 
 =cut
 
 has opacitysrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  opacity .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `opacity`.",
 );
 
 =pod

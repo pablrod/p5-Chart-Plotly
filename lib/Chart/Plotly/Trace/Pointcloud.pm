@@ -7,13 +7,14 @@ if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
 }
 
 use Chart::Plotly::Trace::Pointcloud::Hoverlabel;
+use Chart::Plotly::Trace::Pointcloud::Legendgrouptitle;
 use Chart::Plotly::Trace::Pointcloud::Marker;
 use Chart::Plotly::Trace::Pointcloud::Stream;
 
 
 # VERSION
 
-# ABSTRACT: The data visualized as a point cloud set in `x` and `y` using the WebGl plotting engine.
+# ABSTRACT: *pointcloud* trace is deprecated! Please consider switching to the *scattergl* trace type. The data visualized as a point cloud set in `x` and `y` using the WebGl plotting engine.
 
 =encoding utf-8
 
@@ -23,7 +24,7 @@ use Chart::Plotly::Trace::Pointcloud::Stream;
 
 =head1 DESCRIPTION
 
-The data visualized as a point cloud set in `x` and `y` using the WebGl plotting engine.
+*pointcloud* trace is deprecated! Please consider switching to the *scattergl* trace type. The data visualized as a point cloud set in `x` and `y` using the WebGl plotting engine.
 
 Screenshot of the above example:
 
@@ -129,14 +130,14 @@ has customdata => (
 
 =item * customdatasrc
 
-Sets the source reference on plot.ly for  customdata .
+Sets the source reference on Chart Studio Cloud for `customdata`.
 
 =cut
 
 has customdatasrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  customdata .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `customdata`.",
 );
 
 =item * hoverinfo
@@ -153,14 +154,14 @@ has hoverinfo => (
 
 =item * hoverinfosrc
 
-Sets the source reference on plot.ly for  hoverinfo .
+Sets the source reference on Chart Studio Cloud for `hoverinfo`.
 
 =cut
 
 has hoverinfosrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  hoverinfo .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `hoverinfo`.",
 );
 
 =item * hoverlabel
@@ -187,14 +188,14 @@ has ids => (
 
 =item * idssrc
 
-Sets the source reference on plot.ly for  ids .
+Sets the source reference on Chart Studio Cloud for `ids`.
 
 =cut
 
 has idssrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  ids .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `ids`.",
 );
 
 =item * indices
@@ -211,14 +212,14 @@ has indices => (
 
 =item * indicessrc
 
-Sets the source reference on plot.ly for  indices .
+Sets the source reference on Chart Studio Cloud for `indices`.
 
 =cut
 
 has indicessrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  indices .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `indices`.",
 );
 
 =item * legendgroup
@@ -231,6 +232,28 @@ has legendgroup => (
     is => "rw",
     isa => "Str",
     documentation => "Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.",
+);
+
+=item * legendgrouptitle
+
+
+=cut
+
+has legendgrouptitle => (
+    is => "rw",
+    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Pointcloud::Legendgrouptitle",
+);
+
+=item * legendrank
+
+Sets the legend rank for this trace. Items and groups with smaller ranks are presented on top/left side while with `*reversed* `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.
+
+=cut
+
+has legendrank => (
+    is => "rw",
+    isa => "Num",
+    documentation => "Sets the legend rank for this trace. Items and groups with smaller ranks are presented on top/left side while with `*reversed* `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.",
 );
 
 =item * marker
@@ -257,14 +280,14 @@ has pmeta => (
 
 =item * metasrc
 
-Sets the source reference on plot.ly for  meta .
+Sets the source reference on Chart Studio Cloud for `meta`.
 
 =cut
 
 has metasrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  meta .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `meta`.",
 );
 
 =item * name
@@ -327,14 +350,14 @@ has text => (
 
 =item * textsrc
 
-Sets the source reference on plot.ly for  text .
+Sets the source reference on Chart Studio Cloud for `text`.
 
 =cut
 
 has textsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  text .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `text`.",
 );
 
 =item * uid
@@ -409,26 +432,26 @@ has xbounds => (
 
 =item * xboundssrc
 
-Sets the source reference on plot.ly for  xbounds .
+Sets the source reference on Chart Studio Cloud for `xbounds`.
 
 =cut
 
 has xboundssrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  xbounds .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `xbounds`.",
 );
 
 =item * xsrc
 
-Sets the source reference on plot.ly for  x .
+Sets the source reference on Chart Studio Cloud for `x`.
 
 =cut
 
 has xsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  x .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `x`.",
 );
 
 =item * xy
@@ -445,14 +468,14 @@ has xy => (
 
 =item * xysrc
 
-Sets the source reference on plot.ly for  xy .
+Sets the source reference on Chart Studio Cloud for `xy`.
 
 =cut
 
 has xysrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  xy .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `xy`.",
 );
 
 =item * y
@@ -492,26 +515,26 @@ has ybounds => (
 
 =item * yboundssrc
 
-Sets the source reference on plot.ly for  ybounds .
+Sets the source reference on Chart Studio Cloud for `ybounds`.
 
 =cut
 
 has yboundssrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  ybounds .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `ybounds`.",
 );
 
 =item * ysrc
 
-Sets the source reference on plot.ly for  y .
+Sets the source reference on Chart Studio Cloud for `y`.
 
 =cut
 
 has ysrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  y .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `y`.",
 );
 
 =pod

@@ -9,6 +9,7 @@ if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
 use Chart::Plotly::Trace::Indicator::Delta;
 use Chart::Plotly::Trace::Indicator::Domain;
 use Chart::Plotly::Trace::Indicator::Gauge;
+use Chart::Plotly::Trace::Indicator::Legendgrouptitle;
 use Chart::Plotly::Trace::Indicator::Number;
 use Chart::Plotly::Trace::Indicator::Stream;
 use Chart::Plotly::Trace::Indicator::Title;
@@ -145,14 +146,14 @@ has customdata => (
 
 =item * customdatasrc
 
-Sets the source reference on plot.ly for  customdata .
+Sets the source reference on Chart Studio Cloud for `customdata`.
 
 =cut
 
 has customdatasrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  customdata .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `customdata`.",
 );
 
 =item * delta
@@ -199,14 +200,36 @@ has ids => (
 
 =item * idssrc
 
-Sets the source reference on plot.ly for  ids .
+Sets the source reference on Chart Studio Cloud for `ids`.
 
 =cut
 
 has idssrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  ids .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `ids`.",
+);
+
+=item * legendgrouptitle
+
+
+=cut
+
+has legendgrouptitle => (
+    is => "rw",
+    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Indicator::Legendgrouptitle",
+);
+
+=item * legendrank
+
+Sets the legend rank for this trace. Items and groups with smaller ranks are presented on top/left side while with `*reversed* `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.
+
+=cut
+
+has legendrank => (
+    is => "rw",
+    isa => "Num",
+    documentation => "Sets the legend rank for this trace. Items and groups with smaller ranks are presented on top/left side while with `*reversed* `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.",
 );
 
 =item * pmeta
@@ -223,14 +246,14 @@ has pmeta => (
 
 =item * metasrc
 
-Sets the source reference on plot.ly for  meta .
+Sets the source reference on Chart Studio Cloud for `meta`.
 
 =cut
 
 has metasrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  meta .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `meta`.",
 );
 
 =item * mode

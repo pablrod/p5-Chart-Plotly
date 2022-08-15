@@ -8,6 +8,7 @@ if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
 
 use Chart::Plotly::Trace::Contourcarpet::Colorbar;
 use Chart::Plotly::Trace::Contourcarpet::Contours;
+use Chart::Plotly::Trace::Contourcarpet::Legendgrouptitle;
 use Chart::Plotly::Trace::Contourcarpet::Line;
 use Chart::Plotly::Trace::Contourcarpet::Stream;
 
@@ -142,14 +143,14 @@ has a0 => (
 
 =item * asrc
 
-Sets the source reference on plot.ly for  a .
+Sets the source reference on Chart Studio Cloud for `a`.
 
 =cut
 
 has asrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  a .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `a`.",
 );
 
 =item * atype
@@ -166,14 +167,14 @@ has atype => (
 
 =item * autocolorscale
 
-Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `colorscale`. In case `colorscale` is unspecified or `autocolorscale` is true, the default  palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.
+Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `colorscale`. In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.
 
 =cut
 
 has autocolorscale => (
     is => "rw",
     isa => "Bool",
-    documentation => "Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `colorscale`. In case `colorscale` is unspecified or `autocolorscale` is true, the default  palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.",
+    documentation => "Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `colorscale`. In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.",
 );
 
 =item * autocontour
@@ -214,14 +215,14 @@ has b0 => (
 
 =item * bsrc
 
-Sets the source reference on plot.ly for  b .
+Sets the source reference on Chart Studio Cloud for `b`.
 
 =cut
 
 has bsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  b .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `b`.",
 );
 
 =item * btype
@@ -271,13 +272,13 @@ has colorbar => (
 
 =item * colorscale
 
-Sets the colorscale. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in color space, use`zmin` and `zmax`. Alternatively, `colorscale` may be a palette name string of the following list: Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
+Sets the colorscale. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in color space, use `zmin` and `zmax`. Alternatively, `colorscale` may be a palette name string of the following list: Blackbody,Bluered,Blues,Cividis,Earth,Electric,Greens,Greys,Hot,Jet,Picnic,Portland,Rainbow,RdBu,Reds,Viridis,YlGnBu,YlOrRd.
 
 =cut
 
 has colorscale => (
     is => "rw",
-    documentation => "Sets the colorscale. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in color space, use`zmin` and `zmax`. Alternatively, `colorscale` may be a palette name string of the following list: Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.",
+    documentation => "Sets the colorscale. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in color space, use `zmin` and `zmax`. Alternatively, `colorscale` may be a palette name string of the following list: Blackbody,Bluered,Blues,Cividis,Earth,Electric,Greens,Greys,Hot,Jet,Picnic,Portland,Rainbow,RdBu,Reds,Viridis,YlGnBu,YlOrRd.",
 );
 
 =item * contours
@@ -304,14 +305,14 @@ has customdata => (
 
 =item * customdatasrc
 
-Sets the source reference on plot.ly for  customdata .
+Sets the source reference on Chart Studio Cloud for `customdata`.
 
 =cut
 
 has customdatasrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  customdata .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `customdata`.",
 );
 
 =item * da
@@ -364,14 +365,14 @@ has hovertext => (
 
 =item * hovertextsrc
 
-Sets the source reference on plot.ly for  hovertext .
+Sets the source reference on Chart Studio Cloud for `hovertext`.
 
 =cut
 
 has hovertextsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  hovertext .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `hovertext`.",
 );
 
 =item * ids
@@ -388,14 +389,14 @@ has ids => (
 
 =item * idssrc
 
-Sets the source reference on plot.ly for  ids .
+Sets the source reference on Chart Studio Cloud for `ids`.
 
 =cut
 
 has idssrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  ids .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `ids`.",
 );
 
 =item * legendgroup
@@ -408,6 +409,28 @@ has legendgroup => (
     is => "rw",
     isa => "Str",
     documentation => "Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.",
+);
+
+=item * legendgrouptitle
+
+
+=cut
+
+has legendgrouptitle => (
+    is => "rw",
+    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Contourcarpet::Legendgrouptitle",
+);
+
+=item * legendrank
+
+Sets the legend rank for this trace. Items and groups with smaller ranks are presented on top/left side while with `*reversed* `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.
+
+=cut
+
+has legendrank => (
+    is => "rw",
+    isa => "Num",
+    documentation => "Sets the legend rank for this trace. Items and groups with smaller ranks are presented on top/left side while with `*reversed* `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.",
 );
 
 =item * line
@@ -434,14 +457,14 @@ has pmeta => (
 
 =item * metasrc
 
-Sets the source reference on plot.ly for  meta .
+Sets the source reference on Chart Studio Cloud for `meta`.
 
 =cut
 
 has metasrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  meta .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `meta`.",
 );
 
 =item * name
@@ -540,14 +563,14 @@ has text => (
 
 =item * textsrc
 
-Sets the source reference on plot.ly for  text .
+Sets the source reference on Chart Studio Cloud for `text`.
 
 =cut
 
 has textsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  text .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `text`.",
 );
 
 =item * transpose
@@ -633,14 +656,14 @@ has z => (
 
 =item * zauto
 
-Determines whether or not the color domain is computed with respect to the input data (here in `z`) or the bounds set in `zmin` and `zmax`  Defaults to `false` when `zmin` and `zmax` are set by the user.
+Determines whether or not the color domain is computed with respect to the input data (here in `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax` are set by the user.
 
 =cut
 
 has zauto => (
     is => "rw",
     isa => "Bool",
-    documentation => "Determines whether or not the color domain is computed with respect to the input data (here in `z`) or the bounds set in `zmin` and `zmax`  Defaults to `false` when `zmin` and `zmax` are set by the user.",
+    documentation => "Determines whether or not the color domain is computed with respect to the input data (here in `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax` are set by the user.",
 );
 
 =item * zmax
@@ -681,14 +704,14 @@ has zmin => (
 
 =item * zsrc
 
-Sets the source reference on plot.ly for  z .
+Sets the source reference on Chart Studio Cloud for `z`.
 
 =cut
 
 has zsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  z .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `z`.",
 );
 
 =pod

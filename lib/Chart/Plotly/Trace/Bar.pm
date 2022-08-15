@@ -10,6 +10,7 @@ use Chart::Plotly::Trace::Bar::Error_x;
 use Chart::Plotly::Trace::Bar::Error_y;
 use Chart::Plotly::Trace::Bar::Hoverlabel;
 use Chart::Plotly::Trace::Bar::Insidetextfont;
+use Chart::Plotly::Trace::Bar::Legendgrouptitle;
 use Chart::Plotly::Trace::Bar::Marker;
 use Chart::Plotly::Trace::Bar::Outsidetextfont;
 use Chart::Plotly::Trace::Bar::Selected;
@@ -149,14 +150,14 @@ has base => (
 
 =item * basesrc
 
-Sets the source reference on plot.ly for  base .
+Sets the source reference on Chart Studio Cloud for `base`.
 
 =cut
 
 has basesrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  base .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `base`.",
 );
 
 =item * cliponaxis
@@ -197,14 +198,14 @@ has customdata => (
 
 =item * customdatasrc
 
-Sets the source reference on plot.ly for  customdata .
+Sets the source reference on Chart Studio Cloud for `customdata`.
 
 =cut
 
 has customdatasrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  customdata .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `customdata`.",
 );
 
 =item * dx
@@ -265,14 +266,14 @@ has hoverinfo => (
 
 =item * hoverinfosrc
 
-Sets the source reference on plot.ly for  hoverinfo .
+Sets the source reference on Chart Studio Cloud for `hoverinfo`.
 
 =cut
 
 has hoverinfosrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  hoverinfo .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `hoverinfo`.",
 );
 
 =item * hoverlabel
@@ -287,26 +288,26 @@ has hoverlabel => (
 
 =item * hovertemplate
 
-Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
 
 =cut
 
 has hovertemplate => (
     is => "rw",
     isa => "Str|ArrayRef[Str]",
-    documentation => "Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:\$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.",
+    documentation => "Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:\$.2f}\". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.",
 );
 
 =item * hovertemplatesrc
 
-Sets the source reference on plot.ly for  hovertemplate .
+Sets the source reference on Chart Studio Cloud for `hovertemplate`.
 
 =cut
 
 has hovertemplatesrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  hovertemplate .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `hovertemplate`.",
 );
 
 =item * hovertext
@@ -323,14 +324,14 @@ has hovertext => (
 
 =item * hovertextsrc
 
-Sets the source reference on plot.ly for  hovertext .
+Sets the source reference on Chart Studio Cloud for `hovertext`.
 
 =cut
 
 has hovertextsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  hovertext .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `hovertext`.",
 );
 
 =item * ids
@@ -347,14 +348,14 @@ has ids => (
 
 =item * idssrc
 
-Sets the source reference on plot.ly for  ids .
+Sets the source reference on Chart Studio Cloud for `ids`.
 
 =cut
 
 has idssrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  ids .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `ids`.",
 );
 
 =item * insidetextanchor
@@ -391,6 +392,28 @@ has legendgroup => (
     documentation => "Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.",
 );
 
+=item * legendgrouptitle
+
+
+=cut
+
+has legendgrouptitle => (
+    is => "rw",
+    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Bar::Legendgrouptitle",
+);
+
+=item * legendrank
+
+Sets the legend rank for this trace. Items and groups with smaller ranks are presented on top/left side while with `*reversed* `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.
+
+=cut
+
+has legendrank => (
+    is => "rw",
+    isa => "Num",
+    documentation => "Sets the legend rank for this trace. Items and groups with smaller ranks are presented on top/left side while with `*reversed* `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.",
+);
+
 =item * marker
 
 
@@ -415,14 +438,14 @@ has pmeta => (
 
 =item * metasrc
 
-Sets the source reference on plot.ly for  meta .
+Sets the source reference on Chart Studio Cloud for `meta`.
 
 =cut
 
 has metasrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  meta .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `meta`.",
 );
 
 =item * name
@@ -463,14 +486,14 @@ has offsetgroup => (
 
 =item * offsetsrc
 
-Sets the source reference on plot.ly for  offset .
+Sets the source reference on Chart Studio Cloud for `offset`.
 
 =cut
 
 has offsetsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  offset .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `offset`.",
 );
 
 =item * opacity
@@ -505,30 +528,6 @@ has orientation => (
 has outsidetextfont => (
     is => "rw",
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Bar::Outsidetextfont",
-);
-
-=item * r
-
-r coordinates in scatter traces are deprecated!Please switch to the *scatterpolar* trace type.Sets the radial coordinatesfor legacy polar chart only.
-
-=cut
-
-has r => (
-    is => "rw",
-    isa => "ArrayRef|PDL",
-    documentation => "r coordinates in scatter traces are deprecated!Please switch to the *scatterpolar* trace type.Sets the radial coordinatesfor legacy polar chart only.",
-);
-
-=item * rsrc
-
-Sets the source reference on plot.ly for  r .
-
-=cut
-
-has rsrc => (
-    is => "rw",
-    isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  r .",
 );
 
 =item * selected
@@ -575,18 +574,6 @@ has stream => (
     isa => "Maybe[HashRef]|Chart::Plotly::Trace::Bar::Stream",
 );
 
-=item * t
-
-t coordinates in scatter traces are deprecated!Please switch to the *scatterpolar* trace type.Sets the angular coordinatesfor legacy polar chart only.
-
-=cut
-
-has t => (
-    is => "rw",
-    isa => "ArrayRef|PDL",
-    documentation => "t coordinates in scatter traces are deprecated!Please switch to the *scatterpolar* trace type.Sets the angular coordinatesfor legacy polar chart only.",
-);
-
 =item * text
 
 Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
@@ -622,62 +609,62 @@ has textfont => (
 
 =item * textposition
 
-Specifies the location of the `text`. *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside* positions `text` outside, next to the bar end (scaled if needed), unless there is another bar stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside the bar, but if the bar is too small and no bar is stacked on this one the text is moved outside.
+Specifies the location of the `text`. *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside* positions `text` outside, next to the bar end (scaled if needed), unless there is another bar stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside the bar, but if the bar is too small and no bar is stacked on this one the text is moved outside. If *none*, no text appears.
 
 =cut
 
 has textposition => (
     is => "rw",
     isa => union([enum(["inside","outside","auto","none"]), "ArrayRef"]),
-    documentation => "Specifies the location of the `text`. *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside* positions `text` outside, next to the bar end (scaled if needed), unless there is another bar stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside the bar, but if the bar is too small and no bar is stacked on this one the text is moved outside.",
+    documentation => "Specifies the location of the `text`. *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside* positions `text` outside, next to the bar end (scaled if needed), unless there is another bar stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside the bar, but if the bar is too small and no bar is stacked on this one the text is moved outside. If *none*, no text appears.",
 );
 
 =item * textpositionsrc
 
-Sets the source reference on plot.ly for  textposition .
+Sets the source reference on Chart Studio Cloud for `textposition`.
 
 =cut
 
 has textpositionsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  textposition .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `textposition`.",
 );
 
 =item * textsrc
 
-Sets the source reference on plot.ly for  text .
+Sets the source reference on Chart Studio Cloud for `text`.
 
 =cut
 
 has textsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  text .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `text`.",
 );
 
 =item * texttemplate
 
-Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `value` and `label`.
+Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `value` and `label`.
 
 =cut
 
 has texttemplate => (
     is => "rw",
     isa => "Str|ArrayRef[Str]",
-    documentation => "Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:\$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `value` and `label`.",
+    documentation => "Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:\$.2f}\". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `value` and `label`.",
 );
 
 =item * texttemplatesrc
 
-Sets the source reference on plot.ly for  texttemplate .
+Sets the source reference on Chart Studio Cloud for `texttemplate`.
 
 =cut
 
 has texttemplatesrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  texttemplate .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `texttemplate`.",
 );
 
 =item * transforms
@@ -688,18 +675,6 @@ has texttemplatesrc => (
 has transforms => (
     is => "rw",
     isa => "ArrayRef|ArrayRef[Chart::Plotly::Trace::Bar::Transform]",
-);
-
-=item * tsrc
-
-Sets the source reference on plot.ly for  t .
-
-=cut
-
-has tsrc => (
-    is => "rw",
-    isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  t .",
 );
 
 =item * uid
@@ -761,14 +736,14 @@ has width => (
 
 =item * widthsrc
 
-Sets the source reference on plot.ly for  width .
+Sets the source reference on Chart Studio Cloud for `width`.
 
 =cut
 
 has widthsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  width .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `width`.",
 );
 
 =item * x
@@ -814,20 +789,68 @@ Sets the calendar system to use with `x` date data.
 
 has xcalendar => (
     is => "rw",
-    isa => enum(["gregorian","chinese","coptic","discworld","ethiopian","hebrew","islamic","julian","mayan","nanakshahi","nepali","persian","jalali","taiwan","thai","ummalqura"]),
+    isa => enum(["chinese","coptic","discworld","ethiopian","gregorian","hebrew","islamic","jalali","julian","mayan","nanakshahi","nepali","persian","taiwan","thai","ummalqura"]),
     documentation => "Sets the calendar system to use with `x` date data.",
+);
+
+=item * xhoverformat
+
+Sets the hover text formatting rulefor `x`  using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: *%h* for half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*By default the values are formatted using `xaxis.hoverformat`.
+
+=cut
+
+has xhoverformat => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the hover text formatting rulefor `x`  using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: *%h* for half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*By default the values are formatted using `xaxis.hoverformat`.",
+);
+
+=item * xperiod
+
+Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *n* on the x axis. Special values in the form of *n* could be used to declare the number of months. In this case `n` must be a positive integer.
+
+=cut
+
+has xperiod => (
+    is => "rw",
+    isa => "Any",
+    documentation => "Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *n* on the x axis. Special values in the form of *n* could be used to declare the number of months. In this case `n` must be a positive integer.",
+);
+
+=item * xperiod0
+
+Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.
+
+=cut
+
+has xperiod0 => (
+    is => "rw",
+    isa => "Any",
+    documentation => "Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.",
+);
+
+=item * xperiodalignment
+
+Only relevant when the axis `type` is *date*. Sets the alignment of data points on the x axis.
+
+=cut
+
+has xperiodalignment => (
+    is => "rw",
+    isa => enum(["start","middle","end"]),
+    documentation => "Only relevant when the axis `type` is *date*. Sets the alignment of data points on the x axis.",
 );
 
 =item * xsrc
 
-Sets the source reference on plot.ly for  x .
+Sets the source reference on Chart Studio Cloud for `x`.
 
 =cut
 
 has xsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  x .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `x`.",
 );
 
 =item * y
@@ -873,20 +896,68 @@ Sets the calendar system to use with `y` date data.
 
 has ycalendar => (
     is => "rw",
-    isa => enum(["gregorian","chinese","coptic","discworld","ethiopian","hebrew","islamic","julian","mayan","nanakshahi","nepali","persian","jalali","taiwan","thai","ummalqura"]),
+    isa => enum(["chinese","coptic","discworld","ethiopian","gregorian","hebrew","islamic","jalali","julian","mayan","nanakshahi","nepali","persian","taiwan","thai","ummalqura"]),
     documentation => "Sets the calendar system to use with `y` date data.",
+);
+
+=item * yhoverformat
+
+Sets the hover text formatting rulefor `y`  using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: *%h* for half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*By default the values are formatted using `yaxis.hoverformat`.
+
+=cut
+
+has yhoverformat => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the hover text formatting rulefor `y`  using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: *%h* for half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*By default the values are formatted using `yaxis.hoverformat`.",
+);
+
+=item * yperiod
+
+Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *n* on the y axis. Special values in the form of *n* could be used to declare the number of months. In this case `n` must be a positive integer.
+
+=cut
+
+has yperiod => (
+    is => "rw",
+    isa => "Any",
+    documentation => "Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *n* on the y axis. Special values in the form of *n* could be used to declare the number of months. In this case `n` must be a positive integer.",
+);
+
+=item * yperiod0
+
+Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the y0 axis. When `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.
+
+=cut
+
+has yperiod0 => (
+    is => "rw",
+    isa => "Any",
+    documentation => "Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the y0 axis. When `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.",
+);
+
+=item * yperiodalignment
+
+Only relevant when the axis `type` is *date*. Sets the alignment of data points on the y axis.
+
+=cut
+
+has yperiodalignment => (
+    is => "rw",
+    isa => enum(["start","middle","end"]),
+    documentation => "Only relevant when the axis `type` is *date*. Sets the alignment of data points on the y axis.",
 );
 
 =item * ysrc
 
-Sets the source reference on plot.ly for  y .
+Sets the source reference on Chart Studio Cloud for `y`.
 
 =cut
 
 has ysrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  y .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `y`.",
 );
 
 =pod

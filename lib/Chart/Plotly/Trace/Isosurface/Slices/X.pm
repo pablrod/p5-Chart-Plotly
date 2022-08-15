@@ -99,14 +99,14 @@ has locations => (
 
 =item * locationssrc
 
-Sets the source reference on plot.ly for  locations .
+Sets the source reference on Chart Studio Cloud for `locations`.
 
 =cut
 
 has locationssrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  locations .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `locations`.",
 );
 
 =item * show

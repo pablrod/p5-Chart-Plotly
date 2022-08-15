@@ -9,6 +9,7 @@ if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
 use Chart::Plotly::Trace::Carpet::Aaxis;
 use Chart::Plotly::Trace::Carpet::Baxis;
 use Chart::Plotly::Trace::Carpet::Font;
+use Chart::Plotly::Trace::Carpet::Legendgrouptitle;
 use Chart::Plotly::Trace::Carpet::Stream;
 
 
@@ -152,14 +153,14 @@ has aaxis => (
 
 =item * asrc
 
-Sets the source reference on plot.ly for  a .
+Sets the source reference on Chart Studio Cloud for `a`.
 
 =cut
 
 has asrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  a .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `a`.",
 );
 
 =item * b
@@ -198,14 +199,14 @@ has baxis => (
 
 =item * bsrc
 
-Sets the source reference on plot.ly for  b .
+Sets the source reference on Chart Studio Cloud for `b`.
 
 =cut
 
 has bsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  b .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `b`.",
 );
 
 =item * carpet
@@ -222,14 +223,14 @@ has carpet => (
 
 =item * cheaterslope
 
-The shift applied to each successive row of data in creating a cheater plot. Only used if `x` is been ommitted.
+The shift applied to each successive row of data in creating a cheater plot. Only used if `x` is been omitted.
 
 =cut
 
 has cheaterslope => (
     is => "rw",
     isa => "Num",
-    documentation => "The shift applied to each successive row of data in creating a cheater plot. Only used if `x` is been ommitted.",
+    documentation => "The shift applied to each successive row of data in creating a cheater plot. Only used if `x` is been omitted.",
 );
 
 =item * color
@@ -258,14 +259,14 @@ has customdata => (
 
 =item * customdatasrc
 
-Sets the source reference on plot.ly for  customdata .
+Sets the source reference on Chart Studio Cloud for `customdata`.
 
 =cut
 
 has customdatasrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  customdata .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `customdata`.",
 );
 
 =item * da
@@ -316,14 +317,36 @@ has ids => (
 
 =item * idssrc
 
-Sets the source reference on plot.ly for  ids .
+Sets the source reference on Chart Studio Cloud for `ids`.
 
 =cut
 
 has idssrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  ids .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `ids`.",
+);
+
+=item * legendgrouptitle
+
+
+=cut
+
+has legendgrouptitle => (
+    is => "rw",
+    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Carpet::Legendgrouptitle",
+);
+
+=item * legendrank
+
+Sets the legend rank for this trace. Items and groups with smaller ranks are presented on top/left side while with `*reversed* `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.
+
+=cut
+
+has legendrank => (
+    is => "rw",
+    isa => "Num",
+    documentation => "Sets the legend rank for this trace. Items and groups with smaller ranks are presented on top/left side while with `*reversed* `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.",
 );
 
 =item * pmeta
@@ -340,14 +363,14 @@ has pmeta => (
 
 =item * metasrc
 
-Sets the source reference on plot.ly for  meta .
+Sets the source reference on Chart Studio Cloud for `meta`.
 
 =cut
 
 has metasrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  meta .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `meta`.",
 );
 
 =item * name
@@ -421,14 +444,14 @@ has visible => (
 
 =item * x
 
-A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
+A two dimensional array of x coordinates at each carpet point. If omitted, the plot is a cheater plot and the xaxis is hidden by default.
 
 =cut
 
 has x => (
     is => "rw",
     isa => "ArrayRef|PDL",
-    documentation => "A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.",
+    documentation => "A two dimensional array of x coordinates at each carpet point. If omitted, the plot is a cheater plot and the xaxis is hidden by default.",
 );
 
 =item * xaxis
@@ -444,14 +467,14 @@ has xaxis => (
 
 =item * xsrc
 
-Sets the source reference on plot.ly for  x .
+Sets the source reference on Chart Studio Cloud for `x`.
 
 =cut
 
 has xsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  x .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `x`.",
 );
 
 =item * y
@@ -479,14 +502,14 @@ has yaxis => (
 
 =item * ysrc
 
-Sets the source reference on plot.ly for  y .
+Sets the source reference on Chart Studio Cloud for `y`.
 
 =cut
 
 has ysrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  y .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `y`.",
 );
 
 =pod

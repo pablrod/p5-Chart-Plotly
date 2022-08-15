@@ -157,14 +157,14 @@ has templateitemname => (
 
 =item * tickformat
 
-Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: *%h* for half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
 
 =cut
 
 has tickformat => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*",
+    documentation => "Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: *%h* for half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*",
 );
 
 =item * ticktext
@@ -181,14 +181,14 @@ has ticktext => (
 
 =item * ticktextsrc
 
-Sets the source reference on plot.ly for  ticktext .
+Sets the source reference on Chart Studio Cloud for `ticktext`.
 
 =cut
 
 has ticktextsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  ticktext .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `ticktext`.",
 );
 
 =item * tickvals
@@ -205,14 +205,14 @@ has tickvals => (
 
 =item * tickvalssrc
 
-Sets the source reference on plot.ly for  tickvals .
+Sets the source reference on Chart Studio Cloud for `tickvals`.
 
 =cut
 
 has tickvalssrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  tickvals .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `tickvals`.",
 );
 
 =item * values
@@ -229,14 +229,14 @@ has values => (
 
 =item * valuessrc
 
-Sets the source reference on plot.ly for  values .
+Sets the source reference on Chart Studio Cloud for `values`.
 
 =cut
 
 has valuessrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  values .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `values`.",
 );
 
 =item * visible

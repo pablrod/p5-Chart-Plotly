@@ -87,14 +87,14 @@ has maxpoints => (
 
 =item * token
 
-The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
+The stream id number links a data trace on a plot with a stream. See https://chart-studio.plotly.com/settings for more details.
 
 =cut
 
 has token => (
     is => "rw",
     isa => "Str",
-    documentation => "The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.",
+    documentation => "The stream id number links a data trace on a plot with a stream. See https://chart-studio.plotly.com/settings for more details.",
 );
 
 =pod

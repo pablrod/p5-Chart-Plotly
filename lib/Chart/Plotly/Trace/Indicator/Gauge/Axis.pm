@@ -99,6 +99,18 @@ has exponentformat => (
     documentation => "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.",
 );
 
+=item * minexponent
+
+Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*.
+
+=cut
+
+has minexponent => (
+    is => "rw",
+    isa => "Num",
+    documentation => "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*.",
+);
+
 =item * nticks
 
 Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to *auto*.
@@ -230,14 +242,14 @@ has tickfont => (
 
 =item * tickformat
 
-Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: *%h* for half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
 
 =cut
 
 has tickformat => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*",
+    documentation => "Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: *%h* for half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*",
 );
 
 =item * tickformatstops
@@ -248,6 +260,18 @@ has tickformat => (
 has tickformatstops => (
     is => "rw",
     isa => "ArrayRef|ArrayRef[Chart::Plotly::Trace::Indicator::Gauge::Axis::Tickformatstop]",
+);
+
+=item * ticklabelstep
+
+Sets the spacing between tick labels as compared to the spacing between ticks. A value of 1 (default) means each tick gets a label. A value of 2 means shows every 2nd label. A larger value n means only every nth tick is labeled. `tick0` determines which labels are shown. Not implemented for axes with `type` *log* or *multicategory*, or when `tickmode` is *array*.
+
+=cut
+
+has ticklabelstep => (
+    is => "rw",
+    isa => "Int",
+    documentation => "Sets the spacing between tick labels as compared to the spacing between ticks. A value of 1 (default) means each tick gets a label. A value of 2 means shows every 2nd label. A larger value n means only every nth tick is labeled. `tick0` determines which labels are shown. Not implemented for axes with `type` *log* or *multicategory*, or when `tickmode` is *array*.",
 );
 
 =item * ticklen
@@ -324,14 +348,14 @@ has ticktext => (
 
 =item * ticktextsrc
 
-Sets the source reference on plot.ly for  ticktext .
+Sets the source reference on Chart Studio Cloud for `ticktext`.
 
 =cut
 
 has ticktextsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  ticktext .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `ticktext`.",
 );
 
 =item * tickvals
@@ -348,14 +372,14 @@ has tickvals => (
 
 =item * tickvalssrc
 
-Sets the source reference on plot.ly for  tickvals .
+Sets the source reference on Chart Studio Cloud for `tickvals`.
 
 =cut
 
 has tickvalssrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  tickvals .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `tickvals`.",
 );
 
 =item * tickwidth

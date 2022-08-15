@@ -93,7 +93,7 @@ Sets the style of the lines.
 
 has dash => (
     is => "rw",
-    isa => enum(["solid","dot","dash","longdash","dashdot","longdashdot"]),
+    isa => enum(["dash","dashdot","dot","longdash","longdashdot","solid"]),
     documentation => "Sets the style of the lines.",
 );
 
