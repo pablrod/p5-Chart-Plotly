@@ -111,6 +111,18 @@ has autorange => (
     documentation => "Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.",
 );
 
+=item * autotypenumbers
+
+Using *strict* a numeric string in trace data is not converted to a number. Using *convert types* a numeric string in trace data may be treated as a number during automatic axis `type` detection. Defaults to layout.autotypenumbers.
+
+=cut
+
+has autotypenumbers => (
+    is => "rw",
+    isa => enum(["convert types","strict"]),
+    documentation => "Using *strict* a numeric string in trace data is not converted to a number. Using *convert types* a numeric string in trace data may be treated as a number during automatic axis `type` detection. Defaults to layout.autotypenumbers.",
+);
+
 =item * categoryarray
 
 Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
@@ -125,14 +137,14 @@ has categoryarray => (
 
 =item * categoryarraysrc
 
-Sets the source reference on plot.ly for  categoryarray .
+Sets the source reference on Chart Studio Cloud for `categoryarray`.
 
 =cut
 
 has categoryarraysrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  categoryarray .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `categoryarray`.",
 );
 
 =item * categoryorder
@@ -253,6 +265,18 @@ has gridcolor => (
     documentation => "Sets the axis line color.",
 );
 
+=item * griddash
+
+Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a dash length list in px (eg *5px,10px,2px,2px*).
+
+=cut
+
+has griddash => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a dash length list in px (eg *5px,10px,2px,2px*).",
+);
+
 =item * gridwidth
 
 Sets the width (in px) of the axis line.
@@ -325,6 +349,18 @@ has linewidth => (
     documentation => "Sets the width (in px) of the axis line.",
 );
 
+=item * minexponent
+
+Hide SI prefix for 10^n if |n| is below this number
+
+=cut
+
+has minexponent => (
+    is => "rw",
+    isa => "Num",
+    documentation => "Hide SI prefix for 10^n if |n| is below this number",
+);
+
 =item * minorgridcolor
 
 Sets the color of the grid lines.
@@ -347,6 +383,18 @@ has minorgridcount => (
     is => "rw",
     isa => "Int",
     documentation => "Sets the number of minor grid ticks per major grid tick",
+);
+
+=item * minorgriddash
+
+Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a dash length list in px (eg *5px,10px,2px,2px*).
+
+=cut
+
+has minorgriddash => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a dash length list in px (eg *5px,10px,2px,2px*).",
 );
 
 =item * minorgridwidth
@@ -562,14 +610,14 @@ has tickfont => (
 
 =item * tickformat
 
-Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see:  We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: *%h* for half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
 
 =cut
 
 has tickformat => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see:  We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*",
+    documentation => "Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: *%h* for half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*",
 );
 
 =item * tickformatstops
@@ -630,14 +678,14 @@ has ticktext => (
 
 =item * ticktextsrc
 
-Sets the source reference on plot.ly for  ticktext .
+Sets the source reference on Chart Studio Cloud for `ticktext`.
 
 =cut
 
 has ticktextsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  ticktext .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `ticktext`.",
 );
 
 =item * tickvals
@@ -654,14 +702,14 @@ has tickvals => (
 
 =item * tickvalssrc
 
-Sets the source reference on plot.ly for  tickvals .
+Sets the source reference on Chart Studio Cloud for `tickvals`.
 
 =cut
 
 has tickvalssrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  tickvals .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `tickvals`.",
 );
 
 =item * title

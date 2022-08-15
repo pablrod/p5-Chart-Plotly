@@ -88,14 +88,14 @@ has align => (
 
 =item * alignsrc
 
-Sets the source reference on plot.ly for  align .
+Sets the source reference on Chart Studio Cloud for `align`.
 
 =cut
 
 has alignsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  align .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `align`.",
 );
 
 =item * bgcolor
@@ -112,14 +112,14 @@ has bgcolor => (
 
 =item * bgcolorsrc
 
-Sets the source reference on plot.ly for  bgcolor .
+Sets the source reference on Chart Studio Cloud for `bgcolor`.
 
 =cut
 
 has bgcolorsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  bgcolor .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `bgcolor`.",
 );
 
 =item * bordercolor
@@ -136,14 +136,14 @@ has bordercolor => (
 
 =item * bordercolorsrc
 
-Sets the source reference on plot.ly for  bordercolor .
+Sets the source reference on Chart Studio Cloud for `bordercolor`.
 
 =cut
 
 has bordercolorsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  bordercolor .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `bordercolor`.",
 );
 
 =item * font
@@ -170,14 +170,14 @@ has namelength => (
 
 =item * namelengthsrc
 
-Sets the source reference on plot.ly for  namelength .
+Sets the source reference on Chart Studio Cloud for `namelength`.
 
 =cut
 
 has namelengthsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  namelength .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `namelength`.",
 );
 
 =pod

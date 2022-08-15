@@ -118,6 +118,18 @@ has position => (
     documentation => "Sets the position of delta with respect to the number.",
 );
 
+=item * prefix
+
+Sets a prefix appearing before the delta.
+
+=cut
+
+has prefix => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets a prefix appearing before the delta.",
+);
+
 =item * reference
 
 Sets the reference value to compute the delta. By default, it is set to the current value.
@@ -142,16 +154,28 @@ has relative => (
     documentation => "Show relative change",
 );
 
+=item * suffix
+
+Sets a suffix appearing next to the delta.
+
+=cut
+
+has suffix => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets a suffix appearing next to the delta.",
+);
+
 =item * valueformat
 
-Sets the value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+Sets the value formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format.
 
 =cut
 
 has valueformat => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format",
+    documentation => "Sets the value formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format.",
 );
 
 =pod

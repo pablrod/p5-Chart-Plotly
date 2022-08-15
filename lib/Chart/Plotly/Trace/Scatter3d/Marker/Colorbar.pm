@@ -160,6 +160,18 @@ has lenmode => (
     documentation => "Determines whether this color bar's length (i.e. the measure in the color variation direction) is set in units of plot *fraction* or in *pixels. Use `len` to set the value.",
 );
 
+=item * minexponent
+
+Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*.
+
+=cut
+
+has minexponent => (
+    is => "rw",
+    isa => "Num",
+    documentation => "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*.",
+);
+
 =item * nticks
 
 Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to *auto*.
@@ -170,6 +182,18 @@ has nticks => (
     is => "rw",
     isa => "Int",
     documentation => "Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to *auto*.",
+);
+
+=item * orientation
+
+Sets the orientation of the colorbar.
+
+=cut
+
+has orientation => (
+    is => "rw",
+    isa => enum(["h","v"]),
+    documentation => "Sets the orientation of the colorbar.",
 );
 
 =item * outlinecolor
@@ -327,14 +351,14 @@ has tickfont => (
 
 =item * tickformat
 
-Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: *%h* for half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
 
 =cut
 
 has tickformat => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*",
+    documentation => "Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: *%h* for half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*",
 );
 
 =item * tickformatstops
@@ -345,6 +369,42 @@ has tickformat => (
 has tickformatstops => (
     is => "rw",
     isa => "ArrayRef|ArrayRef[Chart::Plotly::Trace::Scatter3d::Marker::Colorbar::Tickformatstop]",
+);
+
+=item * ticklabeloverflow
+
+Determines how we handle tick labels that would overflow either the graph div or the domain of the axis. The default value for inside tick labels is *hide past domain*. In other cases the default is *hide past div*.
+
+=cut
+
+has ticklabeloverflow => (
+    is => "rw",
+    isa => enum(["allow","hide past div","hide past domain"]),
+    documentation => "Determines how we handle tick labels that would overflow either the graph div or the domain of the axis. The default value for inside tick labels is *hide past domain*. In other cases the default is *hide past div*.",
+);
+
+=item * ticklabelposition
+
+Determines where tick labels are drawn relative to the ticks. Left and right options are used when `orientation` is *h*, top and bottom when `orientation` is *v*.
+
+=cut
+
+has ticklabelposition => (
+    is => "rw",
+    isa => enum(["outside","inside","outside top","inside top","outside left","inside left","outside right","inside right","outside bottom","inside bottom"]),
+    documentation => "Determines where tick labels are drawn relative to the ticks. Left and right options are used when `orientation` is *h*, top and bottom when `orientation` is *v*.",
+);
+
+=item * ticklabelstep
+
+Sets the spacing between tick labels as compared to the spacing between ticks. A value of 1 (default) means each tick gets a label. A value of 2 means shows every 2nd label. A larger value n means only every nth tick is labeled. `tick0` determines which labels are shown. Not implemented for axes with `type` *log* or *multicategory*, or when `tickmode` is *array*.
+
+=cut
+
+has ticklabelstep => (
+    is => "rw",
+    isa => "Int",
+    documentation => "Sets the spacing between tick labels as compared to the spacing between ticks. A value of 1 (default) means each tick gets a label. A value of 2 means shows every 2nd label. A larger value n means only every nth tick is labeled. `tick0` determines which labels are shown. Not implemented for axes with `type` *log* or *multicategory*, or when `tickmode` is *array*.",
 );
 
 =item * ticklen
@@ -421,14 +481,14 @@ has ticktext => (
 
 =item * ticktextsrc
 
-Sets the source reference on plot.ly for  ticktext .
+Sets the source reference on Chart Studio Cloud for `ticktext`.
 
 =cut
 
 has ticktextsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  ticktext .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `ticktext`.",
 );
 
 =item * tickvals
@@ -445,14 +505,14 @@ has tickvals => (
 
 =item * tickvalssrc
 
-Sets the source reference on plot.ly for  tickvals .
+Sets the source reference on Chart Studio Cloud for `tickvals`.
 
 =cut
 
 has tickvalssrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  tickvals .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `tickvals`.",
 );
 
 =item * tickwidth
@@ -479,26 +539,26 @@ has title => (
 
 =item * x
 
-Sets the x position of the color bar (in plot fraction).
+Sets the x position of the color bar (in plot fraction). Defaults to 1.02 when `orientation` is *v* and 0.5 when `orientation` is *h*.
 
 =cut
 
 has x => (
     is => "rw",
     isa => "Num",
-    documentation => "Sets the x position of the color bar (in plot fraction).",
+    documentation => "Sets the x position of the color bar (in plot fraction). Defaults to 1.02 when `orientation` is *v* and 0.5 when `orientation` is *h*.",
 );
 
 =item * xanchor
 
-Sets this color bar's horizontal position anchor. This anchor binds the `x` position to the *left*, *center* or *right* of the color bar.
+Sets this color bar's horizontal position anchor. This anchor binds the `x` position to the *left*, *center* or *right* of the color bar. Defaults to *left* when `orientation` is *v* and *center* when `orientation` is *h*.
 
 =cut
 
 has xanchor => (
     is => "rw",
     isa => enum(["left","center","right"]),
-    documentation => "Sets this color bar's horizontal position anchor. This anchor binds the `x` position to the *left*, *center* or *right* of the color bar.",
+    documentation => "Sets this color bar's horizontal position anchor. This anchor binds the `x` position to the *left*, *center* or *right* of the color bar. Defaults to *left* when `orientation` is *v* and *center* when `orientation` is *h*.",
 );
 
 =item * xpad
@@ -515,26 +575,26 @@ has xpad => (
 
 =item * y
 
-Sets the y position of the color bar (in plot fraction).
+Sets the y position of the color bar (in plot fraction). Defaults to 0.5 when `orientation` is *v* and 1.02 when `orientation` is *h*.
 
 =cut
 
 has y => (
     is => "rw",
     isa => "Num",
-    documentation => "Sets the y position of the color bar (in plot fraction).",
+    documentation => "Sets the y position of the color bar (in plot fraction). Defaults to 0.5 when `orientation` is *v* and 1.02 when `orientation` is *h*.",
 );
 
 =item * yanchor
 
-Sets this color bar's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the color bar.
+Sets this color bar's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the color bar. Defaults to *middle* when `orientation` is *v* and *bottom* when `orientation` is *h*.
 
 =cut
 
 has yanchor => (
     is => "rw",
     isa => enum(["top","middle","bottom"]),
-    documentation => "Sets this color bar's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the color bar.",
+    documentation => "Sets this color bar's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the color bar. Defaults to *middle* when `orientation` is *v* and *bottom* when `orientation` is *h*.",
 );
 
 =item * ypad

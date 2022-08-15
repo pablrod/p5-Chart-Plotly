@@ -7,6 +7,7 @@ if (!defined Moose::Util::TypeConstraints::find_type_constraint('PDL')) {
 }
 
 use Chart::Plotly::Trace::Box::Hoverlabel;
+use Chart::Plotly::Trace::Box::Legendgrouptitle;
 use Chart::Plotly::Trace::Box::Line;
 use Chart::Plotly::Trace::Box::Marker;
 use Chart::Plotly::Trace::Box::Selected;
@@ -167,14 +168,14 @@ has customdata => (
 
 =item * customdatasrc
 
-Sets the source reference on plot.ly for  customdata .
+Sets the source reference on Chart Studio Cloud for `customdata`.
 
 =cut
 
 has customdatasrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  customdata .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `customdata`.",
 );
 
 =item * dx
@@ -227,14 +228,14 @@ has hoverinfo => (
 
 =item * hoverinfosrc
 
-Sets the source reference on plot.ly for  hoverinfo .
+Sets the source reference on Chart Studio Cloud for `hoverinfo`.
 
 =cut
 
 has hoverinfosrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  hoverinfo .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `hoverinfo`.",
 );
 
 =item * hoverlabel
@@ -261,26 +262,26 @@ has hoveron => (
 
 =item * hovertemplate
 
-Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
 
 =cut
 
 has hovertemplate => (
     is => "rw",
     isa => "Str|ArrayRef[Str]",
-    documentation => "Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:\$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.",
+    documentation => "Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:\$.2f}\". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.",
 );
 
 =item * hovertemplatesrc
 
-Sets the source reference on plot.ly for  hovertemplate .
+Sets the source reference on Chart Studio Cloud for `hovertemplate`.
 
 =cut
 
 has hovertemplatesrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  hovertemplate .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `hovertemplate`.",
 );
 
 =item * hovertext
@@ -297,14 +298,14 @@ has hovertext => (
 
 =item * hovertextsrc
 
-Sets the source reference on plot.ly for  hovertext .
+Sets the source reference on Chart Studio Cloud for `hovertext`.
 
 =cut
 
 has hovertextsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  hovertext .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `hovertext`.",
 );
 
 =item * ids
@@ -321,14 +322,14 @@ has ids => (
 
 =item * idssrc
 
-Sets the source reference on plot.ly for  ids .
+Sets the source reference on Chart Studio Cloud for `ids`.
 
 =cut
 
 has idssrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  ids .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `ids`.",
 );
 
 =item * jitter
@@ -355,6 +356,28 @@ has legendgroup => (
     documentation => "Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.",
 );
 
+=item * legendgrouptitle
+
+
+=cut
+
+has legendgrouptitle => (
+    is => "rw",
+    isa => "Maybe[HashRef]|Chart::Plotly::Trace::Box::Legendgrouptitle",
+);
+
+=item * legendrank
+
+Sets the legend rank for this trace. Items and groups with smaller ranks are presented on top/left side while with `*reversed* `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.
+
+=cut
+
+has legendrank => (
+    is => "rw",
+    isa => "Num",
+    documentation => "Sets the legend rank for this trace. Items and groups with smaller ranks are presented on top/left side while with `*reversed* `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.",
+);
+
 =item * line
 
 
@@ -379,14 +402,14 @@ has lowerfence => (
 
 =item * lowerfencesrc
 
-Sets the source reference on plot.ly for  lowerfence .
+Sets the source reference on Chart Studio Cloud for `lowerfence`.
 
 =cut
 
 has lowerfencesrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  lowerfence .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `lowerfence`.",
 );
 
 =item * marker
@@ -413,14 +436,14 @@ has mean => (
 
 =item * meansrc
 
-Sets the source reference on plot.ly for  mean .
+Sets the source reference on Chart Studio Cloud for `mean`.
 
 =cut
 
 has meansrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  mean .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `mean`.",
 );
 
 =item * median
@@ -437,14 +460,14 @@ has median => (
 
 =item * mediansrc
 
-Sets the source reference on plot.ly for  median .
+Sets the source reference on Chart Studio Cloud for `median`.
 
 =cut
 
 has mediansrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  median .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `median`.",
 );
 
 =item * pmeta
@@ -461,14 +484,14 @@ has pmeta => (
 
 =item * metasrc
 
-Sets the source reference on plot.ly for  meta .
+Sets the source reference on Chart Studio Cloud for `meta`.
 
 =cut
 
 has metasrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  meta .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `meta`.",
 );
 
 =item * name
@@ -509,14 +532,14 @@ has notchspan => (
 
 =item * notchspansrc
 
-Sets the source reference on plot.ly for  notchspan .
+Sets the source reference on Chart Studio Cloud for `notchspan`.
 
 =cut
 
 has notchspansrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  notchspan .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `notchspan`.",
 );
 
 =item * notchwidth
@@ -593,14 +616,14 @@ has q1 => (
 
 =item * q1src
 
-Sets the source reference on plot.ly for  q1 .
+Sets the source reference on Chart Studio Cloud for `q1`.
 
 =cut
 
 has q1src => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  q1 .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `q1`.",
 );
 
 =item * q3
@@ -617,26 +640,26 @@ has q3 => (
 
 =item * q3src
 
-Sets the source reference on plot.ly for  q3 .
+Sets the source reference on Chart Studio Cloud for `q3`.
 
 =cut
 
 has q3src => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  q3 .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `q3`.",
 );
 
 =item * quartilemethod
 
-Sets the method used to compute the sample's Q1 and Q3 quartiles. The *linear* method uses the 25th percentile for Q1 and 75th percentile for Q3 as computed using method #10 (listed on http://www.amstat.org/publications/jse/v14n3/langford.html). The *exclusive* method uses the median to divide the ordered dataset into two halves if the sample is odd, it does not include the median in either half - Q1 is then the median of the lower half and Q3 the median of the upper half. The *inclusive* method also uses the median to divide the ordered dataset into two halves but if the sample is odd, it includes the median in both halves - Q1 is then the median of the lower half and Q3 the median of the upper half.
+Sets the method used to compute the sample's Q1 and Q3 quartiles. The *linear* method uses the 25th percentile for Q1 and 75th percentile for Q3 as computed using method #10 (listed on http://jse.amstat.org/v14n3/langford.html). The *exclusive* method uses the median to divide the ordered dataset into two halves if the sample is odd, it does not include the median in either half - Q1 is then the median of the lower half and Q3 the median of the upper half. The *inclusive* method also uses the median to divide the ordered dataset into two halves but if the sample is odd, it includes the median in both halves - Q1 is then the median of the lower half and Q3 the median of the upper half.
 
 =cut
 
 has quartilemethod => (
     is => "rw",
     isa => enum(["linear","exclusive","inclusive"]),
-    documentation => "Sets the method used to compute the sample's Q1 and Q3 quartiles. The *linear* method uses the 25th percentile for Q1 and 75th percentile for Q3 as computed using method #10 (listed on http://www.amstat.org/publications/jse/v14n3/langford.html). The *exclusive* method uses the median to divide the ordered dataset into two halves if the sample is odd, it does not include the median in either half - Q1 is then the median of the lower half and Q3 the median of the upper half. The *inclusive* method also uses the median to divide the ordered dataset into two halves but if the sample is odd, it includes the median in both halves - Q1 is then the median of the lower half and Q3 the median of the upper half.",
+    documentation => "Sets the method used to compute the sample's Q1 and Q3 quartiles. The *linear* method uses the 25th percentile for Q1 and 75th percentile for Q3 as computed using method #10 (listed on http://jse.amstat.org/v14n3/langford.html). The *exclusive* method uses the median to divide the ordered dataset into two halves if the sample is odd, it does not include the median in either half - Q1 is then the median of the lower half and Q3 the median of the upper half. The *inclusive* method also uses the median to divide the ordered dataset into two halves but if the sample is odd, it includes the median in both halves - Q1 is then the median of the lower half and Q3 the median of the upper half.",
 );
 
 =item * sd
@@ -653,14 +676,14 @@ has sd => (
 
 =item * sdsrc
 
-Sets the source reference on plot.ly for  sd .
+Sets the source reference on Chart Studio Cloud for `sd`.
 
 =cut
 
 has sdsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  sd .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `sd`.",
 );
 
 =item * selected
@@ -721,14 +744,14 @@ has text => (
 
 =item * textsrc
 
-Sets the source reference on plot.ly for  text .
+Sets the source reference on Chart Studio Cloud for `text`.
 
 =cut
 
 has textsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  text .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `text`.",
 );
 
 =item * transforms
@@ -789,14 +812,14 @@ has upperfence => (
 
 =item * upperfencesrc
 
-Sets the source reference on plot.ly for  upperfence .
+Sets the source reference on Chart Studio Cloud for `upperfence`.
 
 =cut
 
 has upperfencesrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  upperfence .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `upperfence`.",
 );
 
 =item * visible
@@ -877,20 +900,68 @@ Sets the calendar system to use with `x` date data.
 
 has xcalendar => (
     is => "rw",
-    isa => enum(["gregorian","chinese","coptic","discworld","ethiopian","hebrew","islamic","julian","mayan","nanakshahi","nepali","persian","jalali","taiwan","thai","ummalqura"]),
+    isa => enum(["chinese","coptic","discworld","ethiopian","gregorian","hebrew","islamic","jalali","julian","mayan","nanakshahi","nepali","persian","taiwan","thai","ummalqura"]),
     documentation => "Sets the calendar system to use with `x` date data.",
+);
+
+=item * xhoverformat
+
+Sets the hover text formatting rulefor `x`  using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: *%h* for half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*By default the values are formatted using `xaxis.hoverformat`.
+
+=cut
+
+has xhoverformat => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the hover text formatting rulefor `x`  using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: *%h* for half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*By default the values are formatted using `xaxis.hoverformat`.",
+);
+
+=item * xperiod
+
+Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *n* on the x axis. Special values in the form of *n* could be used to declare the number of months. In this case `n` must be a positive integer.
+
+=cut
+
+has xperiod => (
+    is => "rw",
+    isa => "Any",
+    documentation => "Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *n* on the x axis. Special values in the form of *n* could be used to declare the number of months. In this case `n` must be a positive integer.",
+);
+
+=item * xperiod0
+
+Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.
+
+=cut
+
+has xperiod0 => (
+    is => "rw",
+    isa => "Any",
+    documentation => "Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.",
+);
+
+=item * xperiodalignment
+
+Only relevant when the axis `type` is *date*. Sets the alignment of data points on the x axis.
+
+=cut
+
+has xperiodalignment => (
+    is => "rw",
+    isa => enum(["start","middle","end"]),
+    documentation => "Only relevant when the axis `type` is *date*. Sets the alignment of data points on the x axis.",
 );
 
 =item * xsrc
 
-Sets the source reference on plot.ly for  x .
+Sets the source reference on Chart Studio Cloud for `x`.
 
 =cut
 
 has xsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  x .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `x`.",
 );
 
 =item * y
@@ -936,20 +1007,68 @@ Sets the calendar system to use with `y` date data.
 
 has ycalendar => (
     is => "rw",
-    isa => enum(["gregorian","chinese","coptic","discworld","ethiopian","hebrew","islamic","julian","mayan","nanakshahi","nepali","persian","jalali","taiwan","thai","ummalqura"]),
+    isa => enum(["chinese","coptic","discworld","ethiopian","gregorian","hebrew","islamic","jalali","julian","mayan","nanakshahi","nepali","persian","taiwan","thai","ummalqura"]),
     documentation => "Sets the calendar system to use with `y` date data.",
+);
+
+=item * yhoverformat
+
+Sets the hover text formatting rulefor `y`  using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: *%h* for half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*By default the values are formatted using `yaxis.hoverformat`.
+
+=cut
+
+has yhoverformat => (
+    is => "rw",
+    isa => "Str",
+    documentation => "Sets the hover text formatting rulefor `y`  using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: *%h* for half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*By default the values are formatted using `yaxis.hoverformat`.",
+);
+
+=item * yperiod
+
+Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *n* on the y axis. Special values in the form of *n* could be used to declare the number of months. In this case `n` must be a positive integer.
+
+=cut
+
+has yperiod => (
+    is => "rw",
+    isa => "Any",
+    documentation => "Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *n* on the y axis. Special values in the form of *n* could be used to declare the number of months. In this case `n` must be a positive integer.",
+);
+
+=item * yperiod0
+
+Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the y0 axis. When `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.
+
+=cut
+
+has yperiod0 => (
+    is => "rw",
+    isa => "Any",
+    documentation => "Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the y0 axis. When `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.",
+);
+
+=item * yperiodalignment
+
+Only relevant when the axis `type` is *date*. Sets the alignment of data points on the y axis.
+
+=cut
+
+has yperiodalignment => (
+    is => "rw",
+    isa => enum(["start","middle","end"]),
+    documentation => "Only relevant when the axis `type` is *date*. Sets the alignment of data points on the y axis.",
 );
 
 =item * ysrc
 
-Sets the source reference on plot.ly for  y .
+Sets the source reference on Chart Studio Cloud for `y`.
 
 =cut
 
 has ysrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  y .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `y`.",
 );
 
 =pod

@@ -90,14 +90,14 @@ has align => (
 
 =item * alignsrc
 
-Sets the source reference on plot.ly for  align .
+Sets the source reference on Chart Studio Cloud for `align`.
 
 =cut
 
 has alignsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  align .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `align`.",
 );
 
 =item * fill
@@ -122,26 +122,26 @@ has font => (
 
 =item * format
 
-Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+Sets the cell value formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format.
 
 =cut
 
 has format => (
     is => "rw",
     isa => "ArrayRef|PDL",
-    documentation => "Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format",
+    documentation => "Sets the cell value formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format.",
 );
 
 =item * formatsrc
 
-Sets the source reference on plot.ly for  format .
+Sets the source reference on Chart Studio Cloud for `format`.
 
 =cut
 
 has formatsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  format .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `format`.",
 );
 
 =item * height
@@ -180,14 +180,14 @@ has prefix => (
 
 =item * prefixsrc
 
-Sets the source reference on plot.ly for  prefix .
+Sets the source reference on Chart Studio Cloud for `prefix`.
 
 =cut
 
 has prefixsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  prefix .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `prefix`.",
 );
 
 =item * suffix
@@ -204,14 +204,14 @@ has suffix => (
 
 =item * suffixsrc
 
-Sets the source reference on plot.ly for  suffix .
+Sets the source reference on Chart Studio Cloud for `suffix`.
 
 =cut
 
 has suffixsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  suffix .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `suffix`.",
 );
 
 =item * values
@@ -228,14 +228,14 @@ has values => (
 
 =item * valuessrc
 
-Sets the source reference on plot.ly for  values .
+Sets the source reference on Chart Studio Cloud for `values`.
 
 =cut
 
 has valuessrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  values .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `values`.",
 );
 
 =pod

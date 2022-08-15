@@ -88,14 +88,14 @@ has colors => (
 
 =item * colorssrc
 
-Sets the source reference on plot.ly for  colors .
+Sets the source reference on Chart Studio Cloud for `colors`.
 
 =cut
 
 has colorssrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  colors .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `colors`.",
 );
 
 =item * line

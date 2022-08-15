@@ -99,26 +99,26 @@ has arrayminus => (
 
 =item * arrayminussrc
 
-Sets the source reference on plot.ly for  arrayminus .
+Sets the source reference on Chart Studio Cloud for `arrayminus`.
 
 =cut
 
 has arrayminussrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  arrayminus .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `arrayminus`.",
 );
 
 =item * arraysrc
 
-Sets the source reference on plot.ly for  array .
+Sets the source reference on Chart Studio Cloud for `array`.
 
 =cut
 
 has arraysrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  array .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `array`.",
 );
 
 =item * color

@@ -75,26 +75,26 @@ sub TO_JSON {
 
 =item * color
 
-Sets themarker.linecolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.line.cmin` and `marker.line.cmax` if set.
+Sets the marker.line color. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.line.cmin` and `marker.line.cmax` if set.
 
 =cut
 
 has color => (
     is => "rw",
     isa => "Str|ArrayRef[Str]",
-    documentation => "Sets themarker.linecolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.line.cmin` and `marker.line.cmax` if set.",
+    documentation => "Sets the marker.line color. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.line.cmin` and `marker.line.cmax` if set.",
 );
 
 =item * colorsrc
 
-Sets the source reference on plot.ly for  color .
+Sets the source reference on Chart Studio Cloud for `color`.
 
 =cut
 
 has colorsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  color .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `color`.",
 );
 
 =item * width
@@ -111,14 +111,14 @@ has width => (
 
 =item * widthsrc
 
-Sets the source reference on plot.ly for  width .
+Sets the source reference on Chart Studio Cloud for `width`.
 
 =cut
 
 has widthsrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  width .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `width`.",
 );
 
 =pod

@@ -134,14 +134,14 @@ has values => (
 
 =item * valuessrc
 
-Sets the source reference on plot.ly for  values .
+Sets the source reference on Chart Studio Cloud for `values`.
 
 =cut
 
 has valuessrc => (
     is => "rw",
     isa => "Str",
-    documentation => "Sets the source reference on plot.ly for  values .",
+    documentation => "Sets the source reference on Chart Studio Cloud for `values`.",
 );
 
 =item * visible
